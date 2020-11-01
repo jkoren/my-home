@@ -6,7 +6,7 @@ class Api::V1::RoomsController < ApplicationController
     render json: rooms
   end
 
-  def index
+  def show
     room = Room.find(params[:id])
     # render json: {
     #   room: serialized_data(movie, RoomSerializer),

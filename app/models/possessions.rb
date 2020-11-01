@@ -1,5 +1,3 @@
-class Room < ApplicationRecord
-  has_many :possessions, dependent: :destroy
-  belongs_to :user 
-  
+class Possession < ApplicationRecord
+  belongs_to :room
 end
