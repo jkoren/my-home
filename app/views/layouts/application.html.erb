@@ -23,8 +23,33 @@
     <%- end -%>
 
     <!-- main content -->
-  <div class="grid-container">
+
     <%= yield %>
+    <div class="grid-container">
+      <div class="grid-x grid-margin-x grid-padding-x"> <!--set up grid with space between panels grid-padding-x didn't work-->
+      
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Kitchen</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Living Room</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Master Bedroom</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>No Room</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+      </div> <!-- grid with space between panels -->
+    </div> <!-- grid-container -->
   </div>
 
     <script>
