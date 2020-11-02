@@ -1,45 +1,68 @@
+<!-- my-home-application.html.erb -->
 <!DOCTYPE html>
 <html>
-<head>
-  <title>MyHome</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  
-  <nav class="top-bar">
-    <h1><a href="/">MyHome</a></h1>
+  <head>
+    <%= csrf_meta_tags %>
 
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
-      </ul>
-    </section>
-  </nav>
+    <title>My Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
-  <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %>">
-      <%= value %>
-    </div>
-  <%- end -%>
+    <!-- stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg==" crossorigin="anonymous">
+    <link rel="stylesheet" href="public/stylesheets/style.css">
+  </head>
 
-  <%= yield %>
-
-  <%= javascript_include_tag 'application' %>
-  
-  <%- if Rails.env.development? || Rails.env.test? -%> 
-    <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
+  <body>
+    <%=  render "layouts/navbar"%>   
+ 
+    <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
     <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
-  
-  <%= yield :extra_footer %>
-</body>
+
+    <!-- main content -->
+
+    <%= yield %>
+    <div class="grid-container">
+      <div class="grid-x grid-margin-x grid-padding-x"> <!--set up grid with space between panels grid-padding-x didn't work-->
+      
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Kitchen</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Living Room</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+            <h3>Master Bedroom</h3>
+            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+          <h3>No Room</h3>
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        </div>
+
+      </div> <!-- grid with space between panels -->
+    </div> <!-- grid-container -->
+
+    <script>
+      $(document).foundation();
+    </script>
+
+    <%= javascript_include_tag 'application' %>
+    <%- if Rails.env.development? || Rails.env.test? -%> 
+      <%= javascript_tag do %>
+        window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
+    <%- end -%>
+    <%= javascript_pack_tag 'application' %>
+    <%= yield :extra_footer %>
+
+  </body>
 </html>
