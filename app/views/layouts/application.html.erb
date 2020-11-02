@@ -43,31 +43,26 @@
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
         </div>
 
-          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
-            <h3>No Room</h3>
-            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+          <h3>No Room</h3>
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
         </div>
 
       </div> <!-- grid with space between panels -->
     </div> <!-- grid-container -->
-  </div>
 
     <script>
       $(document).foundation();
     </script>
 
-  </body>
-</html>
-
-</head>
-<body>
-  <%= javascript_include_tag 'application' %>
-  <%- if Rails.env.development? || Rails.env.test? -%> 
-    <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
+    <%= javascript_include_tag 'application' %>
+    <%- if Rails.env.development? || Rails.env.test? -%> 
+      <%= javascript_tag do %>
+        window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
     <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
-  <%= yield :extra_footer %>
-</body>
+    <%= javascript_pack_tag 'application' %>
+    <%= yield :extra_footer %>
+
+  </body>
 </html>
