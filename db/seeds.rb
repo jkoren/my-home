@@ -9,15 +9,15 @@ living_room_image = File.open(File.join( Rails.root, 'app/assets/images/seed_ima
 kitchen_image = File.open(File.join( Rails.root, 'app/assets/images/seed_images/kitchen.jpg'))
 master_bedroom_image = File.open(File.join( Rails.root, 'app/assets/images/seed_images/master_bedroom.jpg'))
 
-Room.destroy_all
-living_room = Room.create(name: "Living Room",description: "Where we hang out mostly")
-living_room.image = living_room_image
-living_room.user = dave
+# Room.destroy_all
+# living_room = Room.create(name: "Living Room",description: "Where we hang out mostly")
+# living_room.image = living_room_image
+# living_room.user = dave
 
-kitchen = Room.create(name: "Kitchen",description: "State of the Art", user: dave, image: kitchen_image)
-kitchen.image = kitchen_image
-kitchen.user = dave
+# kitchen = Room.create(name: "Kitchen",description: "State of the Art", user: dave, image: kitchen_image)
+# kitchen.image = kitchen_image
+# kitchen.user = dave
 
-master_bedroom = Room.create("Master Bedroom","Spacious")
-master_bedroom.image = master_bedroom_image
-master_bedroom.user = dave
+# master_bedroom = Room.create("Master Bedroom","Spacious")
+# master_bedroom.image = master_bedroom_image
+# master_bedroom.user = dave
