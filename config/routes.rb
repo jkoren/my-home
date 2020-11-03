@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'homes#index'
 
+  get '/about', to: 'homes#index'
   get '/rooms', to: 'homes#index'
   get '/rooms/new', to: 'homes#index'
   get '/rooms/:id', to: 'homes#index'
