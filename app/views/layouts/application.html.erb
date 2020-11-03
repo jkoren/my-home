@@ -1,12 +1,11 @@
-<!-- my-home-application.html.erb -->
+<!-- my-home: application.html.erb -->
 <!DOCTYPE html>
 <html>
   <head>
-    <%= csrf_meta_tags %>
-
     <title>My Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= csrf_meta_tags %>
 
     <!-- stylesheets -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.4.3/dist/css/foundation.min.css" integrity="sha256-GSio8qamaXapM8Fq9JYdGNTvk/dgs+cMLgPeevOYEx0= sha384-wAweiGTn38CY2DSwAaEffed6iMeflc0FMiuptanbN4J+ib+342gKGpvYRWubPd/+ sha512-QHEb6jOC8SaGTmYmGU19u2FhIfeG+t/hSacIWPpDzOp5yygnthL3JwnilM7LM1dOAbJv62R+/FICfsrKUqv4Gg==" crossorigin="anonymous">
@@ -23,22 +22,25 @@
     <%- end -%>
 
     <!-- main content -->
-
+    <!-- from index.html.erb -->
     <%= yield %>
+
+    <!--- start: mock content --->
+    
     <div class="grid-container">
-      <div class="grid-x grid-margin-x grid-padding-x"> <!--set up grid with space between panels grid-padding-x didn't work-->
+      <div class="grid-x grid-margin-x"> <!--set up grid with space between panels-->
       
         <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
             <h3>Kitchen</h3>
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
         </div>
 
-          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
             <h3>Living Room</h3>
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
         </div>
 
-          <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
+        <div class="callout secondary cell small-12 medium-4"> <!-- >set up panel size 12/12 on small screen 4/12 on medium or larger --> 
             <h3>Master Bedroom</h3>
             <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p> 
         </div>
@@ -50,6 +52,7 @@
 
       </div> <!-- grid with space between panels -->
     </div> <!-- grid-container -->
+    <!-- end mock content -->
 
     <script>
       $(document).foundation();

@@ -1,3 +1,4 @@
+// RoomsIndexPage.js
 import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
 
@@ -23,29 +24,33 @@ const RoomsIndexPage = (props) => {
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
-
   let roomListItems = rooms.map((room) => {
-    let poster
-    if (room.room_poster.url) {
-      poster = <img className="poster" src={room.room_poster.url} alt="room poster" />
-    }
+    // let poster
+    // if (room.room_poster.url) {
+      //   poster = <img className="poster" src={room.room_poster.url} alt="room poster" />
+      // }
+      //debugger
     return (
-      <div className="callout secondary cell small-4">
-        <Link to={`/rooms/${room.id}`}>
-          <h2 className="title" >{room.title} ({room.year})</h2>
-          <div>{poster}</div>
+        <div className="callout secondary cell small-12 medium-4">
+            <Link to={`/rooms/${room.id}`}>
+            <h3>{room.name}</h3> 
+            <p>{room.description}</p>
+          {/* <div>{image}</div> */}
         </Link>
-      </div>)
+      </div>
+    )
   })
 
   return (
     <div>
-      <div className="grid-x grid-margin-x">
-        {roomListItems}
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x">
+          {roomListItems}
+        </div>
       </div>
-      <div>
-        <Link className="big" to={`/room/new`}>Add a New Room </Link>
-      </div>
+
+      <Link to={`/room/new`}>Add a New Room </Link>
+
     </div>
   )
 }
