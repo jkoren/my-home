@@ -2,6 +2,7 @@ class Api::V1::RoomsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    # react/js front end
     rooms = Room.all
     render json: rooms
   end
