@@ -35,9 +35,15 @@ const RoomsIndexPage = (props) => {
           <Link to={`/rooms/${room.id}`}>
             <h3>{room.name}</h3> 
             <p>{room.description}</p>
-              <div className="text-center">
+              {/* <div className="text-center">
                 <img src="https://secure.img1-fg.wfcdn.com/im/49278377/resize-h600%5Ecompr-r85/5706/57068565/Portland+4+-+Light+Kitchen+Island+Linear+Pendant.jpg" alt="room image" width="150" />
-              </div>
+              </div> */}
+
+            {/* can't get image to render
+            <div className="text-center">
+              <img src="../../../assets/images/seed_images/generic_rooms/kitchen_drawing.png" alt="room image" width="150" />
+            </div> */}
+
           </Link>
       </div>
     )
