@@ -1,0 +1,8 @@
+@import "./color_palette";
+
+// this is applied in App.js
+.pagestyle {
+  background-color: $off-white;
+}
+
+// check out the foundation stylesheet in application.html.erb - may be overriding this
