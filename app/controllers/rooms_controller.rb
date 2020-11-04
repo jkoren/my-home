@@ -1,5 +1,5 @@
 class Api::V1::RoomsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  #before_action :authenticate_user!, except: [:index, :show]
 
   def index
     # react/js front end
@@ -9,8 +9,12 @@ class Api::V1::RoomsController < ApplicationController
 
   def show
     room = Room.find(params[:id])
-    # render json: {
-    #   room: serialized_data(movie, RoomSerializer),
+    render json: room, serializer: RoomShowSerializer
+
+    # modified from group project:
+    # render json: 
+    # {
+    #   room: serialized_data(room, RoomSerializer)
     #   possessions: serialized_data(possession.reviews, PosessionSerializer)
     # }
   end

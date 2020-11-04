@@ -9,8 +9,8 @@ class Api::V1::RoomsController < ApplicationController
   def show
     room = Room.find(params[:id])
     render json: {
-      room: serialized_data(room, RoomSerializer),
-      possessions: serialized_data(room.possessions, PossessionSerializer)
+      room: serialized_data(room, RoomShowSerializer)
+      # possessions: serialized_data(room.possessions, PossessionSerializer)
     }
   end
 
