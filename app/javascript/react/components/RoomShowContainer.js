@@ -1,13 +1,17 @@
 // RoomShowContainer.js
 import React, { useState, useEffect } from "react"
 import RoomShowTile from "./RoomShowTile"
-import PossessionsIndexPage from "./PossessionsIndexPage"
-// import _ from "lodash" 
+import PossessionsIndexContainer from "./PossessionsIndexContainer"
+import _ from "lodash" 
 // import PossessionErrorList from "./PossessionErrorList"
 // import PossessionForm from "./PossessionForm"
 
 const RoomShowContainer = (props) => {
-  const [room, setRoom] = useState({})
+  const [room, setRoom] = useState({
+    id: "",
+    name: "",
+    description: ""
+  })
   const [possessions, setPossessions] = useState(null)
   // const [errors, setErrors] = useState({})
   // const [error, setError] = useState(null)
@@ -17,20 +21,28 @@ const RoomShowContainer = (props) => {
       credentials: "same-origin"
     })
       .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
+        if (response.ok) {
+          return response.json();
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error);
+        }
       })
       .then((responseBody) => {
-        setRoom(responseBody.room)
-        setPossessions(responseBody.possessions)
+        setRoom(responseBody)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+  let roomShow
+  if (!_.isEmpty(room)) {
+    roomShow = <RoomShowTile
+      id={room.id}
+      name={room.name}
+      description={room.description}
+    />
+  }
+
   // const validforSubmission = (submittedPossession) => {
   //   let submittedErrors = {}
   //   const requiredFields = ["rating"]
@@ -84,14 +96,10 @@ const RoomShowContainer = (props) => {
   // }
   return (
     <div>
-      <RoomShowTile
-        id={room.id}
-        name={room.name}
-        description={room.description}
-      />
-      <PossessionsIndexPage
+      {roomShow}
+      {/* <PossessionsIndexContainer
         possessions={possessions}
-      />
+      /> */}
       {/* <PossessionErrorList errors={errors} 
       error={error}/>
       <PossessionForm addNewPossessionFunction={addNewPossession} /> */}

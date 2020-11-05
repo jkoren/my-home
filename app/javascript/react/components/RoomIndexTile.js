@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const RoomIndexTile = (props) => {
   return(
-    <div className="callout cell small-12 medium-4 hover-zoom box-shadow">
+    <div className="callout cell small-12 medium-3 hover-zoom box-shadow">
       <Link to={`/rooms/${props.data.id}`}>
         <h4 className="field">{props.data.name}</h4>
         <h5 className="field">{props.data.description} </h5>

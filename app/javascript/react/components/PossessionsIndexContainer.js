@@ -1,9 +1,9 @@
-// PossessionsIndexPage.js
+// PossessionsIndexContainer.js
 import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
-import PossessionTile from "./PossessionTile"
+import PossessionIndexTile from "./PossessionIndexTile"
 
-const PossessionsIndexPage = (props) => {
+const PossessionsIndexContainer = (props) => {
   const [possessions, setPossessions] = useState([])
   
   useEffect(() => {
@@ -26,7 +26,7 @@ const PossessionsIndexPage = (props) => {
     .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
   let possessionList = possessions.map((possessionObject) => {
-    return <PossessionTile key={possessionObject.id} data={possessionObject} />
+    return <PossessionIndexTile key={possessionObject.id} data={possessionObject} />
   })
 
   return (
@@ -53,4 +53,4 @@ const PossessionsIndexPage = (props) => {
   )
 }
 
-export default PossessionsIndexPage
+export default PossessionsIndexContainer
