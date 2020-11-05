@@ -5,12 +5,15 @@ Rails.application.routes.draw do
   get '/rooms', to: 'homes#index'
   get '/rooms/new', to: 'homes#index'
   get '/rooms/:id', to: 'homes#index'
+  get '/possessions', to: 'possessions#index'
+  get '/possessions/:id', to: 'homes#index'
 
   namespace :api do
     namespace :v1 do
       resources :rooms, only: [:index, :show, :create] do
-        resources :possessions, only: [:index, :show, :create]
+        resources :possessions, only: [:create, :index]
       end
+      resources :possessions, only: [:show]
     end
   end
 
