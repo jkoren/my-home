@@ -31,7 +31,7 @@ const RoomsIndexPage = (props) => {
       // }
     
     return (
-        <div className="callout secondary cell small-12 medium-4">
+      <div className="callout cell small-12 medium-4 box-shadow hover-zoom">
           <Link to={`/rooms/${room.id}`}>
             <h3>{room.name}</h3> 
             <p>{room.description}</p>
@@ -51,9 +51,10 @@ const RoomsIndexPage = (props) => {
 
   return (
     <div>
+
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
-          {roomListItems}
+         {roomListItems}
         </div>
       </div>
 

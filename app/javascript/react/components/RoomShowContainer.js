@@ -1,20 +1,19 @@
 // RoomShowContainer.js
 import React, { useState, useEffect } from "react"
-import RoomShow from "./RoomShow"
-// import ReviewList from "./ReviewList"
+import RoomShowTile from "./RoomShowTile"
+import PossessionsIndexPage from "./PossessionsIndexPage"
 // import _ from "lodash" 
-// import ReviewErrorList from "./ReviewErrorList"
-// import ReviewForm from "./ReviewForm"
+// import PossessionErrorList from "./PossessionErrorList"
+// import PossessionForm from "./PossessionForm"
 
 const RoomShowContainer = (props) => {
   const [room, setRoom] = useState({})
+  const [possessions, setPossessions] = useState(null)
   // const [errors, setErrors] = useState({})
   // const [error, setError] = useState(null)
-  // const [reviews, setReviews] = useState(null)
   const id = props.match.params.id 
-
   useEffect(() => {
-    fetch(`/api/v1/rooms/${id}`, {
+    fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
     })
       .then((response) => {
@@ -28,31 +27,30 @@ const RoomShowContainer = (props) => {
       })
       .then((responseBody) => {
         setRoom(responseBody.room)
-        // setReviews(responseBody.reviews)
+        setPossessions(responseBody.possessions)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-  
-  const validforSubmission = (submittedReview) => {
-    let submittedErrors = {}
-    const requiredFields = ["rating"]
-    requiredFields.forEach(field => {
-      if (submittedReview[field].trim() === "") {
-        submittedErrors = {
-          ...submittedErrors,
-          [field]: "is blank"
-        }
-      }
-    })
-    setErrors(submittedErrors)
-    return _.isEmpty(submittedErrors)
-  }
-  // const addNewReview = (newReviewObject) => {
+  // const validforSubmission = (submittedPossession) => {
+  //   let submittedErrors = {}
+  //   const requiredFields = ["rating"]
+  //   requiredFields.forEach(field => {
+  //     if (submittedPossession[field].trim() === "") {
+  //       submittedErrors = {
+  //         ...submittedErrors,
+  //         [field]: "is blank"
+  //       }
+  //     }
+  //   })
+  //   setErrors(submittedErrors)
+  //   return _.isEmpty(submittedErrors)
+  // }
+  // const addNewPossession = (newPossessionObject) => {
     //   event.preventDefault() 
-    //   if (validforSubmission(newReviewObject)) {
-      //     fetch(`/api/v1/rooms/${id}/reviews.json`, {
+    //   if (validforSubmission(newPossessionObject)) {
+      //     fetch(`/api/v1/rooms/${id}/possessions.json`, {
         //       method: "POST",
-        //       body: JSON.stringify(newReviewObject),
+        //       body: JSON.stringify(newPossessionObject),
         //       credentials: "same-origin",
         //       headers: {
           //         'Accept': 'application/json',
@@ -74,8 +72,8 @@ const RoomShowContainer = (props) => {
                     //       }else if(body.error){
                       //         setError(body.error[0])
                       //       }else {
-                        //         setReviews([
-                          //           ...reviews,
+                        //         setPossessions([
+                          //           ...possessions,
 
   //           body
   //         ])
@@ -86,19 +84,17 @@ const RoomShowContainer = (props) => {
   // }
   return (
     <div>
-      <RoomShow
+      <RoomShowTile
         id={room.id}
         name={room.name}
         description={room.description}
-        // room_image={room.image}
       />
-      {/* <h2 className="review-label-header">Reviews:</h2>
-      <ReviewList
-        roomReviews={reviews}
+      <PossessionsIndexPage
+        possessions={possessions}
       />
-      <ReviewErrorList errors={errors} 
+      {/* <PossessionErrorList errors={errors} 
       error={error}/>
-      <ReviewForm addNewReviewFunction={addNewReview} /> */}
+      <PossessionForm addNewPossessionFunction={addNewPossession} /> */}
     </div>
   )
 }

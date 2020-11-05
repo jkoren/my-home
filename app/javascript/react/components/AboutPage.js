@@ -2,17 +2,21 @@ import React from "react";
 
 const AboutPage = (props) => {
   return (
-    <div className="cell auto page">
-      <div className="grid-x grid-margin-y text-center">
-        <h2 className="cell"> All the information you need to be fabulous with technology. </h2>
-        <br></br>
-        <div className="cell">
-          <h3>Created by: Jeff Korenstein</h3>
-          <h4>j.korenstein@gmail.com</h4>
+    <div>
+      <div className="cell medium-offset-3 small-offset-1">
+        <div className="grid-x grid-margin-y text-center">
+          <div className="callout cell small-10 medium-6  box-shadow">
+            <h2 className="cell"> Be technology-fabulous. </h2>
+            <br></br>
+            <div className="cell">
+              <h3>Created by: Jeff Korenstein</h3>
+              <h4>j.korenstein@gmail.com</h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default AboutPage;
