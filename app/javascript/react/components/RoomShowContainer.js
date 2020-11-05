@@ -13,7 +13,7 @@ const RoomShowContainer = (props) => {
   // const [error, setError] = useState(null)
   const id = props.match.params.id 
   useEffect(() => {
-    fetch(`/api/v1/possessions/${id}`, {
+    fetch(`/api/v1/rooms/${id}`, {
       credentials: "same-origin"
     })
       .then((response) => {

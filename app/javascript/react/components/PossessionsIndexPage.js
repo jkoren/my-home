@@ -7,7 +7,7 @@ const PossessionsIndexPage = (props) => {
   const [possessions, setPossessions] = useState([])
   
   useEffect(() => {
-    fetch("/api/v1/possessions.json", {
+    fetch(`/api/v1/rooms/${id}/possessions.json`, {
       credentials: "same-origin"
     })
     .then(response => {

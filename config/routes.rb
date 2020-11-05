@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :rooms, only: [:index, :show, :create] do
-        resources :possessions, only: [:create]
+        resources :possessions, only: [:create, :index]
       end
-      resources :possessions, only: [:index, :show]
+      resources :possessions, only: [:show]
     end
   end
 

@@ -23,7 +23,7 @@ Room.create(name: "Living Room",description: living_room_description, image: liv
 
 Possession.destroy_all
 cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
-cuisinart_picture = "../app/assets/images/seed_images/possessions//kitchen/cuisinart-DLC-8S.jpg"
+cuisinart_picture = "../app/assets/images/seed_images/possessions/kitchen/cuisinart-DLC-8S.jpg"
 cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
 cuisinart_operating_video = "https://www.youtube.com/watch?v=2MnNeKrF7b4"
 
@@ -36,6 +36,19 @@ Possession.create(
   image: cuisinart_picture,
   URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
   operating_video: cuisinart_operating_video,
+  room: kitchen)
+
+  dishwasher_operating_video = "https://www.youtube.com/watch?v=g_dfzV2EiU8"
+  dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
+
+  Possession.create(
+  name:"Dishwasher", 
+  manufacturer: "Kenmore", 
+  model: "Ultra Wash 665.1372",
+  description: dishwasher_description, 
+  image: "../app/assets/images/seed_images/possessions/kitchen/cuisinart-DLC-8S.jpg",
+  URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
+  operating_video: dishwasher_operating_video,
   room: kitchen)
   
   # t.string :name, null: false
