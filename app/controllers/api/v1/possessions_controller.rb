@@ -9,13 +9,6 @@ class Api::V1::PossessionsController < ApplicationController
   def show
     possession = Possession.find(params[:id])
     render json: possession, serializer: PossessionShowSerializer
-
-    # modified from group project:
-    # render json: 
-    # {
-    #   possession: serialized_data(possession, PossessionSerializer)
-    #   possessions: serialized_data(possession.reviews, PosessionSerializer)
-    # }
   end
 
 end

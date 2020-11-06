@@ -1,3 +1,4 @@
+# routes.rb
 Rails.application.routes.draw do
   root 'homes#index'
 
@@ -10,9 +11,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :possessions, only: [:show]
+      resources :possessions, only: [:show, :index]
       resources :rooms, only: [:index, :show, :create] do
-        resources :possessions, only: [:create, :index]
+        resources :possessions, only: [:create ]
       end
     end
   end
