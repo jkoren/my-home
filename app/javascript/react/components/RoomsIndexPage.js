@@ -33,7 +33,7 @@ const RoomsIndexPage = (props) => {
     <div>
 
       <div className="grid-container">
-        <div className="grid-x grid-padding-y text-center">
+        <div className="grid-x grid-margin-x text-center">
          {roomListItems}
         </div>
       </div>
