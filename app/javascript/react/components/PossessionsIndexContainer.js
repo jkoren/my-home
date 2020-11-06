@@ -4,31 +4,38 @@ import { Link } from 'react-router-dom'
 import PossessionIndexTile from "./PossessionIndexTile"
 
 const PossessionsIndexContainer = (props) => {
-  const [possessions, setPossessions] = useState([])
+  // const [possessions, setPossessions] = useState([])
   
-  useEffect(() => {
-    fetch(`/api/v1/rooms/${id}/possessions.json`, {
-      credentials: "same-origin"
-    })
-    .then(response => {
-      if (response.ok) {
-        return response
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage)
-        throw error
-      }
-    })
-    .then(response => response.json())
-    .then(body => {
-      setPossessions(body)
-    })
-    .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
-  let possessionList = possessions.map((possessionObject) => {
-    return <PossessionIndexTile key={possessionObject.id} data={possessionObject} />
-  })
+  // useEffect(() => {
+  //   fetch(`/api/v1/rooms/${id}/possessions.json`, {
+  //     credentials: "same-origin"
+  //   })
+  //   .then(response => {
+  //     if (response.ok) {
+  //       return response
+  //     } else {
+  //       let errorMessage = `${response.status} (${response.statusText})`,
+  //       error = new Error(errorMessage)
+  //       throw error
+  //     }
+  //   })
+  //   .then(response => response.json())
+  //   .then(body => {
+  //     setPossessions(body)
+  //   })
+  //   .catch(error => console.error(`Error in fetch: ${error.message}`))
+  // }, [])
+  // let possessionList = possessions.map((possessionObject) => {
+  //   return <PossessionIndexTile key={possessionObject.id} data={possessionObject} />
+  // })
+  let possessionList
+  if (!_.isEmpty(props.possessions)) {
+    possessionList = props.possessions.map((possessionObject) => {
+      return <PossessionIndexTile key={possessionObject.id} data={possessionObject} />
+    }
+  )}
 
+  // debugger
   return (
     <div>
 
@@ -39,9 +46,7 @@ const PossessionsIndexContainer = (props) => {
 
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
-          <div className="callout cell small-12 box-shadow">
-            {possessionList}
-          </div>
+          {possessionList}
         </div>
       </div>
 

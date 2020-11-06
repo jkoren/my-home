@@ -34,75 +34,24 @@ const RoomShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
   let roomShow
   if (!_.isEmpty(room)) {
     roomShow = <RoomShowTile
-      id={room.id}
-      name={room.name}
-      description={room.description}
+      key={room.id}
+      data={room}
     />
   }
 
-  // const validforSubmission = (submittedPossession) => {
-  //   let submittedErrors = {}
-  //   const requiredFields = ["rating"]
-  //   requiredFields.forEach(field => {
-  //     if (submittedPossession[field].trim() === "") {
-  //       submittedErrors = {
-  //         ...submittedErrors,
-  //         [field]: "is blank"
-  //       }
-  //     }
-  //   })
-  //   setErrors(submittedErrors)
-  //   return _.isEmpty(submittedErrors)
-  // }
-  // const addNewPossession = (newPossessionObject) => {
-    //   event.preventDefault() 
-    //   if (validforSubmission(newPossessionObject)) {
-      //     fetch(`/api/v1/rooms/${id}/possessions.json`, {
-        //       method: "POST",
-        //       body: JSON.stringify(newPossessionObject),
-        //       credentials: "same-origin",
-        //       headers: {
-          //         'Accept': 'application/json',
-          //         'Content-Type': 'application/json'
-          //       }
-          //     })
-          //     .then(response => response.json())
-          //     .then(body => {
-            //       if (body.errors) {
-              //         const requiredFields = ["rating"]
-              //         requiredFields.forEach(field => { 
-                //           if (body.errors[field] !== undefined) {
-                  //             setErrors({
-                    //               ...errors,
-                    //               [field]: body.errors[field][0]
-                    //             })
-                    //           }
-                    //         })
-                    //       }else if(body.error){
-                      //         setError(body.error[0])
-                      //       }else {
-                        //         setPossessions([
-                          //           ...possessions,
-
-  //           body
-  //         ])
-  //       }
-  //     })
-  //     .catch(error => console.error(`Error in fetch: ${error.message}`))
-  //   }
-  // }
   return (
     <div>
-      {roomShow}
-      {/* <PossessionsIndexContainer
-        possessions={possessions}
-      /> */}
-      {/* <PossessionErrorList errors={errors} 
-      error={error}/>
-      <PossessionForm addNewPossessionFunction={addNewPossession} /> */}
+      <div className="text-center">
+        {roomShow}
+      </div>
+
+      <PossessionsIndexContainer 
+          possessions={room.possessions}
+      />
     </div>
   )
 }
