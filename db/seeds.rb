@@ -21,22 +21,6 @@ Room.create(name:"Bedroom 2",description: bedroom_2_description, user: dave)
 living_room = Room.create(name: "Living Room",description: living_room_description, user: dave)
 
 Possession.destroy_all
-cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
-cuisinart_picture = "../app/assets/images/seed_images/possessions/kitchen/cuisinart-DLC-8S.jpg"
-cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
-cuisinart_operating_video = "https://www.youtube.com/watch?v=2MnNeKrF7b4"
-
-Possession.create(
-  name:"Cuisinart", 
-  manufacturer: "Cuisinart", 
-  model: "DLC-8S",
-  owners_manual: cuisinart_owners_manual,
-  description: cuisinart_description, 
-  image: cuisinart_picture,
-  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
-  operating_video: cuisinart_operating_video,
-  room: kitchen)
-
 dishwasher_operating_video = "https://www.youtube.com/watch?v=g_dfzV2EiU8"
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
@@ -74,7 +58,7 @@ Possession.create(
 )
 
 Possession.create(
-  name:"Dryer", 
+  name:"Refrigerator", 
   manufacturer: "KitchenAid", 
   model: "KRFC300ESS",
   description: "36 Inch Wide 20 Cu. Ft. Counter Depth French Door Refrigerator with Interior Water Dispenser",
@@ -105,6 +89,20 @@ Possession.create(
   operating_video: "",
   room: laundry_room
 )
+
+cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
+cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
+
+Possession.create(
+  name:"Cuisinart", 
+  manufacturer: "Cuisinart", 
+  model: "DLC-8S",
+  owners_manual: "",
+  description: cuisinart_description, 
+  image: "https://i.pinimg.com/originals/ae/54/86/ae5486c24ae20743550e13afcf153ddc.jpg",
+  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
+  operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
+  room: kitchen)
 
 Possession.create(
   name:"Thermostat", 
