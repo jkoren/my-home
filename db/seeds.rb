@@ -14,11 +14,37 @@ kitchen_description = "Hardwood Flooring, Stone/Granite/Solid Countertops, Reces
 living_room_description = "Hardwood Flooring, Recessed Lighting, Wainscoting, Crown Molding, 12 x 16, First Floor"
 laundry_room_description = "Third Floor, with Washer and Dryer"
 
-kitchen=Room.create(name: "Kitchen",description: kitchen_description, user: dave)
-laundry_room=Room.create(name: "Laundry Room",description: laundry_room_description, user: dave)
-Room.create(name:"Master Bedroom",description: master_bedroom_description, user: dave)
-Room.create(name:"Bedroom 2",description: bedroom_2_description, user: dave)
-living_room = Room.create(name: "Living Room",description: living_room_description, user: dave)
+kitchen=Room.create(
+  name: "Kitchen", 
+  image: "https://m1.cbhomes.com/p/102/72707418/Ea96aC625cf1422/full.jpg",
+  description: kitchen_description, 
+  user: dave
+)
+laundry_room=Room.create(
+  name: "Laundry Room",
+  image: "https://m.cbhomes.com/p/102/72707418/F7DfeA94271744E/full.jpg",
+  description: laundry_room_description, 
+  user: dave
+)
+Room.create(
+  name:"Master Bedroom",
+  image: "https://m.cbhomes.com/p/102/72707418/9AdFd7AC4b124e7/full.jpg",
+  description: master_bedroom_description, 
+  user: dave
+)
+Room.create(
+  name:"Bedroom 2",
+  image: "https://m1.cbhomes.com/p/102/72707418/99a05Ac24Ef442B/full.jpg",
+  description: bedroom_2_description, 
+  user: dave
+)
+
+living_room = Room.create(
+  name: "Living Room",
+  image: "https://m.cbhomes.com/p/102/72707418/3365CbB65cF34cd/full.jpg",
+  description: living_room_description, 
+  user: dave
+)
 
 Possession.destroy_all
 dishwasher_operating_video = "https://www.youtube.com/watch?v=g_dfzV2EiU8"
@@ -29,7 +55,7 @@ Possession.create(
   manufacturer: "Kenmore", 
   model: "Ultra Wash 665.1372",
   description: dishwasher_description, 
-  image: "../app/assets/images/seed_images/possessions/kitchen/cuisinart-DLC-8S.jpg",
+  image: "https://c.shld.net/rpx/i/s/i/spin/10130653/prod_17810015912",
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: dishwasher_operating_video,
   room: kitchen

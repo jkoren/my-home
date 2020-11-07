@@ -12,7 +12,7 @@ export const App = (props) => {
   return (
     <div className="pagestyle">
       <div className="text-center">
-        <h3>Owner's Manual for 18 Common St #5, Waltham, MA</h3>
+        <h3>Owner's Manual for 315 College Farm Rd #6, Waltham, MA</h3>
       </div>
 
       <BrowserRouter>
