@@ -26,14 +26,16 @@ const RoomsIndexPage = (props) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
   let roomListItems = rooms.map((roomObject) => {
-    return <RoomIndexTile key={roomObject.id} data={roomObject} />
+    return <RoomIndexTile 
+        key={roomObject.id} 
+        data={roomObject} />
   })
 
   return (
     <div>
 
       <div className="grid-container">
-        <div className="grid-x grid-margin-x text-center">
+        <div className="grid-x grid-margin-x">
          {roomListItems}
         </div>
       </div>

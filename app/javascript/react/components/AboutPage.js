@@ -3,7 +3,7 @@ import React from "react";
 const AboutPage = (props) => {
   return (
     <div>
-      <div className="cell medium-offset-3 small-offset-1"> 
+      <div className="cell small-offset-1 medium-offset-4 "> 
         <div className="grid-x grid-margin-y text-center">
           <div className="callout cell small-10 medium-4 box-shadow">
             <h2 className="cell"> Be technology-fabulous. </h2>

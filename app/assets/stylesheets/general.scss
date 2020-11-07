@@ -2,8 +2,16 @@
 
 // this is applied in App.js
 .pagestyle {
-  background-color: $off-white;
+  background-color: $primary
 }
+
+.top-bar {
+  background: $light-accent;
+  .menu {
+    background: $light-accent;
+  }
+}
+// modifying top bar https://youtu.be/cxPwwixHEJg
 
 // for tiles
 .box-shadow {
