@@ -9,6 +9,9 @@
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
+    <!-- experiment - add a photo -->
+    <%= f.file_field :image %>
+
     <div class="field">
       <%= f.label :password %>
       <% if @minimum_password_length %>

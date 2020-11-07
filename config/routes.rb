@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/rooms/:id', to: 'homes#index'
   get '/possessions', to: 'homes#index'
   get '/possessions/:id', to: 'homes#index'
+  # get ‘*page’, to: ‘homes#index’
 
   namespace :api do
     namespace :v1 do
