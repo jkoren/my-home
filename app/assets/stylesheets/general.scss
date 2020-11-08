@@ -7,8 +7,18 @@
 
 .top-bar {
   background: $light-accent;
+  background-color: $light-accent;
+  background-clip: $light-accent;
+  padding: $light-accent;
+  // border: 3px dashed red;
+  margin: $light-accent;
   .menu {
     background: $light-accent;
+    background-color: $light-accent;
+    background-clip: $light-accent;
+    padding: $light-accent;
+    // border: 3px dashed black;
+    margin: $light-accent ;
   }
 }
 // modifying top bar https://youtu.be/cxPwwixHEJg

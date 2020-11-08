@@ -2,9 +2,23 @@ User.destroy_all
 dave = User.create(email: "dave@gmail.com",password: "testtest")
 bob = User.create(email: "bob@gmail.com", password: "testtest")
 
-# living_room_image = File.open(File.join( Rails.root, '../app/assets/images/seed_images/rooms/living_room.jpg'))
-# kitchen_image = File.open(File.join( Rails.root, '../app/assets/images/seed_images/rooms/kitchen.jpg'))
-# master_bedroom_image = File.open(File.join( Rails.root, '../app/assets/images/seed_images/rooms/master_bedroom.jpg'))
+Residence.destroy_all
+
+CollegeFarmRoad = Residence.create(
+  name: "315 College Farm Rd #6",
+  street: "315 College Farm Rd #6",
+  city: "Waltham",
+  state: "MA",
+  image: "https://m1.cbhomes.com/p/102/72707418/bf5EFC892DD14f6/full.jpg"
+)
+
+BarbaraRoad = Residence.create(
+  name: "59 Barbara Rd #1",
+  street: "59 Barbara Rd #1",
+  city: "Waltham",
+  state: "MA",
+  image: "https://m.cbhomes.com/p/102/72753295/747777af3519434/full.jpg"
+)
 
 Room.destroy_all
 
@@ -18,31 +32,36 @@ kitchen=Room.create(
   name: "Kitchen", 
   image: "https://m1.cbhomes.com/p/102/72707418/Ea96aC625cf1422/full.jpg",
   description: kitchen_description, 
+  residence: CollegeFarmRoad,
   user: dave
 )
 laundry_room=Room.create(
   name: "Laundry Room",
   image: "https://m.cbhomes.com/p/102/72707418/F7DfeA94271744E/full.jpg",
   description: laundry_room_description, 
+  residence: CollegeFarmRoad,
   user: dave
 )
 Room.create(
   name:"Master Bedroom",
   image: "https://m.cbhomes.com/p/102/72707418/9AdFd7AC4b124e7/full.jpg",
   description: master_bedroom_description, 
+  residence: CollegeFarmRoad,
   user: dave
 )
 Room.create(
   name:"Bedroom 2",
   image: "https://m1.cbhomes.com/p/102/72707418/99a05Ac24Ef442B/full.jpg",
   description: bedroom_2_description, 
+  residence: CollegeFarmRoad,
   user: dave
 )
 
 living_room = Room.create(
   name: "Living Room",
   image: "https://m.cbhomes.com/p/102/72707418/3365CbB65cF34cd/full.jpg",
-  description: living_room_description, 
+  description: living_room_description,
+  residence: CollegeFarmRoad, 
   user: dave
 )
 
@@ -105,6 +124,7 @@ Possession.create(
   room: laundry_room
 )
 
+# this is failing
 Possession.create(
   name:"Washing Machine", 
   manufacturer: "LG", 
@@ -116,7 +136,7 @@ Possession.create(
   room: laundry_room
 )
 
-cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
+# cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
 cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
 
 Possession.create(
@@ -140,18 +160,3 @@ Possession.create(
   operating_video: "",
   room: living_room
 )
-  # t.string :name, null: false
-  # t.string :manufacturer, null: false
-  # t.string :model
-  # t.string :owners_manual
-  # t.string :image
-  # t.string :operating_video
-  # t.text :description
-  # t.date :purchase_date
-  # t.string :purchase_price
-  # t.integer :year_built
-  # t.string :purchased_from
-  # t.string :purchase_receipt
-  
-  # t.belongs_to :room, null:false
-  

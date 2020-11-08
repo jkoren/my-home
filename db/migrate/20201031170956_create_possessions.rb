@@ -1,3 +1,4 @@
+# /db/migrate/20201031170956_create_possessions.rb
 class CreatePossessions < ActiveRecord::Migration[5.2]
   def change
     create_table :possessions do |t|

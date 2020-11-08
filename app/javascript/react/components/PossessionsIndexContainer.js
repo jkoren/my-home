@@ -7,10 +7,14 @@ const PossessionsIndexContainer = (props) => {
   let possessionTiles
   if (!_.isEmpty(props.possessions)) {
     possessionTiles = props.possessions.map((possessionObject) => {
-      return <PossessionIndexTile key={possessionObject.id} data={possessionObject} />
-    }
-  )}
-
+      return ( 
+        <PossessionIndexTile 
+          key={possessionObject.id} 
+          data={possessionObject} 
+        />
+      )
+    })
+  }
   return (
     <div>
       <div className="grid-container">

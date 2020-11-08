@@ -1,3 +1,4 @@
+# db/migrate/20201031170644_create_rooms.rb
 class CreateRooms < ActiveRecord::Migration[5.2]
   def change
     create_table :rooms do |t|
