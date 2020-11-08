@@ -1,13 +1,13 @@
-// PossessionShowContainer.js
+// ResidenceShowContainer.js
 import React, { useState, useEffect } from "react"
-import PossessionShowTile from "./PossessionShowTile"
+import ResidenceShowTile from "./ResidenceShowTile"
 
 import _ from "lodash" 
-// import PossessionErrorList from "./PossessionErrorList"
-// import PossessionForm from "./PossessionForm"
+// import ResidenceErrorList from "./ResidenceErrorList"
+// import ResidenceForm from "./ResidenceForm"
 
-const PossessionShowContainer = (props) => {
-  const [possession, setPossession] = useState({
+const ResidenceShowContainer = (props) => {
+  const [residence, setResidence] = useState({
     id: "",
     name: "",
     manufacturer: "",
@@ -18,12 +18,13 @@ const PossessionShowContainer = (props) => {
     URL: "",
     purchase_receipt: ""
   })
+  
   // const [errors, setErrors] = useState({})
   // const [error, setError] = useState(null)
 
   const id = props.match.params.id 
   useEffect(() => {
-    fetch(`/api/v1/possessions/${id}`, {
+    fetch(`/api/v1/residences/${id}`, {
       credentials: "same-origin"
     })
       .then((response) => {
@@ -36,27 +37,25 @@ const PossessionShowContainer = (props) => {
         }
       })
       .then((responseBody) => {
-        setPossession(responseBody)
+        setResidence(responseBody)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
-    }, [])
-    // this debugger not being hit
-  debugger
-  let possessionShow
-  if (!_.isEmpty(possession)) {
-    possessionShow = <PossessionShowTile
-      key={possession.id}
-      data={possession}
+  }, [])
+  let residenceShow
+  if (!_.isEmpty(residence)) {
+    residenceShow = <ResidenceShowTile
+      key={residence.id}
+      data={residence}
     />
   }
 
   return (
     <div>
       <div className="text-center">
-        {possessionShow}
+        {residenceShow}
       </div>
     </div>
   )
 }
 
-export default PossessionShowContainer 
+export default ResidenceShowContainer 
