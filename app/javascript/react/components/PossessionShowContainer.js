@@ -41,7 +41,7 @@ const PossessionShowContainer = (props) => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
     }, [])
     // this debugger not being hit
-  debugger
+  // debugger
   let possessionShow
   if (!_.isEmpty(possession)) {
     possessionShow = <PossessionShowTile

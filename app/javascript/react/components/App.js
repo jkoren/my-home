@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 import RoomsIndexContainer from "./RoomsIndexContainer"
 import AboutPage from "./AboutPage"
 import RoomShowContainer from "./RoomShowContainer"
-import PossessionShowContainer from "./ResidenceShowContainer"
+import PossessionShowContainer from "./PossessionShowContainer"
 import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import ResidenceShowContainer from "./ResidenceShowContainer"
 
