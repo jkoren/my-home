@@ -5,22 +5,33 @@
   background-color: $primary
 }
 
+// .top-bar {
+//   padding: 0px;
+//   border: 3px dashed red;
+//   background-color: $light-accent;
+//   .menu {
+//     padding: 0px;
+//     background-color: $light-accent;
+//     border: 3px dashed black;
+//     margin: 0;
+//   }
+// }
+
 .top-bar {
-  background: $light-accent;
   background-color: $light-accent;
-  background-clip: $light-accent;
-  padding: $light-accent;
-  // border: 3px dashed red;
-  margin: $light-accent;
   .menu {
-    background: $light-accent;
-    background-color: $light-accent;
-    background-clip: $light-accent;
-    padding: $light-accent;
-    // border: 3px dashed black;
-    margin: $light-accent ;
+    background-color:$light-accent;
+    padding: 0px;
+  }
+  .top-left {
+    background-color:$light-accent;
+  }
+  .top-right {
+    background-color:$light-accent;
   }
 }
+
+
 // modifying top bar https://youtu.be/cxPwwixHEJg
 
 // for tiles
