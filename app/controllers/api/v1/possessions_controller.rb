@@ -13,7 +13,6 @@ class Api::V1::PossessionsController < ApplicationController
 
   def create
     new_possession = Possession.new(possession_params)
-
     if new_possession.save
       render json: new_possession
     else

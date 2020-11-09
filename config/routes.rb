@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/possessions/:id', to: 'homes#index'
   get '/residences', to: 'homes#index'
   get '/residences/:id', to: 'homes#index'
+  get "/rooms/:id/possessions/new", to: "homes#index"
   # get ‘*page’, to: ‘homes#index’
 
   namespace :api do
