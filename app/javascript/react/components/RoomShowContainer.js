@@ -50,6 +50,7 @@ const RoomShowContainer = (props) => {
       </div>
 
       <PossessionsIndexContainer 
+          room={room}
           possessions={room.possessions}
       />
     </div>

@@ -24,7 +24,9 @@ const PossessionsIndexContainer = (props) => {
       </div>
 
       <div className="grid-container">
-        <Link to={`/possession/new`}>Add a New Possession </Link>
+        <Link to={`/rooms/${props.room.id}/possessions/new`}>
+          Add a New Possession 
+        </Link>
       </div>
     </div>
   )

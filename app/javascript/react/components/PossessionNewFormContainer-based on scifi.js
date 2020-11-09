@@ -107,7 +107,7 @@ const PossessionNewFormContainer = (props) => {
   return (
     <div>
       <div>
-        <p className="callout secondary cell small-6">To add a new possession please enter name, manufacturer, and model!</p>
+        <p className="callout cell small-6">To add a new possession please enter name, manufacturer, and model!</p>
       </div>
 
       <div className="field">

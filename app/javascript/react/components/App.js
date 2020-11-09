@@ -2,22 +2,18 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 
-import RoomsIndexContainer from "./RoomsIndexContainer"
-import AboutPage from "./AboutPage"
-import RoomShowContainer from "./RoomShowContainer"
-import PossessionShowContainer from "./PossessionShowContainer"
 import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import ResidenceShowContainer from "./ResidenceShowContainer"
+import RoomsIndexContainer from "./RoomsIndexContainer"
+import RoomShowContainer from "./RoomShowContainer"
+import PossessionShowContainer from "./PossessionShowContainer"
+import PossessionNewForm from "./PossessionNewForm"
+import AboutPage from "./AboutPage"
 
-// import RoomFormContainer from "./RoomFormContainer"
 
 export const App = (props) => {
   return (
     <div className="pagestyle">
-      {/* <div className="text-center">
-        <h3>Owner's Manual for 315 College Farm Rd #6, Waltham, MA</h3>
-      </div> */}
-
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={RoomsIndexContainer} />
@@ -26,7 +22,7 @@ export const App = (props) => {
           <Route exact path="/rooms" component={RoomsIndexContainer} />
           <Route exact path="/rooms/:id" component={RoomShowContainer} />
           <Route exact path="/possessions/:id" component={PossessionShowContainer} /> 
-          {/* <Route exact path="/rooms/new" component={RoomFormContainer} /> */}
+          <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
           <Route exact path="/about" component={AboutPage} />
         </Switch>
       </BrowserRouter>
