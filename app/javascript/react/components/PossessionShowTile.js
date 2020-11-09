@@ -33,12 +33,12 @@ const PossessionShowTile = (props) => {
           </h5>
           <h5>
             <i class="fas fa-file-alt fa-3x"></i>
-            Receipt: 
+            Receipt: {props.data.purchase_receipt}
           </h5>
 
           <h5>
             <i class="fas fa-file-alt fa-3x"></i>
-              Warranty: {props.data.purchase_receipt}
+              Warranty: {props.data.warranty}
           </h5>
         </div> 
 

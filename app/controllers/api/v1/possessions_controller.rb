@@ -11,4 +11,29 @@ class Api::V1::PossessionsController < ApplicationController
     render json: possession, serializer: PossessionShowSerializer
   end
 
+  def create
+    new_possession = Possession.new(possession_params)
+
+    if new_possession.save
+      render json: new_possession
+    else
+      render json: { errors: new_possession.errors }
+    end
+  end
+
+  private
+    def possession_params
+      params.require(:possession).permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty])
+    end
+
+    def authenticate_user
+      if !user_signed_in?
+        render json: {error: ["You need to be signed in first"]}
+      end
+    end
+
+    def serialized_data(data, serializer)
+      ActiveModelSerializers::SerializableResource.new(data, each_serializer: serializer, scope: current_user)
+    end
+
 end
