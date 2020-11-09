@@ -20,6 +20,14 @@ BarbaraRoad = Residence.create(
   image: "https://m.cbhomes.com/p/102/72753295/747777af3519434/full.jpg"
 )
 
+MatthewLane = Residence.create(
+  name: "41 Matthew Ln",
+  street: "41 Matthew Ln",
+  city: "Waltham",
+  state: "MA",
+  image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg"
+)
+
 Room.destroy_all
 
 master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
@@ -37,7 +45,8 @@ kitchen=Room.create(
 )
 laundry_room=Room.create(
   name: "Laundry Room",
-  image: "https://m.cbhomes.com/p/102/72707418/F7DfeA94271744E/full.jpg",
+  # image: "https://m.cbhomes.com/p/102/72707418/F7DfeA94271744E/full.jpg",
+  image: "https://m1.cbhomes.com/p/102/72753147/0D6f2Eb53F8B4C9/full.jpg",
   description: laundry_room_description, 
   residence: CollegeFarmRoad,
   user: dave
@@ -65,8 +74,31 @@ living_room = Room.create(
   user: dave
 )
 
+garage = Room.create(
+  name: "Garage",
+  image: "https://networx.global.ssl.fastly.net/media/500x313/art_58acb8df596f2.jpeg",
+  residence: CollegeFarmRoad, 
+  user: dave
+)
+
+
+basement = Room.create(
+  name: "Basement",
+  image: "https://www.kingofmaids.com/blog/wp-content/uploads/2017/06/basement-empty-1024x682.jpg",
+  residence: CollegeFarmRoad, 
+  user: dave
+)
+
+
+no_room = Room.create(
+  name: "No Room",
+  image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
+  description: "Items that move from Room to Room",
+  residence: CollegeFarmRoad, 
+  user: dave
+)
+
 Possession.destroy_all
-dishwasher_operating_video = "https://www.youtube.com/watch?v=g_dfzV2EiU8"
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
 Possession.create(
@@ -76,7 +108,10 @@ Possession.create(
   description: dishwasher_description, 
   image: "https://c.shld.net/rpx/i/s/i/spin/10130653/prod_17810015912",
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
-  operating_video: dishwasher_operating_video,
+  operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
+  owners_manual: "https://www.manualslib.com/manual/666454/Kenmore-665-1372.html?page=6",
+  warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
+
   room: kitchen
 )
 
