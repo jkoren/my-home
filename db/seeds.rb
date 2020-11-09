@@ -110,7 +110,8 @@ Possession.create(
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
   owners_manual: "https://www.manualslib.com/manual/666454/Kenmore-665-1372.html?page=6",
-  warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
+  # warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
+  purchase_receipt: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
 
   room: kitchen
 )
