@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from "react"
 
 const PossessionNewForm = (props) => {
-  debugger
-  const [newPossession, setNewPossession] = useState({
+  const [errors, setErrors] = useState({})
+  const [newPossessionObject, setNewPossession] = useState({
     name: "",
     manufacturer: "",
     model: "",
@@ -23,14 +23,65 @@ const PossessionNewForm = (props) => {
 
   const handleChange = (event) => {
     setNewPossession({
-      ...newPossession,
+      ...newPossessionObject,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
 
+  const addNewPossessionFunction = (newPossessionObject) => {
+    event.preventDefault()
+    if (validforSubmission(newPossessionObject)) {
+      fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
+        credentials: "same-origin",
+        method: "POST",
+        body: JSON.stringify(newPossessionObject),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response;
+          } else {
+            let errorMessage = `${response.status} (${response.statusText})`,
+              error = new Error(errorMessage);
+            throw error;
+          }
+        })
+        .then((response) => response.json())
+        .then((possession) => {
+          if (!possession.errors) {
+            setRoom({
+              ...room,
+              possessions: [possession, ...room.possessions],
+            });
+          } else if (possession.errors) {
+            setErrors(possession.errors);
+          }
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`))
+    }
+  }
+
+  const validforSubmission = (submittedPossession) => {
+    let submittedErrors = {}
+    const requiredFields = ["name", "manufacturer"]
+    requiredFields.forEach(field => {
+      if (submittedPossession[field].trim() === "") {
+        submittedErrors = {
+          ...submittedErrors,
+          [field]: "is blank"
+        }
+      }
+    })
+    setErrors(submittedErrors)
+    return _.isEmpty(submittedErrors)
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.addNewPossessionFunction(newPossession)
+    addNewPossessionFunction(newPossessionObject)
     setNewPossession({
       name: "",
       manufacturer: "",
@@ -61,7 +112,7 @@ const PossessionNewForm = (props) => {
                 id="name"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.name}
+                value={newPossessionObject.name}
               />
             </label>
     
@@ -72,7 +123,7 @@ const PossessionNewForm = (props) => {
                 id="manufacturer"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.manufacturer}
+                value={newPossessionObject.manufacturer}
               />
             </label>
     
@@ -83,7 +134,7 @@ const PossessionNewForm = (props) => {
                 id="model"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.model}
+                value={newPossessionObject.model}
               />
             </label>
     
@@ -94,18 +145,18 @@ const PossessionNewForm = (props) => {
                 id="owner_manual"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.owner_manual}
+                value={newPossessionObject.owner_manual}
               />
             </label>
     
             <label>
-              Description:
+              Description of this possession:
                   <input
                 name="description"
                 id="description"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.description}
+                value={newPossessionObject.description}
               />
             </label>
     
@@ -116,7 +167,7 @@ const PossessionNewForm = (props) => {
                 id="image"
                 type="text"
                 onChange={handleChange}
-                value={newPossession.image}
+                value={newPossessionObject.image}
               />
             </label>
     
