@@ -1,4 +1,4 @@
-class Api::V1::PossessionsController < ApplicationController
+class Api::V1::PossessionsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -13,7 +13,9 @@ class Api::V1::PossessionsController < ApplicationController
 
   def create
     new_possession = Possession.new(possession_params)
-    if new_possession.save
+    room = Room.find(params[:room_id])
+    new_possession.room = room
+     if new_possession.save
       render json: new_possession
     else
       render json: { errors: new_possession.errors }

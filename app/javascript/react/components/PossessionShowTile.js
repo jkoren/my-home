@@ -23,27 +23,27 @@ const PossessionShowTile = (props) => {
           </h5>
 
           <h5>
-            <i class="fas fa-desktop fa-3x"></i>
+            <i className="fas fa-desktop fa-3x"></i>
             Manufacturer Web Site: {props.data.URL}  
           </h5>
 
           <h5>
-            <i class="fab fa-youtube fa-3x"></i>
+            <i className="fab fa-youtube fa-3x"></i>
             Operating Video: {props.data.operating_video} 
           </h5>
           <h5>
-            <i class="fas fa-file-alt fa-3x"></i>
+            <i className="fas fa-file-alt fa-3x"></i>
             Receipt: {props.data.purchase_receipt}
           </h5>
 
           <h5>
-            <i class="fas fa-file-alt fa-3x"></i>
+            <i className="fas fa-file-alt fa-3x"></i>
               Warranty: {props.data.warranty}
           </h5>
         </div> 
 
         <div className="cell small-12 medium-3">
-          <i class="fas fa-tools fa-3x"></i>
+          <i className="fas fa-tools fa-3x"></i>
           Repair experts near you:
         </div>
       </div>
