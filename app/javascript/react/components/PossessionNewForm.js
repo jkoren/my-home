@@ -1,10 +1,13 @@
 // PossessionNewForm.js
 // based on launch-sc-4-react-simple-blog
 import React, { useState, useEffect } from "react"
+import Dropzone from "react-dropzone";
+
+let photoUploaded = null;
 
 const PossessionNewForm = (props) => {
   const [errors, setErrors] = useState({})
-  const [newPossessionObject, setNewPossession] = useState({
+  const [formFields, setFormFields] = useState({
     name: "",
     manufacturer: "",
     model: "",
@@ -22,19 +25,28 @@ const PossessionNewForm = (props) => {
   })
 
   const handleChange = (event) => {
-    setNewPossession({
-      ...newPossessionObject,
+    setFormFields({
+      ...formFields,
       [event.currentTarget.name]: event.currentTarget.value
     })
   }
 
-  const addNewPossessionFunction = (newPossessionObject) => {
+  const handleFileUpload = (acceptedFiles) => {
+    setFormFields({
+      ...formFields,
+      image: acceptedFiles[0],
+    });
+  };
+
+  const addNewPossessionFunction = (formFields) => {
     event.preventDefault()
-    if (validforSubmission(newPossessionObject)) {
+    let body = new FormData();
+
+    if (validforSubmission(formFields)) {
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
         credentials: "same-origin",
         method: "POST",
-        body: JSON.stringify(newPossessionObject),
+        body: JSON.stringify(formFields),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -81,8 +93,8 @@ const PossessionNewForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addNewPossessionFunction(newPossessionObject)
-    setNewPossession({
+    addNewPossessionFunction(formFields)
+    setFormFields({
       name: "",
       manufacturer: "",
       model: "",
@@ -100,8 +112,8 @@ const PossessionNewForm = (props) => {
     })
   }
   return (
-    // <div className=" small-offset-1 ">
       <div className="small-12 medium-8 medium-offset-1 medium-right-offset-1 small-centered">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
 
           <form className="callout cell " onSubmit={handleSubmit}>
     
@@ -112,9 +124,33 @@ const PossessionNewForm = (props) => {
                 id="name"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.name}
+                value={formFields.name}
               />
             </label>
+
+            <Dropzone onDrop={handleFileUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <div>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <div className="cell callout grid-x grid-padding-x">
+                      <div className="cell small-12 medium-6">
+                        <div>
+                          <i className="fas fa-book fa-3x"> </i>
+                          Drag an owner's manual here, or click one on your computer
+                        </div>
+                      </div>
+                      <div className="cell small-12 medium-6">
+                        <div>
+                          <i className="fas fa-image fa-3x"> </i>
+                          Drag an image of the product here, or click on one on your computer
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Dropzone>
     
             <label>
               Manufacturer:
@@ -123,7 +159,7 @@ const PossessionNewForm = (props) => {
                 id="manufacturer"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.manufacturer}
+                value={formFields.manufacturer}
               />
             </label>
     
@@ -134,7 +170,7 @@ const PossessionNewForm = (props) => {
                 id="model"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.model}
+                value={formFields.model}
               />
             </label>
     
@@ -145,7 +181,7 @@ const PossessionNewForm = (props) => {
                 id="owner_manual"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.owner_manual}
+                value={formFields.owner_manual}
               />
             </label>
     
@@ -156,7 +192,7 @@ const PossessionNewForm = (props) => {
                 id="description"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.description}
+                value={formFields.description}
               />
             </label>
     
@@ -167,7 +203,7 @@ const PossessionNewForm = (props) => {
                 id="image"
                 type="text"
                 onChange={handleChange}
-                value={newPossessionObject.image}
+                value={formFields.image}
               />
             </label>
     

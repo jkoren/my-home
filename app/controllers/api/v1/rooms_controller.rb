@@ -2,7 +2,9 @@ class Api::V1::RoomsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    rooms = Room.all
+    #for realtor demo, where showing multiple houses, will have to modify this
+    residence = Residence.all.select{|residence|residence.name == "315 College Farm Rd #6"}.first
+    rooms = residence.rooms
     render json: rooms
   end
 
