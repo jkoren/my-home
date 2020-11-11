@@ -17,29 +17,77 @@ const PossessionShowTile = (props) => {
         <div className="cell small-12 medium-6 text-left">
           <h5>{props.data.description}</h5>
           
-          <h5>
-            <i className="fas fa-book fa-3x"> </i>
-            Owner's Manual: {props.data.owners_manual}
-          </h5>
+          <div className="grid-x grid-margin-x">
+            <div className="small-12 medium-6 text-center">
+              <div>
+                <h5>
+                  <a href={props.data.owners_manual}> 
+                    Owner's Manual
+                    <i class="fa fa-book fa-4x"></i>
+                  </a>
+                </h5>
+              </div>
+            </div>
+            <div className="small-12 medium-6 text-center">
+              <div>
+                <h5>
+                  <a href={props.data.URL}>
+                    Manufacturer Web Site
+                    <i class="fa fa-desktop fa-4x"></i>
+                    </a>
+                </h5>
+              </div>
+            </div>
+          </div>
 
-          <h5>
-            <i className="fas fa-desktop fa-3x"></i>
-            Manufacturer Web Site: {props.data.URL}  
-          </h5>
 
-          <h5>
-            <i className="fab fa-youtube fa-3x"></i>
-            Operating Video: {props.data.operating_video} 
-          </h5>
-          <h5>
-            <i className="fas fa-file-alt fa-3x"></i>
-            Receipt: {props.data.purchase_receipt}
-          </h5>
+        <div className="grid-x grid-margin-x">
+          <div className="small-12 medium-6 text-center">
+            <div>
+              <h5>
+                <a href={props.data.operating_video}>
+                  Operating Video
+                  <i class="fab fa-youtube fa-4x"></i>
+                </a>
+              </h5>
+            </div>
+          </div>
+          <div className="small-12 medium-6 text-center">
+            <div>
+              <h5>
+                <a href={props.data.purchase_receipt}>
+                  Purchase Receipt
+                    <i class="fa fa-file-alt fa-4x"></i>
+                </a>
+              </h5>
+            </div>
+          </div>
+        </div>
 
-          <h5>
-            <i className="fas fa-file-alt fa-3x"></i>
-              Warranty: {props.data.warranty}
-          </h5>
+
+        <div className="grid-x grid-margin-x">
+          <div className="small-12 medium-6 text-center">
+            <div>
+              <h5>
+                <a href={props.data.warranty}>
+                  Warranty Document
+                  <i class="fa fa-file-alt fa-4x"></i>
+                </a>
+              </h5>
+            </div>
+          </div>
+          <div className="small-12 medium-6 text-center">
+            <div>
+              <h5>
+                <a>
+
+                </a>
+              </h5>
+            </div>
+          </div>
+        </div>
+
+
         </div> 
 
         <div className="cell small-12 medium-3">

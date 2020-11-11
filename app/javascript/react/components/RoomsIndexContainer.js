@@ -7,7 +7,7 @@ const RoomsIndexContainer = (props) => {
   const [rooms, setRooms] = useState([])
   
   useEffect(() => {
-    // do another fetch to get the address information? for demo purposes only showing one house
+    // do another fetch to get the address information? for demo purposes only showing one house - or come from the rooms controller..
     fetch("/api/v1/rooms", {
       credentials: "same-origin"
     })
@@ -27,7 +27,7 @@ const RoomsIndexContainer = (props) => {
       .catch(error => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  let address = "315 College Farm Rd #6, Waltham, MA"
+  let address = "315 College Farm Rd #7, Waltham, MA"
   
   let roomListTiles = rooms.map((roomObject) => {
     return <RoomIndexTile 
@@ -38,8 +38,6 @@ const RoomsIndexContainer = (props) => {
 
   return (
     <div>
-          {/* the below line isn't working - does not convert to one per line (12/12) on a small screen - I think broke when I added address */}
-          {/* <div className="small-12 medium-4"> */}
       <div className="cell small-12 medium-4 text-center">
         <h4> {address} </h4>
       </div>
@@ -47,8 +45,6 @@ const RoomsIndexContainer = (props) => {
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
                     {roomListTiles} 
-          {/* </div> */}
-
         </div>
       </div>
 

@@ -1,10 +1,12 @@
-// PossessionNewForm.js
-// based on launch-sc-4-react-simple-blog
-import React, { useState, useEffect } from "react"
+// PossessionsForm.js
+import React, { useState } from 'react'
+import Dropzone from 'react-dropzone'
+import { Redirect } from 'react-router-dom'
+import _ from 'lodash'
+import ErrorList from './ErrorList'
 
-const PossessionNewForm = (props) => {
-  const [errors, setErrors] = useState({})
-  const [newPossessionObject, setNewPossession] = useState({
+const PossessionsForm = (props) => {
+  const [submittedPossession, setSubmittedPossession] = useState({
     name: "",
     manufacturer: "",
     model: "",
@@ -21,50 +23,22 @@ const PossessionNewForm = (props) => {
     warranty: ""
   })
 
-  const handleChange = (event) => {
-    setNewPossession({
-      ...newPossessionObject,
-      [event.currentTarget.name]: event.currentTarget.value
+  const [shouldRedirect, setShouldRedirect] = useState({
+    redirect: false,
+    id: ""
+  })
+
+  const [errors, setErrors] = useState({})
+  const [error, setError] = useState(null)
+
+  const handleFileUpload = (acceptedFiles) => {
+    setSubmittedPossession({
+      ...submittedPossession,
+      image: acceptedFiles[0]
     })
   }
 
-  const addNewPossessionFunction = (newPossessionObject) => {
-    event.preventDefault()
-    if (validforSubmission(newPossessionObject)) {
-      fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
-        credentials: "same-origin",
-        method: "POST",
-        body: JSON.stringify(newPossessionObject),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            return response;
-          } else {
-            let errorMessage = `${response.status} (${response.statusText})`,
-              error = new Error(errorMessage);
-            throw error;
-          }
-        })
-        .then((response) => response.json())
-        .then((possession) => {
-          if (!possession.errors) {
-            setRoom({
-              ...room,
-              possessions: [possession, ...room.possessions],
-            });
-          } else if (possession.errors) {
-            setErrors(possession.errors);
-          }
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`))
-    }
-  }
-
-  const validforSubmission = (submittedPossession) => {
+  const validforSubmission = () => {
     let submittedErrors = {}
     const requiredFields = ["name", "manufacturer"]
     requiredFields.forEach(field => {
@@ -79,105 +53,169 @@ const PossessionNewForm = (props) => {
     return _.isEmpty(submittedErrors)
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    addNewPossessionFunction(newPossessionObject)
-    setNewPossession({
-      name: "",
-      manufacturer: "",
-      model: "",
-      owner_manual: "",
-      description: "",
-      year_built: "",
-      purchased_from: "",
-      image: "",
-      purchase_date: "",
-      purchase_receipt: "",
-      purchase_price: "",
-      operating_video: "",
-      URL: "",
-      warranty: ""
+  const inputChangeHandler = (event) => {
+    setSubmittedPossession({
+      ...submittedPossession,
+      [event.currentTarget.name]: event.currentTarget.value
     })
   }
-  return (
-    // <div className=" small-offset-1 ">
-      <div className="small-12 medium-8 medium-offset-1 medium-right-offset-1 small-centered">
 
-          <form className="callout cell " onSubmit={handleSubmit}>
-    
+  const onClickHandler = (event) => {
+    event.preventDefault()
+    let possession = new FormData()
+    possession.append("possession[name]", submittedPossession.name)
+    possession.append("possession[manufacturer]", submittedPossession.manufacturer)
+    possession.append("possession[model]", submittedPossession.model)
+    possession.append("possession[owner_manual]", submittedPossession.owner_manual)
+    possession.append("possession[description]", submittedPossession.description)
+    possession.append("possession[year_built]", submittedPossession.year_built)
+    possession.append("possession[purchased_from]", submittedPossession.purchased_from)
+    possession.append("possession[purchased_from]", submittedPossession.name)
+    possession.append("possession[image]", submittedPossession.image)
+    possession.append("possession[purchase_date]", submittedPossession.purchase_date)
+    possession.append("possession[purchase_receipt]", submittedPossession.purchase_receipt)
+    possession.append("possession[purchase_price]", submittedPossession.purchase_price)
+    possession.append("possession[operating_video]", submittedPossession.operating_video)
+    possession.append("possession[URL]", submittedPossession.URL)
+    possession.append("possession[warranty]", submittedPossession.warranty)
+    if (validforSubmission()) {
+      fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
+        credentials: "same-origin",
+        method: "POST",
+        body: JSON.stringify(submittedPossession),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(body => {
+          if (body.errors) {
+            const requiredFields = ["name", "manufacturer"]
+            requiredFields.forEach(field => {
+              if (body.errors[field] !== undefined) {
+                setErrors({
+                  ...errors,
+                  [field]: body.errors[field][0]
+                })
+              }
+            })
+          } else if (body.error) {
+            setError(body.error)
+          } else {
+            setShouldRedirect({
+              redirect: true,
+              id: body.id
+            })
+          }
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`))
+    }
+  }
+
+  if (shouldRedirect.redirect) {
+    return <Redirect to={`/rooms/${props.match.params.id}`}/>
+  }
+
+  return (
+    <div className="cell grid-x grid-padding-x">
+      <div className="cell small-12 medium-2">
+      </div>
+      <div className="cell small-12 medium-8">
+        
+        <div className="field">
+          <form onSubmit={onClickHandler}>
+            <ErrorList errors={errors}
+              error={error} />
+
             <label>
               Possession Name:
-                  <input
+                    <input
                 name="name"
                 id="name"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.name}
+                onChange={inputChangeHandler}
+                value={submittedPossession.name}
               />
             </label>
-    
+
+
             <label>
               Manufacturer:
-                  <input
+              <input
                 name="manufacturer"
                 id="manufacturer"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.manufacturer}
+                onChange={inputChangeHandler}
+                value={submittedPossession.manufacturer}
               />
             </label>
-    
+
             <label>
               Model:
-                  <input
+              <input
                 name="model"
                 id="model"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.model}
+                onChange={inputChangeHandler}
+                value={submittedPossession.model}
               />
             </label>
-    
+
             <label>
               Owner's Manual:
-                  <input
+              <input
                 name="owner_manual"
                 id="owner_manual"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.owner_manual}
+                onChange={inputChangeHandler}
+                value={submittedPossession.owner_manual}
               />
             </label>
-    
+
             <label>
               Description of this possession:
-                  <input
+              <input
                 name="description"
                 id="description"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.description}
+                onChange={inputChangeHandler}
+                value={submittedPossession.description}
               />
             </label>
-    
+
             <label>
               Image:
-                  <input
+              <input
                 name="image"
                 id="image"
                 type="text"
-                onChange={handleChange}
-                value={newPossessionObject.image}
+                onChange={inputChangeHandler}
+                value={submittedPossession.image}
               />
             </label>
-    
-            <div className="button-group">
-              <input className="button" type="submit" value="Submit" />
+
+
+            {/* <Dropzone onDrop={handleFileUpload}>
+              {({ getRootProps, getInputProps }) => (
+                <section>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+                    <p>Click to upload a movie poster</p>
+                  </div>
+                </section>
+              )}
+            </Dropzone> */}
+
+            <div className="">
+              <input className="" type="submit" value="Submit" />
             </div>
+
           </form>
         </div>
-      // </div>
+      </div>
+    </div>
   )
 }
 
-export default PossessionNewForm
+export default PossessionsForm
