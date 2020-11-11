@@ -118,7 +118,9 @@ const PossessionsForm = (props) => {
   }
 
   return (
+    
     <div className="cell grid-x grid-padding-x">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <div className="cell small-12 medium-2">
       </div>
       <div className="cell small-12 medium-8">
@@ -196,16 +198,34 @@ const PossessionsForm = (props) => {
             </label>
 
 
-            {/* <Dropzone onDrop={handleFileUpload}>
+            <Dropzone onDrop={handleFileUpload}>
               {({ getRootProps, getInputProps }) => (
-                <section>
+                <div>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <p>Click to upload a movie poster</p>
+
+                    <div className="cell  grid-x grid-padding-x">
+
+                      <div className="cell medium-6">
+                        <div>
+                          <i className="fas fa-book fa-3x"> </i>
+                          Drag an owner's manual file here, or click to upload one from your computer
+                        </div>
+                      </div>
+
+                      <div className="cell medium-6">
+                        <div>
+                          <i className="fas fa-image fa-3x"> </i>
+                          Drag a product picture file here, or click to upload one from your computer
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                </section>
+                </div>
               )}
-            </Dropzone> */}
+            </Dropzone>
+
 
             <div className="">
               <input className="" type="submit" value="Submit" />
