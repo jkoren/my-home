@@ -8,28 +8,13 @@
 
 .top-bar.menu {
   background-color: $light-accent;
-  color: black
-  // color doesn't do anything here - how to change text color or font style?
-}
-.top-bar.ul {
 }
 
 .top-bar {
   .menu {
     background-color: $light-accent;
-    color: black
-      // color doesn't do anything here - how to change text color or font style?
-  }
-  .ul {
-  }
-  .top-bar-left {
-  }
-  .top-bar-right {
   }
 }
-
-
-// modifying top bar https://youtu.be/cxPwwixHEJg
 
 // for tiles
 .box-shadow {
