@@ -23,6 +23,9 @@ const PossessionsForm = (props) => {
     warranty: ""
   })
 
+  let imageUploaded = null;
+  let ownerManualUploaded = null;
+
   const [shouldRedirect, setShouldRedirect] = useState({
     redirect: false,
     id: ""
@@ -78,7 +81,9 @@ const PossessionsForm = (props) => {
     possession.append("possession[operating_video]", submittedPossession.operating_video)
     possession.append("possession[URL]", submittedPossession.URL)
     possession.append("possession[warranty]", submittedPossession.warranty)
-    if (validforSubmission()) {
+    if (validforSubmission(submittedPossession)) {
+      // for some reason the image is not posting to the database - start debugging her - see article "File Uploading in React - or look at SCI FI Review site"
+      // debugger
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
         credentials: "same-origin",
         method: "POST",
@@ -117,8 +122,25 @@ const PossessionsForm = (props) => {
     return <Redirect to={`/rooms/${props.match.params.id}`}/>
   }
 
+  if (submittedPossession.image != "") {
+    imageUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Image Uploaded: {submittedPossession.image.path}</h5>
+      </div>
+    );
+  }
+
+  if (submittedPossession.owner_manual != "") {
+    ownerManualUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Owner's Manual Uploaded: {submittedPossession.owner_manual.path}</h5>
+      </div>
+    );
+  }
   return (
+    
     <div className="cell grid-x grid-padding-x">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <div className="cell small-12 medium-2">
       </div>
       <div className="cell small-12 medium-8">
@@ -184,6 +206,8 @@ const PossessionsForm = (props) => {
               />
             </label>
 
+            {/* below is only for displaying URL */}
+{/* 
             <label>
               Image:
               <input
@@ -193,19 +217,51 @@ const PossessionsForm = (props) => {
                 onChange={inputChangeHandler}
                 value={submittedPossession.image}
               />
-            </label>
+            </label> */}
 
+            <Dropzone onDrop={handleFileUpload}>
+              {({ getRootProps, getInputProps }) => (
+                // <div>
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+
+                    <div className="cell  grid-x ">
+                      <div className="cell callout">
+                        <div>
+                          <i className="fas fa-image fa-3x"> </i>
+                          Drag a product image here, or click to upload one from your computer
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                // </div>
+              )}
+            </Dropzone>
+            {imageUploaded}
 
             {/* <Dropzone onDrop={handleFileUpload}>
               {({ getRootProps, getInputProps }) => (
-                <section>
+                // <div>
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <p>Click to upload a movie poster</p>
+
+                    <div className="cell  grid-x ">
+
+                      <div className="cell medium-6 callout">
+                        <div>
+                          <i className="fas fa-book fa-3x"> </i>
+                          Drag an owner's manual document here, or click to upload one from your computer
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
-                </section>
+                // </div>
               )}
-            </Dropzone> */}
+            </Dropzone>
+            {ownerManualUploaded}
+ */}
 
             <div className="">
               <input className="" type="submit" value="Submit" />

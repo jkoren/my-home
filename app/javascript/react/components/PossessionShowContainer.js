@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react"
 import PossessionShowTile from "./PossessionShowTile"
 
 import _ from "lodash" 
-// import PossessionErrorList from "./PossessionErrorList"
-// import PossessionForm from "./PossessionForm"
 
 const PossessionShowContainer = (props) => {
   const [possession, setPossession] = useState({
@@ -18,8 +16,6 @@ const PossessionShowContainer = (props) => {
     URL: "",
     purchase_receipt: ""
   })
-  // const [errors, setErrors] = useState({})
-  // const [error, setError] = useState(null)
 
   const id = props.match.params.id 
   useEffect(() => {
