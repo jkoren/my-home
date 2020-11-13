@@ -8,7 +8,7 @@ const PossessionIndexTile = (props) => {
         <h4>{props.data.name}</h4>
         <h5>{props.data.manufacturer} {props.data.model}</h5> 
         <div className="text-center">
-          <img src={props.data.image} alt="missing picture" width="150" />
+          <img src={props.data.image.url} alt="missing picture" width="150" />
         </div>
       </Link>
     </div>
