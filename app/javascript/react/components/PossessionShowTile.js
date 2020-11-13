@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react"
 import YelpApplianceRepairProIndexTile from "./YelpApplianceRepairProIndexTile"
 
-
-
 const PossessionShowTile = (props) => {
   const [professionals, setProfessionals] = useState([])
 
@@ -58,7 +56,6 @@ const PossessionShowTile = (props) => {
           //   }
           // })
           .then(response => {
-            debugger
             console.log(response);
           })
           .catch(err => {
@@ -153,7 +150,7 @@ const PossessionShowTile = (props) => {
             <div>
               <h5>
                 <a>
-
+                  {/* placeholder */}
                 </a>
               </h5>
             </div>
@@ -166,7 +163,7 @@ const PossessionShowTile = (props) => {
         <div className="cell small-12 medium-3">
           <i className="fas fa-tools fa-3x"></i>
           Repair experts near you:
-          {/* {professionalListTiles}  */}
+          {professionalListTiles} 
         </div>
       </div>
 

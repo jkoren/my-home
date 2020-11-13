@@ -1,12 +1,12 @@
-// PossessionsForm.js
+// PossessionNewForm.js
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
 import ErrorList from './ErrorList'
 
-const PossessionsForm = (props) => {
-  const [submittedPossession, setSubmittedPossession] = useState({
+const PossessionNewForm = (props) => {
+  const [formFields, setFormFields] = useState({
     name: "",
     manufacturer: "",
     model: "",
@@ -22,21 +22,27 @@ const PossessionsForm = (props) => {
     URL: "",
     warranty: ""
   })
-
   let imageUploaded = null;
   let ownerManualUploaded = null;
+  const [errors, setErrors] = useState({})
+  const [error, setError] = useState(null)
+
 
   const [shouldRedirect, setShouldRedirect] = useState({
     redirect: false,
     id: ""
   })
-
-  const [errors, setErrors] = useState({})
-  const [error, setError] = useState(null)
+  
+  const handleChange = (event) => {
+    setFormFields({
+      ...formFields,
+      [event.currentTarget.name]: event.currentTarget.value
+    })
+  }
 
   const handleFileUpload = (acceptedFiles) => {
-    setSubmittedPossession({
-      ...submittedPossession,
+    setFormFields({
+      ...formFields,
       image: acceptedFiles[0]
     })
   }
@@ -45,7 +51,7 @@ const PossessionsForm = (props) => {
     let submittedErrors = {}
     const requiredFields = ["name", "manufacturer"]
     requiredFields.forEach(field => {
-      if (submittedPossession[field].trim() === "") {
+      if (formFields[field].trim() === "") {
         submittedErrors = {
           ...submittedErrors,
           [field]: "is blank"
@@ -56,61 +62,55 @@ const PossessionsForm = (props) => {
     return _.isEmpty(submittedErrors)
   }
 
-  const inputChangeHandler = (event) => {
-    setSubmittedPossession({
-      ...submittedPossession,
-      [event.currentTarget.name]: event.currentTarget.value
-    })
-  }
+  const handleSubmit = (event) => {
+    if (validforSubmission(formFields)) {
+      // this is addDuck from lesson
+      // https://learn.launchacademy.com/teams/boston-30/curricula/on-campus-boston-30/lesson_groups/weeks_7_&_8:_group_project/lessons/file-uploading-in-react
+      event.preventDefault()
+      let newPossession = new FormData()
+      newPossession.append("name", formFields.name)
+      newPossession.append("manufacturer", formFields.manufacturer)
+      newPossession.append("model", formFields.model)
+      newPossession.append("owners_manual", formFields.owners_manual)
+      newPossession.append("description", formFields.desription)
+      newPossession.append("year_built", formFields.year_built)
+      newPossession.append("purchased_from", formFields.purchased_from)
+    
+      newPossession.append("image", formFields.image)
+    
+      newPossession.append("purchase_date", formFields.purchase_date)
+      newPossession.append("purchase_price", formFields.purchase_price)
+      newPossession.append("operating_video", formFields.operating_video)
+      newPossession.append("URL", formFields.URL)
+      newPossession.append("warranty", formFields.warranty)
 
-  const onClickHandler = (event) => {
-    event.preventDefault()
-    let possession = new FormData()
-    possession.append("possession[name]", submittedPossession.name)
-    possession.append("possession[manufacturer]", submittedPossession.manufacturer)
-    possession.append("possession[model]", submittedPossession.model)
-    possession.append("possession[owner_manual]", submittedPossession.owner_manual)
-    possession.append("possession[description]", submittedPossession.description)
-    possession.append("possession[year_built]", submittedPossession.year_built)
-    possession.append("possession[purchased_from]", submittedPossession.purchased_from)
-    possession.append("possession[purchased_from]", submittedPossession.name)
-    possession.append("possession[image]", submittedPossession.image)
-    possession.append("possession[purchase_date]", submittedPossession.purchase_date)
-    possession.append("possession[purchase_receipt]", submittedPossession.purchase_receipt)
-    possession.append("possession[purchase_price]", submittedPossession.purchase_price)
-    possession.append("possession[operating_video]", submittedPossession.operating_video)
-    possession.append("possession[URL]", submittedPossession.URL)
-    possession.append("possession[warranty]", submittedPossession.warranty)
-    if (validforSubmission(submittedPossession)) {
-      // for some reason the image is not posting to the database - start debugging her - see article "File Uploading in React - or look at SCI FI Review site"
-      // debugger
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
-        credentials: "same-origin",
         method: "POST",
-        body: JSON.stringify(submittedPossession),
+        body: newPossession,
+        credentials: "same-origin",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: 'application/json',
+          Accept: "image/jpeg",
         },
       })
         .then(response => response.json())
-        .then(body => {
-          if (body.errors) {
+        .then(json_response => {
+          if (json_response.errors) {
             const requiredFields = ["name", "manufacturer"]
             requiredFields.forEach(field => {
-              if (body.errors[field] !== undefined) {
+              if (json_response.errors[field] !== undefined) {
                 setErrors({
                   ...errors,
-                  [field]: body.errors[field][0]
+                  [field]: json_response.errors[field][0]
                 })
               }
             })
-          } else if (body.error) {
-            setError(body.error)
+          } else if (json_response.error) {
+            setError(json_response.error)
           } else {
             setShouldRedirect({
               redirect: true,
-              id: body.id
+              id: json_response.id
             })
           }
         })
@@ -122,18 +122,18 @@ const PossessionsForm = (props) => {
     return <Redirect to={`/rooms/${props.match.params.id}`}/>
   }
 
-  if (submittedPossession.image != "") {
+  if (formFields.image != "") {
     imageUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Image Uploaded: {submittedPossession.image.path}</h5>
+        <h5 className="cell shrink">Image Uploaded: {formFields.image.path}</h5>
       </div>
     );
   }
 
-  if (submittedPossession.owner_manual != "") {
+  if (formFields.owner_manual != "") {
     ownerManualUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Owner's Manual Uploaded: {submittedPossession.owner_manual.path}</h5>
+        <h5 className="cell shrink">Owner's Manual Uploaded: {formFields.owner_manual.path}</h5>
       </div>
     );
   }
@@ -146,7 +146,7 @@ const PossessionsForm = (props) => {
       <div className="cell small-12 medium-8">
         
         <div className="field">
-          <form onSubmit={onClickHandler}>
+          <form onSubmit={handleSubmit}>
             <ErrorList errors={errors}
               error={error} />
 
@@ -156,8 +156,8 @@ const PossessionsForm = (props) => {
                 name="name"
                 id="name"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.name}
+                onChange={handleChange}
+                value={formFields.name}
               />
             </label>
 
@@ -168,8 +168,8 @@ const PossessionsForm = (props) => {
                 name="manufacturer"
                 id="manufacturer"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.manufacturer}
+                onChange={handleChange}
+                value={formFields.manufacturer}
               />
             </label>
 
@@ -179,8 +179,8 @@ const PossessionsForm = (props) => {
                 name="model"
                 id="model"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.model}
+                onChange={handleChange}
+                value={formFields.model}
               />
             </label>
 
@@ -190,8 +190,8 @@ const PossessionsForm = (props) => {
                 name="owner_manual"
                 id="owner_manual"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.owner_manual}
+                onChange={handleChange}
+                value={formFields.owner_manual}
               />
             </label>
 
@@ -201,8 +201,8 @@ const PossessionsForm = (props) => {
                 name="description"
                 id="description"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.description}
+                onChange={handleChange}
+                value={formFields.description}
               />
             </label>
 
@@ -214,8 +214,8 @@ const PossessionsForm = (props) => {
                 name="image"
                 id="image"
                 type="text"
-                onChange={inputChangeHandler}
-                value={submittedPossession.image}
+                onChange={handleChange}
+                value={formFields.image}
               />
             </label> */}
 
@@ -274,4 +274,4 @@ const PossessionsForm = (props) => {
   )
 }
 
-export default PossessionsForm
+export default PossessionNewForm
