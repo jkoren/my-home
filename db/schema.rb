@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_155329) do
+ActiveRecord::Schema.define(version: 2020_11_13_201300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_155329) do
     t.string "operating_video"
     t.string "URL"
     t.string "warranty"
+    t.string "aws_image"
     t.index ["room_id"], name: "index_possessions_on_room_id"
   end
 
