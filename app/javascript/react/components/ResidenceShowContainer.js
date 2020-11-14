@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react"
 import ResidenceShowTile from "./ResidenceShowTile"
 
 import _ from "lodash" 
-// import ResidenceErrorList from "./ResidenceErrorList"
-// import ResidenceForm from "./ResidenceForm"
 
 const ResidenceShowContainer = (props) => {
   const [residence, setResidence] = useState({
@@ -18,9 +16,6 @@ const ResidenceShowContainer = (props) => {
     URL: "",
     purchase_receipt: ""
   })
-  
-  // const [errors, setErrors] = useState({})
-  // const [error, setError] = useState(null)
 
   const id = props.match.params.id 
   useEffect(() => {
