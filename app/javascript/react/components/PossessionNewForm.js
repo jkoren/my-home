@@ -15,6 +15,7 @@ const PossessionNewForm = (props) => {
     year_built: "",
     purchased_from: "",
     image: "",
+    aws_image: "",
     purchase_date: "",
     purchase_receipt: "",
     purchase_price: "",
@@ -43,7 +44,7 @@ const PossessionNewForm = (props) => {
   const handleFileUpload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
-      image: acceptedFiles[0]
+      aws_image: acceptedFiles[0]
     })
   }
 
@@ -77,6 +78,7 @@ const PossessionNewForm = (props) => {
       newPossession.append("purchased_from", formFields.purchased_from)
     
       newPossession.append("image", formFields.image)
+      newPossession.append("aws_image", formFields.aws_image)
     
       newPossession.append("purchase_date", formFields.purchase_date)
       newPossession.append("purchase_price", formFields.purchase_price)
@@ -122,10 +124,10 @@ const PossessionNewForm = (props) => {
     return <Redirect to={`/rooms/${props.match.params.id}`}/>
   }
 
-  if (formFields.image != "") {
+  if (formFields.aws_image != "") {
     imageUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Image Uploaded: {formFields.image.path}</h5>
+        <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
       </div>
     );
   }
@@ -207,7 +209,6 @@ const PossessionNewForm = (props) => {
             </label>
 
             {/* below is only for displaying URL */}
-{/* 
             <label>
               Image:
               <input
@@ -217,7 +218,7 @@ const PossessionNewForm = (props) => {
                 onChange={handleChange}
                 value={formFields.image}
               />
-            </label> */}
+            </label>
 
             <Dropzone onDrop={handleFileUpload}>
               {({ getRootProps, getInputProps }) => (

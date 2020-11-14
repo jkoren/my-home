@@ -1,6 +1,7 @@
 //PossessionShowTile.js
 import React, { useEffect, useState } from "react"
 import YelpApplianceRepairProIndexTile from "./YelpApplianceRepairProIndexTile"
+import { Link } from "react-router-dom";
 
 const PossessionShowTile = (props) => {
   const [professionals, setProfessionals] = useState([])
@@ -79,12 +80,9 @@ const PossessionShowTile = (props) => {
       </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={props.data.image} alt="missing picture" width="450" />
+        {/* <img src={props.data.aws_image.url} alt="missing picture" width="450" /> */}
+        <img src={props.data.image} alt="missing picture" width="450" />
         </div>
-
-        {/* <div className="cell small-12 medium-3">
-          <img src={props.data.image.url} alt="missing picture" width="450" />
-        </div> */}
 
         <div className="cell small-12 medium-6 text-left">
           <h5>{props.data.description}</h5>
@@ -157,15 +155,42 @@ const PossessionShowTile = (props) => {
           </div>
         </div>
 
+        <div className="grid-x align-bottom">
+          
+          <br></br>
 
-        </div> 
 
-        <div className="cell small-12 medium-3">
-          <i className="fas fa-tools fa-3x"></i>
-          Repair experts near you:
-          {professionalListTiles} 
+          <div className=" small-12 medium-2">
+          </div>
+
+          <div className="small-12 medium-2 text-center hover-zoom">
+            <br></br> <br></br> <br></br> <br></br>
+            {/* <Link to={`/rooms/${props.data.id}`}> */}
+            <Link to={`/`}>
+              <h6 className="field">Edit</h6>
+            </Link>
+          </div>
+
+          <div className=" small-12 medium-2">
+          </div>
+
+          <div className=" small-12 medium-2 text-center hover-zoom">
+            {/* <Link to={`/rooms/${props.data.id}`}> */}
+            <Link to={`/`}>
+              <h6 className="field">Delete</h6>
+            </Link>
+          </div>
         </div>
+
+
+      </div> 
+
+      <div className="cell small-12 medium-3">
+        <i className="fas fa-tools fa-3x"></i>
+        Repair experts near you:
+        {professionalListTiles} 
       </div>
+    </div>
 
   )
 }
