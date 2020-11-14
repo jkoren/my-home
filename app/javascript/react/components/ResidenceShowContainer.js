@@ -14,6 +14,7 @@ const ResidenceShowContainer = (props) => {
     model: "",
     operating_video: "",
     image: "",
+    aws_image: "",
     owners_manual: "",
     URL: "",
     purchase_receipt: ""

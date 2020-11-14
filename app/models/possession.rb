@@ -1,4 +1,4 @@
 class Possession < ApplicationRecord
-  mount_uploader :image, PossessionImageUploader
+  mount_uploader :aws_image, PossessionImageUploader
   belongs_to :room
 end

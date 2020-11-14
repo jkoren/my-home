@@ -22,9 +22,23 @@ class Api::V1::PossessionsController < ApiController
     end
   end
 
+  
+  def update  
+    review = Review.find(params[:id])
+    review.update_attributes(review_params)
+    render json: review
+  end
+
+  def destroy
+    review = Review.find(params[:id])
+    review.destroy
+    
+    render json: review
+  end
+
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty])
+      params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty, :aws_image])
     end
 
     def authenticate_user
