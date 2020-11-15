@@ -3,8 +3,6 @@ import React, { useState, useEffect } from "react"
 import RoomShowTile from "./RoomShowTile"
 import PossessionsIndexContainer from "./PossessionsIndexContainer"
 import _ from "lodash" 
-// import PossessionErrorList from "./PossessionErrorList"
-// import PossessionForm from "./PossessionForm"
 
 const RoomShowContainer = (props) => {
   const [room, setRoom] = useState({
@@ -12,9 +10,7 @@ const RoomShowContainer = (props) => {
     name: "",
     description: ""
   })
-  const [possessions, setPossessions] = useState(null)
-  // const [errors, setErrors] = useState({})
-  // const [error, setError] = useState(null)
+
   const id = props.match.params.id 
   useEffect(() => {
     fetch(`/api/v1/rooms/${id}`, {
@@ -42,7 +38,6 @@ const RoomShowContainer = (props) => {
       data={room}
     />
   }
-
   return (
     <div>
       <div className="text-center">

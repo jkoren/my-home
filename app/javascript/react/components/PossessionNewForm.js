@@ -142,9 +142,8 @@ const PossessionNewForm = (props) => {
   return (
     
     <div className="cell grid-x grid-padding-x">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-      <div className="cell small-12 medium-2">
-      </div>
+
+      <div className="cell small-12 medium-2"> </div>
       <div className="cell small-12 medium-8">
         
         <div className="field">
@@ -154,7 +153,7 @@ const PossessionNewForm = (props) => {
 
             <label>
               Possession Name:
-                    <input
+              <input
                 name="name"
                 id="name"
                 type="text"

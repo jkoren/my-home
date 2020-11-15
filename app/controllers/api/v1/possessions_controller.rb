@@ -9,6 +9,7 @@ class Api::V1::PossessionsController < ApiController
   def show
     possession = Possession.find(params[:id])
     render json: possession, serializer: PossessionShowSerializer
+    # binding.pry
   end
 
   def create
@@ -24,16 +25,16 @@ class Api::V1::PossessionsController < ApiController
 
   
   def update  
-    review = Review.find(params[:id])
-    review.update_attributes(review_params)
-    render json: review
+    possession = Possession.find(params[:id])
+    possession.update_attributes(possession_params)
+    render json: possession
   end
 
   def destroy
-    review = Review.find(params[:id])
-    review.destroy
+    possession = Possession.find(params[:id])
+    possession.destroy
     
-    render json: review
+    render json: possession
   end
 
   private

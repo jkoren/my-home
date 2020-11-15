@@ -1,10 +1,10 @@
-// PossessionShowContainer.js
+// PossessionPage.js
 import React, { useState, useEffect } from "react"
 import PossessionShowTile from "./PossessionShowTile"
 
 import _ from "lodash" 
 
-const PossessionShowContainer = (props) => {
+const PossessionPage = (props) => {
   const [possession, setPossession] = useState({
     id: "",
     name: "",
@@ -54,4 +54,4 @@ const PossessionShowContainer = (props) => {
   )
 }
 
-export default PossessionShowContainer 
+export default PossessionPage 
