@@ -2,8 +2,9 @@ class Api::V1::PossessionsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    binding.pry
     possessions = Possession.all.select{|possession|possession.room == params[:id]}
-    render json: possessions
+    render json: possessions, serializer: PossessionShowSerializer
   end
   
   def show
@@ -23,8 +24,8 @@ class Api::V1::PossessionsController < ApiController
     end
   end
 
-  
   def update  
+    # binding.pry
     possession = Possession.find(params[:id])
     possession.update_attributes(possession_params)
     render json: possession
@@ -33,8 +34,7 @@ class Api::V1::PossessionsController < ApiController
   def destroy
     possession = Possession.find(params[:id])
     possession.destroy
-    
-    render json: possession
+    render :index
   end
 
   private

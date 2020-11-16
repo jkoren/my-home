@@ -64,16 +64,15 @@ const PossessionNewForm = (props) => {
   }
 
   const handleSubmit = (event) => {
+    //PossessionNewForm.js
     if (validforSubmission(formFields)) {
-      // this is addDuck from lesson
-      // https://learn.launchacademy.com/teams/boston-30/curricula/on-campus-boston-30/lesson_groups/weeks_7_&_8:_group_project/lessons/file-uploading-in-react
       event.preventDefault()
       let newPossession = new FormData()
       newPossession.append("name", formFields.name)
       newPossession.append("manufacturer", formFields.manufacturer)
       newPossession.append("model", formFields.model)
       newPossession.append("owners_manual", formFields.owners_manual)
-      newPossession.append("description", formFields.desription)
+      newPossession.append("description", formFields.description)
       newPossession.append("year_built", formFields.year_built)
       newPossession.append("purchased_from", formFields.purchased_from)
     
@@ -207,61 +206,24 @@ const PossessionNewForm = (props) => {
               />
             </label>
 
-            {/* below is only for displaying URL */}
-            <label>
-              Image:
-              <input
-                name="image"
-                id="image"
-                type="text"
-                onChange={handleChange}
-                value={formFields.image}
-              />
-            </label>
-
             <Dropzone onDrop={handleFileUpload}>
               {({ getRootProps, getInputProps }) => (
-                // <div>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
 
-                    <div className="cell  grid-x ">
-                      <div className="cell callout">
-                        <div>
-                          <i className="fas fa-image fa-3x"> </i>
-                          Drag a product image here, or click to upload one from your computer
-                        </div>
+                  <div className="cell  grid-x ">
+                    <div className="cell callout">
+                      <div>
+                        <i className="fas fa-image fa-3x"> </i>
+                        Drag a product image here, or click to upload one from your computer
                       </div>
-
                     </div>
                   </div>
-                // </div>
+                </div>
+         
               )}
             </Dropzone>
             {imageUploaded}
-
-            {/* <Dropzone onDrop={handleFileUpload}>
-              {({ getRootProps, getInputProps }) => (
-                // <div>
-                  <div {...getRootProps()}>
-                    <input {...getInputProps()} />
-
-                    <div className="cell  grid-x ">
-
-                      <div className="cell medium-6 callout">
-                        <div>
-                          <i className="fas fa-book fa-3x"> </i>
-                          Drag an owner's manual document here, or click to upload one from your computer
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-                // </div>
-              )}
-            </Dropzone>
-            {ownerManualUploaded}
- */}
 
             <div className="">
               <input className="" type="submit" value="Submit" />

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react"
 import YelpApplianceRepairProIndexTile from "./YelpApplianceRepairProIndexTile"
 import { Link } from "react-router-dom";
 
-// props.match.params.id is "99"
 const PossessionShowTile = (props) => {
 
   return (
@@ -15,8 +14,7 @@ const PossessionShowTile = (props) => {
       </div> 
 
         <div className="cell small-12 medium-3">
-        {/* <img src={props.possession.aws_image.url} alt="missing picture" width="450" /> */}
-        <img src={props.possession.image} alt="missing picture" width="450" />
+          <img src={props.possession.aws_image.url} alt="missing aws picture" width="450" />
         </div>
 
         <div className="cell small-12 medium-6 text-left">

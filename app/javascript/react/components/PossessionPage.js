@@ -1,8 +1,9 @@
 // PossessionPage.js
 import React, { useState, useEffect } from "react"
 import PossessionShowTile from "./PossessionShowTile"
-import PossessionEditTile from "./PossessionEditTile";
-import PossessionDeleteTile from "./PossessionDeleteTile";
+import PossessionEditTile from "./PossessionEditTile"
+import PossessionDeleteTile from "./PossessionDeleteTile"
+import { Redirect } from "react-router-dom"
 import _ from "lodash" 
 
 const PossessionPage = (props) => {
@@ -18,6 +19,8 @@ const PossessionPage = (props) => {
     URL: "",
     purchase_receipt: ""
   })
+  const [isSaved, setIsSaved] = useState(false)
+  const [shouldRedirect,setShouldRedirect] = useState(false)
 
   const id = props.match.params.id 
   useEffect(() => {
@@ -36,10 +39,82 @@ const PossessionPage = (props) => {
       .then((responseBody) => {
         setPossession(responseBody)
       })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`))
-    }, [])
-    
-    // ---
+      .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
+    }, [isSaved])
+
+  const editPossession = (message) => {
+
+    let possessionId = message.id;
+    let payload = message.possession;
+    fetch(`/api/v1/rooms/${id}/possessions/${possessionId}`, {
+      credentials: "same-origin",
+      method: "PATCH",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        Accept: "image/jpeg",
+        "Content-Type": "application/json",
+
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          setIsSaved(true)
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then (newPossessionImage => {
+        setPossession([...possessions,newPossessionImage])
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  };
+
+  const deletePossession = (message) => {
+    let possessionId = message.id;
+
+    fetch(`/api/v1/rooms/${id}/possessions/${possessionId}`, {
+      credentials: "same-origin",
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw error;
+        }
+      })
+      .then((response) => response.json())
+      .then((removePossession) => {
+        if (!removePossession.errors) {
+          let possessionIndex = room.possessions.findIndex(
+            (possession) => possession.id === removePossession.id
+          );
+
+          let tempPossessions = [...room.possessions];
+          tempPossessions.splice(possessionIndex, 1);
+
+          setRoom({
+            ...room,
+            possessions: tempPossessions,
+          });
+        } else if (possession.errors) {
+          setErrors(possession.errors);
+        }
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`));
+  };
+
     const [showEditTile, setShowEditTile] = useState(false);
     const [showDeleteTile, setShowDeleteTile] = useState(false);
     
@@ -63,56 +138,48 @@ const PossessionPage = (props) => {
     
     const onSaveClickHandler = (formPayLoad) => {
       setShowEditTile(false);
-      props.editPossession(formPayLoad);
+      editPossession(formPayLoad);
     };
     
     const onConfirmDeleteClickHandler = (event) => {
-      props.deletePossession(event);
+      deletePossession(event);
+      //redirect?
+      setShouldRedirect(true)
     };
     
     let displayTile = null
-    // if (!_.isEmpty(possession)) {
+
     if (!possession.id == "") {
-      
       if (showEditTile && !showDeleteTile) {
         displayTile = (
           <PossessionEditTile
-          possession={possession}
-          editPossession={onSaveClickHandler}
-          onDiscardClickHandler={onDiscardClickHandler}
+            possession={possession}
+            editPossession={onSaveClickHandler}
+            onDiscardClickHandler={onDiscardClickHandler}
           />
           );
         } else if (showDeleteTile && !showEditTile) {
           displayTile = (
             <PossessionDeleteTile
-            possession={possession}
-            deletePossession={onConfirmDeleteClickHandler}
-            onCancelDeleteClickHandler={onCancelDeleteClickHandler}
+              possession={possession}
+              deletePossession={onConfirmDeleteClickHandler}
+              onCancelDeleteClickHandler={onCancelDeleteClickHandler}
             />
             );
           } else {
             displayTile = (
               <PossessionShowTile
-              possession={possession}
-              onEditClickHandler={onEditClickHandler}
-              onDeleteClickHandler={onDeleteClickHandler}
+                possession={possession}
+                onEditClickHandler={onEditClickHandler}
+                onDeleteClickHandler={onDeleteClickHandler}
               />
               );
             }
           }
-          // problem - props.possession does not exist..
-          // props.match.params.id = 147
-          // removed from above
-          // handleVoteSubmit={props.handleVoteSubmit}
-          // voteErrors={props.voteErrors}
-          // what is displaytile?
-          // ---
-          // debugger
 
   return (
     <div>
       <div className="text-center">
-        {/* {possessionShow} */}
         {displayTile}
       </div>
     </div>
