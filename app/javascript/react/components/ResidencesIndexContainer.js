@@ -13,8 +13,7 @@ const ResidencesIndexContainer = (props) => {
     state: "",
     image: "",
   })
-  // const [errors, setErrors] = useState({})
-  // const [error, setError] = useState(null)
+
   useEffect(() => {
     fetch(`/api/v1/residences/`, {
       credentials: "same-origin"

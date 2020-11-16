@@ -2,13 +2,15 @@ class Api::V1::PossessionsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    binding.pry
     possessions = Possession.all.select{|possession|possession.room == params[:id]}
-    render json: possessions
+    render json: possessions, serializer: PossessionShowSerializer
   end
   
   def show
     possession = Possession.find(params[:id])
     render json: possession, serializer: PossessionShowSerializer
+    # binding.pry
   end
 
   def create
@@ -22,18 +24,17 @@ class Api::V1::PossessionsController < ApiController
     end
   end
 
-  
   def update  
-    review = Review.find(params[:id])
-    review.update_attributes(review_params)
-    render json: review
+    # binding.pry
+    possession = Possession.find(params[:id])
+    possession.update_attributes(possession_params)
+    render json: possession
   end
 
   def destroy
-    review = Review.find(params[:id])
-    review.destroy
-    
-    render json: review
+    possession = Possession.find(params[:id])
+    possession.destroy
+    render :index
   end
 
   private
