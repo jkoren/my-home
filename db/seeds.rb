@@ -81,14 +81,12 @@ garage = Room.create(
   user: dave
 )
 
-
 basement = Room.create(
   name: "Basement",
   image: "https://www.kingofmaids.com/blog/wp-content/uploads/2017/06/basement-empty-1024x682.jpg",
   residence: CollegeFarmRoad, 
   user: dave
 )
-
 
 no_room = Room.create(
   name: "No Room",
@@ -97,16 +95,34 @@ no_room = Room.create(
   residence: CollegeFarmRoad, 
   user: dave
 )
-
 Possession.destroy_all
+
+cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
+
+dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
+
+dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
+
+microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.webp'))
+
+range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
+
+refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.webp'))
+
+thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
+
+
+washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
+
+
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
 Possession.create(
   name:"Dishwasher", 
   manufacturer: "Kenmore", 
   model: "Ultra Wash 665.1372",
+  aws_image: dishwasher_image,
   description: dishwasher_description, 
-  image: "https://c.shld.net/rpx/i/s/i/spin/10130653/prod_17810015912",
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
   owners_manual: "https://www.manualslib.com/manual/666454/Kenmore-665-1372.html?page=6",
@@ -120,7 +136,7 @@ Possession.create(
   manufacturer: "KitchenAid", 
   model: "KMLS311HSS",
   description: "30 Inch Wide 1.1 Cu. Ft. 1000 Watt Over the Range Microwave",
-  image: "https://s3.img-b.com/image/private/c_lpad,f_auto,h_1200,t_base,w_1200/v3/product/kitchenaid/kitchenaid-kmls311hss-main-1.jpg",
+  aws_image: microwave_image,
   URL:  "",
   operating_video: "",
   room: kitchen
@@ -131,7 +147,7 @@ Possession.create(
   manufacturer: "BlueStar", 
   model: "RNB366BV2",
   description: "Nova Series 36 Inch Wide 5.1 Cu. Ft. Free Standing Natural Gas Range",
-  image: "https://s3.img-b.com/image/private/t_base,c_lpad,dpr_auto,w_450,h_450/product/bluestar/bluestar-rnb366bv2-3492701.jpg",
+  aws_image: range_image,
   URL:  "",
   operating_video: "",
   room: kitchen
@@ -142,36 +158,37 @@ Possession.create(
   manufacturer: "KitchenAid", 
   model: "KRFC300ESS",
   description: "36 Inch Wide 20 Cu. Ft. Counter Depth French Door Refrigerator with Interior Water Dispenser",
-  image: "https://s3.img-b.com/image/private/c_lpad,f_auto,h_1200,t_base,w_1200/v3/product/kitchenaid/kitchenaid-krfc300ess-front.jpg",
+  aws_image: refrigerator_image,
   URL:  "",
   operating_video: "",
   room: kitchen
 )
+
 
 Possession.create(
   name:"Dryer", 
   manufacturer: "Whirlpool", 
   model: "WGD8620HW",
   description: "27 Inch Wide 7.4 Cu Ft. Energy Star Rated Gas Dryer",
-  image: "https://s3.img-b.com/image/private/c_lpad,f_auto,h_1200,t_base,w_1200/v3/product/whirlpool/whirlpool-wgd8620hw-7606622.jpg",
+  aws_image: dryer_image,
   URL:  "",
   operating_video: "",
   room: laundry_room
 )
 
-# this is failing
 Possession.create(
   name:"Washing Machine", 
   manufacturer: "LG", 
   model: "WM9000HVA",
   description: "5.2 Cubic Feet Mega Capacity Washing Machine with On-Door Control Panel and TurboWash",
-  image: "https://s3.img-b.com/image/private/c_lpad,f_auto,h_1200,t_base,w_1200/v3/product/lg/wm9000hva-(1).jpg",
+  aws_image: washingMachine_image,
   URL:  "",
   operating_video: "",
   room: laundry_room
 )
 
 # cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
+
 cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
 
 Possession.create(
@@ -180,7 +197,7 @@ Possession.create(
   model: "DLC-8S",
   owners_manual: "",
   description: cuisinart_description, 
-  image: "https://i.pinimg.com/originals/ae/54/86/ae5486c24ae20743550e13afcf153ddc.jpg",
+  aws_image: cuisinart_image,
   URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
   operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
   room: kitchen)
@@ -190,7 +207,7 @@ Possession.create(
   manufacturer: "Google Nest", 
   model: "T3019US",
   description: "Nest Learning Thermostat - 3rd Generation",
-  image: "https://s3.img-b.com/image/private/c_lpad,f_auto,h_1200,t_base,w_1200/v3/product/googlenest/google-nest-t3019us-6520654.jpg",
+  aws_image: thermostat_image,
   URL:  "",
   operating_video: "",
   room: living_room
