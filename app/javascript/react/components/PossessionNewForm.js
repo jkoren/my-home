@@ -64,7 +64,6 @@ const PossessionNewForm = (props) => {
   }
 
   const handleSubmit = (event) => {
-    //PossessionNewForm.js
     if (validforSubmission(formFields)) {
       event.preventDefault()
       let newPossession = new FormData()

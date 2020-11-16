@@ -97,8 +97,6 @@ no_room = Room.create(
 )
 Possession.destroy_all
 
-cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
-
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
@@ -109,11 +107,11 @@ range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/p
 
 refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.webp'))
 
+cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
+
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
 
-
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
-
 
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
@@ -164,7 +162,6 @@ Possession.create(
   room: kitchen
 )
 
-
 Possession.create(
   name:"Dryer", 
   manufacturer: "Whirlpool", 
@@ -212,3 +209,9 @@ Possession.create(
   operating_video: "",
   room: living_room
 )
+
+# for demo
+# Espresso Machine
+# Rocket
+# r58 v2 
+# Dual boiler with E61 group head and rotary pump
