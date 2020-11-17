@@ -32,9 +32,10 @@ class Api::V1::PossessionsController < ApiController
   end
 
   def destroy
+    # binding.pry
     possession = Possession.find(params[:id])
     possession.destroy
-    render :index
+    # render :index
   end
 
   private

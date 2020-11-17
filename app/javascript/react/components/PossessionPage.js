@@ -87,7 +87,7 @@ const PossessionPage = (props) => {
     })
       .then((response) => {
         if (response.ok) {
-          return response;
+          return response
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
@@ -109,73 +109,82 @@ const PossessionPage = (props) => {
             possessions: tempPossessions,
           });
         } else if (possession.errors) {
-          setErrors(possession.errors);
+          setErrors(possession.errors)
+        } else {
+          debugger
+          setShouldRedirect({
+            redirect: true,
+            id: json_response.id
+          })
         }
       })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  };
+      .catch((error) => console.error(`Error in fetch: ${error.message}`))
+  } // end deletePossession
 
-    const [showEditTile, setShowEditTile] = useState(false);
-    const [showDeleteTile, setShowDeleteTile] = useState(false);
-    
-    const onEditClickHandler = (event) => {
-      setShowEditTile(true);
-      setShowDeleteTile(false);
-    };
-    
-    const onDeleteClickHandler = (event) => {
-      setShowDeleteTile(true);
-      setShowEditTile(false);
-    };
-    
-    const onDiscardClickHandler = (event) => {
-      setShowEditTile(false);
-    };
-    
-    const onCancelDeleteClickHandler = (event) => {
-      setShowDeleteTile(false);
-    };
-    
-    const onSaveClickHandler = (formPayLoad) => {
-      setShowEditTile(false);
-      editPossession(formPayLoad);
-    };
-    
-    const onConfirmDeleteClickHandler = (event) => {
-      deletePossession(event);
-      //redirect?
-      setShouldRedirect(true)
-    };
-    
-    let displayTile = null
+  if (shouldRedirect) {
+    debugger
+    return <Redirect to={`/rooms/${props.match.params.id}`} />
+  }
 
-    if (!possession.id == "") {
-      if (showEditTile && !showDeleteTile) {
+  const [showEditTile, setShowEditTile] = useState(false)
+  const [showDeleteTile, setShowDeleteTile] = useState(false)
+  
+  const onEditClickHandler = (event) => {
+    setShowEditTile(true)
+    setShowDeleteTile(false)
+  }
+  
+  const onDeleteClickHandler = (event) => {
+    setShowDeleteTile(true)
+    setShowEditTile(false)
+  }
+  
+  const onDiscardClickHandler = (event) => {
+    setShowEditTile(false)
+  }
+  
+  const onCancelDeleteClickHandler = (event) => {
+    setShowDeleteTile(false)
+  }
+  
+  const onSaveClickHandler = (formPayLoad) => {
+    setShowEditTile(false)
+    editPossession(formPayLoad)
+  }
+  
+  const onConfirmDeleteClickHandler = (event) => {
+    deletePossession(event)
+  }
+  
+  let displayTile = null
+
+  if (!possession.id == "") {
+    if (showEditTile && !showDeleteTile) {
+      displayTile = (
+        <PossessionEditTile
+          possession={possession}
+          editPossession={onSaveClickHandler}
+          onDiscardClickHandler={onDiscardClickHandler}
+        />
+        );
+      } else if (showDeleteTile && !showEditTile) {
         displayTile = (
-          <PossessionEditTile
+          <PossessionDeleteTile
             possession={possession}
-            editPossession={onSaveClickHandler}
-            onDiscardClickHandler={onDiscardClickHandler}
+            deletePossession={onConfirmDeleteClickHandler}
+            onCancelDeleteClickHandler={onCancelDeleteClickHandler}
           />
           );
-        } else if (showDeleteTile && !showEditTile) {
+        } else {
           displayTile = (
-            <PossessionDeleteTile
+            <PossessionShowTile
               possession={possession}
-              deletePossession={onConfirmDeleteClickHandler}
-              onCancelDeleteClickHandler={onCancelDeleteClickHandler}
+              onEditClickHandler={onEditClickHandler}
+              onDeleteClickHandler={onDeleteClickHandler}
             />
             );
-          } else {
-            displayTile = (
-              <PossessionShowTile
-                possession={possession}
-                onEditClickHandler={onEditClickHandler}
-                onDeleteClickHandler={onDeleteClickHandler}
-              />
-              );
-            }
           }
+        }
 
   return (
     <div>
