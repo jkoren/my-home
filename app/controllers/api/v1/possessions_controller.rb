@@ -10,7 +10,6 @@ class Api::V1::PossessionsController < ApiController
   def show
     possession = Possession.find(params[:id])
     render json: possession, serializer: PossessionShowSerializer
-    # binding.pry
   end
 
   def create
@@ -25,17 +24,16 @@ class Api::V1::PossessionsController < ApiController
   end
 
   def update  
-    # binding.pry
     possession = Possession.find(params[:id])
     possession.update_attributes(possession_params)
     render json: possession
   end
 
   def destroy
-    # binding.pry
     possession = Possession.find(params[:id])
+    room = possession.room
     possession.destroy
-    # render :index
+    render json: {roomId: room.id}
   end
 
   private

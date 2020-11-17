@@ -21,6 +21,8 @@ const PossessionPage = (props) => {
   })
   const [isSaved, setIsSaved] = useState(false)
   const [shouldRedirect,setShouldRedirect] = useState(false)
+  const [showEditTile, setShowEditTile] = useState(false)
+  const [showDeleteTile, setShowDeleteTile] = useState(false)
 
   const id = props.match.params.id 
   useEffect(() => {
@@ -54,7 +56,6 @@ const PossessionPage = (props) => {
         Accept: "application/json",
         Accept: "image/jpeg",
         "Content-Type": "application/json",
-
       },
     })
       .then((response) => {
@@ -81,9 +82,9 @@ const PossessionPage = (props) => {
       credentials: "same-origin",
       method: "DELETE",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
-      },
+      }
     })
       .then((response) => {
         if (response.ok) {
@@ -97,37 +98,19 @@ const PossessionPage = (props) => {
       .then((response) => response.json())
       .then((removePossession) => {
         if (!removePossession.errors) {
-          let possessionIndex = room.possessions.findIndex(
-            (possession) => possession.id === removePossession.id
-          );
-
-          let tempPossessions = [...room.possessions];
-          tempPossessions.splice(possessionIndex, 1);
-
-          setRoom({
-            ...room,
-            possessions: tempPossessions,
-          });
-        } else if (possession.errors) {
-          setErrors(possession.errors)
-        } else {
-          debugger
           setShouldRedirect({
-            redirect: true,
-            id: json_response.id
+            id: removePossession.roomId
           })
+        } else {
+          setErrors(removePossession.errors)
         }
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
-  } // end deletePossession
+  } 
 
   if (shouldRedirect) {
-    debugger
-    return <Redirect to={`/rooms/${props.match.params.id}`} />
+    return <Redirect to={`/rooms/${shouldRedirect.id}`} />
   }
-
-  const [showEditTile, setShowEditTile] = useState(false)
-  const [showDeleteTile, setShowDeleteTile] = useState(false)
   
   const onEditClickHandler = (event) => {
     setShowEditTile(true)
