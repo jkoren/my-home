@@ -21,6 +21,8 @@ const PossessionPage = (props) => {
   })
   const [isSaved, setIsSaved] = useState(false)
   const [shouldRedirect,setShouldRedirect] = useState(false)
+  const [showEditTile, setShowEditTile] = useState(false)
+  const [showDeleteTile, setShowDeleteTile] = useState(false)
 
   const id = props.match.params.id 
   useEffect(() => {
@@ -54,7 +56,6 @@ const PossessionPage = (props) => {
         Accept: "application/json",
         Accept: "image/jpeg",
         "Content-Type": "application/json",
-
       },
     })
       .then((response) => {
@@ -81,13 +82,13 @@ const PossessionPage = (props) => {
       credentials: "same-origin",
       method: "DELETE",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json",
-      },
+      }
     })
       .then((response) => {
         if (response.ok) {
-          return response;
+          return response
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
             error = new Error(errorMessage);
@@ -97,85 +98,76 @@ const PossessionPage = (props) => {
       .then((response) => response.json())
       .then((removePossession) => {
         if (!removePossession.errors) {
-          let possessionIndex = room.possessions.findIndex(
-            (possession) => possession.id === removePossession.id
-          );
-
-          let tempPossessions = [...room.possessions];
-          tempPossessions.splice(possessionIndex, 1);
-
-          setRoom({
-            ...room,
-            possessions: tempPossessions,
-          });
-        } else if (possession.errors) {
-          setErrors(possession.errors);
+          setShouldRedirect({
+            id: removePossession.roomId
+          })
+        } else {
+          setErrors(removePossession.errors)
         }
       })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`));
-  };
+      .catch((error) => console.error(`Error in fetch: ${error.message}`))
+  } 
 
-    const [showEditTile, setShowEditTile] = useState(false);
-    const [showDeleteTile, setShowDeleteTile] = useState(false);
-    
-    const onEditClickHandler = (event) => {
-      setShowEditTile(true);
-      setShowDeleteTile(false);
-    };
-    
-    const onDeleteClickHandler = (event) => {
-      setShowDeleteTile(true);
-      setShowEditTile(false);
-    };
-    
-    const onDiscardClickHandler = (event) => {
-      setShowEditTile(false);
-    };
-    
-    const onCancelDeleteClickHandler = (event) => {
-      setShowDeleteTile(false);
-    };
-    
-    const onSaveClickHandler = (formPayLoad) => {
-      setShowEditTile(false);
-      editPossession(formPayLoad);
-    };
-    
-    const onConfirmDeleteClickHandler = (event) => {
-      deletePossession(event);
-      //redirect?
-      setShouldRedirect(true)
-    };
-    
-    let displayTile = null
+  if (shouldRedirect) {
+    return <Redirect to={`/rooms/${shouldRedirect.id}`} />
+  }
+  
+  const onEditClickHandler = (event) => {
+    setShowEditTile(true)
+    setShowDeleteTile(false)
+  }
+  
+  const onDeleteClickHandler = (event) => {
+    setShowDeleteTile(true)
+    setShowEditTile(false)
+  }
+  
+  const onDiscardClickHandler = (event) => {
+    setShowEditTile(false)
+  }
+  
+  const onCancelDeleteClickHandler = (event) => {
+    setShowDeleteTile(false)
+  }
+  
+  const onSaveClickHandler = (formPayLoad) => {
+    setShowEditTile(false)
+    editPossession(formPayLoad)
+  }
+  
+  const onConfirmDeleteClickHandler = (event) => {
+    deletePossession(event)
+  }
+  
+  let displayTile = null
 
-    if (!possession.id == "") {
-      if (showEditTile && !showDeleteTile) {
+  if (!possession.id == "") {
+    if (showEditTile && !showDeleteTile) {
+      displayTile = (
+        <PossessionEditTile
+          possession={possession}
+          editPossession={onSaveClickHandler}
+          onDiscardClickHandler={onDiscardClickHandler}
+        />
+        );
+      } else if (showDeleteTile && !showEditTile) {
         displayTile = (
-          <PossessionEditTile
+          <PossessionDeleteTile
             possession={possession}
-            editPossession={onSaveClickHandler}
-            onDiscardClickHandler={onDiscardClickHandler}
+            deletePossession={onConfirmDeleteClickHandler}
+            onCancelDeleteClickHandler={onCancelDeleteClickHandler}
           />
           );
-        } else if (showDeleteTile && !showEditTile) {
+        } else {
           displayTile = (
-            <PossessionDeleteTile
+            <PossessionShowTile
               possession={possession}
-              deletePossession={onConfirmDeleteClickHandler}
-              onCancelDeleteClickHandler={onCancelDeleteClickHandler}
+              onEditClickHandler={onEditClickHandler}
+              onDeleteClickHandler={onDeleteClickHandler}
             />
             );
-          } else {
-            displayTile = (
-              <PossessionShowTile
-                possession={possession}
-                onEditClickHandler={onEditClickHandler}
-                onDeleteClickHandler={onDeleteClickHandler}
-              />
-              );
-            }
           }
+        }
 
   return (
     <div>
