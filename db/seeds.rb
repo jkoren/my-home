@@ -2,6 +2,20 @@ User.destroy_all
 dave = User.create(email: "dave@gmail.com",password: "testtest")
 bob = User.create(email: "bob@gmail.com", password: "testtest")
 
+Realtor.destroy_all
+
+arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtor/arlo_nugent.jpg'))
+
+Arlo = Realtor.create(
+  name: "Arlo Nugent",
+  company: "Blue Chip Realty Group",
+  image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
+  aws_image: arlo_image,
+  phone_number: "(866) 823-6302",
+  email: "",
+  URL: "bluechiprealtygroup.com"
+)
+
 Residence.destroy_all
 
 CollegeFarmRoad = Residence.create(

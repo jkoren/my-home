@@ -6,16 +6,6 @@ import ResidenceIndexTile from "./ResidenceIndexTile"
 const ResidencesIndexContainer = (props) => {
   const [residences, setResidences] = useState([])
 
-  // const [residences, setResidences] = useState({
-  //   id: "",
-  //   name: "",
-  //   street: "",
-  //   street2: "",
-  //   city: "",
-  //   state: "",
-  //   image: "",
-  // })
-
   useEffect(() => {
     fetch(`/api/v1/residences/`, {
       credentials: "same-origin"
@@ -43,10 +33,8 @@ const ResidencesIndexContainer = (props) => {
       />
   })
 
-
   return (
     <div>
-      {residenceIndexTiles}
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
           {residenceIndexTiles}
