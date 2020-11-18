@@ -2,7 +2,7 @@ class Api::V1::RealtorsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def show
-    binding.pry
+    #binding.pry
     realtor = Realtor.find(params[:id])
     render json: realtor, serializer: RealtorShowSerializer
   end

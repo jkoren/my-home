@@ -7,12 +7,11 @@ class Api::V1::PossessionsController < ApiController
     render json: possession, serializer: PossessionShowSerializer
   end
   
-  # def index
-  #   possessions = Possession.all.select{|possession|possession.room == params[:id]}
-  #   render json: possessions #serializer: PossessionShowSerializer
-  # end
+  def index
+    possessions = Possession.all.select{|possession|possession.room == params[:id]}
+    render json: possessions #serializer: PossessionShowSerializer
+  end
   
-
   def create
     new_possession = Possession.new(possession_params)
     room = Room.find(params[:room_id])
