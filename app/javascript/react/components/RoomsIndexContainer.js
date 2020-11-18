@@ -7,7 +7,6 @@ const RoomsIndexContainer = (props) => {
   const [rooms, setRooms] = useState([])
   
   useEffect(() => {
-    // do another fetch to get the address information? for demo purposes only showing one house - or come from the rooms controller..
     fetch("/api/v1/rooms", {
       credentials: "same-origin"
     })
@@ -29,7 +28,7 @@ const RoomsIndexContainer = (props) => {
 
   let address = "315 College Farm Rd #7, Waltham, MA"
   
-  let roomListTiles = rooms.map((roomObject) => {
+  let roomIndexTiles = rooms.map((roomObject) => {
     return <RoomIndexTile 
         key={roomObject.id} 
         data={roomObject} 
@@ -44,7 +43,7 @@ const RoomsIndexContainer = (props) => {
 
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
-                    {roomListTiles} 
+          {roomIndexTiles} 
         </div>
       </div>
 

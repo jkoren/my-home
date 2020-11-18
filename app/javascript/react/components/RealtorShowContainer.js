@@ -41,8 +41,7 @@ const RealtorShowContainer = (props) => {
     key={realtor.id}
     realtor={realtor}
     />
-  // debugger
-  }
+   }
   return (
     <div>
       <div className="text-center">

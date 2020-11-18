@@ -12,7 +12,7 @@ arlo = Realtor.create(
   image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
   aws_image: arlo_image,
   phone_number: "(866) 823-6302",
-  email: "",
+  email: "anugent@bluechiprealtygroup.com",
   URL: "bluechiprealtygroup.com"
 )
 

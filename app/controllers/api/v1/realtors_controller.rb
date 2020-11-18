@@ -1,16 +1,16 @@
 class Api::V1::RealtorsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
-  def index
-    realtors = Realtor.all
-    render json: realtors #, serializer: RealtorShowSerializer
-  end
-  
   def show
     realtor = Realtor.find(params[:id])
     render json: realtor, serializer: RealtorShowSerializer
   end
 
+  def index
+    realtors = Realtor.all
+    render json: realtors, serializer: RealtorShowSerializer
+  end
+  
   def create
     new_realtor = Realtor.new(realtor_params)
     residence = Room.find(params[:residence_id])

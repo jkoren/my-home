@@ -17,13 +17,13 @@ export const App = (props) => {
       <BrowserRouter>
         <Switch>
           {/* 1st is not in routes.rb  */}
-          <Route exact path="/" component={RoomsIndexContainer} />
+          <Route exact path="/" component={RealtorsIndexContainer} />
 
           <Route exact path="/realtors" component={RealtorsIndexContainer} />
           <Route exact path="/realtors/:id" component={RealtorShowContainer} />
           <Route exact path="/residences" component={ResidencesIndexContainer} />
           <Route exact path="/residences/:id" component={ResidenceShowContainer} />
-          <Route exact path="/rooms" component={RoomsIndexContainer} />
+          <Route exact path="/residences/:id/rooms" component={RoomsIndexContainer} />
           <Route exact path="/rooms/:id" component={RoomShowContainer} />
           <Route exact path="/possessions/:id" component={PossessionPage} /> 
           <Route exact path="/about" component={AboutPage} />
