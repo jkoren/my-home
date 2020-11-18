@@ -1,11 +1,10 @@
 class Api::V1::PossessionsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
-  def index
-    binding.pry
-    possessions = Possession.all.select{|possession|possession.room == params[:id]}
-    render json: possessions, serializer: PossessionShowSerializer
-  end
+  # def index
+  #   possessions = Possession.all.select{|possession|possession.room == params[:id]}
+  #   render json: possessions #serializer: PossessionShowSerializer
+  # end
   
   def show
     possession = Possession.find(params[:id])

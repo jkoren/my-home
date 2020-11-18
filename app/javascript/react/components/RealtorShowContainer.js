@@ -8,7 +8,12 @@ const RealtorShowContainer = (props) => {
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",
-    description: ""
+    company: "",
+    image: "",
+    aws_image: "",
+    phone_number: "",
+    email: "",
+    URL: ""
   })
 
   const id = props.match.params.id
@@ -30,13 +35,13 @@ const RealtorShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-
   let realtorShow
-  if (!_.isEmpty(realtor)) {
+  if (!realtor.id=="") {
     realtorShow = <RealtorShowTile
-      key={realtor.id}
-      data={realtor}
+    key={realtor.id}
+    realtor={realtor}
     />
+  // debugger
   }
   return (
     <div>

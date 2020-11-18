@@ -2,8 +2,8 @@ class Api::V1::RealtorsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    realtors = Realtor.all.select{|realtor|realtor.residence == params[:id]}
-    render json: realtors, serializer: RealtorShowSerializer
+    realtors = Realtor.all
+    render json: realtors #, serializer: RealtorShowSerializer
   end
   
   def show
@@ -29,15 +29,13 @@ class Api::V1::RealtorsController < ApiController
   end
 
   def destroy
-    realtor = Realtor.find(params[:id])
-    room = realtor.residence
-    realtor.destroy
-    render json: {residenceId: residence.id}
+    possession = Possession.find(params[:id])
+    possession.destroy
   end
 
   private
     def realtor_params
-      params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty, :aws_image])
+      params.permit([:id, :name, :company, :image, :aws_image, :phone_number, :email, :URL])
     end
 
     def authenticate_user

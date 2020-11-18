@@ -4,9 +4,9 @@ bob = User.create(email: "bob@gmail.com", password: "testtest")
 
 Realtor.destroy_all
 
-arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtor/arlo_nugent.jpg'))
+arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
 
-Arlo = Realtor.create(
+arlo = Realtor.create(
   name: "Arlo Nugent",
   company: "Blue Chip Realty Group",
   image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
@@ -23,7 +23,8 @@ CollegeFarmRoad = Residence.create(
   street: "315 College Farm Rd #6",
   city: "Waltham",
   state: "MA",
-  image: "https://m1.cbhomes.com/p/102/72707418/bf5EFC892DD14f6/full.jpg"
+  image: "https://m1.cbhomes.com/p/102/72707418/bf5EFC892DD14f6/full.jpg",
+  realtor: arlo
 )
 
 BarbaraRoad = Residence.create(
@@ -31,7 +32,8 @@ BarbaraRoad = Residence.create(
   street: "59 Barbara Rd #1",
   city: "Waltham",
   state: "MA",
-  image: "https://m.cbhomes.com/p/102/72753295/747777af3519434/full.jpg"
+  image: "https://m.cbhomes.com/p/102/72753295/747777af3519434/full.jpg",
+  realtor: arlo
 )
 
 MatthewLane = Residence.create(
@@ -39,7 +41,8 @@ MatthewLane = Residence.create(
   street: "41 Matthew Ln",
   city: "Waltham",
   state: "MA",
-  image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg"
+  image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
+  realtor: arlo
 )
 
 Room.destroy_all
