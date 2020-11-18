@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom'
 import PossessionIndexTile from "./PossessionIndexTile"
 
 const PossessionsIndexContainer = (props) => {
-
-  let possessionTiles = possessions.map((possessionObject) => {
-    return <PossessionIndexTile
-      key={possessionObject.id}
-      data={possessionObject}
-    />
-  })
-
+  let possessionTiles
+  if (!_.isEmpty(props.possessions)) {
+    possessionTiles = props.possessions.map((possessionObject) => {
+      return (
+        <PossessionIndexTile
+          key={possessionObject.id}
+          data={possessionObject}
+        />
+      )
+    })
+  }
   return (
     <div>
       <div className="grid-container">
@@ -22,7 +25,7 @@ const PossessionsIndexContainer = (props) => {
 
       <div className="grid-container">
         <Link to={`/rooms/${props.room.id}/possessions/new`}>
-          Add a New Possession 
+          Add a New Possession
         </Link>
       </div>
     </div>
