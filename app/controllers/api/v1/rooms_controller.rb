@@ -5,21 +5,12 @@ class Api::V1::RoomsController < ApiController
   def show
     room = Room.find(params[:id])
     render json: room, serializer: RoomShowSerializer
-
-    # modified from group project:
-    # render json: 
-    # {
-    #   room: serialized_data(room, RoomSerializer)
-    #   possessions: serialized_data(possession.reviews, PosessionSerializer)
-    # }
   end
 
-  def index
-    # binding.pry
-    #for realtor demo, where showing multiple houses, will have to modify this
-    residence = Residence.all.select{|residence|residence.name == "315 College Farm Rd #6"}.first
-    rooms = residence.rooms
-    render json: rooms
-  end
+  # def index
+  #   #for demo use http://localhost:3000/rooms/205 where 205 is room number
+  #   rooms = residence.rooms
+  #   render json: rooms
+  # end
 
 end

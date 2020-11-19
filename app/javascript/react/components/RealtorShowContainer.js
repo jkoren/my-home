@@ -4,7 +4,8 @@ import RealtorShowTile from "./RealtorShowTile"
 import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import _ from "lodash"
 
-const RealtorShowContainer = (props) => {
+const RealtorShowContainer = () => {
+  debugger
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",
@@ -16,12 +17,15 @@ const RealtorShowContainer = (props) => {
     URL: ""
   })
 
-  const id = "4" // only realtor in system for demo purposes - here is the error - returning realtor but not his residences
+  const id = "4" // for demo purposes
+
   useEffect(() => {
+    debugger // never getting hit - no data from backend
     fetch(`/api/v1/realtors/${id}`, {
       credentials: "same-origin"
     })
-      .then((response) => {
+      .then((response) => {q
+        debugger // never getting hit
         if (response.ok) {
           return response.json();
         } else {
@@ -35,15 +39,17 @@ const RealtorShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
+  
   let realtorShow
-  if (!realtor.id=="") {
+  if (!_.isEmpty(realtor)) {
+  // if (!realtor.id=="") {
     realtorShow = <RealtorShowTile
     key={realtor.id}
     realtor={realtor}
     />
    }
 
-   debugger // what is realtor and realtor.residences and realtorShow?
   return (
     <div>
       <div className="text-center">

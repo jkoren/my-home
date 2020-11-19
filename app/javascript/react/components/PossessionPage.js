@@ -30,6 +30,7 @@ const PossessionPage = (props) => {
       credentials: "same-origin"
     })
       .then((response) => {
+        debugger
         if (response.ok) {
           return response.json();
         } else {

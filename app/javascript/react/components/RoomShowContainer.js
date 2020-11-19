@@ -12,6 +12,7 @@ const RoomShowContainer = (props) => {
   })
 
   const id = props.match.params.id 
+
   useEffect(() => {
     fetch(`/api/v1/rooms/${id}`, {
       credentials: "same-origin"
@@ -30,6 +31,8 @@ const RoomShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
+  // debugger // returning room and possessions
 
   let roomShow
   if (!_.isEmpty(room)) {

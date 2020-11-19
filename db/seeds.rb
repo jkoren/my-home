@@ -1,3 +1,5 @@
+# seeds.rb 
+
 User.destroy_all
 dave = User.create(email: "dave@gmail.com",password: "testtest")
 bob = User.create(email: "bob@gmail.com", password: "testtest")
