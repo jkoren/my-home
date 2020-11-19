@@ -16,7 +16,7 @@ const RealtorShowContainer = (props) => {
     URL: ""
   })
 
-  const id = props.match.params.id
+  const id = "4" // only realtor in system for demo purposes - here is the error - returning realtor but not his residences
   useEffect(() => {
     fetch(`/api/v1/realtors/${id}`, {
       credentials: "same-origin"
@@ -42,6 +42,8 @@ const RealtorShowContainer = (props) => {
     realtor={realtor}
     />
    }
+
+   debugger // what is realtor and realtor.residences and realtorShow?
   return (
     <div>
       <div className="text-center">

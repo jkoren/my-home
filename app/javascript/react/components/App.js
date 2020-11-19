@@ -19,7 +19,7 @@ export const App = (props) => {
           {/* 1st is not in routes.rb  */}
           <Route exact path="/" component={RealtorsIndexContainer} />
 
-          <Route exact path="/realtors" component={RealtorsIndexContainer} />
+          <Route exact path="/realtors" component={RealtorShowContainer} />
           <Route exact path="/realtors/:id" component={RealtorShowContainer} />
           <Route exact path="/residences" component={ResidencesIndexContainer} />
           <Route exact path="/residences/:id" component={ResidenceShowContainer} />
