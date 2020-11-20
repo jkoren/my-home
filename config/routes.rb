@@ -6,13 +6,10 @@ Rails.application.routes.draw do
   get '/realtors/:id', to: 'homes#index'
   get '/residences', to: 'homes#index'
   get '/residences/:id', to: 'homes#index'
-  get '/rooms', to: 'homes#index'
   get '/rooms/:id', to: 'homes#index'
   get '/possessions/:id', to: 'homes#index'
   get '/about', to: 'homes#index'
-  
-  # get ‘*page’, to: ‘homes#index’
-  get '/possessions', to: 'homes#index' #path not in App.js
+
   get '/rooms/new', to: 'homes#index' #path not in App.js
   get "/rooms/:id/possessions/new", to: "homes#index" #path not in App.js 
 

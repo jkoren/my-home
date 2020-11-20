@@ -5,7 +5,7 @@ import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import _ from "lodash"
 
 const RealtorShowContainer = () => {
-  debugger
+  // debugger
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",

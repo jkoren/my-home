@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import RealtorIndexTile from "./RealtorIndexTile"
 
 const RealtorsIndexContainer = (props) => {
-  // debugger
   let realtorTiles
   if (!_.isEmpty(props.realtors)) {
     realtorTiles = props.realtors.map((realtorObject) => {

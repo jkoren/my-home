@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import ResidenceShowTile from "./ResidenceShowTile"
 
 import _ from "lodash" 
+import RoomsIndexContainer from "./RoomsIndexContainer"
 
 const ResidenceShowContainer = (props) => {
   const [residence, setResidence] = useState({
@@ -37,6 +38,7 @@ const ResidenceShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+
   let residenceShow
   if (!_.isEmpty(residence)) {
     residenceShow = <ResidenceShowTile
@@ -49,6 +51,13 @@ const ResidenceShowContainer = (props) => {
     <div>
       <div className="text-center">
         {residenceShow}
+      </div>
+
+      <div>
+        <RoomsIndexContainer
+          residence={residence}
+          rooms={residence.rooms}
+        />
       </div>
     </div>
   )

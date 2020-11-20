@@ -3,7 +3,11 @@ import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
 import ResidenceIndexTile from "./ResidenceIndexTile"
 
-const ResidencesIndexContainer = (props) => {
+// because this is for a demo, it has a Fetch Get
+
+
+
+const ResidencesIndexContainer = () => {
   let residenceTiles = residences.map((residenceObject) => {
       return <ResidenceIndexTile 
         key={residenceObject.id} 

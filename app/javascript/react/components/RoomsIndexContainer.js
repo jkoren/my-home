@@ -2,48 +2,24 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import RoomIndexTile from "./RoomIndexTile"
+import _ from "lodash" 
 
 const RoomsIndexContainer = (props) => {
-  const [rooms, setRooms] = useState([])
-  
-  useEffect(() => {
-    fetch("/api/v1/rooms", {
-      credentials: "same-origin"
+  let roomTiles = null
+  if (!_.isEmpty(props.rooms)) {
+      roomTiles = props.rooms.map((roomObject) => {
+      return <RoomIndexTile 
+          key={roomObject.id} 
+          data={roomObject} 
+          />
     })
-      .then(response => {
-        if (response.ok) {
-          return response
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage)
-          throw error
-        }
-      })
-      .then(response => response.json())
-      .then(body => {
-        setRooms(body)
-      })
-      .catch(error => console.error(`Error in fetch: ${error.message}`))
-  }, [])
-
-  let address = "315 College Farm Rd #7, Waltham, MA"
-  
-  let roomIndexTiles = rooms.map((roomObject) => {
-    return <RoomIndexTile 
-        key={roomObject.id} 
-        data={roomObject} 
-        />
-  })
+  }
 
   return (
     <div>
-      <div className="cell small-12 medium-4 text-center">
-        <h4> {address} </h4>
-      </div>
-
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
-          {roomIndexTiles} 
+          {roomTiles} 
         </div>
       </div>
 
