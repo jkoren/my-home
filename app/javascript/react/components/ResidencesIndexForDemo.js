@@ -5,7 +5,25 @@ import ResidenceIndexTile from "./ResidenceIndexTile"
 
 // because this is for a demo, it has a Fetch Get
 
-
+useEffect(() => {
+  fetch(`/api/v1/residences/`, {
+    credentials: "same-origin"
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+        throw (error);
+      }
+    })
+    .then(response => response.json())
+    .then((body) => {
+      setResidences(body)
+    })
+    .catch((error) => console.error(`Error in fetch: ${error.message}`))
+}, [])
 
 const ResidencesIndexContainer = () => {
   let residenceTiles = residences.map((residenceObject) => {
