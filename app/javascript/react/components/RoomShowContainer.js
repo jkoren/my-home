@@ -9,6 +9,8 @@ const RoomShowContainer = (props) => {
     id: "",
     name: "",
     description: ""
+    // ,
+    // possessions: []
   })
 
   const id = props.match.params.id 
