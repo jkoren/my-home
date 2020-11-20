@@ -7,10 +7,10 @@ const PossessionsIndexContainer = (props) => {
   let possessionTiles
   if (!_.isEmpty(props.possessions)) {
     possessionTiles = props.possessions.map((possessionObject) => {
-      return ( 
-        <PossessionIndexTile 
-          key={possessionObject.id} 
-          data={possessionObject} 
+      return (
+        <PossessionIndexTile
+          key={possessionObject.id}
+          data={possessionObject}
         />
       )
     })
@@ -25,7 +25,7 @@ const PossessionsIndexContainer = (props) => {
 
       <div className="grid-container">
         <Link to={`/rooms/${props.room.id}/possessions/new`}>
-          Add a New Possession 
+          Add a New Possession
         </Link>
       </div>
     </div>

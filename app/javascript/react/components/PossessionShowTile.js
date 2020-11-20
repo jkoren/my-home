@@ -1,5 +1,5 @@
 //PossessionShowTile.js
-import React, { useEffect, useState } from "react"
+import React from "react"
 import YelpApplianceRepairProIndexTile from "./YelpApplianceRepairProIndexTile"
 import { Link } from "react-router-dom";
 

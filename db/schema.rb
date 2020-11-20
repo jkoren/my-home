@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_201300) do
+ActiveRecord::Schema.define(version: 2020_11_17_225055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2020_11_13_201300) do
     t.index ["room_id"], name: "index_possessions_on_room_id"
   end
 
+  create_table "realtors", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "company"
+    t.string "image"
+    t.string "aws_image"
+    t.string "phone_number"
+    t.string "email"
+    t.string "URL"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "residences", force: :cascade do |t|
     t.string "name", null: false
     t.text "street"
@@ -46,6 +58,8 @@ ActiveRecord::Schema.define(version: 2020_11_13_201300) do
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "realtor_id"
+    t.index ["realtor_id"], name: "index_residences_on_realtor_id"
   end
 
   create_table "rooms", force: :cascade do |t|
