@@ -18,6 +18,7 @@ export const App = () => {
         <Switch>
           {/* 1st is not in routes.rb  */}
           <Route exact path="/" component={RoomsIndexForDemo} />
+          <Route exact path="/rooms" component={RoomsIndexForDemo} />
 
           <Route exact path="/realtors/:id" component={RealtorShowContainer} />
           <Route exact path="/residences/:id" component={ResidenceShowContainer} />

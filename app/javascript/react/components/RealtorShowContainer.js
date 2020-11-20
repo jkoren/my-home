@@ -5,27 +5,25 @@ import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import _ from "lodash"
 
 const RealtorShowContainer = () => {
-  // debugger
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",
     company: "",
     image: "",
-    aws_image: "",
+    aws_image: {},
     phone_number: "",
     email: "",
-    URL: ""
+    URL: "",
+    residences: []
   })
 
   const id = "4" // for demo purposes
 
   useEffect(() => {
-    debugger // never getting hit - no data from backend
     fetch(`/api/v1/realtors/${id}`, {
       credentials: "same-origin"
     })
-      .then((response) => {q
-        debugger // never getting hit
+      .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
@@ -40,10 +38,8 @@ const RealtorShowContainer = () => {
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
 
-  
   let realtorShow
   if (!_.isEmpty(realtor)) {
-  // if (!realtor.id=="") {
     realtorShow = <RealtorShowTile
     key={realtor.id}
     realtor={realtor}

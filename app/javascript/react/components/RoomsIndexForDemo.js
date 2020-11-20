@@ -36,6 +36,13 @@ const RoomsIndexForDemo = () => {
 
   return (
     <div>
+
+      <div className="grid-x grid-padding-x">
+        <div className="cell text-center">
+          <h4>315 College Farm Rd #6  Waltham, MA</h4>
+        </div>
+      </div>
+
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
           {roomTiles}

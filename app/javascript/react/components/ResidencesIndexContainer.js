@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ResidenceIndexTile from "./ResidenceIndexTile"
 
 const ResidencesIndexContainer = (props) => {
-  let residenceTiles = residences.map((residenceObject) => {
+  let residenceTiles = props.residences.map((residenceObject) => {
       return <ResidenceIndexTile 
         key={residenceObject.id} 
         data={residenceObject} 

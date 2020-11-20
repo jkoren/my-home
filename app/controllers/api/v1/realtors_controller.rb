@@ -4,7 +4,6 @@ class Api::V1::RealtorsController < ApiController
 
   def show
     realtor = Realtor.find(params[:id])
-    binding.pry
     render json: realtor, serializer: RealtorShowSerializer
   end
 
