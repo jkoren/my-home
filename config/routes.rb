@@ -4,8 +4,9 @@ Rails.application.routes.draw do
 
   get '/realtors', to: 'homes#index'
   get '/realtors/:id', to: 'homes#index'
-  get '/residences', to: 'homes#index'
+  get '/residences', to: 'homes#index' # for demo
   get '/residences/:id', to: 'homes#index'
+  get '/rooms', to: 'homes#index' # for demo
   get '/rooms/:id', to: 'homes#index'
   get '/possessions/:id', to: 'homes#index'
   get '/about', to: 'homes#index'

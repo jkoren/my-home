@@ -7,10 +7,10 @@ class Api::V1::RoomsController < ApiController
     render json: room, serializer: RoomShowSerializer
   end
 
-  # def index
-  #   #for demo use http://localhost:3000/rooms/205 where 205 is room number
-  #   rooms = residence.rooms
-  #   render json: rooms
-  # end
+  def index # for demo use only
+    demo_residence = Residence.find_by(name: '315 College Farm Rd #6')
+    rooms = demo_residence.rooms
+    render json: rooms
+  end
 
 end

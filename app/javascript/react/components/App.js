@@ -3,27 +3,29 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom"
 import RealtorsIndexContainer from "./RealtorsIndexContainer"
 import RealtorShowContainer from "./RealtorShowContainer"
-import ResidencesIndexContainer from "./ResidencesIndexContainer"
+import ResidencesIndexForDemo from "./ResidencesIndexForDemo"
+import RoomsIndexForDemo from "./RoomsIndexForDemo"
 import ResidenceShowContainer from "./ResidenceShowContainer"
-import RoomsIndexContainer from "./RoomsIndexContainer"
 import RoomShowContainer from "./RoomShowContainer"
 import PossessionPage from "./PossessionPage"
 import PossessionNewForm from "./PossessionNewForm"
 import AboutPage from "./AboutPage"
 
-export const App = (props) => {
+export const App = () => {
   return (
     <div className="pagestyle">
       <BrowserRouter>
         <Switch>
           {/* 1st is not in routes.rb  */}
-          <Route exact path="/" component={ResidenceShowContainer} />
+          <Route exact path="/" component={RoomsIndexForDemo} />
 
           <Route exact path="/realtors/:id" component={RealtorShowContainer} />
           <Route exact path="/residences/:id" component={ResidenceShowContainer} />
           <Route exact path="/rooms/:id" component={RoomShowContainer} />
           <Route exact path="/possessions/:id" component={PossessionPage} /> 
           <Route exact path="/about" component={AboutPage} />
+
+          <Route exact path="/residences" component={ResidencesIndexForDemo} />
 
           {/* not in routes.rb  */}
           <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
