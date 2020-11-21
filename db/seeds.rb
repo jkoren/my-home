@@ -3,10 +3,13 @@
 User.destroy_all
 dave = User.create(email: "dave@gmail.com",password: "testtest")
 bob = User.create(email: "bob@gmail.com", password: "testtest")
+bob = User.create(email: "jeff@gmail.com", password: "testtest")
 
 Realtor.destroy_all
 
 arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
+
+no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/blank.jpg'))
 
 arlo = Realtor.create(
   name: "Arlo Nugent",
@@ -16,6 +19,16 @@ arlo = Realtor.create(
   phone_number: "(866) 823-6302",
   email: "anugent@bluechiprealtygroup.com",
   URL: "bluechiprealtygroup.com"
+)
+
+no_realtor = Realtor.create(
+  name: "No Realtor",
+  company: "",
+  image: "",
+  aws_image: no_realtor_image,
+  phone_number: "",
+  email: "",
+  URL: ""
 )
 
 Residence.destroy_all
@@ -45,6 +58,15 @@ MatthewLane = Residence.create(
   state: "MA",
   image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
   realtor: arlo
+)
+
+GroveRoad = Residence.create(
+  name: "18 Grove Road",
+  street: "18 Grove Road",
+  city: "Waltham",
+  state: "MA",
+  image: "https://p.rdcpix.com/v02/lea5bfe41-m0xd-w1020_h770_q80.jpg",
+  realtor: no_realtor
 )
 
 Room.destroy_all
@@ -113,6 +135,49 @@ no_room = Room.create(
   description: "Items that move from Room to Room",
   residence: CollegeFarmRoad, 
   user: dave
+)
+
+
+# ---
+
+grove_master = Room.create(
+  name: "Master Bedroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+grove_br_2 = Room.create(
+  name: "Nicole & Olivia's Bedroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+grove_br_3 = Room.create(
+  name: "Noah & Sophie Bedroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+grove_master_bath = Room.create(
+  name: "Master Bathroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+grove_bath_1 = Room.create(
+  name: "Kid's Bathroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
 )
 Possession.destroy_all
 
