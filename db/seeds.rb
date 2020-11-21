@@ -1,12 +1,23 @@
 # seeds.rb 
 
-User.destroy_all
-dave = User.create(email: "dave@gmail.com",password: "testtest")
-bob = User.create(email: "bob@gmail.com", password: "testtest")
+# delete and recreate Arlo and all his residences and user dave - leave everything else alone
 
-Realtor.destroy_all
+old_dave = User.find_by(email: 'dave@gmail.com')
+if old_dave != nil
+  old_dave.destroy
+end
+
+old_arlo = Realtor.find_by(name: 'Arlo Nugent')
+if old_arlo != nil
+  old_arlo.destroy
+end
+# -----
+# start creating data
+dave = User.create(email: "dave@gmail.com",password: "testtest")
 
 arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
+
+# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/blank.jpg'))
 
 arlo = Realtor.create(
   name: "Arlo Nugent",
@@ -18,7 +29,17 @@ arlo = Realtor.create(
   URL: "bluechiprealtygroup.com"
 )
 
-Residence.destroy_all
+# no_realtor = Realtor.create(
+#   name: "No Realtor",
+#   company: "",
+#   image: "",
+#   aws_image: no_realtor_image,
+#   phone_number: "",
+#   email: "",
+#   URL: ""
+# )
+
+# Residence.destroy_all
 
 CollegeFarmRoad = Residence.create(
   name: "315 College Farm Rd #6",
@@ -47,7 +68,16 @@ MatthewLane = Residence.create(
   realtor: arlo
 )
 
-Room.destroy_all
+# GroveRoad = Residence.create(
+#   name: "18 Grove Road",
+#   street: "18 Grove Road",
+#   city: "Waltham",
+#   state: "MA",
+#   image: "https://p.rdcpix.com/v02/lea5bfe41-m0xd-w1020_h770_q80.jpg",
+#   realtor: no_realtor
+# )
+
+# Room.destroy_all
 
 master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
 bedroom_2_description = "Full Bathroom, Hardwood Flooring, 11 x 17, Third Floor"
@@ -114,7 +144,50 @@ no_room = Room.create(
   residence: CollegeFarmRoad, 
   user: dave
 )
-Possession.destroy_all
+
+
+# ---
+# Room.create(
+#   name: "Master Bedroom",
+#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   description: "",
+#   residence: GroveRoad, 
+#   user: jeff
+# )
+
+# Room.create(
+#   name: "Nicole & Olivia's Bedroom",
+#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   description: "",
+#   residence: GroveRoad, 
+#   user: jeff
+# )
+
+# Room.create(
+#   name: "Noah & Sophie Bedroom",
+#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   description: "",
+#   residence: GroveRoad, 
+#   user: jeff
+# )
+
+# Room.create(
+#   name: "Master Bathroom",
+#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   description: "",
+#   residence: GroveRoad, 
+#   user: jeff
+# )
+
+# Room.create(
+#   name: "Kid's Bathroom",
+#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   description: "",
+#   residence: GroveRoad, 
+#   user: jeff
+# )
+
+#  Possession.destroy_all
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 
