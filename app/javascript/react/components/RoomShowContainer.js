@@ -8,9 +8,8 @@ const RoomShowContainer = (props) => {
   const [room, setRoom] = useState({
     id: "",
     name: "",
-    description: ""
-    // ,
-    // possessions: []
+    description: "",
+    possessions: []
   })
 
   const id = props.match.params.id 
@@ -33,8 +32,6 @@ const RoomShowContainer = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-
-  // debugger // returning room and possessions
 
   let roomShow
   if (!_.isEmpty(room)) {
