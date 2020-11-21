@@ -2,6 +2,8 @@
 
 # delete and recreate Arlo and all his residences and user dave - leave everything else alone
 
+Realtor.destroy_all
+
 old_dave = User.find_by(email: 'dave@gmail.com')
 if old_dave != nil
   old_dave.destroy
@@ -17,8 +19,6 @@ dave = User.create(email: "dave@gmail.com",password: "testtest")
 
 arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
 
-# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/blank.jpg'))
-
 arlo = Realtor.create(
   name: "Arlo Nugent",
   company: "Blue Chip Realty Group",
@@ -28,16 +28,6 @@ arlo = Realtor.create(
   email: "anugent@bluechiprealtygroup.com",
   URL: "bluechiprealtygroup.com"
 )
-
-# no_realtor = Realtor.create(
-#   name: "No Realtor",
-#   company: "",
-#   image: "",
-#   aws_image: no_realtor_image,
-#   phone_number: "",
-#   email: "",
-#   URL: ""
-# )
 
 # Residence.destroy_all
 
@@ -67,15 +57,6 @@ MatthewLane = Residence.create(
   image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
   realtor: arlo
 )
-
-# GroveRoad = Residence.create(
-#   name: "18 Grove Road",
-#   street: "18 Grove Road",
-#   city: "Waltham",
-#   state: "MA",
-#   image: "https://p.rdcpix.com/v02/lea5bfe41-m0xd-w1020_h770_q80.jpg",
-#   realtor: no_realtor
-# )
 
 # Room.destroy_all
 
@@ -144,48 +125,6 @@ no_room = Room.create(
   residence: CollegeFarmRoad, 
   user: dave
 )
-
-
-# ---
-# Room.create(
-#   name: "Master Bedroom",
-#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   description: "",
-#   residence: GroveRoad, 
-#   user: jeff
-# )
-
-# Room.create(
-#   name: "Nicole & Olivia's Bedroom",
-#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   description: "",
-#   residence: GroveRoad, 
-#   user: jeff
-# )
-
-# Room.create(
-#   name: "Noah & Sophie Bedroom",
-#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   description: "",
-#   residence: GroveRoad, 
-#   user: jeff
-# )
-
-# Room.create(
-#   name: "Master Bathroom",
-#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   description: "",
-#   residence: GroveRoad, 
-#   user: jeff
-# )
-
-# Room.create(
-#   name: "Kid's Bathroom",
-#   image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   description: "",
-#   residence: GroveRoad, 
-#   user: jeff
-# )
 
 #  Possession.destroy_all
 
@@ -307,3 +246,126 @@ Possession.create(
 # Rocket
 # r58 v2 
 # Dual boiler with E61 group head and rotary pump
+
+# --- run one time
+
+old_jeff = User.find_by(email: 'jeff@gmail.com')
+if old_jeff != nil
+  old_jeff.destroy
+end
+
+old_no_realtor = Realtor.find_by(name: 'No Realtor')
+if old_no_realtor != nil
+  old_no_realtor.destroy
+end
+no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/blank.jpg'))
+
+jeff = User.create(email: "jeff@gmail.com",password: "testtest")
+
+no_realtor = Realtor.create(
+  name: "No Realtor",
+  company: "",
+  image: "",
+  aws_image: no_realtor_image,
+  phone_number: "",
+  email: "",
+  URL: ""
+)
+
+GroveRoad = Residence.create(
+  name: "18 Grove Road",
+  street: "18 Grove Road",
+  city: "Waltham",
+  state: "MA",
+  image: "https://p.rdcpix.com/v02/lea5bfe41-m0xd-w1020_h770_q80.jpg",
+  realtor: no_realtor
+)
+
+Room.create(
+    name: "Master Bedroom",
+    image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+    description: "",
+    residence: GroveRoad, 
+    user: jeff
+  )
+
+Room.create(
+  name: "Nicole & Olivia's Bedroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Noah & Sophie Bedroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Master Bathroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Kid's Bathroom",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+
+Room.create(
+  name: "Kitchen",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Basement",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Jeff's Office",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Den",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "Living Room",
+  image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  description: "",
+  residence: GroveRoad, 
+  user: jeff
+)
+
+Room.create(
+  name: "No Room",
+  image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
+  description: "Items that move from Room to Room",
+  residence: GroveRoad, 
+  user: jeff
+)
