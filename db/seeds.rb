@@ -2,8 +2,6 @@
 
 # delete and recreate Arlo and all his residences and user dave - leave everything else alone
 
-Realtor.destroy_all
-
 old_dave = User.find_by(email: 'dave@gmail.com')
 if old_dave != nil
   old_dave.destroy
@@ -249,6 +247,7 @@ Possession.create(
 
 # --- run one time
 
+# delete user jeff and all residences with no realtor and recreate (one time only)
 old_jeff = User.find_by(email: 'jeff@gmail.com')
 if old_jeff != nil
   old_jeff.destroy
