@@ -8,6 +8,7 @@ import RoomsIndexForDemo from "./RoomsIndexForDemo"
 import ResidenceShowContainer from "./ResidenceShowContainer"
 import RoomShowContainer from "./RoomShowContainer"
 import PossessionPage from "./PossessionPage"
+import RoomNewForm from "./RoomNewForm"
 import PossessionNewForm from "./PossessionNewForm"
 import AboutPage from "./AboutPage"
 
@@ -28,8 +29,9 @@ export const App = () => {
 
           <Route exact path="/residences" component={ResidencesIndexForDemo} />
 
-          {/* not in routes.rb  */}
+          <Route exact path="/residences/:id/rooms/new" component={RoomNewForm} />
           <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
+
 
         </Switch>
       </BrowserRouter>

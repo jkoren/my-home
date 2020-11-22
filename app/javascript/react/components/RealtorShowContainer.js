@@ -17,7 +17,7 @@ const RealtorShowContainer = () => {
     residences: []
   })
 
-  const id = "4" // for demo purposes
+  const id = "33" // for demo purposes
 
   useEffect(() => {
     fetch(`/api/v1/realtors/${id}`, {

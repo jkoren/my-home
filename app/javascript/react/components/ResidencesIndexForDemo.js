@@ -45,6 +45,16 @@ const ResidencesIndexForDemo = () => {
       <div className="grid-container">
         <Link to={`/residence/new`}>Add a New Residence for this Realtor</Link>
       </div>
+
+
+      <div className="grid-container">
+        <Link to={`/room/new`}>Change The Information For This Realtor</Link>
+      </div>
+
+      <div className="grid-container">
+        <Link to={`/room/new`}>Delete This Realtor</Link>
+      </div>
+
     </div>
   )
 }
