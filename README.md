@@ -7,10 +7,9 @@ My-Home is a single site for information on using the technology in your life. I
 
 ## Technology
 
-This is a project I built for my Capstone project at Launch Academy.  Technology includes:
 * React and Javascript on the front-end
 * Rails, Ruby and PostgreSQL on the back end
-* Formatting with HTML, CSS and the Foundation responsive front-end framework
-* Images are mostly stored in an AWS bucket. 
+* Formatting with HTML, CSS and the Foundation front-end framework
+* Images are mostly stored on AWS 
 
-It works in a standard or mobile browser.
+My-home can be viewed in a standard or mobile browser.

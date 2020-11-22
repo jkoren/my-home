@@ -13,15 +13,14 @@ const RoomNewForm = (props) => {
     aws_image: {},
     possessions: []
   })
-
-  let imageUploaded = null;
   const [errors, setErrors] = useState({})
   const [error, setError] = useState(null)
-
   const [shouldRedirect, setShouldRedirect] = useState({
     redirect: false,
     id: ""
   })
+  
+  let imageUploaded = null;
   
   const handleChange = (event) => {
     setFormFields({
@@ -73,7 +72,7 @@ const RoomNewForm = (props) => {
         .then(response => response.json())
         .then(json_response => {
           if (json_response.errors) {
-            const requiredFields = ["name", "description"]
+            const requiredFields = ["name"]
             requiredFields.forEach(field => {
               if (json_response.errors[field] !== undefined) {
                 setErrors({
@@ -94,12 +93,20 @@ const RoomNewForm = (props) => {
         .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
   }
-
   if (shouldRedirect.redirect) {
     return <Redirect to={`/residences/${props.match.params.id}`}/>
   }
 
   if (formFields.aws_image != "") {
+    imageUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
+      </div>
+    );
+  }
+  
+  if (_.isEmpty(formFields.aws_image)
+) {
     imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>

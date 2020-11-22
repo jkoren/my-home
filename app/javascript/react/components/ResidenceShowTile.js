@@ -7,7 +7,6 @@ const ResidenceShowTile = (props) => {
          <h4>{props.data.street} {props.data.city}, {props.data.state}</h4> 
       </div>
     </div>
-    // props.data.rooms
   )
 }
 

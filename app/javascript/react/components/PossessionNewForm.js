@@ -66,6 +66,7 @@ const PossessionNewForm = (props) => {
   const handleSubmit = (event) => {
     if (validforSubmission(formFields)) {
       event.preventDefault()
+      // debugger
       let newPossession = new FormData()
       newPossession.append("name", formFields.name)
       newPossession.append("manufacturer", formFields.manufacturer)
@@ -83,7 +84,6 @@ const PossessionNewForm = (props) => {
       newPossession.append("operating_video", formFields.operating_video)
       newPossession.append("URL", formFields.URL)
       newPossession.append("warranty", formFields.warranty)
-
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
         method: "POST",
         body: newPossession,

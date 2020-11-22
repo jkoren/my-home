@@ -9,9 +9,9 @@ const RoomIndexTile = (props) => {
         <h4 className="field">{props.data.name}</h4>
         <h5 className="field">{props.data.description} </h5>
       
-        <div className="text-center">
+        {/* <div className="text-center">
           <img src={props.data.image} alt="missing room URL" width="250" />
-        </div>
+        </div> */}
 
         <div className="text-center">
           <img src={props.data.aws_image.url} alt="missing AWS picture" width="250" />
