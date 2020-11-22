@@ -9,6 +9,8 @@ const RoomShowContainer = (props) => {
     id: "",
     name: "",
     description: "",
+    image: "",
+    aws_image: {},
     possessions: []
   })
 

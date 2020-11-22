@@ -35,21 +35,19 @@ RSpec.describe Api::V1::ResidencesController, type: :controller do
     realtor: arlo
   )}
 
-  # RSpec.describe UsersController, type: :controller do
-    describe "GET#index" do
-      it "should return a list of all the residences" do
-        get :index
-        returned_json = JSON.parse(response.body)
-        expect(response.status).to eq 200
-        expect(response.content_type).to eq("application/json")
-        expect(returned_json.length).to eq 2
+  describe "GET#index" do
+    it "should return a list of all the residences" do
+      get :index
+      returned_json = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq("application/json")
+      expect(returned_json.length).to eq 2
 
-        expect(returned_json[0]["name"]).to eq "41 Matthew Ln"
-        expect(returned_json[0]["city"]).to eq "Waltham"
+      expect(returned_json[0]["name"]).to eq "41 Matthew Ln"
+      expect(returned_json[0]["city"]).to eq "Waltham"
 
-      end
     end
-  # end
+  end
 
   # describe "GET#show" do
 

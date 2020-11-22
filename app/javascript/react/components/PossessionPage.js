@@ -14,7 +14,7 @@ const PossessionPage = (props) => {
     model: "",
     operating_video: "",
     image: "",
-    aws_image: "",
+    aws_image: {},
     owners_manual: "",
     URL: "",
     purchase_receipt: ""
@@ -30,7 +30,6 @@ const PossessionPage = (props) => {
       credentials: "same-origin"
     })
       .then((response) => {
-        debugger
         if (response.ok) {
           return response.json();
         } else {
