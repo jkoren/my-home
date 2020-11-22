@@ -10,24 +10,13 @@ const RoomNewForm = (props) => {
     name: "",
     description: "",
     image: "",
-    owner_manual: "",
-    description: "",
-    year_built: "",
-    purchased_from: "",
-    image: "",
-    aws_image: "",
-    purchase_date: "",
-    purchase_receipt: "",
-    purchase_price: "",
-    operating_video: "",
-    URL: "",
-    warranty: ""
+    aws_image: {},
+    possessions: []
   })
+
   let imageUploaded = null;
-  let ownerManualUploaded = null;
   const [errors, setErrors] = useState({})
   const [error, setError] = useState(null)
-
 
   const [shouldRedirect, setShouldRedirect] = useState({
     redirect: false,
@@ -50,7 +39,7 @@ const RoomNewForm = (props) => {
 
   const validforSubmission = () => {
     let submittedErrors = {}
-    const requiredFields = ["name", "description"]
+    const requiredFields = ["name"]
     requiredFields.forEach(field => {
       if (formFields[field].trim() === "") {
         submittedErrors = {
@@ -68,21 +57,9 @@ const RoomNewForm = (props) => {
       event.preventDefault()
       let newRoom = new FormData()
       newRoom.append("name", formFields.name)
-      newRoom.append("description", formFields.description)
-      newRoom.append("image", formFields.image)
-      newRoom.append("owners_manual", formFields.owners_manual)
-      newRoom.append("description", formFields.description)
-      newRoom.append("year_built", formFields.year_built)
-      newRoom.append("purchased_from", formFields.purchased_from)
-    
+      newRoom.append("description", formFields.description) 
       newRoom.append("image", formFields.image)
       newRoom.append("aws_image", formFields.aws_image)
-    
-      newRoom.append("purchase_date", formFields.purchase_date)
-      newRoom.append("purchase_price", formFields.purchase_price)
-      newRoom.append("operating_video", formFields.operating_video)
-      newRoom.append("URL", formFields.URL)
-      newRoom.append("warranty", formFields.warranty)
 
       fetch(`/api/v1/residences/${props.match.params.id}/rooms`, {
         method: "POST",
@@ -130,13 +107,6 @@ const RoomNewForm = (props) => {
     );
   }
 
-  if (formFields.owner_manual != "") {
-    ownerManualUploaded = (
-      <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Owner's Manual Uploaded: {formFields.owner_manual.path}</h5>
-      </div>
-    );
-  }
   return (
     
     <div className="cell grid-x grid-padding-x">
@@ -162,7 +132,7 @@ const RoomNewForm = (props) => {
 
 
             <label>
-              Manufacturer:
+              Description:
               <input
                 name="description"
                 id="description"
@@ -173,35 +143,13 @@ const RoomNewForm = (props) => {
             </label>
 
             <label>
-              Model:
+              Image:
               <input
                 name="image"
                 id="image"
                 type="text"
                 onChange={handleChange}
                 value={formFields.image}
-              />
-            </label>
-
-            <label>
-              Owner's Manual:
-              <input
-                name="owner_manual"
-                id="owner_manual"
-                type="text"
-                onChange={handleChange}
-                value={formFields.owner_manual}
-              />
-            </label>
-
-            <label>
-              Description of this possession:
-              <input
-                name="description"
-                id="description"
-                type="text"
-                onChange={handleChange}
-                value={formFields.description}
               />
             </label>
 
@@ -214,7 +162,7 @@ const RoomNewForm = (props) => {
                     <div className="cell callout">
                       <div>
                         <i className="fas fa-image fa-3x"> </i>
-                        Drag a product image here, or click to upload one from your computer
+                        Drag a room image here, or click to upload one from your computer or mobile device
                       </div>
                     </div>
                   </div>
