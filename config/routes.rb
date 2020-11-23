@@ -16,20 +16,20 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :residences, only: [:index, :show, :create, :update, :destroy]
-      resources :rooms, only: [:index, :show, :create, :update, :destroy]
-      resources :possessions, only: [:index, :show, :create, :update, :destroy]
+      # resources :residences, only: [:index, :show, :update, :destroy]
+      # resources :rooms, only: [:index, :show, :update, :destroy]
+      # resources :possessions, only: [:index, :show, :update, :destroy]
 
-      resources :realtors, only: [:index, :show, :create, :update, :destroy] do
-        resources :residences, only: [:index, :show]
+      resources :realtors, only: [:index, :show, :update, :destroy, :create] do
+        resources :residences, only: [:index, :show, :create,  ]
       end
 
-      resources :residences, only: [:index, :show, :create] do
-        resources :rooms, only: [:index, :show, :create ]
+      resources :residences, only: [:index, :show, :update, :destroy] do
+        resources :rooms, only: [:index, :show, :create  ]
       end
 
-      resources :rooms, only: [:index, :show, :create] do
-        resources :possessions, only: [:index, :create, :update, :destroy ]
+      resources :rooms, only: [:index, :show, :update, :destroy] do
+        resources :possessions, only: [:index, :show, :create]
       end
       
     end

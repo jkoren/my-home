@@ -20,15 +20,8 @@ const ResidencesIndexContainer = (props) => {
       </div>
 
       <div className="grid-container">
-        <Link to={`/residence/new`}>Add a New Residence for this Realtor</Link>
-      </div>
-
-      <div className="grid-container">
-        <Link to={`/room/new`}>Change The Information For This Residence</Link>
-      </div>
-
-      <div className="grid-container">
-        <Link to={`/room/new`}>Delete This Residence</Link>
+        <Link to={`/realtors/${props.realtor.id}/residences/new`}>
+        Add a New Residence for this Realtor</Link>
       </div>
 
     </div>

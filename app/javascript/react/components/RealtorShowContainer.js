@@ -4,7 +4,7 @@ import RealtorShowTile from "./RealtorShowTile"
 import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import _ from "lodash"
 
-const RealtorShowContainer = () => {
+const RealtorShowContainer = (props) => {
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",
@@ -17,7 +17,7 @@ const RealtorShowContainer = () => {
     residences: []
   })
 
-  const id = "33" // for demo purposes
+  const id = props.match.params.id 
 
   useEffect(() => {
     fetch(`/api/v1/realtors/${id}`, {
@@ -56,6 +56,7 @@ const RealtorShowContainer = () => {
         realtor={realtor}
         residences={realtor.residences}
       />
+      
     </div>
   )
 }

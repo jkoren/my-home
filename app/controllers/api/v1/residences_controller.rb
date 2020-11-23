@@ -7,13 +7,14 @@ class Api::V1::ResidencesController < ApiController
   end
   
   def index # for demo use only
-    residences = Residence.all
+    demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
+    residences = demo_realtor.residences
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
   def create
     new_residence = Residence.new(residence_params)
-    realtor = Residence.find(params[:realtor_id])
+    realtor = Realtor.find(params[:realtor_id])
     new_residence.realtor = realtor
     if new_residence.save
       render json: new_residence

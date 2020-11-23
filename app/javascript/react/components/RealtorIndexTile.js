@@ -8,10 +8,10 @@ const RealtorIndexTile = (props) => {
         <h4>{props.data.name}</h4>
         <h5>{props.data.company}</h5> 
         <div className="text-center">
-          {/* <img src={props.data.aws_image} alt="missing AWS picture" 
-          width="150" /> */}
-          <img src={props.data.image} alt="missing non-AWS picture"
-            width="150" />
+          <img src={props.data.aws_image.url} alt="missing AWS picture" 
+          width="150" />
+          {/* <img src={props.data.image} alt="missing non-AWS picture"
+            width="150" /> */}
         </div>
       </Link>
     </div>
