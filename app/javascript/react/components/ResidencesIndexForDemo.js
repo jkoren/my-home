@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
 import ResidenceIndexTile from "./ResidenceIndexTile"
 
-const ResidencesIndexForDemo = () => {
+const ResidencesIndexForDemo = (props) => {
   // because this is for a demo, it has a Fetch Get
   const [residences, setResidences] = useState([])
 
@@ -26,14 +26,12 @@ const ResidencesIndexForDemo = () => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-
   let residenceTiles = residences.map((residenceObject) => {
       return <ResidenceIndexTile 
         key={residenceObject.id} 
         data={residenceObject} 
       />
   })
-
   return (
     <div>
       <div className="grid-container">
@@ -42,18 +40,19 @@ const ResidencesIndexForDemo = () => {
         </div>
       </div>
 
+      {/* problem here is getting the ID of the realtor - its not in props
       <div className="grid-container">
-        <Link to={`/residence/new`}>Add a New Residence for this Realtor</Link>
-      </div>
+        <Link to={`/realtors/${props.realtor.id}/residences/new`}>Add a New Residence for this Realtor</Link>
+      </div> */}
 
 
-      <div className="grid-container">
-        <Link to={`/room/new`}>Change The Information For This Realtor</Link>
+      {/* <div className="grid-container">
+        <Link to={`/realtor/new`}>Change The Information For This Realtor</Link>
       </div>
 
       <div className="grid-container">
-        <Link to={`/room/new`}>Delete This Realtor</Link>
-      </div>
+        <Link to={`/realtor/new`}>Delete This Realtor</Link>
+      </div> */}
 
     </div>
   )
