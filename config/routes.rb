@@ -20,11 +20,11 @@ Rails.application.routes.draw do
       # resources :rooms, only: [:index, :show, :update, :destroy]
       
       resources :realtors, only: [:index, :show, :update, :destroy, :create] do
-        resources :residences, only: [:index, :show, :create,  ]
+        resources :residences, only: [:index, :show, :create]
       end
       
       resources :residences, only: [:index, :show, :update, :destroy] do
-        resources :rooms, only: [:index, :show, :create  ]
+        resources :rooms, only: [:index, :show, :create]
       end
       
       resources :rooms, only: [:index, :show, :update, :destroy] do

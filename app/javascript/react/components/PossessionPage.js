@@ -23,22 +23,22 @@ const PossessionPage = (props) => {
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
-  
+
   const id = props.match.params.id 
   useEffect(() => {
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
     })
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        let errorMessage = `${response.status} (${response.statusText})`,
-        error = new Error(errorMessage);
-        throw(error);
-      }
-    })
-    .then((responseBody) => {
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+          error = new Error(errorMessage);
+          throw(error);
+        }
+      })
+      .then((responseBody) => {
         setPossession(responseBody)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
@@ -48,13 +48,13 @@ const PossessionPage = (props) => {
 
     let possessionId = message.id;
     let payload = message.possession;
-    fetch(`/api/v1/rooms/${id}/possessions/${possessionId}`, {
+    fetch(`/api/v1/possessions/${possessionId}`, {
       credentials: "same-origin",
       method: "PATCH",
       body: JSON.stringify(payload),
       headers: {
-        Accept: "application/json",
-        Accept: "image/jpeg",
+        'Accept': "application/json",
+        'Accept': "image/jpeg",
         "Content-Type": "application/json",
       },
     })
@@ -78,7 +78,7 @@ const PossessionPage = (props) => {
   const deletePossession = (message) => {
     let possessionId = message.id;
 
-    fetch(`/api/v1/rooms/${id}/possessions/${possessionId}`, {
+    fetch(`/api/v1/possessions/${possessionId}`, {
       credentials: "same-origin",
       method: "DELETE",
       headers: {
@@ -114,6 +114,8 @@ const PossessionPage = (props) => {
   
   const onEditClickHandler = (event) => {
     setShowEditTile(true)
+    // not always pulling from the database - why not?
+    // debugger
     setShowDeleteTile(false)
   }
   
