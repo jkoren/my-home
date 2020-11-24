@@ -31,6 +31,7 @@ const PossessionPage = (props) => {
     })
       .then((response) => {
         if (response.ok) {
+          //maybe something here - not getting right response?
           return response.json();
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
@@ -69,9 +70,10 @@ const PossessionPage = (props) => {
         }
       })
       .then((response) => response.json())
-      .then (newPossessionImage => {
-        setPossession([...possessions,newPossessionImage])
-      })
+      // .then (newPossessionImage => {
+      //   // debugger // - error possessions doesn't exist
+      //   setPossession([...possessions,newPossessionImage])
+      // })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
@@ -115,7 +117,9 @@ const PossessionPage = (props) => {
   const onEditClickHandler = (event) => {
     setShowEditTile(true)
     // not always pulling from the database - why not?
-    // debugger
+    // because operating off the information in state, which is likely not updated the second time.  why not?
+    console.log(possession)
+    // debugger // is possession updated?
     setShowDeleteTile(false)
   }
   
