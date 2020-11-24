@@ -18,20 +18,20 @@ Rails.application.routes.draw do
     namespace :v1 do
       # resources :residences, only: [:index, :show, :update, :destroy]
       # resources :rooms, only: [:index, :show, :update, :destroy]
-      # resources :possessions, only: [:index, :show, :update, :destroy]
-
+      
       resources :realtors, only: [:index, :show, :update, :destroy, :create] do
         resources :residences, only: [:index, :show, :create,  ]
       end
-
+      
       resources :residences, only: [:index, :show, :update, :destroy] do
         resources :rooms, only: [:index, :show, :create  ]
       end
-
+      
       resources :rooms, only: [:index, :show, :update, :destroy] do
         resources :possessions, only: [:index, :show, :create]
       end
       
+      resources :possessions, only: [:index, :show, :update, :destroy]
     end
   end
 

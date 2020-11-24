@@ -23,22 +23,22 @@ const PossessionPage = (props) => {
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
-
+  
   const id = props.match.params.id 
   useEffect(() => {
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error);
-        }
-      })
-      .then((responseBody) => {
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw(error);
+      }
+    })
+    .then((responseBody) => {
         setPossession(responseBody)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
