@@ -1,0 +1,38 @@
+@import "./color_palette";
+@import "./font_palette";
+
+.topbar-color {
+  background-color: $dark-accent;
+}
+
+a {
+  font-family: $primary-font, sans-serif;
+  color: $light-accent;
+  font-size: 250%;
+}
+
+.sign {
+  font-size: 150%;
+  margin-right: 1em;
+}
+
+a.light-text-color {
+  color: $red-accent;
+}
+
+#title {
+  font-family: 'Gochi Hand', sans-serif;
+  font-size: 130%;
+}
+
+#title:hover {
+  text-decoration: none;
+}
+
+#sign-in-background {
+  background-color: $dark-accent;
+}
+
+#user-name {
+  margin-bottom: 0px;
+}
