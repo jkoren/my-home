@@ -7,24 +7,30 @@ import { Redirect } from "react-router-dom"
 import _ from "lodash" 
 
 const PossessionPage = (props) => {
-  const [possession, setPossession] = useState({
+  const [formFields, setFormFields] = useState({
     id: "",
     name: "",
     manufacturer: "",
     model: "",
+    owner_manual: "",
+    description: "",
+    year_built: "",
+    purchased_from: "",
+    // image: "",
+    aws_image: "",
+    purchase_date: "",
+    purchase_receipt: "",
+    purchase_price: "",
     operating_video: "",
-    image: "",
-    aws_image: {},
-    owners_manual: "",
     URL: "",
-    purchase_receipt: ""
+    warranty: ""
   })
-  const [isSaved, setIsSaved] = useState(false)
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
   const id = props.match.params.id 
+  // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
   useEffect(() => {
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
@@ -40,28 +46,45 @@ const PossessionPage = (props) => {
         }
       })
       .then((responseBody) => {
-        setPossession(responseBody)
+        setFormFields(responseBody)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
-    }, [isSaved])
+    }, [])
 
   const editPossession = (message) => {
 
     let possessionId = message.id;
-    let payload = message.possession;
+    // let payload = message.possession;
+    // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
+    let updatedPossession = new FormData()
+    updatedPossession.append("name", formFields.name)
+    updatedPossession.append("manufacturer", formFields.manufacturer)
+    updatedPossession.append("model", formFields.model)
+    updatedPossession.append("owners_manual", formFields.owners_manual)
+    updatedPossession.append("description", formFields.description)
+    updatedPossession.append("year_built", formFields.year_built)
+    updatedPossession.append("purchased_from", formFields.purchased_from)
+
+    // updatedPossession.append("image", formFields.image)
+    updatedPossession.append("aws_image", formFields.aws_image)
+
+    updatedPossession.append("purchase_date", formFields.purchase_date)
+    updatedPossession.append("purchase_price", formFields.purchase_price)
+    updatedPossession.append("operating_video", formFields.operating_video)
+    updatedPossession.append("URL", formFields.URL)
+    updatedPossession.append("warranty", formFields.warranty)
+
     fetch(`/api/v1/possessions/${possessionId}`, {
       credentials: "same-origin",
       method: "PATCH",
-      body: JSON.stringify(payload),
+      body: updatedPossession,
       headers: {
-        'Accept': "application/json",
-        'Accept': "image/jpeg",
-        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Accept": "image/jpeg",
       },
     })
       .then((response) => {
         if (response.ok) {
-          setIsSaved(true)
           return response;
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
@@ -70,10 +93,9 @@ const PossessionPage = (props) => {
         }
       })
       .then((response) => response.json())
-      // .then (newPossessionImage => {
-      //   // debugger // - error possessions doesn't exist
-      //   setPossession([...possessions,newPossessionImage])
-      // })
+      .then (updatedPossession => {
+        setFormFields([...possession,updatedPossession])
+      })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
@@ -118,8 +140,8 @@ const PossessionPage = (props) => {
     setShowEditTile(true)
     // not always pulling from the database - why not?
     // because operating off the information in state, which is likely not updated the second time.  why not?
-    console.log(possession)
-    // debugger // is possession updated?
+    // console.log(formFields)
+    // debugger // is formFields updated?
     setShowDeleteTile(false)
   }
   
@@ -147,11 +169,11 @@ const PossessionPage = (props) => {
   
   let displayTile = null
 
-  if (!possession.id == "") {
+  if (!formFields.id == "") {
     if (showEditTile && !showDeleteTile) {
       displayTile = (
         <PossessionEditTile
-          possession={possession}
+          possession={formFields}
           editPossession={onSaveClickHandler}
           onDiscardClickHandler={onDiscardClickHandler}
         />
@@ -159,7 +181,7 @@ const PossessionPage = (props) => {
       } else if (showDeleteTile && !showEditTile) {
         displayTile = (
           <PossessionDeleteTile
-            possession={possession}
+            possession={formFields}
             deletePossession={onConfirmDeleteClickHandler}
             onCancelDeleteClickHandler={onCancelDeleteClickHandler}
           />
@@ -167,7 +189,7 @@ const PossessionPage = (props) => {
         } else {
           displayTile = (
             <PossessionShowTile
-              possession={possession}
+              possession={formFields}
               onEditClickHandler={onEditClickHandler}
               onDeleteClickHandler={onDeleteClickHandler}
             />
