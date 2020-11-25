@@ -69,9 +69,6 @@ const PossessionPage = (props) => {
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("URL", message.possession.URL)
     updatedPossession.append("warranty", message.possession.warranty)
-    // debugger 
-    // message.possession.aws_image has information as an object, needs to be a string?  
-    // example: aws_image: "thermostat.webp"
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,
@@ -136,10 +133,6 @@ const PossessionPage = (props) => {
   
   const onEditClickHandler = (event) => {
     setShowEditTile(true)
-    // not always pulling from the database - why not?
-    // because operating off the information in state, which is likely not updated the second time.  why not?
-    // console.log(formFields)
-    // debugger // is formFields updated?
     setShowDeleteTile(false)
   }
   

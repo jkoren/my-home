@@ -14,8 +14,7 @@ const PossessionNewForm = (props) => {
     description: "",
     year_built: "",
     purchased_from: "",
-    // image: "",
-    aws_image: "",
+    aws_image: {},
     purchase_date: "",
     purchase_receipt: "",
     purchase_price: "",
@@ -65,7 +64,6 @@ const PossessionNewForm = (props) => {
   const handleSubmit = (event) => {
     if (validforSubmission(formFields)) {
       event.preventDefault()
-      // debugger
       let newPossession = new FormData()
       newPossession.append("name", formFields.name)
       newPossession.append("manufacturer", formFields.manufacturer)
@@ -76,7 +74,7 @@ const PossessionNewForm = (props) => {
       newPossession.append("purchased_from", formFields.purchased_from)
     
       // newPossession.append("image", formFields.image)
-      newPossession.append("aws_image", formFields.aws_image.url)
+      newPossession.append("aws_image", formFields.aws_image)
     
       newPossession.append("purchase_date", formFields.purchase_date)
       newPossession.append("purchase_price", formFields.purchase_price)
