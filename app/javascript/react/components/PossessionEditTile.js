@@ -12,7 +12,7 @@ const PossessionEditTile = (props) => {
     description: props.possession.description,
     year_built: props.possession.year_built,
     purchased_from: props.possession.purchased_from,
-    image: props.possession.image,
+    // image: props.possession.image,
     aws_image: props.possession.aws_image,
     purchase_date: props.possession.purchase_date,
     purchase_receipt: props.possession.purchase_receipt,

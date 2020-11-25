@@ -4,7 +4,6 @@ import YelpApplianceRepairProIndexTile from "./YelpApplianceRepairProIndexTile"
 import { Link } from "react-router-dom";
 
 const PossessionShowTile = (props) => {
-
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />

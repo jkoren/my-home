@@ -55,7 +55,6 @@ const PossessionPage = (props) => {
     // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
     let updatedPossession = new FormData()
 
-    // FORMFIELDS IS OLD DATA - WHAT WAS IN THE FORM BEFORE IT WAS CHANGED
     // MESSAGE.POSSESSION IS NEW DATA
     updatedPossession.append("name", message.possession.name)
     updatedPossession.append("manufacturer", message.possession.manufacturer)
@@ -70,11 +69,13 @@ const PossessionPage = (props) => {
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("URL", message.possession.URL)
     updatedPossession.append("warranty", message.possession.warranty)
-    debugger
+    // debugger 
+    // message.possession.aws_image has information as an object, needs to be a string?  
+    // example: aws_image: "thermostat.webp"
     fetch(`/api/v1/possessions/${possessionId}`, {
-      credentials: "same-origin",
       method: "PATCH",
       body: updatedPossession,
+      credentials: "same-origin",
       headers: {
         "Accept": "application/json",
         "Accept": "image/jpeg",
