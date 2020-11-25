@@ -24,6 +24,7 @@ class Api::V1::PossessionsController < ApiController
   end
 
   def update  
+    # binding.pry
     possession = Possession.find(params[:id])
     possession.update_attributes(possession_params)
     render json: possession
