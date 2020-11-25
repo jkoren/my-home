@@ -241,6 +241,11 @@ Possession.create(
 
 # --- run one time
 
+old_no_realtor = Realtor.find_by(name: 'No Realtor')
+no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
+old_no_realtor.aws_image = no_realtor_image
+old_no_realtor.save
+
 # delete user jeff and all residences with no realtor and recreate (one time only)
 # old_jeff = User.find_by(email: 'jeff@gmail.com')
 # if old_jeff != nil
@@ -252,7 +257,7 @@ Possession.create(
 # if old_no_realtor != nil
 #   old_no_realtor.destroy
 # end
-# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/blank.jpg'))
+# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
 
 # no_realtor = Realtor.create(
 #   name: "No Realtor",

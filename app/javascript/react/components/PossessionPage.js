@@ -37,7 +37,6 @@ const PossessionPage = (props) => {
     })
       .then((response) => {
         if (response.ok) {
-          //maybe something here - not getting right response?
           return response.json();
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
@@ -52,28 +51,26 @@ const PossessionPage = (props) => {
     }, [])
 
   const editPossession = (message) => {
-
     let possessionId = message.id;
-    // let payload = message.possession;
     // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
     let updatedPossession = new FormData()
-    updatedPossession.append("name", formFields.name)
-    updatedPossession.append("manufacturer", formFields.manufacturer)
-    updatedPossession.append("model", formFields.model)
-    updatedPossession.append("owners_manual", formFields.owners_manual)
-    updatedPossession.append("description", formFields.description)
-    updatedPossession.append("year_built", formFields.year_built)
-    updatedPossession.append("purchased_from", formFields.purchased_from)
 
-    // updatedPossession.append("image", formFields.image)
-    updatedPossession.append("aws_image", formFields.aws_image)
-
-    updatedPossession.append("purchase_date", formFields.purchase_date)
-    updatedPossession.append("purchase_price", formFields.purchase_price)
-    updatedPossession.append("operating_video", formFields.operating_video)
-    updatedPossession.append("URL", formFields.URL)
-    updatedPossession.append("warranty", formFields.warranty)
-
+    // FORMFIELDS IS OLD DATA - WHAT WAS IN THE FORM BEFORE IT WAS CHANGED
+    // MESSAGE.POSSESSION IS NEW DATA
+    updatedPossession.append("name", message.possession.name)
+    updatedPossession.append("manufacturer", message.possession.manufacturer)
+    updatedPossession.append("model", message.possession.model)
+    updatedPossession.append("owners_manual", message.possession.owners_manual)
+    updatedPossession.append("description", message.possession.description)
+    updatedPossession.append("year_built", message.possession.year_built)
+    updatedPossession.append("purchased_from", message.possession.purchased_from)
+    updatedPossession.append("aws_image", message.possession.aws_image)
+    updatedPossession.append("purchase_date", message.possession.purchase_date)
+    updatedPossession.append("purchase_price", message.possession.purchase_price)
+    updatedPossession.append("operating_video", message.possession.operating_video)
+    updatedPossession.append("URL", message.possession.URL)
+    updatedPossession.append("warranty", message.possession.warranty)
+    debugger
     fetch(`/api/v1/possessions/${possessionId}`, {
       credentials: "same-origin",
       method: "PATCH",
@@ -94,7 +91,7 @@ const PossessionPage = (props) => {
       })
       .then((response) => response.json())
       .then (updatedPossession => {
-        setFormFields([...possession,updatedPossession])
+        setFormFields(updatedPossession)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
