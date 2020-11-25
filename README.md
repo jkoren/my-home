@@ -1,7 +1,7 @@
 
-## My-Home
+## MY HOME
 
-My-Home is a responsive application for people to keep track of how to use the equipment in their life. It’s a site to store and share manuals and operating videos and to find repair professionals. 
+My Home is a responsive web application to help people better use the equipment in their life. It’s a site to store and share manuals and operating videos for all the appliances and other technology in their home. 
 
 This application uses the Devise and CarrierWave gems as well as React Dropzone. It also uses AWS S3 Cloud Storage and ActiveRecord.
 
