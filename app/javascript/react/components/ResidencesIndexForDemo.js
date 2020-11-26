@@ -34,6 +34,9 @@ const ResidencesIndexForDemo = (props) => {
   })
   return (
     <div>
+      <div>
+         <br></br>{/* spacer */}
+      </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x">
           {residenceTiles}
