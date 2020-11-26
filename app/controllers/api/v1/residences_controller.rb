@@ -6,6 +6,7 @@ class Api::V1::ResidencesController < ApiController
     render json: residence, serializer: ResidenceShowSerializer
   end
   
+
   def index # for demo use only
     # demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
     # residences = demo_realtor.residences
