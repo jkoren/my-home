@@ -89,7 +89,6 @@ const PossessionShowTile = (props) => {
           
           <br></br>
 
-
           <div className=" small-12 medium-2">
           </div>
 

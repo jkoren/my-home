@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import RealtorsIndexforDemo from "./RealtorsIndexForDemo";
-import RealtorsIndexContainer from "./RealtorsIndexContainer"
 import RealtorShowContainer from "./RealtorShowContainer"
 import RealtorsIndexForDemo from "./RealtorsIndexForDemo"
 import ResidencesIndexForDemo from "./ResidencesIndexForDemo"
