@@ -1,17 +1,24 @@
 <!-- navigation -->
-<div class="top-bar menu">
+<div class="top-bar menu align-middle">
   <div class="top-bar-left">
     <ul class="menu">
-      <b><%= link_to 'My Home', realtors_path %></b>
-      <!-- <li class="menu-text">My Home</li> -->
-      <li><a href="https://www.coldwellbankerhomes.com/ma/waltham/agent/carolina-lara/aid_40427/">Provided by: Arlo Nugent, Blue Chip Realty Group</a></li>
-      <li><a href="/about">About</a></li>
+
+      <li>
+      <%= link_to realtors_path do %>
+        <%= image_tag( root_url + "favicon-32x32.png", size: "70x70", :alt => "My Home") %>
+      <% end %>
+      </li>
+
+      <li>
+        <a href="https://bluechiprealtygroup.com/agents/arlo-nugent/">Provided by: Arlo Nugent, Blue Chip Realty Group</a>
+      </li>
     </ul>
   </div>
 
   <div class="top-bar-right">
     <ul class="menu">
       <%- if current_user -%>
+        <li><%= link_to 'username', destroy_user_session_path, method: :delete %></li>
         <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
       <%- else -%>
         <li><%= link_to 'Sign Up', new_user_registration_path %></li>
