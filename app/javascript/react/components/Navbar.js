@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
-
   return (
     <div className={props.classes}>
       <div className="grid-x grid-padding-x">
-        <Link className="cell navbar" to="/realtors">
+        {/* <Link className="cell navbar" to="/realtors">
           My Home
         </Link>
         <Link className="cell navbar" to="/realtors">
@@ -17,10 +16,11 @@ const Navbar = (props) => {
         </Link>
         <Link className="cell navbar" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
-};
 
-export default Navbar;
+}
+
+export default Navbar
