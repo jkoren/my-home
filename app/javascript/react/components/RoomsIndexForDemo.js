@@ -33,7 +33,7 @@ const RoomsIndexForDemo = () => {
       data={roomObject}
     />
   })
-
+// because this is for a demo - we know the address
   return (
     <div>
 
