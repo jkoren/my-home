@@ -7,8 +7,9 @@ class Api::V1::ResidencesController < ApiController
   end
   
   def index # for demo use only
-    demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
-    residences = demo_realtor.residences
+    # demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
+    # residences = demo_realtor.residences
+    residences = Residence.all
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
