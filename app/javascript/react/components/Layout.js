@@ -13,7 +13,7 @@ import RoomNewForm from "./RoomNewForm"
 import PossessionNewForm from "./PossessionNewForm"
 import ResidenceNewForm from "./ResidenceNewForm"
 import AboutPage from "./AboutPage"
-import Navbar from "./Navbar";
+import Navbar from "./Navbar"
 
 const Layout = (props) => {
   return (
@@ -21,7 +21,7 @@ const Layout = (props) => {
       <div className="cell medium-auto medium-cell-block-container">
         <div className="grid-x" style={{ height: "100%" }}>
           <Navbar classes="cell small-2 navbar" />
-          <div className="cell auto medium-cell-block-y">
+          <div className="cell auto web-site-meat medium-cell-block-y">
             <div className="grid-x" style={{ height: "100%" }}>
               <Switch>
                 <Route exact path="/" component={RoomsIndexForDemo} />

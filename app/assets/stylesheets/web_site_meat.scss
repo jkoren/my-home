@@ -1,0 +1,14 @@
+@import "./color_palette";
+@import "./font_palette";
+
+.web-site-meat {
+  background-color: white;
+  font-family: $primary-font, sans-serif;
+  color: $dark-accent;
+  font-size: 150%;
+  // padding: 2rem 2rem 2rem 2rem;
+}
+
+.giraffe-neck {
+  background-image: url(./neck-tile/tile.png);
+}

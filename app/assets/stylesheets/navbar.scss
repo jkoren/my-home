@@ -3,11 +3,11 @@
 
 .navbar {
   color: $light-accent;
-  background-color: $secondary;
+  background-color: $dark-accent;
+}
 
-  a {
-    font-family: $primary-font, sans-serif;
-    color: $light-accent;
-    font-size: 200%;
-  }
+a {
+  font-family: $primary-font, sans-serif;
+  color: $light-accent;
+  font-size: 105%;
 }

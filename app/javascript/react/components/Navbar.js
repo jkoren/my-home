@@ -6,16 +6,16 @@ const Navbar = (props) => {
   return (
     <div className={props.classes}>
       <div className="grid-x grid-padding-x">
-        <Link className="cell" to="/realtors">
-          Set Up Your Home
+        <Link className="cell navbar" to="/realtors">
+          My Home
         </Link>
-        <Link className="cell" to="/realtors">
+        <Link className="cell navbar" to="/realtors">
           Add Possessions
         </Link>
-        <Link className="cell" to="/">
-          See Demo Residence
+        <Link className="cell navbar" to="/">
+          Demo Residence
         </Link>
-        <Link className="cell" to="/about">
+        <Link className="cell navbar" to="/about">
           About
         </Link>
       </div>

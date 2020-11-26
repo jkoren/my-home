@@ -20,7 +20,7 @@ const PossessionShowTile = (props) => {
           <h5>{props.possession.description}</h5>
           
           <div className="grid-x grid-margin-x">
-            <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
               <div>
                 <a href={props.possession.owners_manual}> 
                     <h5>Owner's Manual</h5>
@@ -28,7 +28,7 @@ const PossessionShowTile = (props) => {
                 </a>
               </div>
             </div>
-            <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
               <div>
                 <a href={props.possession.URL}>
                   <h5>Manufacturer Site</h5>
@@ -40,7 +40,7 @@ const PossessionShowTile = (props) => {
 
 
         <div className="grid-x grid-margin-x">
-          <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
             <div>
               
                 <a href={props.possession.operating_video}>
@@ -50,7 +50,7 @@ const PossessionShowTile = (props) => {
               
             </div>
           </div>
-          <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
             <div>
               
                 <a href={props.possession.purchase_receipt}>
@@ -64,7 +64,7 @@ const PossessionShowTile = (props) => {
 
 
         <div className="grid-x grid-margin-x">
-          <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
             <div>
               
                 <a href={props.possession.warranty}>
@@ -74,7 +74,7 @@ const PossessionShowTile = (props) => {
               
             </div>
           </div>
-          <div className="small-12 medium-6 text-center">
+          <div className="small-12 medium-6 text-center callout">
             <div>
               <h5>
                 <a>
