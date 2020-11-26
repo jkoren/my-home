@@ -1,14 +1,17 @@
 # seeds.rb 
 
+#one time - normally only destroy Arlo and his houses, and normally only destroy demo users Colleen, Matthey, Barbara
+Realtor.destroy_all  
+User.destroy_all
+
 # delete and recreate Arlo and all his residences - leave everything else alone
 
 old_arlo = Realtor.find_by(name: 'Arlo Nugent')
 if old_arlo != nil
   old_arlo.destroy
 end
-# -----
+
 # start creating data
-# dave = User.create(email: "dave@gmail.com",password: "testtest")
 
 arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
 
@@ -50,6 +53,10 @@ MatthewLane = Residence.create(
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/41Matthew.jpg')),
   realtor: arlo
 )
+#find_or_create_by - has issue because of requirement on multiple fields
+colleen = User.create(email: "colleen@gmail.com", password: "testtest", residence: CollegeFarmRoad)
+barbara = User.create(email: "barbara@gmail.com", password: "testtest", residence: BarbaraRoad)
+matthew = User.create(email: "matthew@gmail.com", password: "testtest", residence: MatthewLane)
 
 # Room.destroy_all
 
@@ -121,19 +128,12 @@ no_room = Room.create(
 #  Possession.destroy_all
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
-
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
-
 microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.webp'))
-
 range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
-
 refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.webp'))
-
 cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
-
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
-
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
 
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
@@ -241,128 +241,120 @@ Possession.create(
 
 # --- run one time
 
+# delete all residences with no realtor and recreate (one time only)
+
 old_no_realtor = Realtor.find_by(name: 'No Realtor')
+if old_no_realtor != nil
+  old_no_realtor.destroy
+end
 no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
-old_no_realtor.aws_image = no_realtor_image
-old_no_realtor.save
 
-# delete user jeff and all residences with no realtor and recreate (one time only)
-# old_jeff = User.find_by(email: 'jeff@gmail.com')
-# if old_jeff != nil
-#   old_jeff.destroy
-# end
-# jeff = User.create(email: "jeff@gmail.com",password: "testtest")
+no_realtor = Realtor.create(
+  name: "No Realtor",
+  company: "",
+  image: "",
+  aws_image: no_realtor_image,
+  phone_number: "",
+  email: "",
+  URL: ""
+)
 
-# old_no_realtor = Realtor.find_by(name: 'No Realtor')
-# if old_no_realtor != nil
-#   old_no_realtor.destroy
-# end
-# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
+GroveRoad = Residence.create(
+  name: "18 Grove Road",
+  street: "18 Grove Road",
+  city: "Waltham",
+  state: "MA",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/18Grove.jpg')),
+  realtor: no_realtor
+)
 
-# no_realtor = Realtor.create(
-#   name: "No Realtor",
-#   company: "",
-#   image: "",
-#   aws_image: no_realtor_image,
-#   phone_number: "",
-#   email: "",
-#   URL: ""
-# )
+jeff = User.create(email: "jeff@gmail.com", password: "testtest", residence: GroveRoad)
 
-# GroveRoad = Residence.create(
-#   name: "18 Grove Road",
-#   street: "18 Grove Road",
-#   city: "Waltham",
-#   state: "MA",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/18Grove.jpg')),
-#   realtor: no_realtor
-# )
+Room.create(
+    name: "Master Bedroom",
+    # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+    aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+    description: "",
+    residence: GroveRoad
+  )
 
-# Room.create(
-#     name: "Master Bedroom",
-#     # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#     aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#     description: "",
-#     residence: GroveRoad
-#   )
+Room.create(
+  name: "Nicole & Olivia\'s Bedroom",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Nicole & Olivia\'s Bedroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Noah & Sophie\'s Bedroom",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Noah & Sophie\'s Bedroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Master Bathroom",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Master Bathroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Kid\'s Bathroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Kid\'s Bathroom",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
 
-# Room.create(
-#   name: "Kitchen",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Kitchen",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Basement",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Basement",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Jeff\'s Office",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Jeff\'s Office",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Den",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Den",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "Living Room",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "Living Room",
+  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+  description: "",
+  residence: GroveRoad
+)
 
-# Room.create(
-#   name: "No Room",
-#   # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/18noroom.jpg')),
-#   description: "Items that move from Room to Room",
-#   residence: GroveRoad
-# )
+Room.create(
+  name: "No Room",
+  # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/18noroom.jpg')),
+  description: "Items that move from Room to Room",
+  residence: GroveRoad
+)
