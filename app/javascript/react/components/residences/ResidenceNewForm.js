@@ -130,7 +130,7 @@ const ResidenceNewForm = (props) => {
               error={error} />
 
             <label>
-              Residence Name:
+              * Residence Name:
               <input
                 name="name"
                 id="name"

@@ -63,7 +63,7 @@ const PossessionEditTile = (props) => {
             <div className="cell small-12 medium-2"> </div>
             <div className="cell small-12 medium-8 text-left">
               <label>
-                Possession Name:
+                * Possession Name:
                 <input
                   name="name"
                   id="name"
@@ -74,7 +74,7 @@ const PossessionEditTile = (props) => {
               </label>
 
               <label>
-                Manufacturer:
+                * Manufacturer:
                 <input
                   className="cell auto field"
                   type="text"

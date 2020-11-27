@@ -127,7 +127,7 @@ const RoomNewForm = (props) => {
               error={error} />
 
             <label>
-              Room Name:
+              * Room Name:
               <input
                 name="name"
                 id="name"
