@@ -22,7 +22,7 @@ arlo = Realtor.create(
   aws_image: arlo_image,
   phone_number: "(866) 823-6302",
   email: "anugent@bluechiprealtygroup.com",
-  URL: "bluechiprealtygroup.com"
+  URL: "https://bluechiprealtygroup.com/"
 )
 
 # Residence.destroy_all
@@ -251,12 +251,12 @@ no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_imag
 
 no_realtor = Realtor.create(
   name: "No Realtor",
-  company: "",
+  company: "No Company",
   image: "",
   aws_image: no_realtor_image,
   phone_number: "",
   email: "",
-  URL: ""
+  URL: "https://www.forsalebyowner.com/"
 )
 
 GroveRoad = Residence.create(

@@ -6,7 +6,12 @@
       <%= link_to residences_path do %>
         <%= image_tag( root_url + "favicon-32x32.png", size: "70x70", :alt => "My Home") %>
       <% end %>
-        <a href="https://bluechiprealtygroup.com/agents/arlo-nugent/">Provided by: Arlo Nugent, Blue Chip Realty Group</a>
+
+      <%- if current_user -%>
+        <a href="<%= current_user.realtor.URL %>">Provided by: <%= current_user.realtor.name %>, <%= current_user.realtor.company %></a>
+      <%- else -%>
+        <p> can't show a realtor because no one logged in <p>
+      <%- end -%>
   </div>
 
   <div class="top-bar-right">
