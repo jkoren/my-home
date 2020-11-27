@@ -1,11 +1,11 @@
-// ResidenceShowContainer.js
+// ResidencePage.js
 import React, { useState, useEffect } from "react"
-import ResidenceShowTile from "./ResidenceShowTile"
+import ResidenceShowTile from "../residences/ResidenceShowTile"
 
 import _ from "lodash" 
-import RoomsIndexContainer from "./RoomsIndexContainer"
+import RoomsIndexContainer from "../rooms/RoomsIndexContainer"
 
-const ResidenceShowContainer = (props) => {
+const ResidencePage = (props) => {
   const [residence, setResidence] = useState({
     id: "",
     name: "",
@@ -63,4 +63,4 @@ const ResidenceShowContainer = (props) => {
   )
 }
 
-export default ResidenceShowContainer 
+export default ResidencePage 
