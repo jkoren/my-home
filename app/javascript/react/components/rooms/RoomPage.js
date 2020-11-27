@@ -1,7 +1,7 @@
 // RoomPage.js
 import React, { useState, useEffect } from "react"
 import RoomShowTile from "./RoomShowTile"
-import PossessionsIndexContainer from "./PossessionsIndexContainer"
+import PossessionsIndexContainer from "../possessions/PossessionsIndexContainer"
 import _ from "lodash" 
 
 const RoomPage = (props) => {

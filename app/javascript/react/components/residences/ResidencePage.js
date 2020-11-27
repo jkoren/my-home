@@ -1,9 +1,9 @@
 // ResidencePage.js
 import React, { useState, useEffect } from "react"
-import ResidenceShowTile from "./ResidenceShowTile"
+import ResidenceShowTile from "../residences/ResidenceShowTile"
 
 import _ from "lodash" 
-import RoomsIndexContainer from "./RoomsIndexContainer"
+import RoomsIndexContainer from "../rooms/RoomsIndexContainer"
 
 const ResidencePage = (props) => {
   const [residence, setResidence] = useState({

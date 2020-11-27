@@ -1,16 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import RealtorsIndexforDemo from "./RealtorsIndexForDemo";
-import RealtorPage from "./RealtorPage"
-import RealtorsIndexForDemo from "./RealtorsIndexForDemo"
-import ResidencesIndexForDemo from "./ResidencesIndexForDemo"
-import RoomsIndexForDemo from "./RoomsIndexForDemo"
-import ResidencePage from "./ResidencePage"
-import RoomPage from "./RoomPage"
-import PossessionPage from "./PossessionPage"
-import RoomNewForm from "./RoomNewForm"
-import PossessionNewForm from "./PossessionNewForm"
-import ResidenceNewForm from "./ResidenceNewForm"
+import RealtorsIndexforDemo from "./realtors/RealtorsIndexForDemo";
+import RealtorPage from "./realtors/RealtorPage"
+import RealtorsIndexForDemo from "./realtors/RealtorsIndexForDemo"
+import ResidencesIndexForDemo from "./residences/ResidencesIndexForDemo"
+import RoomsIndexForDemo from "./rooms/RoomsIndexForDemo"
+import ResidencePage from "./residences/ResidencePage"
+import RoomPage from "./rooms/RoomPage"
+import PossessionPage from "./possessions/PossessionPage"
+import RoomNewForm from "./rooms/RoomNewForm"
+import PossessionNewForm from "./possessions/PossessionNewForm"
+import ResidenceNewForm from "./residences/ResidenceNewForm"
 import AboutPage from "./AboutPage"
 import Navbar from "./Navbar"
 

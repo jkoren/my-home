@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
-import ErrorList from './ErrorList'
+import ErrorList from '../ErrorList'
 
 const ResidenceNewForm = (props) => {
   const [formFields, setFormFields] = useState({

@@ -1,36 +1,26 @@
-// PossessionNewForm.js
+// RoomNewForm.js
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { Redirect } from 'react-router-dom'
 import _ from 'lodash'
-import ErrorList from './ErrorList'
+import ErrorList from '../ErrorList'
 
-const PossessionNewForm = (props) => {
+const RoomNewForm = (props) => {
   const [formFields, setFormFields] = useState({
     name: "",
-    manufacturer: "",
-    model: "",
-    owner_manual: "",
     description: "",
-    year_built: "",
-    purchased_from: "",
+    image: "",
     aws_image: {},
-    purchase_date: "",
-    purchase_receipt: "",
-    purchase_price: "",
-    operating_video: "",
-    URL: "",
-    warranty: ""
+    possessions: []
   })
-  let imageUploaded = null;
   const [errors, setErrors] = useState({})
   const [error, setError] = useState(null)
-
-
   const [shouldRedirect, setShouldRedirect] = useState({
     redirect: false,
     id: ""
   })
+  
+  let imageUploaded = null;
   
   const handleChange = (event) => {
     setFormFields({
@@ -48,7 +38,7 @@ const PossessionNewForm = (props) => {
 
   const validforSubmission = () => {
     let submittedErrors = {}
-    const requiredFields = ["name", "manufacturer"]
+    const requiredFields = ["name"]
     requiredFields.forEach(field => {
       if (formFields[field].trim() === "") {
         submittedErrors = {
@@ -64,27 +54,16 @@ const PossessionNewForm = (props) => {
   const handleSubmit = (event) => {
     if (validforSubmission(formFields)) {
       event.preventDefault()
-      let newPossession = new FormData()
-      newPossession.append("name", formFields.name)
-      newPossession.append("manufacturer", formFields.manufacturer)
-      newPossession.append("model", formFields.model)
-      newPossession.append("owners_manual", formFields.owners_manual)
-      newPossession.append("description", formFields.description)
-      newPossession.append("year_built", formFields.year_built)
-      newPossession.append("purchased_from", formFields.purchased_from)
-    
-      // newPossession.append("image", formFields.image)
-      newPossession.append("aws_image", formFields.aws_image)
-    
-      newPossession.append("purchase_date", formFields.purchase_date)
-      newPossession.append("purchase_price", formFields.purchase_price)
-      newPossession.append("operating_video", formFields.operating_video)
-      newPossession.append("URL", formFields.URL)
-      newPossession.append("warranty", formFields.warranty)
-      fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
-        credentials: "same-origin",
+      let newRoom = new FormData()
+      newRoom.append("name", formFields.name)
+      newRoom.append("description", formFields.description) 
+      newRoom.append("image", formFields.image)
+      newRoom.append("aws_image", formFields.aws_image)
+
+      fetch(`/api/v1/residences/${props.match.params.id}/rooms`, {
         method: "POST",
-        body: newPossession,
+        body: newRoom,
+        credentials: "same-origin",
         headers: {
           Accept: 'application/json',
           Accept: "image/jpeg",
@@ -93,7 +72,7 @@ const PossessionNewForm = (props) => {
         .then(response => response.json())
         .then(json_response => {
           if (json_response.errors) {
-            const requiredFields = ["name", "manufacturer"]
+            const requiredFields = ["name"]
             requiredFields.forEach(field => {
               if (json_response.errors[field] !== undefined) {
                 setErrors({
@@ -114,9 +93,8 @@ const PossessionNewForm = (props) => {
         .catch(error => console.error(`Error in fetch: ${error.message}`))
     }
   }
-
   if (shouldRedirect.redirect) {
-    return <Redirect to={`/rooms/${props.match.params.id}`}/>
+    return <Redirect to={`/residences/${props.match.params.id}`}/>
   }
 
   if (formFields.aws_image != "") {
@@ -126,14 +104,16 @@ const PossessionNewForm = (props) => {
       </div>
     );
   }
-
-  if (formFields.owner_manual != "") {
-    ownerManualUploaded = (
+  
+  if (_.isEmpty(formFields.aws_image)
+) {
+    imageUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Owner's Manual Uploaded: {formFields.owner_manual.path}</h5>
+        <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
       </div>
     );
   }
+
   return (
     
     <div className="cell grid-x grid-padding-x">
@@ -147,7 +127,7 @@ const PossessionNewForm = (props) => {
               error={error} />
 
             <label>
-              Possession Name:
+              Room Name:
               <input
                 name="name"
                 id="name"
@@ -159,46 +139,24 @@ const PossessionNewForm = (props) => {
 
 
             <label>
-              Manufacturer:
-              <input
-                name="manufacturer"
-                id="manufacturer"
-                type="text"
-                onChange={handleChange}
-                value={formFields.manufacturer}
-              />
-            </label>
-
-            <label>
-              Model:
-              <input
-                name="model"
-                id="model"
-                type="text"
-                onChange={handleChange}
-                value={formFields.model}
-              />
-            </label>
-
-            <label>
-              Owner's Manual:
-              <input
-                name="owner_manual"
-                id="owner_manual"
-                type="text"
-                onChange={handleChange}
-                value={formFields.owner_manual}
-              />
-            </label>
-
-            <label>
-              Description of this possession:
+              Description:
               <input
                 name="description"
                 id="description"
                 type="text"
                 onChange={handleChange}
                 value={formFields.description}
+              />
+            </label>
+
+            <label>
+              Image:
+              <input
+                name="image"
+                id="image"
+                type="text"
+                onChange={handleChange}
+                value={formFields.image}
               />
             </label>
 
@@ -211,7 +169,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell callout">
                       <div>
                         <i className="fas fa-image fa-3x"> </i>
-                        Drag a product image here, or click to upload one from your computer
+                        Drag a room image here, or click to upload one from your computer or mobile device
                       </div>
                     </div>
                   </div>
@@ -232,4 +190,4 @@ const PossessionNewForm = (props) => {
   )
 }
 
-export default PossessionNewForm
+export default RoomNewForm

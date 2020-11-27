@@ -1,12 +1,11 @@
 import React from "react";
 
-const PossessionDeleteTile = (props) => {
-  let nameDiv = null;
+const RoomDeleteTile = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    let formPayLoad = { id: props.possession.id, possession: props.possession };
-    props.deletePossession(formPayLoad);
+    let formPayLoad = { id: props.room.id, room: props.room };
+    props.deleteRoom(formPayLoad);
   };
 
   return (
@@ -14,12 +13,12 @@ const PossessionDeleteTile = (props) => {
         <div className="grid-x grid-margin-x">
           
         <div className="cell ">
-          <h4>{props.possession.name}</h4>
-          <h5>{props.possession.manufacturer} {props.possession.model}</h5>
+          <h4>{props.room.name}</h4>
+          <h5>{props.room.manufacturer} {props.room.model}</h5>
         </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={props.possession.aws_image.url} alt="missing aws picture" width="450" />
+          <img src={props.room.aws_image.url} alt="missing aws picture" width="450" />
         </div>
 
         <div className="cell small-12 medium-3">
@@ -43,4 +42,4 @@ const PossessionDeleteTile = (props) => {
   );
 };
 
-export default PossessionDeleteTile;
+export default RoomDeleteTile;

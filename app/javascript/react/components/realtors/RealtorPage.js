@@ -1,7 +1,7 @@
 // RealtorPage.js
 import React, { useState, useEffect } from "react"
 import RealtorShowTile from "./RealtorShowTile"
-import ResidencesIndexContainer from "./ResidencesIndexContainer"
+import ResidencesIndexContainer from "../residences/ResidencesIndexContainer"
 import _ from "lodash"
 
 const RealtorPage = (props) => {
