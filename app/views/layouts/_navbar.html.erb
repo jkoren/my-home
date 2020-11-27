@@ -1,4 +1,5 @@
 <!-- navigation -->
+
 <div class="top-bar menu align-middle">
   <div class="top-bar-left align-middle">
       <%= link_to residences_path do %>
@@ -9,15 +10,15 @@
   </div>
 
   <div class="top-bar-right">
-    <ul class="menu">
+ 
       <%- if current_user -%>
-        <li><%= link_to 'username', destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+        <%= link_to current_user.email, root_path %> 
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
       <%- else -%>
-        <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-        <li><%= link_to 'Sign In', new_user_session_path %></li>
+        <%= link_to 'Sign Up', new_user_registration_path %>
+        <%= link_to 'Sign In', new_user_session_path %>
       <%- end -%>
-    </ul>
+
   </div>
 </div>
   <div>
@@ -28,7 +29,7 @@
 
             <%= link_to 'Add Possessions', realtors_path %>
 
-            <%= link_to 'Example', root_path %>
+            <%= link_to 'Example', demo_path %>
 
             <%= link_to 'About', about_path %>
 
