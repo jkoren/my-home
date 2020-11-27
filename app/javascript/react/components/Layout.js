@@ -23,8 +23,9 @@ const Layout = (props) => {
           <div className="cell auto web-site-meat medium-cell-block-y">
             <div className="grid-x" style={{ height: "100%" }}>
               <Switch>
-                <Route exact path="/" component={RoomsIndexForDemo} />
+                <Route exact path="/" component={AboutPage} />
                 <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/demo" component={RoomsIndexForDemo} />
 
                 <Route exact path="/realtors" component={RealtorsIndexForDemo} />
                 <Route exact path="/realtors/:id" component={RealtorShowContainer} />

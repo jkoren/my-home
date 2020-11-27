@@ -24,7 +24,7 @@ const PossessionShowTile = (props) => {
               <div>
                 <a href={props.possession.owners_manual}> 
                     <h5>Owner's Manual</h5>
-                    <i className="fa fa-book fa-4x"></i>
+                    <i className="fa fa-book fa-2x"></i>
                 </a>
               </div>
             </div>
@@ -32,7 +32,7 @@ const PossessionShowTile = (props) => {
               <div>
                 <a href={props.possession.URL}>
                   <h5>Manufacturer Site</h5>
-                  <i className="fa fa-desktop fa-4x"></i>
+                  <i className="fa fa-desktop fa-2x"></i>
                 </a>
               </div>
             </div>
@@ -45,7 +45,7 @@ const PossessionShowTile = (props) => {
               
                 <a href={props.possession.operating_video}>
                   <h5>Operating Video</h5>
-                  <i className="fab fa-youtube fa-4x"></i>
+                  <i className="fab fa-youtube fa-2x"></i>
                 </a>
               
             </div>
@@ -55,7 +55,7 @@ const PossessionShowTile = (props) => {
               
                 <a href={props.possession.purchase_receipt}>
                   <h5>Purchase Receipt</h5>
-                    <i className="fa fa-file-alt fa-4x"></i>
+                    <i className="fa fa-file-alt fa-2x"></i>
                 </a>
               
             </div>
@@ -69,7 +69,7 @@ const PossessionShowTile = (props) => {
               
                 <a href={props.possession.warranty}>
                   <h5>Warranty Document</h5>
-                  <i className="fa fa-file-alt fa-4x"></i>
+                  <i className="fa fa-file-alt fa-2x"></i>
                 </a>
               
             </div>
