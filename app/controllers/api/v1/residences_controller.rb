@@ -16,7 +16,9 @@ class Api::V1::ResidencesController < ApiController
 
   def create
     new_residence = Residence.new(residence_params)
-    realtor = Realtor.find(params[:realtor_id])
+    # realtor = Realtor.find(params[:realtor_id])
+    # for alpha test, all residences created for "no realtor"
+    realtor = Realtor.find_by(name: "No Realtor")
     new_residence.realtor = realtor
     if new_residence.save
       render json: new_residence
