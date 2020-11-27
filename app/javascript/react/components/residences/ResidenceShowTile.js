@@ -1,6 +1,7 @@
 import React from "react"
 
 const ResidenceShowTile = (props) => {
+  debugger
   return (
     <div className="grid-x grid-padding-x">
       
@@ -8,7 +9,7 @@ const ResidenceShowTile = (props) => {
         {/* spacer cell */}
       </div>
 
-      <h4>{props.data.street} {props.data.city}, {props.data.state}</h4> 
+      <h4>Address: {props.data.street} {props.data.city}, {props.data.state}</h4> 
 
     </div>
   )

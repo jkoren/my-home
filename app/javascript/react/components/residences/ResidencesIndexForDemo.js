@@ -43,10 +43,11 @@ const ResidencesIndexForDemo = (props) => {
         </div>
       </div>
 
-      {/* problem here is getting the ID of the realtor - its not in props
+      {/* when entering here, assume there is no realtor */}
+      {/* realtor_id is ignored by controller, all houses are assigned to "no realtor" record, so value here is dummy */}
       <div className="grid-container">
-        <Link to={`/realtors/${props.realtor.id}/residences/new`}>Add a New Residence for this Realtor</Link>
-      </div> */}
+        <Link to={`/realtors/0/residences/new`}>Add a New Residence</Link>
+      </div>
 
 
       {/* <div className="grid-container">

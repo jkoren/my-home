@@ -19,10 +19,11 @@ const ResidencesIndexContainer = (props) => {
         </div>
       </div>
 
-      <div className="grid-container">
+      {/* right now for alpha-test purposes, residences_controller sets all new residences to "no realtor" so disable this capability for now */}
+      {/* <div className="grid-container">
         <Link to={`/realtors/${props.realtor.id}/residences/new`}>
         Add a New Residence for this Realtor</Link>
-      </div>
+      </div> */}
 
     </div>
   )
