@@ -147,7 +147,7 @@ const PossessionNewForm = (props) => {
               error={error} />
 
             <label>
-              Possession Name:
+              * Possession Name:
               <input
                 name="name"
                 id="name"
@@ -159,7 +159,7 @@ const PossessionNewForm = (props) => {
 
 
             <label>
-              Manufacturer:
+              * Manufacturer:
               <input
                 name="manufacturer"
                 id="manufacturer"
