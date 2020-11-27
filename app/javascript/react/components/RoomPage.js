@@ -1,10 +1,10 @@
-// RoomShowContainer.js
+// RoomPage.js
 import React, { useState, useEffect } from "react"
 import RoomShowTile from "./RoomShowTile"
 import PossessionsIndexContainer from "./PossessionsIndexContainer"
 import _ from "lodash" 
 
-const RoomShowContainer = (props) => {
+const RoomPage = (props) => {
   const [room, setRoom] = useState({
     id: "",
     name: "",
@@ -56,4 +56,4 @@ const RoomShowContainer = (props) => {
   )
 }
 
-export default RoomShowContainer 
+export default RoomPage 

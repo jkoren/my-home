@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import RealtorsIndexforDemo from "./RealtorsIndexForDemo";
-import RealtorShowContainer from "./RealtorShowContainer"
+import RealtorPage from "./RealtorPage"
 import RealtorsIndexForDemo from "./RealtorsIndexForDemo"
 import ResidencesIndexForDemo from "./ResidencesIndexForDemo"
 import RoomsIndexForDemo from "./RoomsIndexForDemo"
-import ResidenceShowContainer from "./ResidenceShowContainer"
-import RoomShowContainer from "./RoomShowContainer"
+import ResidencePage from "./ResidencePage"
+import RoomPage from "./RoomPage"
 import PossessionPage from "./PossessionPage"
 import RoomNewForm from "./RoomNewForm"
 import PossessionNewForm from "./PossessionNewForm"
@@ -28,15 +28,15 @@ const Layout = (props) => {
                 <Route exact path="/demo" component={RoomsIndexForDemo} />
 
                 <Route exact path="/realtors" component={RealtorsIndexForDemo} />
-                <Route exact path="/realtors/:id" component={RealtorShowContainer} />
+                <Route exact path="/realtors/:id" component={RealtorPage} />
                 <Route exact path="/realtors/:id/residences/new" component={ResidenceNewForm} />
 
                 <Route exact path="/residences" component={ResidencesIndexForDemo} />
-                <Route exact path="/residences/:id" component={ResidenceShowContainer} />
+                <Route exact path="/residences/:id" component={ResidencePage} />
                 <Route exact path="/residences/:id/rooms/new" component={RoomNewForm} />
 
                 <Route exact path="/rooms" component={RoomsIndexForDemo} />
-                <Route exact path="/rooms/:id" component={RoomShowContainer} />
+                <Route exact path="/rooms/:id" component={RoomPage} />
                 <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
 
                 <Route exact path="/possessions/:id" component={PossessionPage} /> 

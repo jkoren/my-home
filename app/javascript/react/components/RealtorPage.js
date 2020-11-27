@@ -1,10 +1,10 @@
-// RealtorShowContainer.js
+// RealtorPage.js
 import React, { useState, useEffect } from "react"
 import RealtorShowTile from "./RealtorShowTile"
 import ResidencesIndexContainer from "./ResidencesIndexContainer"
 import _ from "lodash"
 
-const RealtorShowContainer = (props) => {
+const RealtorPage = (props) => {
   const [realtor, setRealtor] = useState({
     id: "",
     name: "",
@@ -61,4 +61,4 @@ const RealtorShowContainer = (props) => {
   )
 }
 
-export default RealtorShowContainer 
+export default RealtorPage 
