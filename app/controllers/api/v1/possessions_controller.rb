@@ -8,8 +8,12 @@ class Api::V1::PossessionsController < ApiController
   end
   
   def index
-    possessions = Possession.all.select{|possession|possession.room == params[:id]}
-    render json: possessions #serializer: PossessionShowSerializer
+    # used by newest possessions
+    # possessions = Possession.all.select{|possession|possession.room == params[:id]}
+    possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
+    possessions = possessions[0..4]
+    render json: possessions, each_serializer: PossessionNewestSerializer
+    # need to figure out how to limit only to room name, and include second level association to include residence.city and residence.state
   end
   
   def create

@@ -10,8 +10,8 @@ const AboutPage = (props) => {
         <div className="grid-x grid-margin-y text-center">
           <div className="callout cell small-10 medium-6 box-shadow">
             <h2 className="cell"> My-Home </h2>
-            <h4 className="cell"> My-Home is a single site for information on using the technology in your life. It’s a site for manuals and operating videos, and to find repair professionals.   Things that came with your house are included. Add more. </h4>
-            <h3 className="cell"> Be technology-fabulous </h3>
+            <h4 className="cell"> My-Home is a single site for information on using your technology. It’s a site for manuals and operating videos, and to find repair professionals. </h4>
+            <h3 className="cell"> Be technology-fabulous. </h3>
             <br></br>
             <div className="cell">
               <h4>Created by: Jeff Korenstein</h4>
