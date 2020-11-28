@@ -10,7 +10,7 @@
       <%- if current_user -%>
         <a href="<%= current_user.realtor.URL %>">Provided by: <%= current_user.realtor.name %>, <%= current_user.realtor.company %></a>
       <%- else -%>
-        <p> can't show a realtor because no one logged in <p>
+        <a href=""> </a> <!-- can't show a realtor because no one is logged in -->
       <%- end -%>
   </div>
 
@@ -29,11 +29,16 @@
 <div>
   <div class="top-bar menu align-middle">
     <div class="top-bar-left align-middle submenu">
-          <%= link_to 'My Home', residences_path %>
-          <%= link_to 'Add Possessions', realtors_path %>
+          <%= link_to 'My Home', root_path %>
+          <%= link_to 'Add Possessions', root_path %>
           <%= link_to 'Example', demo_path %>
           <%= link_to 'About', about_path %>   
     </div>
+    <div class="top-bar-left align-middle submenu">
+          <%= link_to 'All Residences', residences_path %>
+          <%= link_to 'See Residences by Realtors', realtors_path %>
+    </div>
+    
   </div>
 </div>
 

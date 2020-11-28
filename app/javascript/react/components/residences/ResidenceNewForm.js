@@ -60,6 +60,8 @@ const ResidenceNewForm = (props) => {
       newResidence.append("name", formFields.name)
       newResidence.append("street", formFields.street) 
       newResidence.append("street2", formFields.street2)
+      newResidence.append("city", formFields.city)
+      newResidence.append("state", formFields.state)
       newResidence.append("aws_image", formFields.aws_image)
 
       fetch(`/api/v1/realtors/${props.match.params.id}/residences`, {
@@ -97,7 +99,9 @@ const ResidenceNewForm = (props) => {
   }
 
   if (shouldRedirect.redirect) {
-    return <Redirect to={`/realtors/${props.match.params.id}`}/>
+    // return <Redirect to={`/realtors/${props.match.params.id}`}/>
+    return <Redirect to={`/residences`}/>
+
   }
 
   if (formFields.aws_image != "") {

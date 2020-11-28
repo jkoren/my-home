@@ -10,16 +10,17 @@ import RoomPage from "./rooms/RoomPage"
 import PossessionPage from "./possessions/PossessionPage"
 import RoomNewForm from "./rooms/RoomNewForm"
 import PossessionNewForm from "./possessions/PossessionNewForm"
+import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
 import ResidenceNewForm from "./residences/ResidenceNewForm"
 import AboutPage from "./AboutPage"
-import Navbar from "./Navbar"
+import Sidebar from "./Sidebar"
 
 const Layout = (props) => {
   return (
     <div className="grid-y medium-grid-frame">
       <div className="cell medium-auto medium-cell-block-container">
         <div className="grid-x" style={{ height: "100%" }}>
-          <Navbar classes="cell small-2 navbar" />
+          <Sidebar classes="cell small-2 sidebar" />
           <div className="cell auto web-site-meat medium-cell-block-y">
             <div className="grid-x" style={{ height: "100%" }}>
               <Switch>
@@ -40,6 +41,7 @@ const Layout = (props) => {
                 <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
 
                 <Route exact path="/possessions/:id" component={PossessionPage} /> 
+                <Route exact path="/possessions/newest" component={PossessionsIndexForNewest} /> 
               </Switch>
               <div className="cell small-1 giraffe-neck"></div>
             </div>
