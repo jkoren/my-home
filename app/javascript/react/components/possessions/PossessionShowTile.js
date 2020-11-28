@@ -23,8 +23,9 @@ const PossessionShowTile = (props) => {
           <div className="small-12 medium-6 text-center callout">
               <div>
                 <a href={props.possession.owners_manual}> 
-                    <h5>Owner's Manual</h5>
-                    <i className="fa fa-book fa-1x"></i>
+                  <h5>Owner's Manual</h5>
+                  <i className="fa fa-book fa-1x"></i>
+                  <h6> {props.possession.owners_manual}</h6>
                 </a>
               </div>
             </div>
@@ -33,6 +34,7 @@ const PossessionShowTile = (props) => {
                 <a href={props.possession.URL}>
                   <h5>Manufacturer Site</h5>
                   <i className="fa fa-desktop fa-1x"></i>
+                <h6> {props.possession.URL}</h6>
                 </a>
               </div>
             </div>
@@ -46,6 +48,7 @@ const PossessionShowTile = (props) => {
                 <a href={props.possession.operating_video}>
                   <h5>Operating Video</h5>
                   <i className="fab fa-youtube fa-1x"></i>
+                <h6> {props.possession.operating_video}</h6>
                 </a>
               
             </div>
@@ -56,6 +59,7 @@ const PossessionShowTile = (props) => {
                 <a href={props.possession.purchase_receipt}>
                   <h5>Purchase Receipt</h5>
                     <i className="fa fa-file-alt fa-1x"></i>
+                  <h6> {props.possession.purchase_receipt}</h6>
                 </a>
               
             </div>
@@ -70,6 +74,7 @@ const PossessionShowTile = (props) => {
                 <a href={props.possession.warranty}>
                   <h5>Warranty Document</h5>
                   <i className="fa fa-file-alt fa-1x"></i>
+                <h6> {props.possession.warranty}</h6>
                 </a>
               
             </div>
