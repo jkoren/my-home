@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_043122) do
+ActiveRecord::Schema.define(version: 2020_11_28_230353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,9 @@ ActiveRecord::Schema.define(version: 2020_11_26_043122) do
     t.string "URL"
     t.string "warranty"
     t.string "aws_image"
+    t.string "aws_owners_manual"
+    t.string "aws_purchase_receipt"
+    t.string "aws_warranty"
     t.index ["room_id"], name: "index_possessions_on_room_id"
   end
 

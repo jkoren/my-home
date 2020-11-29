@@ -31,7 +31,7 @@ class Api::V1::PossessionsController < ApiController
     possession = Possession.find(params[:id])
 
     # if the image does not come through correctly, it means that a new image has not been uploaded, so do NOT update the aws_image field
-    params_to_update = params["aws_image"] == "[object Object]" ? update_possession_params : possession_params
+    params_to_update = (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )  ? update_possession_params_no_aws_image_or_owners_manual : possession_params
 
     possession.update_attributes(params_to_update)
     render json: possession
@@ -49,7 +49,7 @@ class Api::V1::PossessionsController < ApiController
       params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty, :aws_image])
     end
 
-    def update_possession_params
+    def update_possession_params_no_aws_image_or_owners_manual
       params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty])
     end
 
