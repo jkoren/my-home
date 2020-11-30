@@ -8,23 +8,23 @@ const PossessionEditTile = (props) => {
     name: props.possession.name,
     manufacturer: props.possession.manufacturer,
     model: props.possession.model,
-    owner_manual: props.possession.owner_manual,
+    // owner_manual: props.possession.owner_manual,
     description: props.possession.description,
     year_built: props.possession.year_built,
     purchased_from: props.possession.purchased_from,
     aws_image: props.possession.aws_image,
     aws_owners_manual: props.possession.aws_owners_manual,
-    aws_purchase_receipt: props.possession.aws_purchas_receipt,
+    aws_purchase_receipt: props.possession.aws_purchase_receipt,
     aws_warranty: props.possession.aws_warranty,
     purchase_date: props.possession.purchase_date,
-    purchase_receipt: props.possession.purchase_receipt,
+    // purchase_receipt: props.possession.purchase_receipt,
     purchase_price: props.possession.purchase_price,
     operating_video: props.possession.operating_video,
     URL: props.possession.URL,
-    warranty: props.possession.warranty
+    // warranty: props.possession.warranty
   });
 
-  let productImageUploaded = null;
+  let ImageUploaded = null;
   let owners_manualUploaded = null;
 
   const handleAWS_image_upload = (acceptedFiles) => {
@@ -55,22 +55,25 @@ const PossessionEditTile = (props) => {
   };
 
   if (formFields.aws_image != "") {
-    productImageUploaded = (
+    ImageUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
+        <h5 className="cell shrink">Image Uploaded:
+         {formFields.aws_image.path}
+        </h5>
       </div>
     );
   }
 
-  // error: PossessionEditTile.js:67 Uncaught TypeError: Cannot read property 'path' of undefined
-  
-  // if (formFields.aws_owners_manual != "") {
-  //   owners_manualUploaded = (
-  //     <div className="grid-x align-center text-center">
-  //       <h5 className="cell shrink">Image Uploaded: {formFields.owners_manual.path}</h5>
-  //     </div>
-  //   );
-  // }
+  if (formFields.aws_owners_manual != "") {
+    debugger //something is wrong here - formFields.aws_image.path is not right - wrong kind of object - actiondispatch - copy exact thing 
+    owners_manualUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Owner's Manual Uploaded: 
+          {/* {formFields.owners_manual.path} */}
+        </h5>
+      </div>
+    );
+  }
 
   return (
     <div className="grid-container">
@@ -154,7 +157,7 @@ const PossessionEditTile = (props) => {
                     </div>
                   )}
                 </Dropzone>
-                {productImageUploaded}
+                {ImageUploaded}
               
                 <Dropzone onDrop={handleAWS_owners_manual_upload}>
                   {({ getRootProps, getInputProps }) => (

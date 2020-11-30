@@ -1,10 +1,7 @@
 # seeds.rb 
 
-#one time - normally only destroy Arlo and his houses, and normally only destroy demo users Colleen, Matthey, Barbara
-Realtor.destroy_all  
-User.destroy_all
-
 # delete and recreate Arlo and all his residences - leave everything else alone
+# re-attach existing users to Arlo's new houses
 
 old_arlo = Realtor.find_by(name: 'Arlo Nugent')
 if old_arlo != nil
@@ -18,14 +15,11 @@ arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/rea
 arlo = Realtor.create(
   name: "Arlo Nugent",
   company: "Blue Chip Realty Group",
-  # image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
   aws_image: arlo_image,
   phone_number: "(866) 823-6302",
   email: "anugent@bluechiprealtygroup.com",
   URL: "https://bluechiprealtygroup.com/"
 )
-
-# Residence.destroy_all
 
 CollegeFarmRoad = Residence.create(
   name: "315 College Farm Rd #6",
@@ -53,12 +47,22 @@ MatthewLane = Residence.create(
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/41Matthew.jpg')),
   realtor: arlo
 )
-#find_or_create_by - has issue because of requirement on multiple fields
-colleen = User.create(email: "colleen@gmail.com", password: "testtest", residence: CollegeFarmRoad)
-barbara = User.create(email: "barbara@gmail.com", password: "testtest", residence: BarbaraRoad)
-matthew = User.create(email: "matthew@gmail.com", password: "testtest", residence: MatthewLane)
 
-# Room.destroy_all
+# make sure users pointing to right houses
+colleen = User.find_or_create_by(email: "colleen@gmail.com")
+colleen.residence = CollegeFarmRoad
+colleen.password = "testtest"
+colleen.save
+
+barbara = User.find_or_create_by(email: "barbara@gmail.com")
+barbara.residence = BarbaraRoad
+barbara.password = "testtest"
+barbara.save
+
+matthew = User.find_or_create_by(email: "matthew@gmail.com")
+matthew.residence = MatthewLane
+matthew.password = "testtest"
+matthew.save
 
 master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
 bedroom_2_description = "Full Bathroom, Hardwood Flooring, 11 x 17, Third Floor"
@@ -125,8 +129,6 @@ no_room = Room.create(
   residence: CollegeFarmRoad
 )
 
-#  Possession.destroy_all
-
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
 microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.webp'))
@@ -136,6 +138,10 @@ cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_imag
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
 
+dishwasher_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/6651372 Kenmore Ultrawash Dishwasher.pdf'))
+
+cuisinart_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf'))
+
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
 Possession.create(
@@ -143,12 +149,26 @@ Possession.create(
   manufacturer: "Kenmore", 
   model: "Ultra Wash 665.1372",
   aws_image: dishwasher_image,
+  aws_owners_manual: dishwasher_pdf,
   description: dishwasher_description, 
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
-  owners_manual: "https://www.manualslib.com/manual/666454/Kenmore-665-1372.html?page=6",
   warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
   purchase_receipt: "",
+  room: kitchen
+)
+
+cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
+
+Possession.create(
+  name:"Cuisinart", 
+  manufacturer: "Cuisinart", 
+  model: "DLC-8S",
+  aws_image: cuisinart_image,
+  aws_owners_manual: cuisinart_pdf,
+  description: cuisinart_description, 
+  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
+  operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
   room: kitchen
 )
 
@@ -207,21 +227,6 @@ Possession.create(
   room: laundry_room
 )
 
-# cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
-
-cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
-
-Possession.create(
-  name:"Cuisinart", 
-  manufacturer: "Cuisinart", 
-  model: "DLC-8S",
-  owners_manual: "",
-  description: cuisinart_description, 
-  aws_image: cuisinart_image,
-  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
-  operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
-  room: kitchen)
-
 Possession.create(
   name:"Thermostat", 
   manufacturer: "Google Nest", 
@@ -247,6 +252,7 @@ old_no_realtor = Realtor.find_by(name: 'No Realtor')
 if old_no_realtor != nil
   old_no_realtor.destroy
 end
+
 no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
 
 no_realtor = Realtor.create(

@@ -1,7 +1,6 @@
 import React from "react"
 
 const ResidenceShowTile = (props) => {
-  debugger
   return (
     <div className="grid-x grid-padding-x">
       

@@ -16,12 +16,12 @@ const PossessionPage = (props) => {
     description: "",
     year_built: "",
     purchased_from: "",
-    aws_image: "",
-    aws_owners_manual: "",
-    aws_purchase_receipt: "",
-    aws_warranty: "",
+    aws_image: {},
+    aws_owners_manual: {},
+    aws_purchase_receipt:{},
+    aws_warranty: {},
     purchase_date: "",
-    purchase_receipt: "",
+    purchase_receipt: {},
     purchase_price: "",
     operating_video: "",
     URL: "",
@@ -81,6 +81,7 @@ const PossessionPage = (props) => {
       headers: {
         "Accept": "application/json",
         "Accept": "image/jpeg",
+        "Accept": "multipart/form-data",
       },
     })
       .then((response) => {
