@@ -1,4 +1,5 @@
 import React from "react";
+import RoomsIndexForDemo from "./rooms/RoomsIndexForDemo"
 
 const AboutPage = (props) => {
   return (
@@ -6,6 +7,7 @@ const AboutPage = (props) => {
       <div>
         <br></br>{/* spacer */}
       </div>
+
       <div className="cell small-offset-1 medium-offset-3 "> 
         <div className="grid-x grid-margin-y text-center">
           <div className="callout cell small-10 medium-6 box-shadow">
@@ -19,6 +21,15 @@ const AboutPage = (props) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="cell text-center">
+        <div>
+          <br></br>
+        
+          Example:
+        </div>
+        <RoomsIndexForDemo/>
       </div>
     </div>
   )

@@ -90,4 +90,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Store files on Amazon S3  - added by jeff per https://guides.rubyonrails.org/v5.2.0/active_storage_overview.html
+config.active_storage.service = :amazon
 end
