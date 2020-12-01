@@ -40,4 +40,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Store files on Amazon S3  - added by jeff per https://guides.rubyonrails.org/v5.2.0/active_storage_overview.html
+  config.active_storage.service = :test
 end

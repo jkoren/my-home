@@ -57,3 +57,5 @@ gem 'active_model_serializers'
 gem 'carrierwave'
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false
+# gem 'rmagick', '~> 7.0'
+gem 'rmagick'

@@ -11,7 +11,7 @@ class RoomImageUploader < CarrierWave::Uploader::Base
   end
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
+include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
   
   # Override the directory where uploaded files will be stored.

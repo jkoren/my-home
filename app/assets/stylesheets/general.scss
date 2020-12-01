@@ -3,17 +3,17 @@
 
 // this is applied in App.js
 .pagestyle {
-  background-color: $primary
+  // background-color: $primary
 }
 
 .top-bar.menu {
-  background-color: $light-accent;
+  background-color: $primary;
 }
 
 .top-bar {
-  .menu {
-    background-color: $light-accent;
-  }
+  // .menu {
+  //   background-color: $light-accent;
+  // }
   .submenu{
     font-size: 75%
   }

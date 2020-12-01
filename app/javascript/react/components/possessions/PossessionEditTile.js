@@ -8,7 +8,6 @@ const PossessionEditTile = (props) => {
     name: props.possession.name,
     manufacturer: props.possession.manufacturer,
     model: props.possession.model,
-    // owner_manual: props.possession.owner_manual,
     description: props.possession.description,
     year_built: props.possession.year_built,
     purchased_from: props.possession.purchased_from,
@@ -17,11 +16,9 @@ const PossessionEditTile = (props) => {
     aws_purchase_receipt: props.possession.aws_purchase_receipt,
     aws_warranty: props.possession.aws_warranty,
     purchase_date: props.possession.purchase_date,
-    // purchase_receipt: props.possession.purchase_receipt,
     purchase_price: props.possession.purchase_price,
     operating_video: props.possession.operating_video,
     URL: props.possession.URL,
-    // warranty: props.possession.warranty
   });
 
   let ImageUploaded = null;
@@ -119,7 +116,7 @@ const PossessionEditTile = (props) => {
                   />
                 </label>
 
-                <label>
+                {/* <label>
                   Owner's Manual:
                   <input
                       name="owner_manual"
@@ -128,7 +125,7 @@ const PossessionEditTile = (props) => {
                       onChange={handleChange}
                       value={formFields.owner_manual}
                     />
-                </label>
+                </label> */}
 
                 <label>
                   Description of this possession:
