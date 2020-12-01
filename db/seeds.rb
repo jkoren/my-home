@@ -1,15 +1,18 @@
 # seeds.rb 
 
-#one time - normally only destroy Arlo and his houses, and normally only destroy demo users Colleen, Matthey, Barbara
-Realtor.destroy_all  
-User.destroy_all
+# delete and recreate Arlo and all his residences, and the users for his residences - leave everything else alone
 
-# delete and recreate Arlo and all his residences - leave everything else alone
+arlo = Realtor.find_by(name: 'Arlo Nugent')
+if arlo then arlo.destroy
 
-old_arlo = Realtor.find_by(name: 'Arlo Nugent')
-if old_arlo != nil
-  old_arlo.destroy
-end
+colleen = User.find_by(email: 'colleen@gmail.com')
+if colleen then colleen.destroy
+
+barbara = User.find_by(email: 'barbara@gmail.com')
+if barbara then barbara.destroy
+  
+matthew = User.find_by(email: 'matthew@gmail.com')
+if matthew then matthew.destroy
 
 # start creating data
 
@@ -18,14 +21,11 @@ arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/rea
 arlo = Realtor.create(
   name: "Arlo Nugent",
   company: "Blue Chip Realty Group",
-  # image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
   aws_image: arlo_image,
   phone_number: "(866) 823-6302",
   email: "anugent@bluechiprealtygroup.com",
   URL: "https://bluechiprealtygroup.com/"
 )
-
-# Residence.destroy_all
 
 CollegeFarmRoad = Residence.create(
   name: "315 College Farm Rd #6",
@@ -53,12 +53,10 @@ MatthewLane = Residence.create(
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/41Matthew.jpg')),
   realtor: arlo
 )
-#find_or_create_by - has issue because of requirement on multiple fields
+
 colleen = User.create(email: "colleen@gmail.com", password: "testtest", residence: CollegeFarmRoad)
 barbara = User.create(email: "barbara@gmail.com", password: "testtest", residence: BarbaraRoad)
 matthew = User.create(email: "matthew@gmail.com", password: "testtest", residence: MatthewLane)
-
-# Room.destroy_all
 
 master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
 bedroom_2_description = "Full Bathroom, Hardwood Flooring, 11 x 17, Third Floor"
@@ -68,28 +66,24 @@ laundry_room_description = "Third Floor, with Washer and Dryer"
 
 kitchen=Room.create(
   name: "Kitchen", 
-  # image: "https://m1.cbhomes.com/p/102/72707418/Ea96aC625cf1422/full.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315kitchen.jpg')),
   description: kitchen_description, 
   residence: CollegeFarmRoad
 )
 laundry_room=Room.create(
   name: "Laundry Room",
-  # image: "https://m.cbhomes.com/p/102/72707418/F7DfeA94271744E/full.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315laundryroom.jpg')),
   description: laundry_room_description, 
   residence: CollegeFarmRoad,
 )
 Room.create(
   name:"Master Bedroom",
-  # image: "https://m.cbhomes.com/p/102/72707418/9AdFd7AC4b124e7/full.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315masterbedroom.jpg')),
   description: master_bedroom_description, 
   residence: CollegeFarmRoad
 )
 Room.create(
   name:"Bedroom 2",
-  # image: "https://m1.cbhomes.com/p/102/72707418/99a05Ac24Ef442B/full.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315bedroom2.jpg')),
   description: bedroom_2_description, 
   residence: CollegeFarmRoad
@@ -97,7 +91,6 @@ Room.create(
 
 living_room = Room.create(
   name: "Living Room",
-  # image: "https://m.cbhomes.com/p/102/72707418/3365CbB65cF34cd/full.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315livingroom.jpg')),
   description: living_room_description,
   residence: CollegeFarmRoad
@@ -105,27 +98,22 @@ living_room = Room.create(
 
 garage = Room.create(
   name: "Garage",
-  # image: "https://networx.global.ssl.fastly.net/media/500x313/art_58acb8df596f2.jpeg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315garage.jpeg')),
   residence: CollegeFarmRoad
 )
 
 basement = Room.create(
   name: "Basement",
-  # image: "https://www.kingofmaids.com/blog/wp-content/uploads/2017/06/basement-empty-1024x682.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315basement.jpg')),
   residence: CollegeFarmRoad
 )
 
 no_room = Room.create(
   name: "No Room",
-  # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315noroom.jpg')),
   description: "Items that move from Room to Room",
   residence: CollegeFarmRoad
 )
-
-#  Possession.destroy_all
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
