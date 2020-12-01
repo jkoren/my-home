@@ -1,39 +1,32 @@
 # require 'rails_helper'
 
-# feature 'user signs out', %Q{
-#   As an authenticated user
-#   I want to sign out
-#   So that my identity is forgotten about on the machine I'm using
-# } do
-#   # Acceptance Criteria
-#   # * If I'm signed in, I have an option to sign out
-#   # * When I opt to sign out, I get a confirmation that my identity has been
-#   #   forgotten on the machine I'm using
+feature 'user signs out', %Q{
+  As an authenticated user
+  I want to sign out
+  So that my identity is forgotten about on the machine I'm using
+} do
+  # Acceptance Criteria
+  # If I'm signed in, I have an option to sign out
+  # When I opt to sign out, I get a confirmation that my identity has been forgotten on the machine I'm using
 
-#   scenario 'authenticated user signs out' do
-#     # user = FactoryBot.create(:user) - failed when added relation from user to realtor through residence
+  scenario 'authenticated user signs out' do
+    user = FactoryBot.create(:user)
 
-#     deedee = Realtor.find_or_create_by(name: "Dee Dee Ramone")  
+    visit new_user_session_path
 
-#     BlitzkriegRoad = Residence.find_or_create_by(name: "315 College Farm Rd #6", realtor: deedee)
-    
-#     user = User.find_or_create_by(email: 'joey@gmail.com')
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
 
-#     visit new_user_session_path
+    click_button 'Log in'
 
-#     fill_in 'Email', with: user.email
-#     fill_in 'Password', with: user.password
+    expect(page).to have_content('Signed in successfully')
 
-#     click_button 'Log in'
+    click_link 'Sign Out'
+    expect(page).to have_content('Signed out successfully')
+  end
 
-#     expect(page).to have_content('Signed in successfully')
-
-#     click_link 'Sign Out'
-#     expect(page).to have_content('Signed out successfully')
-#   end
-
-#   scenario 'unauthenticated user attempts to sign out' do
-#     visit '/'
-#     expect(page).to_not have_content('Sign Out')
-#   end
-# end
+  scenario 'unauthenticated user attempts to sign out' do
+    visit '/'
+    expect(page).to_not have_content('Sign Out')
+  end
+end
