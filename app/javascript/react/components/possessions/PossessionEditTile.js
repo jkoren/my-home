@@ -116,17 +116,6 @@ const PossessionEditTile = (props) => {
                   />
                 </label>
 
-                {/* <label>
-                  Owner's Manual:
-                  <input
-                      name="owner_manual"
-                      id="owner_manual"
-                      type="text"
-                      onChange={handleChange}
-                      value={formFields.owner_manual}
-                    />
-                </label> */}
-
                 <label>
                   Description of this possession:
                   <input

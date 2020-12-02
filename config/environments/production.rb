@@ -93,4 +93,7 @@ Rails.application.configure do
 
   # Store files on Amazon S3  - added by jeff per https://guides.rubyonrails.org/v5.2.0/active_storage_overview.html
 config.active_storage.service = :amazon
+
+  config.action_mailer.default_url_options = {host: 'localhost:3000'}
+  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
 end

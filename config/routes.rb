@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/possessions/:id', to: 'homes#index'
   get '/about', to: 'homes#index'
   get '/demo', to: 'homes#index'
+  get '/providethis', to: 'homes#index'
   get '/possessions/newest', to: 'homes#index'
 
   get "/residences/:id/rooms/new", to: "homes#index" 
