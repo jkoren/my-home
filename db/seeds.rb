@@ -116,13 +116,12 @@ no_room = Room.create(
 )
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
+
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
-microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.webp'))
+
 range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
-refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.webp'))
+
 cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
-thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
-washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
 
 dishwasher_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/6651372 Kenmore Ultrawash Dishwasher.pdf'))
 
@@ -158,6 +157,8 @@ Possession.create(
   room: kitchen
 )
 
+microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.jpg'))
+
 Possession.create(
   name:"Microwave", 
   manufacturer: "KitchenAid", 
@@ -179,6 +180,8 @@ Possession.create(
   operating_video: "",
   room: kitchen
 )
+
+refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.jpg'))
 
 Possession.create(
   name:"Refrigerator", 
@@ -202,6 +205,8 @@ Possession.create(
   room: laundry_room
 )
 
+washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.jpg'))
+
 Possession.create(
   name:"Washing Machine", 
   manufacturer: "LG", 
@@ -212,6 +217,8 @@ Possession.create(
   operating_video: "",
   room: laundry_room
 )
+
+thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.jpg'))
 
 Possession.create(
   name:"Thermostat", 
@@ -231,8 +238,6 @@ Possession.create(
 # Dual boiler with E61 group head and rotary pump
 
 # --- run one time
-
-
 
 # no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
 
@@ -349,3 +354,13 @@ Possession.create(
 #   description: "Items that move from Room to Room",
 #   residence: GroveRoad
 # )
+
+# testing
+# laundry_room = Room.find(602)
+# poss = Possession.new(name: "cat", manufacturer: "cat's mom", room: laundry_room)
+# poss.save
+# cat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.jpg'))
+# cat_pdf = washingMachine_image = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/laundry-room/dryer.pdf'))
+# poss.aws_image = cat_image
+# poss.aws_owners_manual = cat_pdf
+# poss.save
