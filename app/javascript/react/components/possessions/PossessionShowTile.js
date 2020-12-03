@@ -4,16 +4,26 @@ import YelpApplianceRepairProIndexTile from "../YelpApplianceRepairProIndexTile"
 import { Link } from "react-router-dom";
 
 const PossessionShowTile = (props) => {
+
+  // to handle cases where there is no aws file
+  let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : "")
+  let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : "")
+  let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : "")
+  let aws_warranty_url = (props.possession.aws_warranty ? props.possession.aws_warranty.url : "")
+
+  let youtube_video = `https://www.youtube.com/watch?v=${props.possession.operating_video}`
+  let youtube_embed_video = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${props.possession.operating_video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-      <div className="cell ">
+      <div className="cell">
         <h4>{props.possession.name}</h4>
         <h5>{props.possession.manufacturer} {props.possession.model}</h5>
       </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={props.possession.aws_image.url} alt="missing aws picture" width="450" />
+          <img src={aws_image_url} alt="missing aws picture" width="450" />
         </div>
 
         <div className="cell small-12 medium-6 text-left">
@@ -22,10 +32,11 @@ const PossessionShowTile = (props) => {
           <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
               <div>
-                <a href={props.possession.owners_manual}> 
+              <a href={aws_owners_manual_url}> 
                   <h5>Owner's Manual</h5>
                   <i className="fa fa-book fa-1x"></i>
-                  <h6> {props.possession.owners_manual}</h6>
+                  <embed src={aws_owners_manual_url} width="80px" height="105px" />
+                {/* <h6> {props.possession.aws_owners_manual.url}</h6> */}
                 </a>
               </div>
             </div>
@@ -44,24 +55,34 @@ const PossessionShowTile = (props) => {
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
             <div>
-              
-                <a href={props.possession.operating_video}>
+                <a href={youtube_video}>
                   <h5>Operating Video</h5>
                   <i className="fab fa-youtube fa-1x"></i>
-                <h6> {props.possession.operating_video}</h6>
+                  Thumbnail
+                  <h6> {props.possession.operating_video}</h6>
+
+                {/* should be 
+
+                youtube video:
+                https://www.youtube.com/watch?v=g_dfzV2EiU8
+
+                youtube embed video
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/g_dfzV2EiU8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
+                
                 </a>
-              
             </div>
           </div>
           <div className="small-12 medium-6 text-center callout">
-            <div>
-              
-                <a href={props.possession.purchase_receipt}>
-                  <h5>Purchase Receipt</h5>
-                    <i className="fa fa-file-alt fa-1x"></i>
-                  <h6> {props.possession.purchase_receipt}</h6>
-                </a>
-              
+            <div> 
+              <a href={aws_purchase_receipt_url}>
+                <h5>Purchase Receipt</h5>
+                <i className="fa fa-file-alt fa-1x"></i>
+
+                <img src={aws_purchase_receipt_url} alt="missing aws picture" width="450" />
+
+                {/* <h6> {props.possession.purchase_receipt_url}</h6> */}
+                {/* <embed src={aws_purchase_receipt_url} width="80px" height="105px" />  */}
+              </a>
             </div>
           </div>
         </div>
@@ -71,10 +92,12 @@ const PossessionShowTile = (props) => {
           <div className="small-12 medium-6 text-center callout">
             <div>
               
-                <a href={props.possession.warranty}>
-                  <h5>Warranty Document</h5>
-                  <i className="fa fa-file-alt fa-1x"></i>
-                <h6> {props.possession.warranty}</h6>
+              <a href={aws_warranty_url}>
+                <h5>Warranty</h5>
+                <i className="fa fa-file-alt fa-1x"></i>
+                {/* <h6> {props.possession.warranty}</h6> */}
+                <embed src={aws_warranty_url} width="80px" height="105px" />
+                
                 </a>
               
             </div>
