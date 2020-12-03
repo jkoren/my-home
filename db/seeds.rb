@@ -58,30 +58,32 @@ colleen = User.create(email: "colleen@gmail.com", password: "testtest", residenc
 barbara = User.create(email: "barbara@gmail.com", password: "testtest", residence: BarbaraRoad)
 matthew = User.create(email: "matthew@gmail.com", password: "testtest", residence: MatthewLane)
 
-master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
-bedroom_2_description = "Full Bathroom, Hardwood Flooring, 11 x 17, Third Floor"
-kitchen_description = "Hardwood Flooring, Stone/Granite/Solid Countertops, Recessed Lighting, Stainless Steel Appliances, 13 x 12, First Floor"
-living_room_description = "Hardwood Flooring, Recessed Lighting, Wainscoting, Crown Molding, 12 x 16, First Floor"
-laundry_room_description = "Third Floor, with Washer and Dryer"
 
+kitchen_description = "Hardwood Flooring, Stone/Granite/Solid Countertops, Recessed Lighting, Stainless Steel Appliances, 13 x 12, First Floor"
 kitchen=Room.create(
   name: "Kitchen", 
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315kitchen.jpg')),
   description: kitchen_description, 
   residence: CollegeFarmRoad
 )
+
+laundry_room_description = "Third Floor, with Washer and Dryer"
 laundry_room=Room.create(
   name: "Laundry Room",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315laundryroom.jpg')),
   description: laundry_room_description, 
   residence: CollegeFarmRoad,
 )
+
+master_bedroom_description = "Full Bathroom, Walk-In Closet, Hardwood Flooring, 13 x 13, Second Floor."
 Room.create(
   name:"Master Bedroom",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315masterbedroom.jpg')),
   description: master_bedroom_description, 
   residence: CollegeFarmRoad
 )
+
+bedroom_2_description = "Full Bathroom, Hardwood Flooring, 11 x 17, Third Floor"
 Room.create(
   name:"Bedroom 2",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315bedroom2.jpg')),
@@ -89,6 +91,7 @@ Room.create(
   residence: CollegeFarmRoad
 )
 
+living_room_description = "Hardwood Flooring, Recessed Lighting, Wainscoting, Crown Molding, 12 x 16, First Floor"
 living_room = Room.create(
   name: "Living Room",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315livingroom.jpg')),
@@ -116,35 +119,27 @@ no_room = Room.create(
 )
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
-
-dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
-
-range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
-
-cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
-
-dishwasher_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/6651372 Kenmore Ultrawash Dishwasher.pdf'))
-
-cuisinart_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf'))
-
+dishwasher_owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Dishwasher.pdf'))
+dishwasher_invoice_jpg = File.open(File.join( Rails.root, '/app/assets/documents/purchase_receipts/dehumidier invoice.jpg'))
+dishwasher_warranty_jpg = File.open(File.join( Rails.root, '/app/assets/documents/warranties/dishwasher-page-001.jpg'))
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
-
 Possession.create(
   name:"Dishwasher", 
   manufacturer: "Kenmore", 
   model: "Ultra Wash 665.1372",
   aws_image: dishwasher_image,
-  aws_owners_manual: dishwasher_pdf,
+  aws_owners_manual: dishwasher_owners_manual_pdf,
+  aws_warranty: dishwasher_warranty_jpg,
+  aws_purchase_receipt: dishwasher_invoice_jpg,
   description: dishwasher_description, 
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
-  warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
-  purchase_receipt: "",
   room: kitchen
 )
 
+cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
 cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
-
+cuisinart_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Cuisinart.pdf'))
 Possession.create(
   name:"Cuisinart", 
   manufacturer: "Cuisinart", 
@@ -158,7 +153,6 @@ Possession.create(
 )
 
 microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.jpg'))
-
 Possession.create(
   name:"Microwave", 
   manufacturer: "KitchenAid", 
@@ -170,6 +164,7 @@ Possession.create(
   room: kitchen
 )
 
+range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
 Possession.create(
   name:"Range", 
   manufacturer: "BlueStar", 
@@ -182,7 +177,6 @@ Possession.create(
 )
 
 refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.jpg'))
-
 Possession.create(
   name:"Refrigerator", 
   manufacturer: "KitchenAid", 
@@ -194,6 +188,7 @@ Possession.create(
   room: kitchen
 )
 
+dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
 Possession.create(
   name:"Dryer", 
   manufacturer: "Whirlpool", 
@@ -206,7 +201,6 @@ Possession.create(
 )
 
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.jpg'))
-
 Possession.create(
   name:"Washing Machine", 
   manufacturer: "LG", 
@@ -219,7 +213,6 @@ Possession.create(
 )
 
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.jpg'))
-
 Possession.create(
   name:"Thermostat", 
   manufacturer: "Google Nest", 
