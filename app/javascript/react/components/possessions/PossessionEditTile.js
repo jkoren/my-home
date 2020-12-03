@@ -24,7 +24,7 @@ const PossessionEditTile = (props) => {
     // warranty: props.possession.warranty
   });
 
-  let ImageUploaded = null;
+  let imageUploaded = null;
   let owners_manualUploaded = null;
 
   const handleAWS_image_upload = (acceptedFiles) => {
@@ -55,7 +55,7 @@ const PossessionEditTile = (props) => {
   };
 
   if (formFields.aws_image != "") {
-    ImageUploaded = (
+    imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded:
          {formFields.aws_image.path}
@@ -157,7 +157,7 @@ const PossessionEditTile = (props) => {
                     </div>
                   )}
                 </Dropzone>
-                {ImageUploaded}
+                {imageUploaded}
               
                 <Dropzone onDrop={handleAWS_owners_manual_upload}>
                   {({ getRootProps, getInputProps }) => (
