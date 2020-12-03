@@ -3,16 +3,16 @@
 # delete and recreate Arlo and all his residences, and the users for his residences - leave everything else alone
 
 arlo = Realtor.find_by(name: 'Arlo Nugent')
-if arlo then arlo.destroy
+arlo.destroy if arlo
 
 colleen = User.find_by(email: 'colleen@gmail.com')
-if colleen then colleen.destroy
+colleen.destroy if colleen
 
 barbara = User.find_by(email: 'barbara@gmail.com')
-if barbara then barbara.destroy
+barbara.destroy if barbara
   
 matthew = User.find_by(email: 'matthew@gmail.com')
-if matthew then matthew.destroy
+matthew.destroy if matthew
 
 # start creating data
 
@@ -124,6 +124,10 @@ cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_imag
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.webp'))
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.webp'))
 
+dishwasher_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/6651372 Kenmore Ultrawash Dishwasher.pdf'))
+
+cuisinart_pdf = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf'))
+
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 
 Possession.create(
@@ -131,12 +135,26 @@ Possession.create(
   manufacturer: "Kenmore", 
   model: "Ultra Wash 665.1372",
   aws_image: dishwasher_image,
+  aws_owners_manual: dishwasher_pdf,
   description: dishwasher_description, 
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
-  owners_manual: "https://www.manualslib.com/manual/666454/Kenmore-665-1372.html?page=6",
   warranty: "https://i.sears.com/s/d/pdf/mp-tc/10130653/prod_20510932512",
   purchase_receipt: "",
+  room: kitchen
+)
+
+cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
+
+Possession.create(
+  name:"Cuisinart", 
+  manufacturer: "Cuisinart", 
+  model: "DLC-8S",
+  aws_image: cuisinart_image,
+  aws_owners_manual: cuisinart_pdf,
+  description: cuisinart_description, 
+  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
+  operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
   room: kitchen
 )
 
@@ -195,21 +213,6 @@ Possession.create(
   room: laundry_room
 )
 
-# cuisinart_owners_manual = "../app/assets/documents/seed_pdfs/kitchen/Cuisnart DLC-8S instruction and recipe book.pdf"
-
-cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
-
-Possession.create(
-  name:"Cuisinart", 
-  manufacturer: "Cuisinart", 
-  model: "DLC-8S",
-  owners_manual: "",
-  description: cuisinart_description, 
-  aws_image: cuisinart_image,
-  URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
-  operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
-  room: kitchen)
-
 Possession.create(
   name:"Thermostat", 
   manufacturer: "Google Nest", 
@@ -229,120 +232,120 @@ Possession.create(
 
 # --- run one time
 
-# delete all residences with no realtor and recreate (one time only)
-
-old_no_realtor = Realtor.find_by(name: 'No Realtor')
-if old_no_realtor != nil
-  old_no_realtor.destroy
-end
-no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
-
-no_realtor = Realtor.create(
-  name: "No Realtor",
-  company: "No Company",
-  image: "",
-  aws_image: no_realtor_image,
-  phone_number: "",
-  email: "",
-  URL: "https://www.forsalebyowner.com/"
-)
-
-GroveRoad = Residence.create(
-  name: "18 Grove Road",
-  street: "18 Grove Road",
-  city: "Waltham",
-  state: "MA",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/18Grove.jpg')),
-  realtor: no_realtor
-)
-
-jeff = User.create(email: "jeff@gmail.com", password: "testtest", residence: GroveRoad)
-
-Room.create(
-    name: "Master Bedroom",
-    # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-    aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-    description: "",
-    residence: GroveRoad
-  )
-
-Room.create(
-  name: "Nicole & Olivia\'s Bedroom",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
-
-Room.create(
-  name: "Noah & Sophie\'s Bedroom",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
-
-Room.create(
-  name: "Master Bathroom",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
-
-Room.create(
-  name: "Kid\'s Bathroom",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
 
 
-Room.create(
-  name: "Kitchen",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
+# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
 
-Room.create(
-  name: "Basement",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
+# dave = Realtor.create(
+#   name: "Dave Digregorio",
+#   company: "Coldwell Banker Residential Brokerage",
+#   phone_number: "617-909-7888",
+#   email: "dave@davedrealestate.com",
+#   URL: "https://www.davedrealestate.com/"
+# )
 
-Room.create(
-  name: "Jeff\'s Office",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
+# no_realtor = Realtor.create(
+#   name: "My-Home",
+#   aws_image: no_realtor_image,
+#   URL: "https://my-home-222.herokuapp.com/providethis"
+# )
 
-Room.create(
-  name: "Den",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
+# GroveRoad = Residence.create(
+#   name: "18 Grove Road",
+#   street: "18 Grove Road",
+#   city: "Waltham",
+#   state: "MA",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/18Grove.jpg')),
+#   realtor: dave
+# )
 
-Room.create(
-  name: "Living Room",
-  # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-  description: "",
-  residence: GroveRoad
-)
+# jeff = User.create(email: "jeff@gmail.com", password: "testtest", residence: GroveRoad)
 
-Room.create(
-  name: "No Room",
-  # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/18noroom.jpg')),
-  description: "Items that move from Room to Room",
-  residence: GroveRoad
-)
+# Room.create(
+#     name: "Master Bedroom",
+#     # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#     aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#     description: "",
+#     residence: GroveRoad
+#   )
+
+# Room.create(
+#   name: "Nicole & Olivia\'s Bedroom",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Noah & Sophie\'s Bedroom",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Master Bathroom",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Kid\'s Bathroom",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+
+# Room.create(
+#   name: "Kitchen",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Basement",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Jeff\'s Office",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Den",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "Living Room",
+#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
+#   description: "",
+#   residence: GroveRoad
+# )
+
+# Room.create(
+#   name: "No Room",
+#   # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/18noroom.jpg')),
+#   description: "Items that move from Room to Room",
+#   residence: GroveRoad
+# )

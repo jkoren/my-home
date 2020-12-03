@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import RealtorsIndexforDemo from "./realtors/RealtorsIndexForDemo";
 import RealtorPage from "./realtors/RealtorPage"
 import RealtorsIndexForDemo from "./realtors/RealtorsIndexForDemo"
 import ResidencesIndexForDemo from "./residences/ResidencesIndexForDemo"
@@ -11,6 +10,7 @@ import PossessionPage from "./possessions/PossessionPage"
 import RoomNewForm from "./rooms/RoomNewForm"
 import PossessionNewForm from "./possessions/PossessionNewForm"
 import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
+import ProvideThis from "./ProvideThis";
 import ResidenceNewForm from "./residences/ResidenceNewForm"
 import AboutPage from "./AboutPage"
 import Sidebar from "./Sidebar"
@@ -26,6 +26,7 @@ const Layout = (props) => {
               <Switch>
                 <Route exact path="/" component={AboutPage} />
                 <Route exact path="/about" component={AboutPage} />
+                <Route exact path="/providethis" component={ProvideThis} />
                 <Route exact path="/demo" component={RoomsIndexForDemo} />
 
                 <Route exact path="/realtors" component={RealtorsIndexForDemo} />

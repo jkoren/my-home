@@ -16,10 +16,12 @@ const PossessionPage = (props) => {
     description: "",
     year_built: "",
     purchased_from: "",
-    // image: "",
-    aws_image: "",
+    aws_image: {},
+    aws_owners_manual: {},
+    aws_purchase_receipt:{},
+    aws_warranty: {},
     purchase_date: "",
-    purchase_receipt: "",
+    purchase_receipt: {},
     purchase_price: "",
     operating_video: "",
     URL: "",
@@ -64,6 +66,9 @@ const PossessionPage = (props) => {
     updatedPossession.append("year_built", message.possession.year_built)
     updatedPossession.append("purchased_from", message.possession.purchased_from)
     updatedPossession.append("aws_image", message.possession.aws_image)
+    updatedPossession.append("aws_owners_manual", message.possession.aws_owners_manual)
+    updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
+    updatedPossession.append("aws_warranty", message.possession.aws_warranty)
     updatedPossession.append("purchase_date", message.possession.purchase_date)
     updatedPossession.append("purchase_price", message.possession.purchase_price)
     updatedPossession.append("operating_video", message.possession.operating_video)
@@ -76,6 +81,7 @@ const PossessionPage = (props) => {
       headers: {
         "Accept": "application/json",
         "Accept": "image/jpeg",
+        "Accept": "multipart/form-data",
       },
     })
       .then((response) => {
