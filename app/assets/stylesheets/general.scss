@@ -1,11 +1,6 @@
 // general.scss
 @import "./color_palette";
 
-// this is applied in App.js
-.pagestyle {
-  // background-color: $primary
-}
-
 .top-bar.menu {
   background-color: $primary;
 }
@@ -22,6 +17,15 @@
 .top-bar-left {
   display: inline-flex;
 }
+
+.does_exist {
+  color: green
+}
+
+.doesnt_exist {
+  color: red
+}
+
 
 // for tiles
 .box-shadow {

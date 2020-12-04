@@ -5,14 +5,33 @@ import { Link } from "react-router-dom";
 
 const PossessionShowTile = (props) => {
 
-  // to handle cases where there is no aws file
-  let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : "")
-  let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : "")
-  let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : "")
-  let aws_warranty_url = (props.possession.aws_warranty ? props.possession.aws_warranty.url : "")
+  // to handle cases where there is no aws file, and color font appropriately
 
-  let youtube_video = `https://www.youtube.com/watch?v=${props.possession.operating_video}`
-  let youtube_embed_video = `<iframe width="560" height="315" src="https://www.youtube.com/embed/${props.possession.operating_video}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+  // this may not be necessary, all data may now have a .url field, not that uploaders are set.  (once db:seed is run)
+  let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : nil)
+  let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
+  let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : nil)
+  let aws_warranty_url = (props.possession.aws_warranty ? props.possession.aws_warranty.url : nil)
+
+  let aws_owners_manual_icon = (props.possession.aws_owners_manual.url ? 
+    "fa fa-book fa-1x does_exist" : 
+    "fa fa-book fa-1x doesnt_exist")
+
+  let aws_warranty_icon = (props.possession.aws_warranty.url ? 
+    "fa fa-file-alt fa-1x does_exist":
+    "fa fa-file-alt fa-1x doesnt_exist")
+
+  let aws_purchase_receipt_icon = (props.possession.aws_purchase_receipt.url ? 
+    "fa fa-file-alt fa-1x does_exist":
+    "fa fa-file-alt fa-1x doesnt_exist")
+
+  let URL_icon = (props.possession.URL ? 
+    "fa fa-desktop fa-1x does_exist":
+    "fa fa-desktop fa-1x doesnt_exist")
+
+  let operating_video_icon = (props.possession.operating_video ? 
+    "fab fa-youtube fa-1x does_exist":
+    "fab fa-youtube fa-1x doesnt_exist")
 
   return (
     <div className="grid-x grid-padding-x">
@@ -32,20 +51,23 @@ const PossessionShowTile = (props) => {
           <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
               <div>
-              <a href={aws_owners_manual_url}> 
-                  <h5>Owner's Manual</h5>
-                  <i className="fa fa-book fa-1x"></i>
+              <a href={aws_owners_manual_url} target="_blank"> 
+                <h5>Owner's Manual</h5>
+                <i className={aws_owners_manual_icon}></i>
+                <div>
                   <embed src={aws_owners_manual_url} width="80px" height="105px" />
-                {/* <h6> {props.possession.aws_owners_manual.url}</h6> */}
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
+          </div>
           <div className="small-12 medium-6 text-center callout">
               <div>
-                <a href={props.possession.URL}>
+              <a href={props.possession.URL} target="_blank">
                   <h5>Manufacturer Site</h5>
-                  <i className="fa fa-desktop fa-1x"></i>
-                <h6> {props.possession.URL}</h6>
+                  <div>
+                    <i className={URL_icon}></i>
+                  </div>
+                  {/* <img src="./thumbnails/invoice_thumbnail.jpg"></img> */}
                 </a>
               </div>
             </div>
@@ -55,33 +77,21 @@ const PossessionShowTile = (props) => {
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
             <div>
-                <a href={youtube_video}>
+              <a href={props.possession.operating_video} target="_blank">
                   <h5>Operating Video</h5>
-                  <i className="fab fa-youtube fa-1x"></i>
-                  Thumbnail
-                  <h6> {props.possession.operating_video}</h6>
-
-                {/* should be 
-
-                youtube video:
-                https://www.youtube.com/watch?v=g_dfzV2EiU8
-
-                youtube embed video
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/g_dfzV2EiU8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> */}
-                
+                  <i className={operating_video_icon}></i>
                 </a>
             </div>
           </div>
           <div className="small-12 medium-6 text-center callout">
             <div> 
-              <a href={aws_purchase_receipt_url}>
+              <a href={aws_purchase_receipt_url} target="_blank">
                 <h5>Purchase Receipt</h5>
-                <i className="fa fa-file-alt fa-1x"></i>
+                <i className={aws_purchase_receipt_icon}></i>
 
-                <img src={aws_purchase_receipt_url} alt="missing aws picture" width="450" />
-
-                {/* <h6> {props.possession.purchase_receipt_url}</h6> */}
-                {/* <embed src={aws_purchase_receipt_url} width="80px" height="105px" />  */}
+                <img src={aws_purchase_receipt_url} 
+                  // alt="missing aws picture" 
+                  width="450" />
               </a>
             </div>
           </div>
@@ -91,15 +101,11 @@ const PossessionShowTile = (props) => {
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
             <div>
-              
-              <a href={aws_warranty_url}>
+              <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
-                <i className="fa fa-file-alt fa-1x"></i>
-                {/* <h6> {props.possession.warranty}</h6> */}
-                <embed src={aws_warranty_url} width="80px" height="105px" />
-                
-                </a>
-              
+                <i className={aws_warranty_icon}></i>
+                <img src={aws_warranty_url} alt="" width="450" />
+              </a>
             </div>
           </div>
           <div className="small-12 medium-6 text-center callout">
