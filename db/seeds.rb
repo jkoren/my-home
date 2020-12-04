@@ -117,11 +117,12 @@ no_room = Room.create(
   description: "Items that move from Room to Room",
   residence: CollegeFarmRoad
 )
+invoice_jpg = File.open(File.join( Rails.root, '/app/assets/documents/purchase_receipts/dehumidier invoice.jpg'))
+
+warranty_jpg = File.open(File.join( Rails.root, '/app/assets/documents/warranties/dishwasher-page-001.jpg'))
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 dishwasher_owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Dishwasher.pdf'))
-dishwasher_invoice_jpg = File.open(File.join( Rails.root, '/app/assets/documents/purchase_receipts/dehumidier invoice.jpg'))
-dishwasher_warranty_jpg = File.open(File.join( Rails.root, '/app/assets/documents/warranties/dishwasher-page-001.jpg'))
 dishwasher_description = "The ULTRA WASH® Soil Removal System gives you sparkling clean dishes, while using less energy and time. The ULTRA WASH® Soil Removal System includes a Triple Action Filtration system that intermittently filters soil from the wash water, thus eliminating the need to scrape dishes."
 Possession.create(
   name:"Dishwasher", 
@@ -129,98 +130,113 @@ Possession.create(
   model: "Ultra Wash 665.1372",
   aws_image: dishwasher_image,
   aws_owners_manual: dishwasher_owners_manual_pdf,
-  aws_warranty: dishwasher_warranty_jpg,
-  aws_purchase_receipt: dishwasher_invoice_jpg,
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
   description: dishwasher_description, 
   URL:  "https://www.kenmore.com/products/kenmore-elite-14793-24-built-in-dishwasher-stainless-steel",
   operating_video: "https://www.youtube.com/watch?v=g_dfzV2EiU8",
   room: kitchen
 )
 
-cuisinart_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
-cuisinart_description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
-cuisinart_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Cuisinart.pdf'))
+image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/cuisinart.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Cuisinart.pdf'))
+description = "From the Cuisinart Pro Custom 11™ 11 Cup Food Processor's cover with large feed tube and unique compact chopping/kneading cover, to its industrial quality motor, this kitchen powerhouse is built to deliver professional results year after year. With two different slicing discs, a shredding disc, a chopping/mixing blade, and two sizes of pushers, you can make fast work of any recipe prep without breaking a sweat. "
 Possession.create(
   name:"Cuisinart", 
   manufacturer: "Cuisinart", 
   model: "DLC-8S",
-  aws_image: cuisinart_image,
-  aws_owners_manual: cuisinart_pdf,
-  description: cuisinart_description, 
+  aws_image: image,
+  aws_owners_manual: owners_manual_pdf,
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  description: description, 
   URL:  "https://www.cuisinart.com/shopping/discontinued/food_processors/dlc-8s/",
   operating_video: "https://www.youtube.com/watch?v=2MnNeKrF7b4",
   room: kitchen
 )
 
-microwave_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.jpg'))
+image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Cuisinart.pdf'))
 Possession.create(
   name:"Microwave", 
   manufacturer: "KitchenAid", 
   model: "KMLS311HSS",
   description: "30 Inch Wide 1.1 Cu. Ft. 1000 Watt Over the Range Microwave",
-  aws_image: microwave_image,
-  URL:  "",
-  operating_video: "",
+  aws_image: image,
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: kitchen
 )
 
-range_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
+image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/range.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/range-blue-star.pdf'))
 Possession.create(
   name:"Range", 
   manufacturer: "BlueStar", 
   model: "RNB366BV2",
   description: "Nova Series 36 Inch Wide 5.1 Cu. Ft. Free Standing Natural Gas Range",
-  aws_image: range_image,
-  URL:  "",
-  operating_video: "",
+  aws_image: image,
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: kitchen
 )
 
 refrigerator_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/refrigerator.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Refrigerator.pdf'))
 Possession.create(
   name:"Refrigerator", 
   manufacturer: "KitchenAid", 
   model: "KRFC300ESS",
   description: "36 Inch Wide 20 Cu. Ft. Counter Depth French Door Refrigerator with Interior Water Dispenser",
   aws_image: refrigerator_image,
-  URL:  "",
-  operating_video: "",
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: kitchen
 )
 
 dryer_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dryer.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Dryer.pdf'))
 Possession.create(
   name:"Dryer", 
   manufacturer: "Whirlpool", 
   model: "WGD8620HW",
   description: "27 Inch Wide 7.4 Cu Ft. Energy Star Rated Gas Dryer",
   aws_image: dryer_image,
-  URL:  "",
-  operating_video: "",
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: laundry_room
 )
 
 washingMachine_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/washing_machine.pdf'))
 Possession.create(
   name:"Washing Machine", 
   manufacturer: "LG", 
   model: "WM9000HVA",
   description: "5.2 Cubic Feet Mega Capacity Washing Machine with On-Door Control Panel and TurboWash",
   aws_image: washingMachine_image,
-  URL:  "",
-  operating_video: "",
+  URL: 'http://gscs-manual.lge.com/DFZ/MFL67737697/en-us/main.html',
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: laundry_room
 )
 
 thermostat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/thermostat.jpg'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Google-Nest-Thermostat-Welcome-Guide.pdf'))
 Possession.create(
   name:"Thermostat", 
   manufacturer: "Google Nest", 
   model: "T3019US",
   description: "Nest Learning Thermostat - 3rd Generation",
   aws_image: thermostat_image,
-  URL:  "",
-  operating_video: "",
+  aws_warranty: warranty_jpg,
+  aws_purchase_receipt: invoice_jpg,
+  aws_owners_manual: owners_manual_pdf,
   room: living_room
 )
 
