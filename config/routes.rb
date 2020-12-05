@@ -17,20 +17,17 @@ Rails.application.routes.draw do
   get "/rooms/:id/possessions/new", to: "homes#index" 
 
   namespace :api do
-    namespace :v1 do
-      # resources :residences, only: [:index, :show, :update, :destroy]
-      # resources :rooms, only: [:index, :show, :update, :destroy]
-      
-      resources :realtors, only: [:index, :show, :update, :destroy, :create] do
-        resources :residences, only: [:index, :show, :create]
+    namespace :v1 do   
+      resources :realtors, only: [:index, :show] do
+        resources :residences, only: [:create]
       end
       
-      resources :residences, only: [:index, :show, :update, :destroy] do
-        resources :rooms, only: [:index, :show, :create]
+      resources :residences, only: [:index, :show] do
+        resources :rooms, only: [:create]
       end
       
-      resources :rooms, only: [:index, :show, :update, :destroy] do
-        resources :possessions, only: [:index, :show, :create]
+      resources :rooms, only: [:index, :show] do
+        resources :possessions, only: [:create]
       end
       
       resources :possessions, only: [:index, :show, :update, :destroy]

@@ -8,9 +8,11 @@ class Api::V1::ResidencesController < ApiController
   
 
   def index # for demo use only
-    # demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
-    # residences = demo_realtor.residences
-    residences = Residence.all
+    #if current_user.admin?
+    #  residences = Residence.all
+    #else
+    residences = Residence.select{|residence|residence.users.include?(current_user)}
+    #end
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
