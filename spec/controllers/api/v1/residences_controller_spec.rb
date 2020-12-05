@@ -1,53 +1,46 @@
 # residences_controller_spec.rb
-require "rails_helper"
+# require "rails_helper"
 
-RSpec.describe Api::V1::ResidencesController, type: :controller do 
-  arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
+# RSpec.describe Api::V1::ResidencesController, type: :controller do 
+#   arlo_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/arlo_nugent.jpg'))
 
-  let!(:arlo) {
-    Realtor.create(
-      name: "Arlo Nugent",
-      company: "Blue Chip Realty Group",
-      image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
-      aws_image: arlo_image,
-      phone_number: "(866) 823-6302",
-      email: "anugent@bluechiprealtygroup.com",
-      URL: "bluechiprealtygroup.com"
-    )}
+#   let!(:arlo) {
+#     Realtor.create(
+#       name: "Arlo Nugent",
+#       company: "Blue Chip Realty Group",
+#       image: "https://s3-media0.fl.yelpcdn.com/bphoto/GWQp_QqlWimHrpWaq2hCCQ/o.jpg",
+#       aws_image: arlo_image,
+#       phone_number: "(866) 823-6302",
+#       email: "anugent@bluechiprealtygroup.com",
+#       URL: "bluechiprealtygroup.com"
+#     )}
 
- let!(:MatthewLane) { 
-   Residence.create(
-    name: "41 Matthew Ln",
-    street: "41 Matthew Ln",
-    city: "Waltham",
-    state: "MA",
-    image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
-    realtor: arlo
-  )}
-
-#  let!(:CollegeFarm) { 
+#  let!(:MatthewLane) { 
 #    Residence.create(
-#     name: "315 College Farm Rd #6",
-#     street: "315 College Farm Rd #6",
+#     name: "41 Matthew Ln",
+#     street: "41 Matthew Ln",
 #     city: "Waltham",
 #     state: "MA",
-#     image: "https://m1.cbhomes.com/p/102/72707418/bf5EFC892DD14f6/full.jpg",
+#     image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
 #     realtor: arlo
 #   )}
 
-  describe "GET#index" do
-    it "should return a list of all the residences" do
-      get :index
-      returned_json = JSON.parse(response.body)
-      expect(response.status).to eq 200
-      expect(response.content_type).to eq("application/json")
-      expect(returned_json.length).to eq 1
+#   # needs to be completed
+#   user = FactoryBot.create(:user)
 
-      expect(returned_json[0]["name"]).to eq "41 Matthew Ln"
-      expect(returned_json[0]["city"]).to eq "Waltham"
+#   describe "GET#index" do
+#     it "a logged in 'member' user should see their residence" do
+#       get :index
+#       returned_json = JSON.parse(response.body)
+#       expect(response.status).to eq 200
+#       expect(response.content_type).to eq("application/json")
+#       expect(returned_json.length).to eq 1
 
-    end
-  end
+#       # expect(returned_json[0]["name"]).to eq "41 Matthew Ln"
+#       # expect(returned_json[0]["city"]).to eq "Waltham"
+
+#     end
+#   end
 
   # describe "GET#show" do
 
@@ -159,4 +152,4 @@ RSpec.describe Api::V1::ResidencesController, type: :controller do
   #     end
   #   end
   # end
-end
+# end

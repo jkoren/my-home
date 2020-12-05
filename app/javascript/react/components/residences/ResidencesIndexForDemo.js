@@ -38,26 +38,10 @@ const ResidencesIndexForDemo = (props) => {
          <br></br>{/* spacer */}
       </div>
       <div className="grid-container">
-        <div className="grid-x grid-margin-x">
+        {/* <div className="grid-x grid-margin-x"> */}
           {residenceTiles}
-        </div>
+        {/* </div> */}
       </div>
-
-      {/* when entering here, assume there is no realtor */}
-      {/* realtor_id is ignored by controller, all houses are assigned to "no realtor" record, so value here is dummy */}
-      <div className="grid-container">
-        <Link to={`/realtors/0/residences/new`}>Add a New Residence</Link>
-      </div>
-
-
-      {/* <div className="grid-container">
-        <Link to={`/realtor/new`}>Change The Information For This Realtor</Link>
-      </div>
-
-      <div className="grid-container">
-        <Link to={`/realtor/new`}>Delete This Realtor</Link>
-      </div> */}
-
     </div>
   )
 }

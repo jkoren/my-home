@@ -8,9 +8,12 @@ class Api::V1::ResidencesController < ApiController
   
 
   def index # for demo use only
-    # demo_realtor = Realtor.find_by(name: 'Arlo Nugent')
-    # residences = demo_realtor.residences
-    residences = Residence.all
+    if current_user.admin?
+      residences = Residence.all
+    else
+      residences = []
+      residences.push(current_user.residence)
+    end
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
@@ -18,6 +21,7 @@ class Api::V1::ResidencesController < ApiController
     new_residence = Residence.new(residence_params)
     # realtor = Realtor.find(params[:realtor_id])
     # for alpha test, all residences created for "no realtor"
+    
     realtor = Realtor.find_by(name: "No Realtor")
     new_residence.realtor = realtor
     if new_residence.save
