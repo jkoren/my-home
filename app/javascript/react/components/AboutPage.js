@@ -34,14 +34,21 @@ const AboutPage = (props) => {
       </div> */}
 
       <div className="cell text-center">
+        <br></br>
+        <Link to={`/residences`}>
+        See My Home
+        </Link>      
+      </div>
+
+{/* 
+      <div className="cell text-center">
         <div>
           <br>
-            {/* spacer */}
           </br> 
           Example:
         </div>
         <RoomsIndexForDemo/>
-      </div>
+      </div> */}
 
     </div>
   )
