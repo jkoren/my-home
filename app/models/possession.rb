@@ -7,4 +7,12 @@ class Possession < ApplicationRecord
 
   belongs_to :room
 
+  def URL_thumbnail
+    if @URL
+      return 'https://my-home-production.s3.amazonaws.com/uploads/thumbnails/youtube_thumbnail.png'
+    else 
+      return 'https://my-home-production.s3.amazonaws.com/uploads/thumbnails/youtube_thumbnail.png'
+    end
+  end  
+
 end

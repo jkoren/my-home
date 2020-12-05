@@ -3,6 +3,17 @@ import RoomsIndexForDemo from "./rooms/RoomsIndexForDemo"
 import { Link } from 'react-router-dom'
 
 const AboutPage = (props) => {
+  // debugger
+  // different call to action if logged in or not logged in, if logged in, go to my home, if not logged in then login or see a demo home
+  // if (showEditTile && !showDeleteTile) {
+  //   displayTile = (
+  //     <PossessionEditTile
+  //       possession={formFields}
+  //       editPossession={onSaveClickHandler}
+  //       onDiscardClickHandler={onDiscardClickHandler}
+  //     />
+  //   );
+
   return (
     <div>
       <div>
@@ -18,8 +29,7 @@ const AboutPage = (props) => {
             <h3 className="cell"> Be the master of your domain. </h3>
             <br></br>
             <div className="cell">
-              <h4>Created by: Jeff Korenstein</h4>
-              <h4>j.korenstein@gmail.com</h4>
+              <h4>Created by: Jeff Korenstein / j.korenstein@gmail.com</h4>
             </div>
           </div>
         </div>
@@ -36,9 +46,20 @@ const AboutPage = (props) => {
       <div className="cell text-center">
         <br></br>
         <Link to={`/residences`}>
-        See My Home
+        <b>See My Home</b>
         </Link>      
       </div>
+
+      <div className="cell text-center">
+        <br></br>
+        <Link to={`/residences`}>
+          <div>
+            Sample page:
+          </div>
+        <img src="https://my-home-production.s3.amazonaws.com/uploads/promotional/possession_page.png" width="750"></img>
+        </Link>      
+      </div>
+
 
 {/* 
       <div className="cell text-center">

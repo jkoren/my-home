@@ -5,7 +5,6 @@ class Realtor < ApplicationRecord
   has_many :residences, dependent: :destroy 
   
   def name_and_company
-    # binding.pry
     if !company || company == ""
       return name
     else 

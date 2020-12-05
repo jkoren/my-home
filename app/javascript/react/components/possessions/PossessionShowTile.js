@@ -55,7 +55,7 @@ const PossessionShowTile = (props) => {
                 <h5>Owner's Manual</h5>
                 <i className={aws_owners_manual_icon}></i>
                 <div>
-                  <embed src={aws_owners_manual_url} width="80px" height="105px" />
+                  <embed src={aws_owners_manual_url} height="250" />
                 </div>
               </a>
             </div>
@@ -67,7 +67,7 @@ const PossessionShowTile = (props) => {
                   <div>
                     <i className={URL_icon}></i>
                   </div>
-                  {/* <img src="./thumbnails/invoice_thumbnail.jpg"></img> */}
+                <img src="https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" width="250"></img>
                 </a>
               </div>
             </div>
@@ -78,8 +78,11 @@ const PossessionShowTile = (props) => {
           <div className="small-12 medium-6 text-center callout">
             <div>
               <a href={props.possession.operating_video} target="_blank">
-                  <h5>Operating Video</h5>
+                <h5>Operating Video</h5>
+                <div>
                   <i className={operating_video_icon}></i>
+                </div>
+                <img src="https://my-home-production.s3.amazonaws.com/uploads/thumbnails/youtube_thumbnail.png" width="250"></img>
                 </a>
             </div>
           </div>
@@ -87,11 +90,12 @@ const PossessionShowTile = (props) => {
             <div> 
               <a href={aws_purchase_receipt_url} target="_blank">
                 <h5>Purchase Receipt</h5>
-                <i className={aws_purchase_receipt_icon}></i>
-
+                <div>
+                  <i className={aws_purchase_receipt_icon}></i>
+                </div>
                 <img src={aws_purchase_receipt_url} 
                   // alt="missing aws picture" 
-                  width="450" />
+                  width="250" />
               </a>
             </div>
           </div>
@@ -103,8 +107,10 @@ const PossessionShowTile = (props) => {
             <div>
               <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
-                <i className={aws_warranty_icon}></i>
-                <img src={aws_warranty_url} alt="" width="450" />
+                <div>
+                  <i className={aws_warranty_icon}></i>
+                </div>
+                <img src={aws_warranty_url} alt="" width="250" />
               </a>
             </div>
           </div>
