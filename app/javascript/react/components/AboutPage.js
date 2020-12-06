@@ -56,7 +56,7 @@ const AboutPage = (props) => {
           <div>
             Sample page:
           </div>
-        <img src="https://my-home-production.s3.amazonaws.com/uploads/promotional/possession_page.png" width="750"></img>
+        <img src="https://my-home-production.s3.amazonaws.com/uploads/promotional/possession_page.png" width="750" className="callout box-shadow"></img>
         </Link>      
       </div>
 
