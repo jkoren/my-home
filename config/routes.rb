@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   get '/realtors/:id', to: 'homes#index'
   get '/residences', to: 'homes#index' # for demo
   get '/residences/:id', to: 'homes#index'
+  get 'residences/new', to: 'homes#index'
   get '/rooms', to: 'homes#index' # for demo
   get '/rooms/:id', to: 'homes#index'
   get '/possessions/:id', to: 'homes#index'
   get '/about', to: 'homes#index'
   get '/demo', to: 'homes#index'
+  get '/providethis', to: 'homes#index'
   get '/possessions/newest', to: 'homes#index'
 
   get "/residences/:id/rooms/new", to: "homes#index" 
@@ -18,11 +20,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do   
-      resources :realtors, only: [:index, :show] do
-        resources :residences, only: [:create]
-      end
+      resources :realtors, only: [:index, :show] 
+      # do
+      #   resources :residences, only: [:create]
+      # end
       
-      resources :residences, only: [:index, :show] do
+      resources :residences, only: [:index, :show, :create] do
         resources :rooms, only: [:create]
       end
       
