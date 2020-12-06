@@ -149,7 +149,7 @@ const RoomNewForm = (props) => {
               />
             </label>
 
-            <label>
+            {/* <label>
               Image:
               <input
                 name="image"
@@ -158,7 +158,7 @@ const RoomNewForm = (props) => {
                 onChange={handleChange}
                 value={formFields.image}
               />
-            </label>
+            </label> */}
 
             <Dropzone onDrop={handleFileUpload}>
               {({ getRootProps, getInputProps }) => (
