@@ -9,9 +9,11 @@
       <%- if current_user && current_user.residence-%>
           <a href="<%= current_user.realtor.URL %>">Provided by: <%= current_user.realtor.name_and_company %></a>
       <%- elsif !current_user -%>
-        <a href=""> Can't show a realtor because no one is logged in</a> 
+        <!-- Can't show a realtor because no one is logged in -->
+        <a href="">Please sign in</a> 
       <% elsif !current_user.residence%>
-          <a href=""> Can't show a realtor because user has no residence</a> 
+          <!-- Can't show a realtor because user has no residence -->
+          <a href=""><%= current_user.email %> has no residence assigned</a> 
       <%- end -%>
   </div>
 
