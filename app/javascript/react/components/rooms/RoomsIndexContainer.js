@@ -27,13 +27,13 @@ const RoomsIndexContainer = (props) => {
         <Link to={`/residences/${props.residence.id}/rooms/new`}>Add a New Room</Link>
       </div>
 
-      <div className="grid-container">
+      {/* <div className="grid-container">
         <Link to={`/residences/${props.residence.id}/rooms/new`}>Change The Information For This Residence</Link>
-      </div>
+      </div> */}
 
-      <div className="grid-container">
+      {/* <div className="grid-container">
         <Link to={`/residences/${props.residence.id}/rooms/new`}>Delete This Residence</Link>
-      </div>
+      </div> */}
 
     </div>
 
