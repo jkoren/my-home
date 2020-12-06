@@ -148,8 +148,13 @@ const RoomNewForm = (props) => {
                 value={formFields.description}
               />
             </label>
+<<<<<<< HEAD
 {/* 
             <label>
+=======
+
+            {/* <label>
+>>>>>>> 86cd4ed1ac959e34e20ccd19ab883457f7e101d9
               Image:
               <input
                 name="image"
