@@ -373,3 +373,21 @@ Possession.create(
 # poss.aws_image = cat_image
 # poss.aws_owners_manual = cat_pdf
 # poss.save
+
+hans = Realtor.create(
+  name: "Hans Brings",
+  company: "Coldwell Banker Residential Brokerage",
+  phone_number: "(617)968-0022",
+  email: "hans@hansbrings.com",
+  URL: "https://www.hansbrings.com/"
+)
+
+circle = Residence.create(
+  name: "82 Circle Dr",
+  street: "82 Circle Dr",
+  city: "Waltham",
+  state: "MA",
+  realtor: hans
+)
+
+  circle_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/82circle.jpg'))
