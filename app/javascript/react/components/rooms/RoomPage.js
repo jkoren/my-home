@@ -43,7 +43,7 @@ const RoomPage = (props) => {
     />
   }
   return (
-    <div>
+    <>
       <div className="text-center">
         {roomShow}
       </div>
@@ -52,7 +52,7 @@ const RoomPage = (props) => {
           room={room}
           possessions={room.possessions}
       />
-    </div>
+    </>
   )
 }
 
