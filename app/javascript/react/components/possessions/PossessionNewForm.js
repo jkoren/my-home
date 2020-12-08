@@ -176,10 +176,12 @@ const PossessionNewForm = (props) => {
   return (
     <div className="cell grid-x grid-padding-x">
 
-      <div className="cell small-12 medium-2"> </div>
-      <div className="cell small-12 medium-8">
+      <div className="cell small-12 medium-2"> 
+        {/* spacer */}
+      </div>
 
-        <div className="field">
+      <div className="cell small-12 medium-8">
+        {/* <div className="field"> */}
           <form onSubmit={handleSubmit}>
             <ErrorList errors={errors}
               error={error} />
@@ -309,6 +311,7 @@ const PossessionNewForm = (props) => {
               </Dropzone>
               {purchaseReceiptUploaded}
             </div>
+            
             <div className="callout">
               <Dropzone onDrop={handleAWS_warranty_upload}>
                 {({ getRootProps, getInputProps }) => (
@@ -333,7 +336,7 @@ const PossessionNewForm = (props) => {
             </div>
 
           </form>
-        </div>
+        {/* </div> */}
       </div>
     </div>
   )

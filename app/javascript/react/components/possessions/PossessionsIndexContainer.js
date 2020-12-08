@@ -17,9 +17,9 @@ const PossessionsIndexContainer = (props) => {
   }
   return (
     <div>
-        <div className="grid-x">
-            {possessionTiles}
-        </div>
+      <div className="grid-x grid-margin-x" style={{ height: "100%", padding: "0 2rem" }}>
+        {possessionTiles}
+      </div>
       <div>
         <Link to={`/rooms/${props.room.id}/possessions/new`}>
           Add a New Possession
