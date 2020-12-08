@@ -42,7 +42,7 @@ const PossessionShowTile = (props) => {
       </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={aws_image_url} alt="missing aws picture" width="450" />
+          <img src={aws_image_url} alt="no picture" width="450" />
         </div>
 
         <div className="cell small-12 medium-6 text-left">
