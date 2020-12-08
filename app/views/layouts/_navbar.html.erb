@@ -33,6 +33,10 @@
   <div class="top-bar menu align-middle">
     <div class="top-bar-left align-middle submenu">
           <%= link_to 'My Home', residences_path %>
+
+          <%- if current_user && current_user.residence == nil -%>
+            <%= link_to 'Create My Residence', residences_new_path %>
+          <%- end -%>
           <!-- <%= link_to 'Add Possessions', root_path %> -->
           <%= link_to 'Example', demo_path %>
           <%= link_to 'About', about_path %>   

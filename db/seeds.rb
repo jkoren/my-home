@@ -32,7 +32,7 @@ CollegeFarmRoad = Residence.create(
   street: "315 College Farm Rd #6",
   city: "Waltham",
   state: "MA",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/315CollegeFarm.jpg')),
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/315CollegeFarm.jpg')),
   realtor: arlo
 )
 
@@ -41,7 +41,7 @@ BarbaraRoad = Residence.create(
   street: "59 Barbara Rd #1",
   city: "Waltham",
   state: "MA",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/59Barbara.jpg')),
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/59Barbara.jpg')),
   realtor: arlo
 )
 
@@ -50,7 +50,7 @@ MatthewLane = Residence.create(
   street: "41 Matthew Ln",
   city: "Waltham",
   state: "MA",
-  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/41Matthew.jpg')),
+  aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/41Matthew.jpg')),
   realtor: arlo
 )
 
@@ -269,7 +269,7 @@ Possession.create(
 #   street: "18 Grove Road",
 #   city: "Waltham",
 #   state: "MA",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/locations/18Grove.jpg')),
+#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/18Grove.jpg')),
 #   realtor: dave
 # )
 

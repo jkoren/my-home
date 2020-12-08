@@ -90,16 +90,11 @@ const PossessionNewForm = (props) => {
       newPossession.append("name", formFields.name)
       newPossession.append("manufacturer", formFields.manufacturer)
       newPossession.append("model", formFields.model)
-      newPossession.append("owners_manual", formFields.owners_manual)
       newPossession.append("description", formFields.description)
-      newPossession.append("year_built", formFields.year_built)
-      newPossession.append("purchased_from", formFields.purchased_from)
       newPossession.append("aws_image", formFields.aws_image)
-      newPossession.append("aws_owners_manual", formFields.aws_image)
-      newPossession.append("aws_purchase_receipt", formFields.aws_image)
-      newPossession.append("aws_warranty", formFields.aws_image)
-      newPossession.append("purchase_date", formFields.purchase_date)
-      newPossession.append("purchase_price", formFields.purchase_price)
+      newPossession.append("aws_owners_manual", formFields.aws_owners_manual)
+      newPossession.append("aws_purchase_receipt", formFields.aws_purchase_receipt)
+      newPossession.append("aws_warranty", formFields.aws_warranty)
       newPossession.append("operating_video", formFields.operating_video)
       newPossession.append("URL", formFields.URL)
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
@@ -140,7 +135,7 @@ const PossessionNewForm = (props) => {
     return <Redirect to={`/rooms/${props.match.params.id}`} />
   }
 
-  if (formFields.aws_image != "") {
+  if (!_.isEmpty(formFields.aws_image)) {
     imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
@@ -148,34 +143,31 @@ const PossessionNewForm = (props) => {
     );
   }
 
-  if (formFields.owner_manual != "") {
-    //something is wrong here - formFields.aws_image.path is not right - wrong kind of object - actiondispatch - copy exact thing
+  if (!_.isEmpty(formFields.aws_owners_manual)) {
     owners_manualUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Owner's Manual Uploaded:
-       {/* {formFields.owners_manual.path} */}
+       {formFields.aws_owners_manual.path}
         </h5>
       </div>
     );
   }
 
-  if (formFields.warranty != "") {
-    //something is wrong here - formFields.aws_image.path is not right - wrong kind of object - actiondispatch - copy exact thing
+  if (!_.isEmpty(formFields.aws_warranty)) {
     warrantyUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Warranty Uploaded:
-       {/* {formFields.warranty.path} */}
+       {formFields.aws_warranty.path}
         </h5>
       </div>
     );
   }
 
-  if (formFields.purchase_receipt != "") {
-    //something is wrong here - formFields.aws_image.path is not right - wrong kind of object - actiondispatch - copy exact thing
+  if (!_.isEmpty(formFields.aws_purchase_receipt)) {
     purchaseReceiptUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Purchase Receipt Uploaded:
-       {/* {formFields.purchase_receipt.path} */}
+       {formFields.aws_purchase_receipt.path}
         </h5>
       </div>
     );
@@ -225,16 +217,27 @@ const PossessionNewForm = (props) => {
               />
             </label>
 
-            {/* <label>
-             Owner's Manual:
-             <input
-               name="owner_manual"
-               id="owner_manual"
-               type="text"
-               onChange={handleChange}
-               value={formFields.owner_manual}
-             />
-           </label> */}
+            <div className="callout">
+              <Dropzone onDrop={handleAWS_image_upload}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+
+                    <div className="cell  grid-x ">
+                      <div className="cell callout">
+                        <div>
+                          Product Image: Drag here or click to upload
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+
+                )}
+              </Dropzone>
+              {imageUploaded}
+            </div>
+
+            <div> You can fill these in later, if you want. </div>
 
             <label>
               Description of this possession:
@@ -246,75 +249,84 @@ const PossessionNewForm = (props) => {
                 value={formFields.description}
               />
             </label>
+            
+            <label>
+              Manufacturer Website:
+             <input
+                name="URL"
+                id="URL"
+                type="text"
+                onChange={handleChange}
+                value={formFields.URL}
+              />
+            </label>
+            
+            <label>
+              Operating Video:
+             <input
+                name="operating_video"
+                id="operating_video"
+                type="text"
+                onChange={handleChange}
+                value={formFields.operating_video}
+              />
+            </label>
+            
+            <div className="callout">
+              <Dropzone onDrop={handleAWS_owners_manual_upload}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
 
-            <Dropzone onDrop={handleAWS_image_upload}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-
-                  <div className="cell  grid-x ">
-                    <div className="cell callout">
-                      <div>
-                        Product Image: Drag here or click to upload
-                     </div>
+                    <div className="cell grid-x">
+                      <div className="cell callout">
+                        <div>
+                          Operating Manual: Drag here or click to upload
+                      </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+              </Dropzone>
+              {owners_manualUploaded}
+            </div>
 
-              )}
-            </Dropzone>
-            {imageUploaded}
+            <div className="callout">
+              <Dropzone onDrop={handleAWS_purchase_receipt}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
 
-            <Dropzone onDrop={handleAWS_owners_manual_upload}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-
-                  <div className="cell grid-x">
-                    <div className="cell callout">
-                      <div>
-                        Operating Manual: Drag here or click to upload
-                     </div>
+                    <div className="cell grid-x">
+                      <div className="cell callout">
+                        <div>
+                          Purchase Receipt: Drag here or click to upload
+                      </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Dropzone>
-            {owners_manualUploaded}
+                )}
+              </Dropzone>
+              {purchaseReceiptUploaded}
+            </div>
+            <div className="callout">
+              <Dropzone onDrop={handleAWS_warranty_upload}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
 
-            <Dropzone onDrop={handleAWS_purchase_receipt}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-
-                  <div className="cell grid-x">
-                    <div className="cell callout">
-                      <div>
-                        Purchase Receipt: Drag here or click to upload
-                     </div>
+                    <div className="cell grid-x">
+                      <div className="cell callout">
+                        <div>
+                          Warranty: Drag here or click to upload
+                      </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Dropzone>
-            {owners_manualUploaded}
-
-            <Dropzone onDrop={handleAWS_warranty_upload}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-
-                  <div className="cell grid-x">
-                    <div className="cell callout">
-                      <div>
-                        Warranty: Drag here or click to upload
-                     </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </Dropzone>
-            {owners_manualUploaded}
+                )}
+              </Dropzone>
+              {warrantyUploaded}
+            </div>
 
             <div className="">
               <input className="" type="submit" value="Submit" />

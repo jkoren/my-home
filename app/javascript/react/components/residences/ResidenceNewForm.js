@@ -64,7 +64,8 @@ const ResidenceNewForm = (props) => {
       newResidence.append("state", formFields.state)
       newResidence.append("aws_image", formFields.aws_image)
 
-      fetch(`/api/v1/realtors/${props.match.params.id}/residences`, {
+      // fetch(`/api/v1/realtors/${props.match.params.id}/residences`, {
+      fetch(`/api/v1/residences`, {
         method: "POST",
         body: newResidence,
         credentials: "same-origin",

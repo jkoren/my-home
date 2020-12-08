@@ -8,7 +8,6 @@ const PossessionEditTile = (props) => {
     name: props.possession.name,
     manufacturer: props.possession.manufacturer,
     model: props.possession.model,
-    // owner_manual: props.possession.owner_manual,
     description: props.possession.description,
     year_built: props.possession.year_built,
     purchased_from: props.possession.purchased_from,
@@ -17,11 +16,9 @@ const PossessionEditTile = (props) => {
     aws_purchase_receipt: props.possession.aws_purchase_receipt,
     aws_warranty: props.possession.aws_warranty,
     purchase_date: props.possession.purchase_date,
-    // purchase_receipt: props.possession.purchase_receipt,
     purchase_price: props.possession.purchase_price,
     operating_video: props.possession.operating_video,
     URL: props.possession.URL,
-    // warranty: props.possession.warranty
   });
 
   let imageUploaded = null;
@@ -120,17 +117,6 @@ const PossessionEditTile = (props) => {
                 </label>
 
                 <label>
-                  Owner's Manual:
-                  <input
-                      name="owner_manual"
-                      id="owner_manual"
-                      type="text"
-                      onChange={handleChange}
-                      value={formFields.owner_manual}
-                    />
-                </label>
-
-                <label>
                   Description of this possession:
                   <input
                     name="description"
@@ -141,6 +127,28 @@ const PossessionEditTile = (props) => {
                   />
                 </label>
               
+              <label>
+                Manufacturer's Web Site:
+                  <input
+                  name="URL"
+                  id="URL"
+                  type="text"
+                  onChange={handleChange}
+                  value={formFields.URL}
+                />
+              </label>
+
+              <label>
+                Operating Video:
+                  <input
+                  name="operating_video"
+                  id="operating_video"
+                  type="text"
+                  onChange={handleChange}
+                  value={formFields.operating_video}
+                />
+              </label>
+
                 <Dropzone onDrop={handleAWS_image_upload}>
                   {({ getRootProps, getInputProps }) => (
                     <div {...getRootProps()}>

@@ -97,7 +97,7 @@ const RoomNewForm = (props) => {
     return <Redirect to={`/residences/${props.match.params.id}`}/>
   }
 
-  if (formFields.aws_image != "") {
+  if (!_.isEmpty(formFields.aws_image)) {
     imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
@@ -105,14 +105,14 @@ const RoomNewForm = (props) => {
     );
   }
   
-  if (_.isEmpty(formFields.aws_image)
-) {
-    imageUploaded = (
-      <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
-      </div>
-    );
-  }
+//   if (_.isEmpty(formFields.aws_image)
+// ) {
+//     imageUploaded = (
+//       <div className="grid-x align-center text-center">
+//         <h5 className="cell shrink">Image Uploaded: {formFields.aws_image.path}</h5>
+//       </div>
+//     );
+//   }
 
   return (
     
@@ -149,35 +149,26 @@ const RoomNewForm = (props) => {
               />
             </label>
 
-            {/* <label>
-              Image:
-              <input
-                name="image"
-                id="image"
-                type="text"
-                onChange={handleChange}
-                value={formFields.image}
-              />
-            </label> */}
+            <div className="callout">
+              <Dropzone onDrop={handleFileUpload}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
 
-            <Dropzone onDrop={handleFileUpload}>
-              {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-
-                  <div className="cell  grid-x ">
-                    <div className="cell callout">
-                      <div>
-                        <i className="fas fa-image fa-3x"> </i>
-                        Drag a room image here, or click to upload one from your computer or mobile device
+                    <div className="cell  grid-x ">
+                      <div className="cell callout">
+                        <div>
+                          <i className="fas fa-image fa-3x"> </i>
+                          Drag a room image here, or click to upload one from your computer or mobile device
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-         
-              )}
-            </Dropzone>
-            {imageUploaded}
+          
+                )}
+              </Dropzone>
+              {imageUploaded}
+            </div>
 
             <div className="">
               <input className="" type="submit" value="Submit" />

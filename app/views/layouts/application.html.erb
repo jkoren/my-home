@@ -14,25 +14,27 @@
   </head>
 
   <body>
-    <%=  render "layouts/navbar"%>   
+    <div class="web-site-meat">
+      <%=  render "layouts/navbar"%>   
 
-    <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-    <%- end -%>
-
-    <!-- main content -->
-    <!-- from index.html.erb -->
-    <%= yield %>
-
-    <%= javascript_include_tag 'application' %>
-    <%- if Rails.env.development? || Rails.env.test? -%> 
-      <%= javascript_tag do %>
-        window.railsEnv = '<%= Rails.env %>'
+      <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
       <%- end -%>
-    <%- end -%>
-    <%= javascript_pack_tag 'application' %>
-    <%= yield :extra_footer %>
-  </body>
+
+      <!-- main content -->
+      <!-- from index.html.erb -->
+      <%= yield %>
+
+      <%= javascript_include_tag 'application' %>
+      <%- if Rails.env.development? || Rails.env.test? -%> 
+        <%= javascript_tag do %>
+          window.railsEnv = '<%= Rails.env %>'
+        <%- end -%>
+      <%- end -%>
+      <%= javascript_pack_tag 'application' %>
+      <%= yield :extra_footer %>
+    </body>
+  </div>
 </html>
