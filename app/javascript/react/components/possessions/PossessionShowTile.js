@@ -33,6 +33,14 @@ const PossessionShowTile = (props) => {
     "fab fa-youtube fa-1x does_exist":
     "fab fa-youtube fa-1x doesnt_exist")
 
+  let operating_video_thumbnail = (props.possession.operating_video ? 
+    "https://my-home-production.s3.amazonaws.com/uploads/thumbnails/youtube_thumbnail.png" :
+    "")
+
+  let manufacturers_site_thumbnail = (props.possession.URL ? 
+    "https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" :
+    "")
+
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
@@ -67,7 +75,7 @@ const PossessionShowTile = (props) => {
                   <div>
                     <i className={URL_icon}></i>
                   </div>
-                <img src="https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" width="250"></img>
+                <img src={manufacturers_site_thumbnail} width="250"></img>
                 </a>
               </div>
             </div>
@@ -82,7 +90,7 @@ const PossessionShowTile = (props) => {
                 <div>
                   <i className={operating_video_icon}></i>
                 </div>
-                <img src="https://my-home-production.s3.amazonaws.com/uploads/thumbnails/youtube_thumbnail.png" width="250"></img>
+                <img src={operating_video_thumbnail} width="250"></img>
                 </a>
             </div>
           </div>

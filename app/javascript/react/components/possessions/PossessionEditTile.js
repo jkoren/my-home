@@ -22,7 +22,6 @@ const PossessionEditTile = (props) => {
   let warrantyUploaded = null;
   let purchaseReceiptUploaded = null;
 
-
   const handleChange = (event) => {
     setFormFields({
       ...formFields,
@@ -64,7 +63,10 @@ const PossessionEditTile = (props) => {
     props.editPossession(messageUp);
   };
 
-  if (!_.isEmpty(formFields.aws_image)) {
+// debugger
+  if (formFields.aws_image.url == null || formFields.aws_image.path == null) {
+    imageUploaded = ""
+  } else {
     imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded:
@@ -74,7 +76,7 @@ const PossessionEditTile = (props) => {
     );
   }
 
-  if (!_.isEmpty(formFields.aws_owners_manual)) {
+  if (formFields.aws_owners_manual.url != null) {
     owners_manualUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Owner's Manual Uploaded: 
@@ -83,22 +85,22 @@ const PossessionEditTile = (props) => {
       </div>
     );
   }
-
-  if (!_.isEmpty(formFields.aws_warranty)) {
-    warrantyUploaded = (
+  
+  if (formFields.aws_purchase_receipt.url != null) {
+    purchaseReceiptUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Warranty Uploaded:
-       {formFields.aws_warranty.path}
+        <h5 className="cell shrink">Purchase Receipt Uploaded:
+        {formFields.aws_purchase_receipt.path}
         </h5>
       </div>
     );
   }
 
-  if (!_.isEmpty(formFields.aws_purchase_receipt)) {
-    purchaseReceiptUploaded = (
+  if (formFields.aws_warranty.url != null) {
+    warrantyUploaded = (
       <div className="grid-x align-center text-center">
-        <h5 className="cell shrink">Purchase Receipt Uploaded:
-       {formFields.aws_purchase_receipt.path}
+        <h5 className="cell shrink">Warranty Uploaded:
+       {formFields.aws_warranty.path}
         </h5>
       </div>
     );
@@ -153,8 +155,8 @@ const PossessionEditTile = (props) => {
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
 
-                  <div className="cell grid-x grid-margin-x">
-                    <div className="cell callout small-6">
+                  <div className="cell grid-x">
+                    <div className="cell callout">
                       <div>
                         <i className="fas fa-image fa-1x"> </i>
                         Product Image (jpg/png): Drag here or click to upload
@@ -206,8 +208,8 @@ const PossessionEditTile = (props) => {
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
 
-                  <div className="cell grid-x grid-margin-x">
-                    <div className="cell callout small-6">
+                  <div className="cell grid-x">
+                    <div className="cell callout">
                       <div>
                         <i className="fas fa-book fa-1x"> </i>
                         Operating Manual (pdf): Drag here or click to upload
