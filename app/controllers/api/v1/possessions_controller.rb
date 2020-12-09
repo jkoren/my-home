@@ -21,7 +21,8 @@ class Api::V1::PossessionsController < ApiController
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      render json: new_possession
+      binding.pry
+      render json: new_possession 
     else
       render json: { errors: new_possession.errors }
     end

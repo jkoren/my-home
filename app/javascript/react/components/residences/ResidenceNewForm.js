@@ -64,7 +64,8 @@ const ResidenceNewForm = (props) => {
       newResidence.append("state", formFields.state)
       newResidence.append("aws_image", formFields.aws_image)
 
-      // fetch(`/api/v1/realtors/${props.match.params.id}/residences`, {
+      const csrfToken = $('meta[name="csrf-token"]').attr('content');
+
       fetch(`/api/v1/residences`, {
         method: "POST",
         body: newResidence,
@@ -72,6 +73,7 @@ const ResidenceNewForm = (props) => {
         headers: {
           Accept: 'application/json',
           Accept: "image/jpeg",
+          'X-CSRF-Token': csrfToken
         },
       })
         .then(response => response.json())
@@ -100,6 +102,7 @@ const ResidenceNewForm = (props) => {
   }
 
   if (shouldRedirect.redirect) {
+    debugger
     // return <Redirect to={`/realtors/${props.match.params.id}`}/>
     return <Redirect to={`/residences`}/>
 
