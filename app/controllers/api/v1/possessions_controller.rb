@@ -32,7 +32,7 @@ class Api::V1::PossessionsController < ApiController
 
     # if the image does not come through correctly, it means that a new image has not been uploaded, so do NOT update the aws_image field
 
-    binding.pry 
+    # binding.pry 
     # this approach - would need to set up a different set of params for each combination of uploads
     # just aws_image
     # just aws_owners_manual
