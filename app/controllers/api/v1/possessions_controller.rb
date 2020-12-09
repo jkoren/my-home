@@ -21,7 +21,6 @@ class Api::V1::PossessionsController < ApiController
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      binding.pry
       render json: new_possession 
     else
       render json: { errors: new_possession.errors }
@@ -32,7 +31,22 @@ class Api::V1::PossessionsController < ApiController
     possession = Possession.find(params[:id])
 
     # if the image does not come through correctly, it means that a new image has not been uploaded, so do NOT update the aws_image field
-    params_to_update = (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )  ? update_possession_params_no_aws_image_or_owners_manual : possession_params
+
+    binding.pry 
+    # this approach - would need to set up a different set of params for each combination of uploads
+    # just aws_image
+    # just aws_owners_manual
+    # aws_image & aws_owners_manual
+    # etc
+    # not scalable
+
+    if (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )
+      params_to_update = update_possession_params_no_aws_image_or_owners_manual
+    else
+      params_to_update = possession_params
+    end
+
+    # params_to_update = (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )  ? update_possession_params_no_aws_image_or_owners_manual : possession_params
 
     possession.update_attributes(params_to_update)
     render json: possession

@@ -157,7 +157,7 @@ const PossessionEditTile = (props) => {
                     <div className="cell callout small-6">
                       <div>
                         <i className="fas fa-image fa-1x"> </i>
-                        Product Image: Drag here or click to upload
+                        Product Image (jpg/png): Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -210,7 +210,7 @@ const PossessionEditTile = (props) => {
                     <div className="cell callout small-6">
                       <div>
                         <i className="fas fa-book fa-1x"> </i>
-                        Operating Manual: Drag here or click to upload
+                        Operating Manual (pdf): Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -229,7 +229,7 @@ const PossessionEditTile = (props) => {
                   <div className="cell grid-x">
                     <div className="cell callout">
                       <div>
-                        Purchase Receipt: Drag here or click to upload
+                        Purchase Receipt (jpg/png): Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -248,7 +248,7 @@ const PossessionEditTile = (props) => {
                   <div className="cell grid-x">
                     <div className="cell callout">
                       <div>
-                        Warranty: Drag here or click to upload
+                        Warranty (jpg/png): Drag here or click to upload
                       </div>
                     </div>
                   </div>

@@ -228,7 +228,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell  grid-x ">
                       <div className="cell callout">
                         <div>
-                          Product Image: Drag here or click to upload
+                          Product Image (jpg/png): Drag here or click to upload
                       </div>
                       </div>
                     </div>
@@ -302,7 +302,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell grid-x">
                       <div className="cell callout">
                         <div>
-                          Purchase Receipt: Drag here or click to upload
+                          Purchase Receipt (jpg/png): Drag here or click to upload
                       </div>
                       </div>
                     </div>
@@ -321,7 +321,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell grid-x">
                       <div className="cell callout">
                         <div>
-                          Warranty: Drag here or click to upload
+                          Warranty (jpg/png): Drag here or click to upload
                       </div>
                       </div>
                     </div>
