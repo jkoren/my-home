@@ -32,7 +32,12 @@
 <div>
   <div class="top-bar menu align-middle">
     <div class="top-bar-left align-middle submenu">
-          <%= link_to 'My Home', residences_path %>
+  
+          <%- if current_user -%>
+            <%= link_to 'My Home', residences_path %>
+          <%- else -%>
+            <%= link_to 'My Home', pleasesignin_path %>
+          <%- end -%>
 
           <%- if current_user && current_user.residence == nil -%>
             <%= link_to 'Create My Residence', residences_new_path %>

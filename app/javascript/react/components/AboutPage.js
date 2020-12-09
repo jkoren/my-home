@@ -3,22 +3,11 @@ import RoomsIndexForDemo from "./rooms/RoomsIndexForDemo"
 import { Link } from 'react-router-dom'
 
 const AboutPage = (props) => {
-  // debugger
-  // different call to action if logged in or not logged in, if logged in, go to my home, if not logged in then login or see a demo home
-  // if (showEditTile && !showDeleteTile) {
-  //   displayTile = (
-  //     <PossessionEditTile
-  //       possession={formFields}
-  //       editPossession={onSaveClickHandler}
-  //       onDiscardClickHandler={onDiscardClickHandler}
-  //     />
-  //   );
-
   return (
     <div>
-      <div>
+      <>
         <br></br>{/* spacer */}
-      </div>
+      </>
 
       <div className="cell small-offset-1 medium-offset-3 ">
         <div className="grid-x grid-margin-y text-center">
@@ -34,14 +23,6 @@ const AboutPage = (props) => {
           </div>
         </div>
       </div>
-
-      {/* link doesn't work */}
-      {/* <div className="cell text-center">
-        <br></br>
-        <Link to={`/users/sign_up`}>
-        Sign Up
-        </Link>      
-      </div> */}
 
       <div className="cell text-center">
         <br></br>

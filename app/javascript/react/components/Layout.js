@@ -15,7 +15,8 @@ import RoomNewForm from "./rooms/RoomNewForm"
 import PossessionPage from "./possessions/PossessionPage"
 import PossessionNewForm from "./possessions/PossessionNewForm"
 import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
-import ProvideThis from "./ProvideThis";
+import ProvideThis from "./ProvideThis"
+import PleaseSignIn from "./PleaseSignIn"
 import AboutPage from "./AboutPage"
 import Sidebar from "./Sidebar"
 
@@ -30,6 +31,7 @@ const Layout = (props) => {
               <Route exact path="/" component={AboutPage} />
               <Route exact path="/about" component={AboutPage} />
               <Route exact path="/providethis" component={ProvideThis} />
+              <Route exact path="/pleasesignin" component={PleaseSignIn} />
               <Route exact path="/demo" component={RoomsIndexForDemo} />
 
               <Route exact path="/realtors" component={RealtorsIndexForDemo} />
