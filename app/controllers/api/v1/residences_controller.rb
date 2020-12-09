@@ -19,16 +19,13 @@ class Api::V1::ResidencesController < ApiController
 
   # residences_controller.rb
   def create
-    new_residence = Residence.new(residence_params)
-    # for alpha test, all residences created for "no realtor" instead of the passed realtor_id 
-    # if later we want to create for a specifc realtor, use this code: 
-    #   realtor = Realtor.find(params[:realtor_id])
-    
-    realtor = Realtor.find_by(name: "My-Home")
+    new_residence = Residence.new(residence_params)  
+    realtor = Realtor.find_by(name: "My-Home") # if coming from realtor page - find(params[:realtor_id])
     new_residence.realtor = realtor
-    if new_residence.save
-      binding.pry
-      # current_user.residence = new_residence # why is current_user nil?
+    current_user.residence = new_residence 
+    if new_residence.save && current_user.save
+      # binding.pry
+      # redirect_to "/" 
       render json: new_residence
     else
       render json: { errors: new_residence.errors }
