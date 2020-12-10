@@ -95,41 +95,40 @@ const PossessionShowTile = (props) => {
             </div>
           </div>
           <div className="small-12 medium-6 text-center callout">
-            <div> 
+            <> 
               <a href={aws_purchase_receipt_url} target="_blank">
                 <h5>Purchase Receipt</h5>
-                <div>
+                <>
                   <i className={aws_purchase_receipt_icon}></i>
-                </div>
+                </>
                 <img src={aws_purchase_receipt_url} 
-                  // alt="missing aws picture" 
                   width="250" />
               </a>
-            </div>
+            </>
           </div>
         </div>
 
 
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
-            <div>
+            <>
               <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
-                <div>
+                <>
                   <i className={aws_warranty_icon}></i>
-                </div>
+                </>
                 <img src={aws_warranty_url} alt="" width="250" />
               </a>
-            </div>
+            </>
           </div>
           <div className="small-12 medium-6 text-center callout">
-            <div>
+            <>
               <h5>
                 <a>
                   {/* placeholder */}
                 </a>
               </h5>
-            </div>
+            </>
           </div>
         </div>
 

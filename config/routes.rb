@@ -2,6 +2,7 @@
 Rails.application.routes.draw do
   root 'homes#index'
 
+  # retrieve information 
   get '/realtors', to: 'homes#index'
   get '/realtors/:id', to: 'homes#index'
   get '/residences', to: 'homes#index' # for demo
@@ -10,21 +11,20 @@ Rails.application.routes.draw do
   get '/rooms', to: 'homes#index' # for demo
   get '/rooms/:id', to: 'homes#index'
   get '/possessions/:id', to: 'homes#index'
+
   get '/about', to: 'homes#index'
   get '/demo', to: 'homes#index'
   get '/providethis', to: 'homes#index'
   get '/pleasesignin', to: 'homes#index'
   get '/possessions/newest', to: 'homes#index'
 
+  # save information
   get "/residences/:id/rooms/new", to: "homes#index" 
   get "/rooms/:id/possessions/new", to: "homes#index" 
 
   namespace :api do
     namespace :v1 do   
       resources :realtors, only: [:index, :show] 
-      # do
-      #   resources :residences, only: [:create]
-      # end
       
       resources :residences, only: [:index, :show, :create] do
         resources :rooms, only: [:create]
@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       end
       
       resources :possessions, only: [:index, :show, :update, :destroy]
+
+      resources :professionals, only: [:index]
     end
   end
 

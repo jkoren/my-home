@@ -15,9 +15,11 @@ import RoomNewForm from "./rooms/RoomNewForm"
 import PossessionPage from "./possessions/PossessionPage"
 import PossessionNewForm from "./possessions/PossessionNewForm"
 import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
-import ProvideThis from "./ProvideThis"
-import PleaseSignIn from "./PleaseSignIn"
+
+// information and layout pages 
 import AboutPage from "./AboutPage"
+import PleaseSignIn from "./PleaseSignIn"
+import ProvideThis from "./ProvideThis"
 import Sidebar from "./Sidebar"
 
 const Layout = (props) => {
