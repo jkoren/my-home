@@ -3,6 +3,10 @@ import RoomsIndexForDemo from "./rooms/RoomsIndexForDemo"
 import { Link } from 'react-router-dom'
 
 const AboutPage = (props) => {
+  // let current_user = document.getElementById('cusr')
+  // { current_user.dataset.owner === current_user.dataset.currentUser ? "Yes" : "No!" }
+  // from https://medium.com/@mayneweb/using-devise-current-user-in-reactjs-for-restriction-49b1b2b772ce
+  
   return (
     <div>
       <>
@@ -27,6 +31,7 @@ const AboutPage = (props) => {
       <div className="cell text-center">
         <br></br>
         <Link to={`/residences`}>
+          {/* only do this if logged in, otherwise go to /pleasesignin  */}
         <b>See My Home</b>
         </Link>      
       </div>
@@ -35,7 +40,7 @@ const AboutPage = (props) => {
         <br></br>
         <Link to={`/demo`}>
           <div>
-            Sample page:
+            Sample Page:
           </div>
         <img src="https://my-home-production.s3.amazonaws.com/uploads/promotional/possession_page.png" width="750" className="callout box-shadow"></img>
         </Link>      

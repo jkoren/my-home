@@ -32,8 +32,8 @@ const PossessionPage = (props) => {
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
   const id = props.match.params.id 
-  // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
   useEffect(() => {
+    // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
     })
