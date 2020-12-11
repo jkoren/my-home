@@ -33,25 +33,13 @@ const AboutPage = (props) => {
 
       <div className="cell text-center">
         <br></br>
-        <Link to={`/residences`}>
+        <Link to={`/demo`}>
           <div>
             Sample page:
           </div>
         <img src="https://my-home-production.s3.amazonaws.com/uploads/promotional/possession_page.png" width="750" className="callout box-shadow"></img>
         </Link>      
       </div>
-
-
-{/* 
-      <div className="cell text-center">
-        <div>
-          <br>
-          </br> 
-          Example:
-        </div>
-        <RoomsIndexForDemo/>
-      </div> */}
-
     </div>
   )
 }
