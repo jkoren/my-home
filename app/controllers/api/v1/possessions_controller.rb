@@ -32,23 +32,24 @@ class Api::V1::PossessionsController < ApiController
 
     # if the image does not come through correctly, it means that a new image has not been uploaded, so do NOT update the aws_image field
 
-    # binding.pry 
-    # this approach - would need to set up a different set of params for each combination of uploads
-    # just aws_image
-    # just aws_owners_manual
-    # aws_image & aws_owners_manual
-    # etc
-    # not scalable
-
-    if (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )
-      params_to_update = update_possession_params_no_aws_image_or_owners_manual
-    else
-      params_to_update = possession_params
+    if params["aws_image"] != "[object Object]" 
+      possession.update_attributes(possession_aws_image_params)
+    end
+    
+    if params["aws_owners_manual"] != "[object Object]" 
+      possession.update_attributes(possession_aws_owners_manual_params)
+    end
+    
+    if params["aws_warranty"] != "[object Object]" 
+      possession.update_attributes(possession_aws_warranty_params)
+    end
+    
+    if params["aws_purchase_receipt"] != "[object Object]" 
+      possession.update_attributes(possession_aws_purchase_receipt_params)
     end
 
-    # params_to_update = (params["aws_image"] == "[object Object]" || params["aws_owners_manual"] == "[object Object]" )  ? update_possession_params_no_aws_image_or_owners_manual : possession_params
+    possession.update_attributes(possession_params_no_aws)
 
-    possession.update_attributes(params_to_update)
     render json: possession
   end
 
@@ -64,7 +65,23 @@ class Api::V1::PossessionsController < ApiController
       params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
     end
 
-    def update_possession_params_no_aws_image_or_owners_manual
+    def possession_aws_image_params
+      params.permit([:aws_image])
+    end
+
+    def possession_aws_owners_manual_params
+      params.permit([:aws_owners_manual])
+    end
+
+    def possession_aws_warranty_params
+      params.permit([:aws_warranty])
+    end
+
+    def possession_aws_purchase_receipt_params
+      params.permit([:aws_purchase_receipt])
+    end
+
+    def possession_params_no_aws
       params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty])
     end
 
