@@ -41,42 +41,48 @@ const PossessionShowTile = (props) => {
     "https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" :
     "")
 
-    let aws_image_html // not used yet
-    if (props.possession.aws_image.url.toLowerCase().endsWith("pdf")) {
-      aws_image_html = 
-        (<div> <embed src={aws_image_url} width="200" /> </div>)
+  let aws_image_html // not used yet
+  if (props.possession.aws_image != null && props.possession.aws_image.url != null && props.possession.aws_image.url.toLowerCase().endsWith("pdf")) {
+    aws_image_html = (<div> <embed src={aws_image_url} width="200" /> </div>)
     } else {
-      aws_image_html =
-        (<img src={aws_image_url} width="450" />)
+      aws_image_html = (<img src={aws_image_url} width="450" />)
     }
 
   let aws_owners_manual_html
-  if (props.possession.aws_owners_manual.url.toLowerCase().endsWith("pdf")) {
-    aws_owners_manual_html = 
-      (<div> <embed src={aws_owners_manual_url} width="150" /> </div>)
+  if (props.possession.aws_owners_manual != null && props.possession.aws_owners_manual.url != null && props.possession.aws_owners_manual.url.toLowerCase().endsWith("pdf")) {
+    aws_owners_manual_html = (<div> <embed src={aws_owners_manual_url} width="150" /> </div>)
   } else {
-    aws_owners_manual_html =
-      (<img src={aws_owners_manual_url} width="250" />)
+    aws_owners_manual_html = (<img src={aws_owners_manual_url} width="250" />)
   }
 
   let aws_purchase_receipt_html
-  if (props.possession.aws_purchase_receipt.url.toLowerCase().endsWith("pdf")) {
-    aws_purchase_receipt_html = 
-      (<div> <embed src={aws_purchase_receipt_url} width="150" /> </div>)
+  if (props.possession.purchase_receipt != null && props.possession.purchase_receipt.url != null && props.possession.aws_purchase_receipt.url.toLowerCase().endsWith("pdf")) {
+    aws_purchase_receipt_html = (<div> <embed src={aws_purchase_receipt_url} width="150" /> </div>)
   } else {
-    aws_purchase_receipt_html =
-      (<img src={aws_purchase_receipt_url} width="250" />)
+    aws_purchase_receipt_html = (<img src={aws_purchase_receipt_url} width="250" />)
   }
 
   let aws_warranty_html
-  if (props.possession.aws_warranty.url.toLowerCase().endsWith("pdf")) {
-    aws_warranty_html = 
-      (<div> <embed src={aws_warranty_url} width="150" /> </div>)
+  if (props.possession.warranty != null &&  props.possession.warranty.url != null && props.possession.aws_warranty.url.toLowerCase().endsWith("pdf")) {
+    aws_warranty_html = (<div> <embed src={aws_warranty_url} width="150" /> </div>)
   } else {
-    aws_warranty_html =
-      (<img src={aws_warranty_url} width="250" />)
+    aws_warranty_html = (<img src={aws_warranty_url} width="250" />)
   }
-  // <img src={aws_image_url} alt="no picture" width="450" />
+
+  let operating_video
+  if (props.possession.operating_video != "") { operating_video = props.possession.operating_video } else 
+  {
+    // adjust to what makes sense, a page to suggest saving the URL of a video
+    operating_video = "http://www.google.com"
+  }
+
+
+  let URL
+  if (props.possession.URL != "") { URL = props.possession.URL  } else 
+  {
+    // adjust to what makes sense, a page to suggest saving the URL of the product/company website
+    URL = "http://www.google.com"
+  }
 
   return (
     <div className="grid-x grid-padding-x">
@@ -105,7 +111,7 @@ const PossessionShowTile = (props) => {
           </div>
           <div className="small-12 medium-6 text-center callout">
               <div>
-              <a href={props.possession.URL} target="_blank">
+              <a href={URL} target="_blank">
                   <h5>Manufacturer Site</h5>
                   <div>
                     <i className={URL_icon}></i>
@@ -120,7 +126,7 @@ const PossessionShowTile = (props) => {
         <div className="grid-x grid-margin-x">
           <div className="small-12 medium-6 text-center callout">
             <div>
-              <a href={props.possession.operating_video} target="_blank">
+              <a href={operating_video} target="_blank">
                 <h5>Operating Video</h5>
                 <div>
                   <i className={operating_video_icon}></i>
