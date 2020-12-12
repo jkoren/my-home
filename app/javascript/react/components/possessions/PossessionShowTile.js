@@ -56,18 +56,20 @@ const PossessionShowTile = (props) => {
   }
 
   let aws_purchase_receipt_html
-  if (props.possession.purchase_receipt != null && props.possession.purchase_receipt.url != null && props.possession.aws_purchase_receipt.url.toLowerCase().endsWith("pdf")) {
+  if (props.possession.aws_purchase_receipt != null && props.possession.aws_purchase_receipt.url != null && props.possession.aws_purchase_receipt.url.toLowerCase().endsWith("pdf")) {
     aws_purchase_receipt_html = (<div> <embed src={aws_purchase_receipt_url} width="150" /> </div>)
   } else {
     aws_purchase_receipt_html = (<img src={aws_purchase_receipt_url} width="250" />)
   }
 
   let aws_warranty_html
-  if (props.possession.warranty != null &&  props.possession.warranty.url != null && props.possession.aws_warranty.url.toLowerCase().endsWith("pdf")) {
-    aws_warranty_html = (<div> <embed src={aws_warranty_url} width="150" /> </div>)
+  if (props.possession.aws_warranty != null &&  props.possession.aws_warranty.url != null && props.possession.aws_warranty.url.toLowerCase().endsWith("pdf")) {
+    aws_warranty_html = (<div> <embed src={aws_warranty_url} width="150"/> </div>)
   } else {
     aws_warranty_html = (<img src={aws_warranty_url} width="250" />)
   }
+
+  // debugger
 
   let operating_video
   if (props.possession.operating_video != "") { operating_video = props.possession.operating_video } else 
@@ -100,18 +102,20 @@ const PossessionShowTile = (props) => {
           <h5>{props.possession.description}</h5>
           
           <div className="grid-x grid-margin-x">
-          <div className="small-12 medium-6 text-center callout">
+
+            <div className="small-12 medium-6 text-center callout">
               <div>
-              <a href={aws_owners_manual_url} target="_blank"> 
-                <h5>Owner's Manual</h5>
-                <i className={aws_owners_manual_icon}></i>
-                {aws_owners_manual_html}
-              </a>
+                <a href={aws_owners_manual_url} target="_blank"> 
+                  <h5>Owner's Manual</h5>
+                  <i className={aws_owners_manual_icon}></i>
+                  {aws_owners_manual_html}
+                </a>
+              </div>
             </div>
-          </div>
-          <div className="small-12 medium-6 text-center callout">
+
+            <div className="small-12 medium-6 text-center callout">
               <div>
-              <a href={URL} target="_blank">
+                <a href={URL} target="_blank">
                   <h5>Manufacturer Site</h5>
                   <div>
                     <i className={URL_icon}></i>
@@ -123,49 +127,54 @@ const PossessionShowTile = (props) => {
           </div>
 
 
-        <div className="grid-x grid-margin-x">
-          <div className="small-12 medium-6 text-center callout">
-            <div>
-              <a href={operating_video} target="_blank">
-                <h5>Operating Video</h5>
-                <div>
-                  <i className={operating_video_icon}></i>
-                </div>
-                <img src={operating_video_thumbnail} width="250"></img>
-                </a>
+          <div className="grid-x grid-margin-x">
+
+            <div className="small-12 medium-6 text-center callout">
+              <div>
+                <a href={operating_video} target="_blank">
+                  <h5>Operating Video</h5>
+                  <div>
+                    <i className={operating_video_icon}></i>
+                  </div>
+                  <img src={operating_video_thumbnail} width="250"></img>
+                  </a>
+              </div>
             </div>
-          </div>
-          <div className="small-12 medium-6 text-center callout">
-            <> 
-              <a href={aws_purchase_receipt_url} target="_blank">
-                <h5>Purchase Receipt</h5>
-                <i className={aws_purchase_receipt_icon}></i>
-                {aws_purchase_receipt_html}
-              </a>
-            </>
-          </div>
+
+            <div className="small-12 medium-6 text-center callout">
+              <div> 
+                <a href={aws_purchase_receipt_url} target="_blank">
+                  <h5>Purchase Receipt</h5>
+                  <i className={aws_purchase_receipt_icon}></i>
+                  {aws_purchase_receipt_html}
+                </a>
+              </div>
+            </div>
+
         </div>
 
-
         <div className="grid-x grid-margin-x">
+
           <div className="small-12 medium-6 text-center callout">
-            <>
+            <div>
               <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
                 <i className={aws_warranty_icon}></i>
                 {aws_warranty_html}
               </a>
-            </>
+            </div>
           </div>
+
           <div className="small-12 medium-6 text-center callout">
-            <>
+            <div>
               <h5>
                 <a>
                   {/* placeholder */}
                 </a>
               </h5>
-            </>
+            </div>
           </div>
+
         </div>
 
         <div className="grid-x align-bottom">
