@@ -31,9 +31,8 @@ const PossessionPage = (props) => {
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
-  const id = props.match.params.id 
-  // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
-  useEffect(() => {
+  const fetchPossession = () => {
+    // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
     })
@@ -42,14 +41,24 @@ const PossessionPage = (props) => {
           return response.json();
         } else {
           let errorMessage = `${response.status} (${response.statusText})`,
-          error = new Error(errorMessage);
-          throw(error);
+            error = new Error(errorMessage);
+          throw (error);
         }
       })
       .then((responseBody) => {
         setFormFields(responseBody)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
+  }
+
+  const fetchProfessional = () => {
+    
+  }
+
+  const id = props.match.params.id 
+  useEffect(() => {
+    fetchPossession()
+    fetchProfessional()
     }, [])
 
   const editPossession = (message) => {

@@ -12,7 +12,7 @@ const PleaseSignIn = (props) => {
         <div className="grid-x grid-margin-y text-center">
           <div className="callout cell small-10 medium-6 box-shadow">
             <h2 className="cell"> Sign In </h2>
-            <h4 className="cell"> Please sign in to create or see your home.</h4>
+            <h4 className="cell"> Please sign into create your domain and see all your possessions.</h4>
             <h3 className="cell"> Be the master of your domain. </h3>
           </div>
         </div>

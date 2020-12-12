@@ -64,7 +64,9 @@ const ResidenceNewForm = (props) => {
       newResidence.append("state", formFields.state)
       newResidence.append("aws_image", formFields.aws_image)
 
-      const csrfToken = $('meta[name="csrf-token"]').attr('content');
+      // const csrfToken = $('meta[name="csrf-token"]').attr('content');
+      // ,
+      // 'X-CSRF-Token': csrfToken
 
       fetch(`/api/v1/residences`, {
         method: "POST",
@@ -72,8 +74,7 @@ const ResidenceNewForm = (props) => {
         credentials: "same-origin",
         headers: {
           Accept: 'application/json',
-          Accept: "image/jpeg",
-          'X-CSRF-Token': csrfToken
+          Accept: "image/jpeg"
         },
       })
         .then(response => response.json())

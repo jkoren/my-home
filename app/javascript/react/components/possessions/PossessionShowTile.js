@@ -41,6 +41,43 @@ const PossessionShowTile = (props) => {
     "https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" :
     "")
 
+    let aws_image_html // not used yet
+    if (props.possession.aws_image.url.toLowerCase().endsWith("pdf")) {
+      aws_image_html = 
+        (<div> <embed src={aws_image_url} width="200" /> </div>)
+    } else {
+      aws_image_html =
+        (<img src={aws_image_url} width="450" />)
+    }
+
+  let aws_owners_manual_html
+  if (props.possession.aws_owners_manual.url.toLowerCase().endsWith("pdf")) {
+    aws_owners_manual_html = 
+      (<div> <embed src={aws_owners_manual_url} width="150" /> </div>)
+  } else {
+    aws_owners_manual_html =
+      (<img src={aws_owners_manual_url} width="250" />)
+  }
+
+  let aws_purchase_receipt_html
+  if (props.possession.aws_purchase_receipt.url.toLowerCase().endsWith("pdf")) {
+    aws_purchase_receipt_html = 
+      (<div> <embed src={aws_purchase_receipt_url} width="150" /> </div>)
+  } else {
+    aws_purchase_receipt_html =
+      (<img src={aws_purchase_receipt_url} width="250" />)
+  }
+
+  let aws_warranty_html
+  if (props.possession.aws_warranty.url.toLowerCase().endsWith("pdf")) {
+    aws_warranty_html = 
+      (<div> <embed src={aws_warranty_url} width="150" /> </div>)
+  } else {
+    aws_warranty_html =
+      (<img src={aws_warranty_url} width="250" />)
+  }
+  // <img src={aws_image_url} alt="no picture" width="450" />
+
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
@@ -50,8 +87,8 @@ const PossessionShowTile = (props) => {
       </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={aws_image_url} alt="no picture" width="450" />
-        </div>
+          {aws_image_html}
+         </div>
 
         <div className="cell small-12 medium-6 text-left">
           <h5>{props.possession.description}</h5>
@@ -62,9 +99,7 @@ const PossessionShowTile = (props) => {
               <a href={aws_owners_manual_url} target="_blank"> 
                 <h5>Owner's Manual</h5>
                 <i className={aws_owners_manual_icon}></i>
-                <div>
-                  <embed src={aws_owners_manual_url} height="250" />
-                </div>
+                {aws_owners_manual_html}
               </a>
             </div>
           </div>
@@ -98,11 +133,8 @@ const PossessionShowTile = (props) => {
             <> 
               <a href={aws_purchase_receipt_url} target="_blank">
                 <h5>Purchase Receipt</h5>
-                <>
-                  <i className={aws_purchase_receipt_icon}></i>
-                </>
-                <img src={aws_purchase_receipt_url} 
-                  width="250" />
+                <i className={aws_purchase_receipt_icon}></i>
+                {aws_purchase_receipt_html}
               </a>
             </>
           </div>
@@ -114,10 +146,8 @@ const PossessionShowTile = (props) => {
             <>
               <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
-                <>
-                  <i className={aws_warranty_icon}></i>
-                </>
-                <img src={aws_warranty_url} alt="" width="250" />
+                <i className={aws_warranty_icon}></i>
+                {aws_warranty_html}
               </a>
             </>
           </div>

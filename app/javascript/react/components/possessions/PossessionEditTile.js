@@ -63,10 +63,7 @@ const PossessionEditTile = (props) => {
     props.editPossession(messageUp);
   };
 
-// debugger
-  if (formFields.aws_image.url == null || formFields.aws_image.path == null) {
-    imageUploaded = ""
-  } else {
+  if (formFields.aws_image != props.possession.aws_image) {
     imageUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Image Uploaded:
@@ -76,7 +73,7 @@ const PossessionEditTile = (props) => {
     );
   }
 
-  if (formFields.aws_owners_manual.url != null) {
+  if (formFields.aws_owners_manual != props.possession.aws_owners_manual) {
     owners_manualUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Owner's Manual Uploaded: 
@@ -86,7 +83,7 @@ const PossessionEditTile = (props) => {
     );
   }
   
-  if (formFields.aws_purchase_receipt.url != null) {
+  if (formFields.aws_purchase_receipt != props.possession.aws_purchase_receipt) {
     purchaseReceiptUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Purchase Receipt Uploaded:
@@ -96,7 +93,7 @@ const PossessionEditTile = (props) => {
     );
   }
 
-  if (formFields.aws_warranty.url != null) {
+  if (formFields.aws_warranty != props.possession.aws_warranty) {
     warrantyUploaded = (
       <div className="grid-x align-center text-center">
         <h5 className="cell shrink">Warranty Uploaded:
@@ -159,7 +156,7 @@ const PossessionEditTile = (props) => {
                     <div className="cell callout">
                       <div>
                         <i className="fas fa-image fa-1x"> </i>
-                        Product Image (jpg/png): Drag here or click to upload
+                        Image: Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -212,7 +209,7 @@ const PossessionEditTile = (props) => {
                     <div className="cell callout">
                       <div>
                         <i className="fas fa-book fa-1x"> </i>
-                        Operating Manual (pdf): Drag here or click to upload
+                        Operating Manual: Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -231,7 +228,7 @@ const PossessionEditTile = (props) => {
                   <div className="cell grid-x">
                     <div className="cell callout">
                       <div>
-                        Purchase Receipt (jpg/png): Drag here or click to upload
+                        Purchase Receipt: Drag here or click to upload
                       </div>
                     </div>
                   </div>
@@ -250,7 +247,7 @@ const PossessionEditTile = (props) => {
                   <div className="cell grid-x">
                     <div className="cell callout">
                       <div>
-                        Warranty (jpg/png): Drag here or click to upload
+                        Warranty: Drag here or click to upload
                       </div>
                     </div>
                   </div>
