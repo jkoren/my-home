@@ -16,12 +16,13 @@ class Api::V1::ProfessionalsController < ApiController
     
     #process parsed response
     professionals = []
-    # binding.pry
     parsed_response["businesses"].each do |business|
-         new_professional = Professional.new(business["id"],business["name"],business["location"]["display_address"], business["phone"], business["rating"])
+      theLocation = business["location"]
+      new_professional = Professional.new(business["id"],business["name"],theLocation["address1"], theLocation["address2"], theLocation["city"], theLocation["state"],theLocation["zip_code"],theLocation["display_address"],business["display_phone"],business["rating"])
       professionals << new_professional
     end
     
+    # binding.pry
     render json: professionals
   end
 end

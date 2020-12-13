@@ -30,7 +30,7 @@ class Api::V1::PossessionsController < ApiController
   def update  
     possession = Possession.find(params[:id])
 
-    # if the image does not come through correctly, it means that a new image has not been uploaded, so do NOT update the aws_image field
+    # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
 
     if params["aws_image"] != "[object Object]" 
       possession.update_attributes(possession_aws_image_params)

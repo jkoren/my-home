@@ -8,7 +8,7 @@ const ResidenceIndexTile = (props) => {
         <div className="text-center">
           <img src={props.data.aws_image.url} alt="missing AWS image" width="350" />
           <h4>{props.data.name}</h4>
-          <h5>{props.data.city} {props.data.state}</h5> 
+          <h5>{props.data.city} {props.data.state} {props.data.zip_code} </h5> 
         </div>
       </Link>
     </div>

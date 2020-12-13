@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import PossessionShowTile from "./PossessionShowTile"
 import PossessionEditTile from "./PossessionEditTile"
 import PossessionDeleteTile from "./PossessionDeleteTile"
-import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
 import { Redirect } from "react-router-dom"
 import _ from "lodash" 
 
@@ -53,12 +52,11 @@ const PossessionPage = (props) => {
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
   }
 
-  const fetchProfessionals = () => {
+  const fetchProfessionals = (keywords, zip_code) => {
     fetch(`/api/v1/professionals/`, {
       credentials: "same-origin"
     })
       .then((response) => {
-        debugger
         if (response.ok) {
           return response;
         } else {
@@ -77,6 +75,7 @@ const PossessionPage = (props) => {
   const id = props.match.params.id 
   useEffect(() => {
     fetchPossession()
+    //debugger // why isn't formFields available here?  Need to get possession.residence.zip_code and manufacturer
     fetchProfessionals()
   }, [])
 
@@ -223,13 +222,7 @@ const PossessionPage = (props) => {
     }
   }
 
-  // let professionalsTiles = professionals.map((professionalObject) => {
-  //   return <ProfessionalIndexTile
-  //     key={professionalObject.id}
-  //     data={professionalObject}
-  //   />
-  // })
-        
+      
   return (
     <div>
       <div className="text-center">

@@ -8,7 +8,7 @@ const ResidenceShowTile = (props) => {
         {/* spacer cell */}
       </div>
 
-      <h4>{props.data.street} {props.data.city}, {props.data.state}</h4> 
+      <h4>{props.data.street} {props.data.city}, {props.data.state} {props.data.zip_code}</h4> 
 
     </div>
   )
