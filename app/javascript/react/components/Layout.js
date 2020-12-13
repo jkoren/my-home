@@ -18,6 +18,7 @@ import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
 
 // information and layout pages 
 import AboutPage from "./AboutPage"
+import Splash from "./Splash"
 import PleaseSignIn from "./PleaseSignIn"
 import ProvideThis from "./ProvideThis"
 import Sidebar from "./Sidebar"
@@ -30,11 +31,12 @@ const Layout = (props) => {
           <Sidebar classes="cell small-2 sidebar" />
           <div className="cell auto web-site-meat medium-cell-block-y">
             <Switch>
-              <Route exact path="/" component={AboutPage} />
+              <Route exact path="/" component={Splash} />
               <Route exact path="/about" component={AboutPage} />
               <Route exact path="/providethis" component={ProvideThis} />
               <Route exact path="/pleasesignin" component={PleaseSignIn} />
               <Route exact path="/demo" component={RoomsIndexForDemo} />
+              <Route exact path="/splash" component={Splash} />
 
               <Route exact path="/realtors" component={RealtorsIndexForDemo} />
               <Route exact path="/realtors/:id" component={RealtorPage} />
