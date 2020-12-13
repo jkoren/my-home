@@ -12,6 +12,7 @@ const ResidenceNewForm = (props) => {
     street2: "",
     city: "",
     state: "",
+    zip_code: "",
     aws_image: {},
     rooms: []
   })
@@ -62,11 +63,8 @@ const ResidenceNewForm = (props) => {
       newResidence.append("street2", formFields.street2)
       newResidence.append("city", formFields.city)
       newResidence.append("state", formFields.state)
+      newResidence.append("zip_code", formFields.zip_code)
       newResidence.append("aws_image", formFields.aws_image)
-
-      // const csrfToken = $('meta[name="csrf-token"]').attr('content');
-      // ,
-      // 'X-CSRF-Token': csrfToken
 
       fetch(`/api/v1/residences`, {
         method: "POST",
@@ -148,7 +146,20 @@ const ResidenceNewForm = (props) => {
                 value={formFields.name}
               />
             </label>
+            <label>
+              Address is not required.  Zip Code will help find service professionals near you.
+            </label>
 
+            <label>
+              Zip Code:
+              <input
+                name="zip_code"
+                id="zip_code"
+                type="text"
+                onChange={handleChange}
+                value={formFields.zip_code}
+              />
+            </label>
 
             <label>
               Street:

@@ -222,6 +222,7 @@ const PossessionShowTile = (props) => {
 
       <div className="cell small-12 medium-3">
         <i className="fas fa-tools fa-3x"></i>
+        Service professionals near you:
         {professionalsTiles} 
       </div>
     </div>

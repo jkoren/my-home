@@ -21,6 +21,7 @@
 #     street: "41 Matthew Ln",
 #     city: "Waltham",
 #     state: "MA",
+#     zip_code: "02451",
 #     image: "https://m.cbhomes.com/p/102/72753147/1Bd3F36Aac3142B/full.jpg",
 #     realtor: arlo
 #   )}
