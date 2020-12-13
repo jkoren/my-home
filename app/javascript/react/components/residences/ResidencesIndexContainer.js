@@ -1,6 +1,5 @@
 // ResidencesIndexContainer.js
 import React, { useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
 import ResidenceIndexTile from "./ResidenceIndexTile"
 
 const ResidencesIndexContainer = (props) => {

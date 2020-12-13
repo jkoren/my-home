@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import PossessionShowTile from "./PossessionShowTile"
 import PossessionEditTile from "./PossessionEditTile"
 import PossessionDeleteTile from "./PossessionDeleteTile"
+import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
 import { Redirect } from "react-router-dom"
 import _ from "lodash" 
 
@@ -27,6 +28,7 @@ const PossessionPage = (props) => {
     URL: "",
     warranty: ""
   })
+  const [professionals, setProfessionals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
@@ -51,15 +53,32 @@ const PossessionPage = (props) => {
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
   }
 
-  const fetchProfessional = () => {
-    
+  const fetchProfessionals = () => {
+    fetch(`/api/v1/professionals/`, {
+      credentials: "same-origin"
+    })
+      .then((response) => {
+        debugger
+        if (response.ok) {
+          return response;
+        } else {
+          let errorMessage = `${response.status} (${response.statusText})`,
+            error = new Error(errorMessage);
+          throw (error);
+        }
+      })
+      .then(response => response.json())
+      .then((body) => {
+        setProfessionals(body)
+      })
+      .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }
 
   const id = props.match.params.id 
   useEffect(() => {
     fetchPossession()
-    fetchProfessional()
-    }, [])
+    fetchProfessionals()
+  }, [])
 
   const editPossession = (message) => {
     let possessionId = message.id;
@@ -173,40 +192,48 @@ const PossessionPage = (props) => {
     deletePossession(event)
   }
   
-  let displayTile = null
+  let displayPossessionTile = null
 
   if (!formFields.id == "") {
     if (showEditTile && !showDeleteTile) {
-      displayTile = (
+      displayPossessionTile = (
         <PossessionEditTile
           possession={formFields}
           editPossession={onSaveClickHandler}
           onDiscardClickHandler={onDiscardClickHandler}
         />
-        );
-      } else if (showDeleteTile && !showEditTile) {
-        displayTile = (
-          <PossessionDeleteTile
-            possession={formFields}
-            deletePossession={onConfirmDeleteClickHandler}
-            onCancelDeleteClickHandler={onCancelDeleteClickHandler}
-          />
-          );
-        } else {
-          displayTile = (
-            <PossessionShowTile
-              possession={formFields}
-              onEditClickHandler={onEditClickHandler}
-              onDeleteClickHandler={onDeleteClickHandler}
-            />
-            );
-          }
-        }
+      );
+    } else if (showDeleteTile && !showEditTile) {
+      displayPossessionTile = (
+        <PossessionDeleteTile
+          possession={formFields}
+          deletePossession={onConfirmDeleteClickHandler}
+          onCancelDeleteClickHandler={onCancelDeleteClickHandler}
+        />
+      );
+    } else {
+      displayPossessionTile = (
+        <PossessionShowTile
+          possession={formFields}
+          professionals={professionals}
+          onEditClickHandler={onEditClickHandler}
+          onDeleteClickHandler={onDeleteClickHandler}
+        />
+      );
+    }
+  }
 
+  // let professionalsTiles = professionals.map((professionalObject) => {
+  //   return <ProfessionalIndexTile
+  //     key={professionalObject.id}
+  //     data={professionalObject}
+  //   />
+  // })
+        
   return (
     <div>
       <div className="text-center">
-        {displayTile}
+        {displayPossessionTile}
       </div>
     </div>
   )

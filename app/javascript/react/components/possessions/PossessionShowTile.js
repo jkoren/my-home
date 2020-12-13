@@ -1,6 +1,7 @@
 //PossessionShowTile.js
 import React from "react"
-import YelpApplianceRepairProIndexTile from "../YelpApplianceRepairProIndexTile"
+import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
+
 import { Link } from "react-router-dom";
 
 const PossessionShowTile = (props) => {
@@ -69,8 +70,6 @@ const PossessionShowTile = (props) => {
     aws_warranty_html = (<img src={aws_warranty_url} width="250" />)
   }
 
-  // debugger
-
   let operating_video
   if (props.possession.operating_video != "") { operating_video = props.possession.operating_video } else 
   {
@@ -86,6 +85,13 @@ const PossessionShowTile = (props) => {
     URL = "http://www.google.com"
   }
 
+  let professionalsTiles = props.professionals.map((professionalObject) => {
+  return <ProfessionalIndexTile
+    key={professionalObject.id}
+    data={professionalObject}
+  />
+
+  })
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
@@ -213,12 +219,11 @@ const PossessionShowTile = (props) => {
 
 
       </div> 
-{/* 
+
       <div className="cell small-12 medium-3">
         <i className="fas fa-tools fa-3x"></i>
-        Repair experts near you:
-        {professionalListTiles} 
-      </div> */}
+        {professionalsTiles} 
+      </div>
     </div>
 
   )

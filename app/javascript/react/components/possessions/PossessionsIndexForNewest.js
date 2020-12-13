@@ -5,7 +5,6 @@ import PossessionNewestTile from "./PossessionNewestTile"
 
 const PossessionsIndexForNewest = (props) => {
   // because this is for a demo, it has a Fetch Get
-  debugger
   const [possessions, setPossessions] = useState([])
   useEffect(() => {
     fetch(`/api/v1/possessions/`, {
@@ -26,6 +25,7 @@ const PossessionsIndexForNewest = (props) => {
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
+  
   let possessionTiles = possessions.map((possessionObject) => {
       return <PossessionNewestTile 
         key={possessionObject.id} 
