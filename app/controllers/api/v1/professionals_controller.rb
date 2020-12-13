@@ -8,7 +8,7 @@ class Api::V1::ProfessionalsController < ApiController
 
     response = Faraday.get(base_url) do | req |
       req.params['term'] = query_term
-      req.params['limit'] = 5
+      req.params['limit'] = 4
       req.params['location'] = location
       req.headers["Authorization"] = "Bearer #{ENV["YELP_API_KEY"]}"
     end
@@ -16,14 +16,12 @@ class Api::V1::ProfessionalsController < ApiController
     
     #process parsed response
     professionals = []
+    # binding.pry
     parsed_response["businesses"].each do |business|
-      new_professional = Professional.new(business["name"],business["location"]["display_address"], business["phone"], business["rating"])
+         new_professional = Professional.new(business["id"],business["name"],business["location"]["display_address"], business["phone"], business["rating"])
       professionals << new_professional
     end
     
-    # gifs_wrapper = GifsWrapper.new
-    # image_urls = gifs_wrapper.retrieve_gifs(query)
-    
-    render json: {professionals:  professionals}
+    render json: professionals
   end
 end
