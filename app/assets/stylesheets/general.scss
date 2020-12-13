@@ -1,6 +1,10 @@
 // general.scss
 @import "./color_palette";
 
+.black-lettering {
+  color: black;
+}
+
 .top-bar.menu {
   background-color: $primary;
 }
