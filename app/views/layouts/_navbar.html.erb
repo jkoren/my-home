@@ -3,10 +3,10 @@
 <div class="top-bar menu align-middle">
 
   <div class="top-bar-left align-middle">
-      <%= link_to residences_path do %>
+      <%= link_to splash_path do %>
         <%= image_tag( root_url + "favicon-32x32.png", size: "70x70", :alt => "My Home") %>
       <% end %>
-      <%= link_to residences_path do %>
+      <%= link_to splash_path do %>
         <div class="black-lettering"> My-Home </div> 
       <% end %>
       
@@ -48,6 +48,7 @@
           <%- end -%>
           <!-- <%= link_to 'Add Possessions', root_path %> -->
           <%= link_to 'Example', demo_path %>
+          <%= link_to 'News', news_path %>
           <%= link_to 'About', about_path %>   
     </div>
     <%- if current_user && current_user.admin? -%>

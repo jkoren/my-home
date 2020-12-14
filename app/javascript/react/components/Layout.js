@@ -14,11 +14,12 @@ import RoomNewForm from "./rooms/RoomNewForm"
 
 import PossessionPage from "./possessions/PossessionPage"
 import PossessionNewForm from "./possessions/PossessionNewForm"
-import PossessionsIndexForNewest from "./possessions/PossessionsIndexForNewest"
+import PossessionsNewsContainer from "./possessions/PossessionsNewsContainer"
 
 // information and layout pages 
 import AboutPage from "./AboutPage"
 import Splash from "./Splash"
+import News from "./News"
 import PleaseSignIn from "./PleaseSignIn"
 import ProvideThis from "./ProvideThis"
 import Sidebar from "./Sidebar"
@@ -37,6 +38,7 @@ const Layout = (props) => {
               <Route exact path="/pleasesignin" component={PleaseSignIn} />
               <Route exact path="/demo" component={RoomsIndexForDemo} />
               <Route exact path="/splash" component={Splash} />
+              <Route exact path="/news" component={News} />
 
               <Route exact path="/realtors" component={RealtorsIndexForDemo} />
               <Route exact path="/realtors/:id" component={RealtorPage} />
@@ -52,7 +54,7 @@ const Layout = (props) => {
               <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
 
               <Route exact path="/possessions/:id" component={PossessionPage} /> 
-              <Route exact path="/possessions/newest" component={PossessionsIndexForNewest} /> 
+              <Route exact path="/possessions/newest" component={PossessionsNewsContainer} /> 
             </Switch>
           </div>
         </div>

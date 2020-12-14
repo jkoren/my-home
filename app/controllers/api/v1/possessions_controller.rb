@@ -11,8 +11,8 @@ class Api::V1::PossessionsController < ApiController
     # used by newest possessions
     # possessions = Possession.all.select{|possession|possession.room == params[:id]}
     possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
-    possessions = possessions[0..4]
-    render json: possessions, each_serializer: PossessionNewestSerializer
+    possessions = possessions[0..6]
+    render json: possessions, each_serializer: PossessionNewsSerializer
     # need to figure out how to limit only to room name, and include second level association to include residence.city and residence.state
   end
   
@@ -62,7 +62,7 @@ class Api::V1::PossessionsController < ApiController
 
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
+      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :URL, :warranty, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
     end
 
     def possession_aws_image_params
@@ -82,7 +82,7 @@ class Api::V1::PossessionsController < ApiController
     end
 
     def possession_params_no_aws
-      params.permit([:id, :name, :manufacturer, :model, :owners_manual, :description, :year_built, :purchased_from, :image, :purchase_date, :purchase_receipt, :purchase_price, :URL, :operating_video, :URL, :warranty])
+      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video])
     end
 
     def authenticate_user

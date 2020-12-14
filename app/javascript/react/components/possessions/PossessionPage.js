@@ -14,18 +14,13 @@ const PossessionPage = (props) => {
     model: "",
     owner_manual: "",
     description: "",
-    year_built: "",
-    purchased_from: "",
     aws_image: {},
     aws_owners_manual: {},
     aws_purchase_receipt:{},
     aws_warranty: {},
-    purchase_date: "",
     purchase_receipt: {},
-    purchase_price: "",
     operating_video: "",
-    URL: "",
-    warranty: ""
+    URL: ""
   })
   const [professionals, setProfessionals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)
@@ -90,17 +85,12 @@ const PossessionPage = (props) => {
     updatedPossession.append("model", message.possession.model)
     updatedPossession.append("owners_manual", message.possession.owners_manual)
     updatedPossession.append("description", message.possession.description)
-    updatedPossession.append("year_built", message.possession.year_built)
-    updatedPossession.append("purchased_from", message.possession.purchased_from)
     updatedPossession.append("aws_image", message.possession.aws_image)
     updatedPossession.append("aws_owners_manual", message.possession.aws_owners_manual)
     updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
     updatedPossession.append("aws_warranty", message.possession.aws_warranty)
-    updatedPossession.append("purchase_date", message.possession.purchase_date)
-    updatedPossession.append("purchase_price", message.possession.purchase_price)
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("URL", message.possession.URL)
-    updatedPossession.append("warranty", message.possession.warranty)
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,

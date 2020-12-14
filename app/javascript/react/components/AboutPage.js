@@ -17,7 +17,7 @@ const AboutPage = (props) => {
         <div className="grid-x grid-margin-y text-center">
           <div className="callout cell small-10 medium-8 box-shadow">
             <h3 className="cell"> My-Home </h3>
-            <h5 className="cell"> With all the equipment in our homes these days, I thought we could use a site to help us manage everything.  What do we own?  Where are the operating instructions?  Does it have a web site?  When did we buy it?  Is it still under warranty? </h5>
+            <h5 className="cell"> With all the equipment in our homes these days, I thought we could use a site to help us manage everything.  What do we own?  Where are the operating instructions?  Does it have a web site?  When did we buy it?  What do we do when it breaks? Is it still under warranty? </h5>
 
             <h5 className="cell"> This website is for those of us who have lost the owner's manuals. </h5>
 
