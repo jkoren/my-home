@@ -2,32 +2,38 @@
 class Api::V1::PossessionsController < ApiController
   #before_action :authenticate_user!, except: [:index, :show]
 
+# why is current user = nil? for update and create actions?
+
   def show
+    UserAction.create(action: "show", table: "possession", user: current_user, id_of_item: params[:id]) # log the action
+
     possession = Possession.find(params[:id])
     render json: possession, serializer: PossessionShowSerializer
   end
   
   def index
-    # used by newest possessions
-    # possessions = Possession.all.select{|possession|possession.room == params[:id]}
+    # used by news - most recent possessions
+    UserAction.create(action: "index", table: "possession", user: current_user, id_of_item: 0) # log the action
     possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
     possessions = possessions[0..6]
     render json: possessions, each_serializer: PossessionNewsSerializer
-    # need to figure out how to limit only to room name, and include second level association to include residence.city and residence.state
   end
   
   def create
+    # binding.pry # why is current_user = nil?
     new_possession = Possession.new(possession_params)
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      render json: new_possession 
+      UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id)
+      render json: new_possession     
     else
       render json: { errors: new_possession.errors }
     end
   end
 
   def update  
+    # binding.pry # why is current_user = nil?
     possession = Possession.find(params[:id])
 
     # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
@@ -50,6 +56,8 @@ class Api::V1::PossessionsController < ApiController
 
     possession.update_attributes(possession_params_no_aws)
 
+    # UserAction.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id]) # log the action
+
     render json: possession
   end
 
@@ -57,6 +65,7 @@ class Api::V1::PossessionsController < ApiController
     possession = Possession.find(params[:id])
     room = possession.room
     possession.destroy
+    UserAction.create(action: "destroy", table: "possession", user: current_user, id_of_item: params[:id])
     render json: {roomId: room.id}
   end
 
