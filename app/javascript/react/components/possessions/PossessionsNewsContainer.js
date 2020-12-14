@@ -1,10 +1,8 @@
-// PossessionsIndexForNewest.js
+// PossessionsNewsContainer.js
 import React, { useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
-import PossessionNewestTile from "./PossessionNewestTile"
+import PossessionNewsTile from "./PossessionNewsTile"
 
-const PossessionsIndexForNewest = (props) => {
-  // because this is for a demo, it has a Fetch Get
+const PossessionsNewsContainer = (props) => {
   const [possessions, setPossessions] = useState([])
   useEffect(() => {
     fetch(`/api/v1/possessions/`, {
@@ -27,11 +25,12 @@ const PossessionsIndexForNewest = (props) => {
   }, [])
   
   let possessionTiles = possessions.map((possessionObject) => {
-      return <PossessionNewestTile 
+      return <PossessionNewsTile 
         key={possessionObject.id} 
         data={possessionObject} 
       />
   })
+  debugger
   return (
     <div>
       <div>
@@ -46,4 +45,4 @@ const PossessionsIndexForNewest = (props) => {
   )
 }
 
-export default PossessionsIndexForNewest
+export default PossessionsNewsContainer

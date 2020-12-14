@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_152242) do
+ActiveRecord::Schema.define(version: 2020_12_14_011420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,20 +40,13 @@ ActiveRecord::Schema.define(version: 2020_12_13_152242) do
     t.string "name", null: false
     t.string "manufacturer", null: false
     t.string "model"
-    t.string "owners_manual"
     t.text "description"
-    t.integer "year_built"
-    t.string "purchased_from"
-    t.string "image"
-    t.date "purchase_date"
     t.string "purchase_receipt"
-    t.string "purchase_price"
     t.bigint "room_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "operating_video"
     t.string "URL"
-    t.string "warranty"
     t.string "aws_image"
     t.string "aws_owners_manual"
     t.string "aws_purchase_receipt"

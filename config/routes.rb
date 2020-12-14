@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/demo', to: 'homes#index'
   get '/providethis', to: 'homes#index'
   get '/pleasesignin', to: 'homes#index'
+  get '/news', to: 'homes#index'
   get '/possessions/newest', to: 'homes#index'
 
   # save information

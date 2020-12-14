@@ -6,6 +6,8 @@ class Possession < ApplicationRecord
   mount_uploader :aws_purchase_receipt, PossessionPurchaseReceiptUploader
 
   belongs_to :room
+  delegate :residence, :to => :room, :allow_nil => true
+  # https://stackoverflow.com/questions/4021322/belongs-to-through-associations
 
   def URL_thumbnail
     if @URL
