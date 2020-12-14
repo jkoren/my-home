@@ -30,8 +30,7 @@ const PossessionsNewsContainer = (props) => {
         data={possessionObject} 
       />
   })
-  debugger
-  return (
+   return (
     <div>
       <div>
          <br></br>{/* spacer */}
