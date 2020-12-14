@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :residence, optional: true
   has_one :realtor, through: :residence
+  has_many :user_actions
 
   def admin?
     role == "admin"
