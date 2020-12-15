@@ -2,7 +2,7 @@ import React from "react";
 import PossessionsNewsContainer from "./possessions/PossessionsNewsContainer"
 import { Link } from 'react-router-dom'
 
-const AboutPage = (props) => {
+const News = (props) => {
   
   return (
     <div>
@@ -30,4 +30,4 @@ const AboutPage = (props) => {
   )
 }
 
-export default AboutPage;
+export default News;

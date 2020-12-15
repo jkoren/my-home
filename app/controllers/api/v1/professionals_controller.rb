@@ -22,7 +22,6 @@ class Api::V1::ProfessionalsController < ApiController
       professionals << new_professional
     end
     
-    # binding.pry
     render json: professionals
   end
 end

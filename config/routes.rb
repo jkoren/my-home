@@ -18,7 +18,8 @@ Rails.application.routes.draw do
   get '/providethis', to: 'homes#index'
   get '/pleasesignin', to: 'homes#index'
   get '/news', to: 'homes#index'
-  get '/possessions/newest', to: 'homes#index'
+  get '/faq', to: 'homes#index'
+
 
   # save information
   get "/residences/:id/rooms/new", to: "homes#index" 
@@ -39,6 +40,8 @@ Rails.application.routes.draw do
       resources :possessions, only: [:index, :show, :update, :destroy]
 
       resources :professionals, only: [:index]
+
+      resources :user_actions, only: [:index]
     end
   end
 

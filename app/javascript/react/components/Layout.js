@@ -20,6 +20,7 @@ import PossessionsNewsContainer from "./possessions/PossessionsNewsContainer"
 import AboutPage from "./AboutPage"
 import Splash from "./Splash"
 import News from "./News"
+import FAQ from "./FAQ"
 import PleaseSignIn from "./PleaseSignIn"
 import ProvideThis from "./ProvideThis"
 import Sidebar from "./Sidebar"
@@ -39,6 +40,7 @@ const Layout = (props) => {
               <Route exact path="/demo" component={RoomsIndexForDemo} />
               <Route exact path="/splash" component={Splash} />
               <Route exact path="/news" component={News} />
+              <Route exact path="/faq" component={FAQ} />
 
               <Route exact path="/realtors" component={RealtorsIndexForDemo} />
               <Route exact path="/realtors/:id" component={RealtorPage} />
