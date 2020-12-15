@@ -5,27 +5,27 @@ class Api::V1::PossessionsController < ApiController
 # why is current user = nil? for update and create actions?
 
   def show
-    UserAction.create(action: "show", table: "possession", user: current_user, id_of_item: params[:id]) # log the action
-
+    
     possession = Possession.find(params[:id])
+    UserAction.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) # log the action
     render json: possession, serializer: PossessionShowSerializer
   end
   
   def index
     # used by news - most recent possessions
-    UserAction.create(action: "index", table: "possession", user: current_user, id_of_item: 0) # log the action
+    UserAction.create(action: "index", table: "possession", user: current_user, name: "multiple") # log the action
     possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
     possessions = possessions[0..6]
     render json: possessions, each_serializer: PossessionNewsSerializer
   end
   
   def create
-    # binding.pry # why is current_user = nil?
+    binding.pry
     new_possession = Possession.new(possession_params)
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id)
+      UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id, name: Possession.last.name)
       render json: new_possession     
     else
       render json: { errors: new_possession.errors }
@@ -56,7 +56,7 @@ class Api::V1::PossessionsController < ApiController
 
     possession.update_attributes(possession_params_no_aws)
 
-    # UserAction.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id]) # log the action
+    # UserAction.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
 
     render json: possession
   end
@@ -65,7 +65,7 @@ class Api::V1::PossessionsController < ApiController
     possession = Possession.find(params[:id])
     room = possession.room
     possession.destroy
-    UserAction.create(action: "destroy", table: "possession", user: current_user, id_of_item: params[:id])
+    UserAction.create(action: "destroy", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     render json: {roomId: room.id}
   end
 
