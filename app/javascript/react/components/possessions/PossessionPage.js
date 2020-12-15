@@ -48,7 +48,7 @@ const PossessionPage = (props) => {
   }
 
   const fetchProfessionals = (keywords, zip_code) => {
-    fetch(`/api/v1/professionals/`, {
+    fetch(`/api/v1/professionals/?query=electrician&zip_code=19087`, {
       credentials: "same-origin"
     })
       .then((response) => {
@@ -71,7 +71,7 @@ const PossessionPage = (props) => {
   useEffect(() => {
     fetchPossession()
     //debugger // why isn't formFields available here?  Need to get possession.residence.zip_code and manufacturer
-    fetchProfessionals()
+    fetchProfessionals("plumber","19087")
   }, [])
 
   const editPossession = (message) => {
