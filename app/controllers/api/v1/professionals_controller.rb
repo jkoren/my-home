@@ -2,9 +2,10 @@
 class Api::V1::ProfessionalsController < ApiController
 
   def index
+    # binding.pry
     base_url = "https://api.yelp.com/v3/businesses/search"
-    query_term = "plumber"
-    location = "02421"
+    query_term = params["query"]
+    location = params["zip_code"]
 
     response = Faraday.get(base_url) do | req |
       req.params['term'] = query_term
