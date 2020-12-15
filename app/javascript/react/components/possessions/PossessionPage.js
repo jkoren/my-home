@@ -48,7 +48,7 @@ const PossessionPage = (props) => {
   }
 
   const fetchProfessionals = (keywords, zip_code) => {
-    fetch(`/api/v1/professionals/?query=electrician&zip_code=19087`, {
+    fetch(`/api/v1/professionals/?query=${keywords}&zip_code=${zip_code}`, {
       credentials: "same-origin"
     })
       .then((response) => {
@@ -70,8 +70,11 @@ const PossessionPage = (props) => {
   const id = props.match.params.id 
   useEffect(() => {
     fetchPossession()
-    //debugger // why isn't formFields available here?  Need to get possession.residence.zip_code and manufacturer
-    fetchProfessionals("plumber","19087")
+    // debugger 
+    // why isn't formFields available here? 
+    // a timing delay in response from backend?
+    // Need to get possession.residence.zip_code and manufacturer
+    fetchProfessionals("veterinary","02760")
   }, [])
 
   const editPossession = (message) => {
