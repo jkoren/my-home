@@ -7,16 +7,13 @@ import RoomsIndexContainer from "../rooms/RoomsIndexContainer"
 
 const ResidencePage = (props) => {
   const [residence, setResidence] = useState({
-    id: "",
-    name: "",
-    manufacturer: "",
-    model: "",
-    operating_video: "",
-    image: "",
+    street1: "",
+    street2: "",
+    city: "",
+    state: "",
+    zip_code: "",
     aws_image: "",
-    owners_manual: "",
-    URL: "",
-    purchase_receipt: ""
+    display_area: "",
   })
 
   const id = props.match.params.id 
