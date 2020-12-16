@@ -15,6 +15,7 @@ const PossessionsIndexContainer = (props) => {
       )
     })
   }
+  // debugger
   return (
     <div>
       <div className="grid-x grid-margin-x" style={{ height: "100%", padding: "0 2rem" }}>
