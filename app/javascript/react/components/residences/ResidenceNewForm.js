@@ -101,8 +101,6 @@ const ResidenceNewForm = (props) => {
   }
 
   if (shouldRedirect.redirect) {
-    debugger
-    // return <Redirect to={`/realtors/${props.match.params.id}`}/>
     return <Redirect to={`/residences`}/>
 
   }
