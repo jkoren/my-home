@@ -71,7 +71,7 @@ class Api::V1::PossessionsController < ApiController
 
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :URL, :warranty, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
+      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :URL, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
     end
 
     def possession_aws_image_params
