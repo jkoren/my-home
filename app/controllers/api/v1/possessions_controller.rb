@@ -25,7 +25,7 @@ class Api::V1::PossessionsController < ApiController
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id, name: Possession.last.name)
+      # UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id, name: Possession.last.name)
       render json: new_possession     
     else
       render json: { errors: new_possession.errors }
