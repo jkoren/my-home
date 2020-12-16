@@ -20,7 +20,7 @@ class Api::V1::PossessionsController < ApiController
   end
   
   def create
-    binding.pry
+    # binding.pry # why is current_user = nil?
     new_possession = Possession.new(possession_params)
     room = Room.find(params[:room_id])
     new_possession.room = room
