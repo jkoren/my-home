@@ -2,9 +2,8 @@
 class Api::V1::UserActionsController < ApiController
 #   skip_before_filter :verify_authenticity_token - CAUSED HEROKU TO CRASH
 
-# UserAction.last.user.email
   def index
-    render json: UserAction.all
+    render json: UserAction.all.sort_by{ |a| a[:created_at] }.reverse
   end
 
 end
