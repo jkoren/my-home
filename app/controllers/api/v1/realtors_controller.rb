@@ -1,6 +1,6 @@
 # realtors_controller.rb
 class Api::V1::RealtorsController < ApiController
-  #before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def show
     realtor = Realtor.find(params[:id])

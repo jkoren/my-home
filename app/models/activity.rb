@@ -1,4 +1,4 @@
-class UserAction < ApplicationRecord
+class Activity < ApplicationRecord
   validates :action, presence: true
   validates :table, presence: true
 

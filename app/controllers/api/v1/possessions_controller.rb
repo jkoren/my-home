@@ -1,33 +1,28 @@
 # possessions_controller.rb
 class Api::V1::PossessionsController < ApiController
-  #before_action :authenticate_user!, except: [:index, :show]
-
-# why is current user = nil? for update and create actions?
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def show
     possession = Possession.find(params[:id])
-    UserAction.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) # log the action
+    Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) # log the action
     render json: possession, serializer: PossessionShowSerializer
   end
   
   def index
     # used by news - most recent possessions
-    UserAction.create(action: "index", table: "possession", user: current_user, name: "multiple") # log the action
+    Activity.create(action: "index", table: "possession", user: current_user, name: "multiple") # log the action
     possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
     possessions = possessions[0..6]
     render json: possessions, each_serializer: PossessionNewsSerializer
   end
   
   def create
-    # binding.pry # why is current_user = nil?
     new_possession = Possession.new(possession_params)
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
       
-      colleen = User.find_by(email: 'colleen@gmail.com')
-
-      theAction = UserAction.new(action: "create", table: "possession", user: colleen, id_of_item: new_possession.id, name: new_possession.name)
+      theAction = Activity.new(action: "create", table: "possession", user: current_user, id_of_item: new_possession.id, name: new_possession.name)
       theAction.save
 
       render json: new_possession     
@@ -37,7 +32,6 @@ class Api::V1::PossessionsController < ApiController
   end
 
   def update  
-    # binding.pry # why is current_user = nil?
     possession = Possession.find(params[:id])
 
     # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
@@ -59,10 +53,8 @@ class Api::V1::PossessionsController < ApiController
     end
 
     possession.update_attributes(possession_params_no_aws)
-
-    colleen = User.find_by(email: 'colleen@gmail.com')
     
-    UserAction.create(action: "update", table: "possession", user: colleen, id_of_item: params[:id], name: params[:name]) # log the action
+    Activity.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
 
     render json: possession
   end
@@ -71,7 +63,7 @@ class Api::V1::PossessionsController < ApiController
     possession = Possession.find(params[:id])
     room = possession.room
     possession.destroy
-    UserAction.create(action: "destroy", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
+    Activity.create(action: "destroy", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     render json: {roomId: room.id}
   end
 

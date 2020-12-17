@@ -1,6 +1,6 @@
 # rooms_controller.rb
 class Api::V1::RoomsController < ApiController
-  #before_action :authenticate_user!, except: [:index, :show]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
   
   def show
     room = Room.find(params[:id])
@@ -23,7 +23,6 @@ class Api::V1::RoomsController < ApiController
       render json: { errors: new_room.errors }
     end
   end
-
 
   private
     def room_params
