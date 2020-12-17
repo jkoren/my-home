@@ -1,6 +1,6 @@
 class Api::V1::ResidencesController < ApiController
   before_action :authenticate_user!
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create, :update]
 
   def show
     residence = Residence.find(params[:id])

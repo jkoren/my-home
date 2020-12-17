@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
       resources :professionals, only: [:index]
 
-      resources :user_actions, only: [:index]
+      resources :activities, only: [:index]
     end
   end
 

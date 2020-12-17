@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_220636) do
+ActiveRecord::Schema.define(version: 2020_12_17_215531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2020_12_14_220636) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "action", null: false
+    t.string "table", null: false
+    t.integer "id_of_item"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", default: "unknown"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "possessions", force: :cascade do |t|
@@ -90,17 +101,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_220636) do
     t.bigint "residence_id"
     t.string "aws_image"
     t.index ["residence_id"], name: "index_rooms_on_residence_id"
-  end
-
-  create_table "user_actions", force: :cascade do |t|
-    t.string "action", null: false
-    t.string "table", null: false
-    t.integer "id_of_item"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", default: "unknown"
-    t.index ["user_id"], name: "index_user_actions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
