@@ -1,5 +1,5 @@
 class PossessionNewsSerializer < ActiveModel::Serializer 
-  attributes :id, :name, :manufacturer, :model, :updated_at, :display_location
+  attributes :id, :name, :manufacturer, :model, :updated_at, :display_location, :zip_code
 
 
   def city

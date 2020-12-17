@@ -5,7 +5,6 @@ class Api::V1::PossessionsController < ApiController
 # why is current user = nil? for update and create actions?
 
   def show
-    
     possession = Possession.find(params[:id])
     UserAction.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) # log the action
     render json: possession, serializer: PossessionShowSerializer
@@ -25,7 +24,12 @@ class Api::V1::PossessionsController < ApiController
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      # UserAction.create(action: "create", table: "possession", user: current_user, id_of_item: Possession.last.id, name: Possession.last.name)
+      
+      colleen = User.find_by(email: 'colleen@gmail.com')
+
+      theAction = UserAction.new(action: "create", table: "possession", user: colleen, id_of_item: new_possession.id, name: new_possession.name)
+      theAction.save
+
       render json: new_possession     
     else
       render json: { errors: new_possession.errors }
@@ -56,7 +60,9 @@ class Api::V1::PossessionsController < ApiController
 
     possession.update_attributes(possession_params_no_aws)
 
-    # UserAction.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
+    colleen = User.find_by(email: 'colleen@gmail.com')
+    
+    UserAction.create(action: "update", table: "possession", user: colleen, id_of_item: params[:id], name: params[:name]) # log the action
 
     render json: possession
   end
@@ -71,7 +77,7 @@ class Api::V1::PossessionsController < ApiController
 
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :URL, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
+      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
     end
 
     def possession_aws_image_params
