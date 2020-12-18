@@ -7,7 +7,7 @@ class Possession < ApplicationRecord
 
   belongs_to :room
   has_many :professionals
-  
+
   delegate :residence, :to => :room, :allow_nil => true
   # https://stackoverflow.com/questions/4021322/belongs-to-through-associations
 
@@ -26,6 +26,7 @@ class Possession < ApplicationRecord
       req.params['term'] = query
       req.params['location'] = location
       req.params['limit'] = quantity
+      req.params['categories'] = 'home services'
       req.headers["Authorization"] = "Bearer #{ENV["YELP_API_KEY"]}"
     end
     parsed_response = JSON.parse(response.body)
