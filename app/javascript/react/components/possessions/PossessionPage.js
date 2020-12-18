@@ -24,13 +24,11 @@ const PossessionPage = (props) => {
     zip_code: ""
   })
   const [professionals, setProfessionals] = useState([])
-  const [manufacturer, setManufacturer] = useState("")
-  const [zip_code, setZip_code] = useState("")
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
-  const fetchPossession = () => {
+  const fetchPossessionAndProfessionals = () => {
     // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
@@ -45,81 +43,15 @@ const PossessionPage = (props) => {
         }
       })
       .then((responseBody) => {
-        setFormFields(responseBody)
+        setFormFields(responseBody.possession)
+        setProfessionals(responseBody.professionals)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
-  }
-
-  const fetchProfessionals = (keywords, zip_code) => {
-    fetch(`/api/v1/professionals/?query=${keywords}&zip_code=${zip_code}`, {
-      credentials: "same-origin"
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw (error);
-        }
-      })
-      .then(response => response.json())
-      .then((body) => {
-        setProfessionals(body)
-      })
-      .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }
 
   const id = props.match.params.id 
   useEffect(() => {
-    //-------
-    // fetchPossession()
-    // debugger 
-    // why isn't formFields available here? 
-    // a timing delay in response from backend?
-    // Need to get possession.residence.zip_code and manufacturer
-    // fetchProfessionals("veterinary","02760")
-    //--------
-    // fetchPossession()
-    //   .then(fetchProfessionals("veterinary", "02760"))
-    //----------
-    fetch(`/api/v1/possessions/${id}`, {
-      credentials: "same-origin"
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw (error);
-        }
-      })
-      .then((responseBody) => {
-        setManufacturer(responseBody.manufacturer)
-        setZip_code(responseBody.zip_code)
-        // debugger // state variables manufacturer and zip_code are not assigned any values for the fetch below
-        setFormFields(responseBody)
-      })
-      .then (fetch(`/api/v1/professionals/?query=${manufacturer}&zip_code=${zip_code}`, {
-      credentials: "same-origin"
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response;
-        } else {
-          let errorMessage = `${response.status} (${response.statusText})`,
-            error = new Error(errorMessage);
-          throw (error);
-        }
-      })
-      .then(response => response.json())
-      .then((body) => {
-        setProfessionals(body)
-      }))
-      .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
-
-
+    fetchPossessionAndProfessionals()
   }, [])
 
   const editPossession = (message) => {
