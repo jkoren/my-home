@@ -4,8 +4,11 @@ class Api::V1::PossessionsController < ApiController
 
   def show
     possession = Possession.find(params[:id])
+    professionals = Possession.get_professionals(possession.name, possession.residence.zip_code, 4)
+    
     Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) # log the action
-    render json: possession, serializer: PossessionShowSerializer
+    # render json: possession, serializer: PossessionShowSerializer
+    render json: {possession: possession, professionals: professionals}
   end
   
   def index
@@ -101,5 +104,4 @@ class Api::V1::PossessionsController < ApiController
     def serialized_data(data, serializer)
       ActiveModelSerializers::SerializableResource.new(data, each_serializer: serializer, scope: current_user)
     end
-
 end
