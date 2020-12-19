@@ -16,9 +16,7 @@ const News = (props) => {
           <div className="callout cell box-shadow text-center">
             <h5 className="cell"> News </h5>
           </div>
-          <div className="grid-x text-left">
-            <h4>Items Just Added:</h4>
-          </div>
+
           <PossessionsNewsContainer/>
 
         </div>

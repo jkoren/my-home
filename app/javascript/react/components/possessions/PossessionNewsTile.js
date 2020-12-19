@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 
 const PossessionNewsTile = (props) => {
   return (
-    <div className="cell">
-      <h5>{props.data.name} {props.data.manufacturer} {props.data.model} ({props.data.display_location})</h5> 
-    </div>
+      <tr>
+        <td>{props.data.name} {props.data.manufacturer} {props.data.model}</td>
+        <td>{props.data.display_location}</td>
+        <td>anonymous</td>
+      </tr> 
   )
 }
 
