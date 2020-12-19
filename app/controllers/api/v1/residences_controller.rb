@@ -24,8 +24,6 @@ class Api::V1::ResidencesController < ApiController
     new_residence.realtor = realtor
     current_user.residence = new_residence 
     if new_residence.save && current_user.save
-      # binding.pry
-      # redirect_to "/" 
       render json: new_residence
     else
       render json: { errors: new_residence.errors }

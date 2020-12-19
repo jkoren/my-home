@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   # end
 
   # def this_user
-  #   binding.pry
   #   current_user ? current_user.name : "not_logged_in"
   # end
 
