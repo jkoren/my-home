@@ -1,10 +1,13 @@
 // PossessionsNewsContainer.js
 import React, { useEffect, useState } from "react"
 import PossessionNewsTile from "./PossessionNewsTile"
-import PossessionLeaderBoard from "./PossessionLeaderBoard"
+import PossessionLeaderTile from "./PossessionLeaderTile"
+// import PossessionLeaderBoard from "./PossessionLeaderBoard"
 
 const PossessionsNewsContainer = (props) => {
   const [possessions, setPossessions] = useState([])
+  const [leaders, setLeaders] = useState([])
+
   useEffect(() => {
     fetch(`/api/v1/possessions/`, {
       credentials: "same-origin"
@@ -20,12 +23,15 @@ const PossessionsNewsContainer = (props) => {
       })
       .then(response => response.json())
       .then((body) => {
-        setPossessions(body)
+        console.log(body.possessions)
+        console.log(body.leaders)
+        setPossessions(body.possessions)
+        setLeaders(body.leaders)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-  let possessionLeaderBoard = <PossessionLeaderBoard
-  />
+  // let possessionLeaderBoard = <PossessionLeaderBoard
+  // />
 
   let possessionTiles = possessions.map((possessionObject) => {
       return <PossessionNewsTile 
@@ -33,30 +39,45 @@ const PossessionsNewsContainer = (props) => {
         data={possessionObject} 
       />
   })
+
+  let leaderTiles = leaders.map((possessionArray) => {
+      return <PossessionLeaderTile 
+        key={possessionArray[0]} 
+        data={possessionArray} 
+      />
+  })
    return (
     <div>
-      
-      <div className="grid-container">
-        <div className="grid-x grid-margin-x">
-          {possessionLeaderBoard}
-        </div>
-      </div>
+      <section>
+        <h3>Possession Leader Board</h3>
+        <table>
+          <thead>
+            <tr>
+              <th width="100">Screen Name</th>
+              <th width="100">Possessions</th>
+              <th width="100">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderTiles}
+          </tbody>
+        </table>
+      </section>
 
-       <section>
-         <h3>Newest Items Added</h3>
-         <table>
-           <thead>
-             <tr>
-               <th width="100">Possession</th>
-               <th width="100">Location</th>
-               <th width="100">Screen Name</th>
-             </tr>
-           </thead>
-           <tbody>
-          {possessionTiles}
-         </tbody>
-      </table>
-    </section>
+      <section>
+        <h3>Newest Items Added</h3>
+        <table>
+          <thead>
+            <tr>
+              <th width="100">Possession</th>
+              <th width="100">Location</th>
+            </tr>
+          </thead>
+          <tbody>
+            {possessionTiles}
+          </tbody>
+        </table>
+      </section>
 
     </div>
   )
