@@ -14,7 +14,7 @@ class Api::V1::PossessionsController < ApiController
   def index
     # used by news - most recent possessions
     Activity.create(action: "news", table: "possession", user: current_user, name: "multiple") # log the action
-    possessions = Possession.all.sort_by{ |a| a[:created_at] }.reverse
+    possessions = Possession.all.sort_by{ |a| a[:updated_at] }.reverse
     leaders = Activity.leader_board
     possessions = possessions[0..6]
     render json: {possessions: possessions, leaders: leaders}
