@@ -9,11 +9,13 @@ class Activity < ApplicationRecord
     users = User.all
     users.each do | user |
       possession_count = 0
-      if user.residence != nil && user.residence.rooms != nil
-        user.residence.rooms.each do | room |
-          if room.possessions != nil
-            # puts(user.email+":"+room.name+" has "+ room.possessions.count.to_s+" possession(s).")
-            possession_count += room.possessions.count
+      if user.email != "jeff@gmail.com" && user.email != "colleen@gmail.com" # remove test accounts
+        if user.residence != nil && user.residence.rooms != nil
+          user.residence.rooms.each do | room |
+            if room.possessions != nil
+              # puts(user.email+":"+room.name+" has "+ room.possessions.count.to_s+" possession(s).")
+              possession_count += room.possessions.count
+            end
           end
         end
       end
