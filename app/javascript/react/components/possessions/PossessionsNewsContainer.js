@@ -55,7 +55,7 @@ const PossessionsNewsContainer = (props) => {
             <tr>
               <th width="100">Screen Name</th>
               <th width="100">Possessions</th>
-              <th width="100">Points</th>
+              {/* <th width="100">Points</th> */}
             </tr>
           </thead>
           <tbody>

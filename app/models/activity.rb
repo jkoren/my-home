@@ -20,10 +20,12 @@ class Activity < ApplicationRecord
         end
       end
       if possession_count > 0
-        possession_summary.push([user.email, possession_count])
+        # binding.pry
+        possession_summary.push([user.screen_name, possession_count])
       end
     end
     possession_summary.sort_by!{ |user, possession_count| possession_count }.reverse!
+
 
     return possession_summary
   end

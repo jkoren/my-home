@@ -25,6 +25,7 @@ const RoomsIndexContainer = (props) => {
 
       <div className="grid-container">
         <Link to={`/residences/${props.residence.id}/rooms/new`}>Add a New Room</Link>
+        <h5>Click or Tap on a Room to Enter Possessions</h5>
       </div>
 
       {/* <div className="grid-container">
