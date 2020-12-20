@@ -19,7 +19,7 @@ const PossessionDeleteTile = (props) => {
         </div> 
 
         <div className="cell small-12 medium-3">
-          <img src={props.possession.aws_image.url} alt="missing aws picture" width="450" />
+          <img src={props.possession.aws_image.url} alt="no picture" width="450" />
         </div>
 
         <div className="cell small-12 medium-3">
