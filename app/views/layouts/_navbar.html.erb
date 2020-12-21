@@ -61,12 +61,13 @@
           <%= link_to 'Example', demo_path %>
           <%= link_to 'News', news_path %>
           <%= link_to 'FAQ', faq_path %>
-          <%= link_to 'About', about_path %>   
+          <%= link_to 'About', about_path %> 
     </div>
     <%- if current_user && current_user.admin? -%>
       <div class="top-bar-left align-middle submenu">
             <%= link_to 'All Residences', residences_path %>
             <%= link_to 'See Residences by Realtors', realtors_path %>
+            <%= link_to 'Activity', activities_path %> 
       </div>
     <%- end -%>
     

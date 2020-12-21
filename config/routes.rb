@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/providethis', to: 'homes#index'
   get '/pleasesignin', to: 'homes#index'
   get '/news', to: 'homes#index'
+  get '/activities', to: 'homes#index'
   get '/faq', to: 'homes#index'
 
 
