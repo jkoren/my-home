@@ -13,7 +13,7 @@ const Splash = (props) => {
         <div className="cell medium-8"> 
           <br></br>     
           <h3> The Easiest Way to Manage the Technology in Your Home</h3>
-          <img src="https://my-home-development.s3.amazonaws.com/uploads/site/stylized-house.png"></img>
+          <img src="https://my-home-development.s3.amazonaws.com/uploads/site/nice-house.jpg"></img>
         </div>
       </div>
       <br></br>

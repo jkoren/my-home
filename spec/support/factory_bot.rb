@@ -1,3 +1,4 @@
+# factory.bot.rb 
 require 'factory_bot'
 
 FactoryBot.define do
@@ -5,7 +6,7 @@ FactoryBot.define do
     sequence(:email) {|n| "user#{n}@example.com" }
     password { 'password' }
     password_confirmation { 'password' }
-    #role {'member'}
+    role {'member'}
   end
 
 end

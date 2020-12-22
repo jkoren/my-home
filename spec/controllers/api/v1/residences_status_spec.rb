@@ -28,11 +28,4 @@ RSpec.describe Api::V1::ResidencesController, type: :controller do
       expect(residence.first['name']).to eql('41 Matthew Lane')
     end
   end
-
-  describe "GET#show" do
-  end
-
-  describe "POST#create" do
-  end
-
 end
