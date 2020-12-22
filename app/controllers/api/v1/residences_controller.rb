@@ -4,10 +4,14 @@ class Api::V1::ResidencesController < ApiController
 
   def show
     residence = Residence.find(params[:id])
-    render json: residence, serializer: ResidenceShowSerializer
+    if current_user && (current_user.role == "admin" || residence == current_user.residence)
+      render json: residence, serializer: ResidenceShowSerializer
+    else
+      puts "not authorized to see residence "+params[:id] 
+    end
   end
   
-  def index # for demo use only
+  def index
     if current_user.admin?
       residences = Residence.all
     else
@@ -16,11 +20,9 @@ class Api::V1::ResidencesController < ApiController
         residences.push(current_user.residence)
       end
     end
-    # binding.pry
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
-  # residences_controller.rb
   def create
     new_residence = Residence.new(residence_params)  
     realtor = Realtor.find_by(name: "My-Home") # if coming from realtor page - find(params[:realtor_id])

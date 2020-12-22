@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/news', to: 'homes#index'
   get '/activities', to: 'homes#index'
   get '/faq', to: 'homes#index'
+  get '/notfound', to: 'homes#index'
 
 
   # save information
