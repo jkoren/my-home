@@ -4,7 +4,11 @@ class Api::V1::RoomsController < ApiController
   
   def show
     room = Room.find(params[:id])
-    render json: room, serializer: RoomShowSerializer
+    if current_user && (current_user.role == "admin" || room.residence == current_user.residence)
+      render json: room, serializer: RoomShowSerializer
+    else
+      puts "not authorized to see room "+params[:id]
+    end
   end
 
   def index # for demo use only

@@ -23,6 +23,7 @@ import Splash from "./Splash"
 import News from "./News"
 import FAQ from "./FAQ"
 import PleaseSignIn from "./PleaseSignIn"
+import NotFound from "./NotFound"
 import ProvideThis from "./ProvideThis"
 import Sidebar from "./Sidebar"
 
@@ -43,6 +44,7 @@ const Layout = (props) => {
               <Route exact path="/news" component={News} />
               <Route exact path="/activities" component={ActivitiesContainer} />
               <Route exact path="/faq" component={FAQ} />
+              <Route exact path="/notFound" component={NotFound} />
 
               <Route exact path="/realtors" component={RealtorsIndexForDemo} />
               <Route exact path="/realtors/:id" component={RealtorPage} />
