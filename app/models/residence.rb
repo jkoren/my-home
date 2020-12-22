@@ -8,23 +8,20 @@ class Residence < ApplicationRecord
   has_many :possessions, :through => :rooms
 
   def display_area
-    if city !="" && state != "" && zip_code != ""
-      return city + ", "+state+" "+zip_code
-    elsif city != "" && state != ""
-      return city + ", "+state
-    elsif state != "" && zip_code != ""
-      return state + " " + zip_code
-    elsif city != "" && zip_code != ""
-      return city + " " + zip_code
-    elsif city != ""
-      return city
-    elsif state != ""
-      return state
-    elsif zip_code != ""
-      return zip_code
-    else
-      return ""
+    if city.blank? && state.blank? 
+      cityState = ""
+    elsif city.blank? && !state.blank? 
+      cityState = state
+    elsif !city.blank? && state.blank? 
+      cityState = city
+    elsif !city.blank? && !state.blank?
+      cityState = city+", "+state
     end
-  end  
 
+    if zip_code.blank?
+      cityState.blank? ? "" : cityState
+    elsif !zip_code.blank?
+      cityState.blank? ? zip_code : cityState+" "+zip_code
+    end
+  end
 end

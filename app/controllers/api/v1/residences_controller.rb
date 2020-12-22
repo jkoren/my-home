@@ -12,8 +12,11 @@ class Api::V1::ResidencesController < ApiController
       residences = Residence.all
     else
       residences = []
-      residences.push(current_user.residence)
+      if current_user.residence != nil
+        residences.push(current_user.residence)
+      end
     end
+    # binding.pry
     render json: residences, each_serializer: ResidenceShowSerializer
   end
 
