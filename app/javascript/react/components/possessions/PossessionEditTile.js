@@ -166,7 +166,7 @@ const PossessionEditTile = (props) => {
             {imageUploaded}
           </div>
 
-          <label>
+          {/* <label>
             Description of this possession:
             <input
               name="description"
@@ -175,8 +175,18 @@ const PossessionEditTile = (props) => {
               onChange={handleChange}
               value={formFields.description}
             />
-          </label>
+          </label> */}
         
+          <label>
+            Description of this possession:
+             <textarea
+              name="description"
+              rows="4"
+              onChange={handleChange}
+              value={formFields.description}
+            />
+          </label>
+
           <label>
             Manufacturer's Web Site:
               <input

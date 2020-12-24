@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const ResidenceIndexTile = (props) => {
   return (
+
     <div className="callout cell small-12 medium-4 hover-zoom box-shadow">
       <Link to={`/residences/${props.data.id}`}>
         <div className="text-center">
@@ -11,7 +12,13 @@ const ResidenceIndexTile = (props) => {
           <h5>{props.data.city} {props.data.state} {props.data.zip_code} </h5> 
         </div>
       </Link>
+      {/* <div className="grid-x grid-padding-x"> */}
+        <pre>
+         {props.data.note}
+        </pre>
+      {/* </div> */}
     </div>
+
   )
 }
 

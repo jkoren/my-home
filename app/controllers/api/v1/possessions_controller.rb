@@ -33,7 +33,6 @@ class Api::V1::PossessionsController < ApiController
       
       render json: new_possession     
     else
-      binding.pry
       render json: { errors: new_possession.errors }
     end
   end

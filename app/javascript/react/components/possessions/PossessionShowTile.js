@@ -105,7 +105,11 @@ const PossessionShowTile = (props) => {
          </div>
 
         <div className="cell small-12 medium-6 text-left">
-          <h5>{props.possession.description}</h5>
+          <pre>
+           {/* <h5> */}
+             {props.possession.description}
+            {/* </h5> */}
+          </pre>
           
           <div className="grid-x grid-margin-x">
 

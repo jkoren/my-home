@@ -14,6 +14,7 @@ const ResidencePage = (props) => {
     zip_code: "",
     aws_image: "",
     display_area: "",
+    note: ""
   })
 
   const id = props.match.params.id 
