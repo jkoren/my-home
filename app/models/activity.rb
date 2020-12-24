@@ -9,7 +9,7 @@ class Activity < ApplicationRecord
     users = User.all
     users.each do | user |
       possession_count = 0
-      if user.email != "jeff@gmail.com" && user.email != "colleen@gmail.com" && user.email != "oliver@revilos.com" # remove test accounts
+      if user.allow_leaderboard 
         if user.residence != nil && user.residence.rooms != nil
           user.residence.rooms.each do | room |
             if room.possessions != nil
