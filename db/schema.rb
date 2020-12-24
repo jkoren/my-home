@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_23_210339) do
+ActiveRecord::Schema.define(version: 2020_12_24_205746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_210339) do
     t.string "aws_owners_manual"
     t.string "aws_purchase_receipt"
     t.string "aws_warranty"
+    t.boolean "new_possession_list_privacy", default: false
     t.index ["room_id"], name: "index_possessions_on_room_id"
   end
 
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 2020_12_23_210339) do
     t.bigint "residence_id"
     t.string "role", default: "member", null: false
     t.string "screen_name", default: "-", null: false
+    t.boolean "leaderboard_privacy", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["residence_id"], name: "index_users_on_residence_id"
