@@ -237,12 +237,22 @@ const PossessionNewForm = (props) => {
 
             <div> You can fill these in later, if you want. </div>
 
-            <label>
+            {/* <label>
               Description of this possession:
              <input
                 name="description"
                 id="description"
                 type="text"
+                onChange={handleChange}
+                value={formFields.description}
+              />
+            </label> */}
+
+            <label>
+              Description of this possession:
+             <textarea
+                name="description"
+                rows="4"
                 onChange={handleChange}
                 value={formFields.description}
               />

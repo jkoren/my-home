@@ -30,7 +30,7 @@ class Api::V1::PossessionsController < ApiController
       
       theAction = Activity.new(action: "create", table: "possession", user: current_user, id_of_item: new_possession.id, name: new_possession.name)
       theAction.save
-
+      
       render json: new_possession     
     else
       render json: { errors: new_possession.errors }
@@ -95,7 +95,7 @@ class Api::V1::PossessionsController < ApiController
     end
 
     def possession_params_no_aws
-      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video])
+      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video, :room_id])
     end
 
     def authenticate_user

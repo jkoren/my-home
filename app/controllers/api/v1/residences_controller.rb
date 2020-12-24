@@ -37,7 +37,7 @@ class Api::V1::ResidencesController < ApiController
 
   private
     def residence_params
-      params.permit([:id, :name, :street, :street2, :city, :state, :image, :aws_image, :zip_code])
+      params.permit([:id, :name, :street, :street2, :city, :state, :image, :aws_image, :zip_code, :note])
     end
 
     def authenticate_user

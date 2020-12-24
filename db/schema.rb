@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_19_031955) do
+ActiveRecord::Schema.define(version: 2020_12_23_210339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_12_19_031955) do
     t.bigint "realtor_id"
     t.string "aws_image"
     t.string "zip_code", default: "02451"
+    t.text "note"
     t.index ["realtor_id"], name: "index_residences_on_realtor_id"
   end
 

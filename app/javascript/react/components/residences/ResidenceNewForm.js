@@ -14,7 +14,8 @@ const ResidenceNewForm = (props) => {
     state: "",
     zip_code: "",
     aws_image: {},
-    rooms: []
+    rooms: [],
+    note: ""
   })
   const [errors, setErrors] = useState({})
   const [error, setError] = useState(null)
@@ -65,6 +66,7 @@ const ResidenceNewForm = (props) => {
       newResidence.append("state", formFields.state)
       newResidence.append("zip_code", formFields.zip_code)
       newResidence.append("aws_image", formFields.aws_image)
+      newResidence.append("note", formFields.note)
 
       fetch(`/api/v1/residences`, {
         method: "POST",
@@ -200,6 +202,16 @@ const ResidenceNewForm = (props) => {
                 type="text"
                 onChange={handleChange}
                 value={formFields.state}
+              />
+            </label>
+
+            <label>
+              Note:
+              <textarea
+                name="note"
+                rows="4"
+                onChange={handleChange}
+                value={formFields.note}
               />
             </label>
 
