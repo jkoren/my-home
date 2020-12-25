@@ -1,8 +1,8 @@
 // PossessionNewsTile.js
 import React from "react"
-import { Link } from "react-router-dom";
 
 const PossessionNewsTile = (props) => {
+
   return (
       <tr>
         <td>{props.data.name} {props.data.manufacturer} {props.data.model}</td>

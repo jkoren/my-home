@@ -32,15 +32,15 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
+    <div class="field">
+      <%= f.label :OK_to_be_on_leaderboard %>
+      <%= f.check_box :allow_leaderboard %>
+    </div>
+
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :OK_to_be_on_leaderboard %>
-    <%= f.check_box :allow_leaderboard %>
-  </div>
 
   <%= render "devise/shared/links" %>
 </div>
