@@ -2,13 +2,10 @@
 import React from "react"
 import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
 
-import { Link } from "react-router-dom";
-
 const PossessionShowTile = (props) => {
 
   // to handle cases where there is no aws file, and color font appropriately
 
-  // this may not be necessary, all data may now have a .url field, not that uploaders are set.  (once db:seed is run)
   let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : nil)
   let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
   let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : nil)
@@ -76,7 +73,6 @@ const PossessionShowTile = (props) => {
     // adjust to what makes sense, a page to suggest saving the URL of a video
     operating_video = "http://www.google.com"
   }
-
 
   let URL
   if (props.possession.URL != "") { URL = props.possession.URL  } else 

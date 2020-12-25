@@ -1,6 +1,5 @@
 class PossessionNewsSerializer < ActiveModel::Serializer 
-  attributes :id, :name, :manufacturer, :model, :updated_at, :display_location, :zip_code
-
+  attributes :id, :name, :manufacturer, :model, :updated_at, :display_location, :zip_code, :share_on_new_possession_list
 
   def city
     object.room.residence.city

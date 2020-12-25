@@ -20,6 +20,7 @@ const PossessionPage = (props) => {
     aws_warranty: {},
     purchase_receipt: {},
     operating_video: "",
+    share_on_new_possession_list: true,
     URL: "",
     zip_code: ""
   })
@@ -55,6 +56,7 @@ const PossessionPage = (props) => {
   }, [])
 
   const editPossession = (message) => {
+    // debugger
     let possessionId = message.id;
     // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
     let updatedPossession = new FormData()
@@ -70,6 +72,7 @@ const PossessionPage = (props) => {
     updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
     updatedPossession.append("aws_warranty", message.possession.aws_warranty)
     updatedPossession.append("operating_video", message.possession.operating_video)
+    updatedPossession.append("share_on_new_possession_list", message.possession.share_on_new_possession_list)
     updatedPossession.append("URL", message.possession.URL)
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",

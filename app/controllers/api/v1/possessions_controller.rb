@@ -16,7 +16,8 @@ class Api::V1::PossessionsController < ApiController
   def index
     # used by news - most recent possessions
     Activity.create(action: "news", table: "possession", user: current_user, name: "multiple") # log the action
-    possessions = Possession.all.sort_by{ |a| a[:updated_at] }.reverse
+    possessions = Possession.where(:share_on_new_possession_list => true)
+    possessions = possessions.sort_by{ |a| a[:updated_at] }.reverse
     leaders = Activity.leader_board
     possessions = possessions[0..6]
     render json: {possessions: possessions, leaders: leaders}
@@ -75,7 +76,7 @@ class Api::V1::PossessionsController < ApiController
 
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt])
+      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt, :share_on_new_possession_list])
     end
 
     def possession_aws_image_params
@@ -95,7 +96,7 @@ class Api::V1::PossessionsController < ApiController
     end
 
     def possession_params_no_aws
-      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video, :room_id])
+      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video, :room_id, :share_on_new_possession_list])
     end
 
     def authenticate_user

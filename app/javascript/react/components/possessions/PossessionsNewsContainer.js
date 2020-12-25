@@ -23,15 +23,11 @@ const PossessionsNewsContainer = (props) => {
       })
       .then(response => response.json())
       .then((body) => {
-        console.log(body.possessions)
-        console.log(body.leaders)
         setPossessions(body.possessions)
         setLeaders(body.leaders)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-  // let possessionLeaderBoard = <PossessionLeaderBoard
-  // />
 
   let possessionTiles = possessions.map((possessionObject) => {
       return <PossessionNewsTile 

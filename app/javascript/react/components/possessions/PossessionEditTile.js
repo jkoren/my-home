@@ -14,19 +14,37 @@ const PossessionEditTile = (props) => {
     aws_purchase_receipt: props.possession.aws_purchase_receipt,
     aws_warranty: props.possession.aws_warranty,
     operating_video: props.possession.operating_video,
+    share_on_new_possession_list: props.possession.share_on_new_possession_list,
     URL: props.possession.URL,
   });
-
+  // console.log(formFields)
+  console.log(props.possession)
   let imageUploaded = null;
   let owners_manualUploaded = null;
   let warrantyUploaded = null;
   let purchaseReceiptUploaded = null;
 
   const handleChange = (event) => {
+    // debugger // even when clicked off, event.currentTarget.value is "on" - WHY?
+    let value
+    if (event.currentTarget.type == "checkbox") {
+      if (event.currentTarget.value == "on") {
+        console.log("on")
+        value = true 
+      } else {
+        console.log("off")
+        value = false
+      }
+    } else {
+      value = event.currentTarget.value
+    }
+
     setFormFields({
       ...formFields,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
+      [event.currentTarget.name]: value,
+     });
+    // console.log(formFields)
+    // debugger // state is NOT being updated with the new value?
   };
 
   const handleAWS_image_upload = (acceptedFiles) => {
@@ -103,6 +121,13 @@ const PossessionEditTile = (props) => {
     );
   }
 
+  if (formFields.share_on_new_possession_list == "on") { 
+    formFields.share_on_new_possession_list = true 
+  } else if (formFields.share_on_new_possession_list == "off") { 
+    formFields.share_on_new_possession_list = false 
+  }
+  
+// debugger
   return (
     <div className="cell grid-x grid-padding-x"> {/* enclosing container */}
 
@@ -165,17 +190,6 @@ const PossessionEditTile = (props) => {
             </Dropzone>
             {imageUploaded}
           </div>
-
-          {/* <label>
-            Description of this possession:
-            <input
-              name="description"
-              id="description"
-              type="text"
-              onChange={handleChange}
-              value={formFields.description}
-            />
-          </label> */}
         
           <label>
             Description of this possession:
@@ -268,6 +282,16 @@ const PossessionEditTile = (props) => {
           </div>
 
 
+          <label>
+            Share on New Possessions List:
+            <input
+              name="share_on_new_possession_list"
+              id="share_on_new_possession_list"
+              type="checkbox"
+              checked={formFields.share_on_new_possession_list}
+              onChange={handleChange}
+            />
+
           <div className="grid-x grid-margin-x align-center">
             <input
               className="button cell shrink"
@@ -280,6 +304,7 @@ const PossessionEditTile = (props) => {
               onClick={props.onDiscardClickHandler}
             > Discard Changes </button>
           </div>
+          </label>          
 
         </form>
       </div>
