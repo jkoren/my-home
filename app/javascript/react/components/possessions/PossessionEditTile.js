@@ -25,16 +25,9 @@ const PossessionEditTile = (props) => {
   let purchaseReceiptUploaded = null;
 
   const handleChange = (event) => {
-    // debugger // even when clicked off, event.currentTarget.value is "on" - WHY?
     let value
     if (event.currentTarget.type == "checkbox") {
-      if (event.currentTarget.value == "on") {
-        console.log("on")
-        value = true 
-      } else {
-        console.log("off")
-        value = false
-      }
+      value = event.currentTarget.checked
     } else {
       value = event.currentTarget.value
     }
@@ -43,8 +36,6 @@ const PossessionEditTile = (props) => {
       ...formFields,
       [event.currentTarget.name]: value,
      });
-    // console.log(formFields)
-    // debugger // state is NOT being updated with the new value?
   };
 
   const handleAWS_image_upload = (acceptedFiles) => {
@@ -121,11 +112,11 @@ const PossessionEditTile = (props) => {
     );
   }
 
-  if (formFields.share_on_new_possession_list == "on") { 
-    formFields.share_on_new_possession_list = true 
-  } else if (formFields.share_on_new_possession_list == "off") { 
-    formFields.share_on_new_possession_list = false 
-  }
+  // if (formFields.share_on_new_possession_list == "on") { 
+  //   formFields.share_on_new_possession_list = true 
+  // } else if (formFields.share_on_new_possession_list == "off") { 
+  //   formFields.share_on_new_possession_list = false 
+  // }
   
 // debugger
   return (
