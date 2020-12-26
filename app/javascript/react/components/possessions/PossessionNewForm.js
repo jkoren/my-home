@@ -16,6 +16,7 @@ const PossessionNewForm = (props) => {
     aws_purchase_receipt: {},
     aws_warranty: {},
     operating_video: "",
+    share_on_new_possession_list: true,
     URL: "",
   })
   let imageUploaded = null;
@@ -92,6 +93,7 @@ const PossessionNewForm = (props) => {
       newPossession.append("aws_purchase_receipt", formFields.aws_purchase_receipt)
       newPossession.append("aws_warranty", formFields.aws_warranty)
       newPossession.append("operating_video", formFields.operating_video)
+      newPossession.append("share_on_new_possession_list", formFields.share_on_new_possession_list)
       newPossession.append("URL", formFields.URL)
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
         credentials: "same-origin",
@@ -279,7 +281,7 @@ const PossessionNewForm = (props) => {
                 value={formFields.operating_video}
               />
             </label>
-            
+                     
             <div className="callout">
               <Dropzone onDrop={handleAWS_owners_manual_upload}>
                 {({ getRootProps, getInputProps }) => (
@@ -337,6 +339,14 @@ const PossessionNewForm = (props) => {
               {warrantyUploaded}
             </div>
 
+            Share on New Possessions List:
+            <input
+              name="share_on_new_possession_list"
+              id="share_on_new_possession_list"
+              type="checkbox"
+              onChange={handleChange}
+              checked={formFields.share_on_new_possession_list}
+            />
             <div className="">
               <input className="" type="submit" value="Submit" />
             </div>
