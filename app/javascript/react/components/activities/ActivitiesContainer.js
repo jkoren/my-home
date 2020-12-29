@@ -20,7 +20,6 @@ const ActivitiesContainer = (props) => {
       })
       .then(response => response.json())
       .then((body) => {
-        console.log(body)
         setActivities(body)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))

@@ -195,7 +195,6 @@ const PossessionPage = (props) => {
     }
   }
 
-      
   return (
     <div>
       <div className="text-center">

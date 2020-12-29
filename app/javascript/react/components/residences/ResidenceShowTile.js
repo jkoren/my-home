@@ -4,21 +4,24 @@ import { Link } from "react-router-dom";
 const ResidenceShowTile = (props) => {
   return (
     <>
-      <div className="grid-x grid-padding-x">
-        
-        <div className="medium-4">
-          {/* spacer cell */}
-        </div>
-        <Link to={`/residences`}>
-          <h4>{props.data.street} {props.data.display_area}</h4> 
-        </Link>
+      <Link to={`/residences`}>
+        <h4><center>{props.residence.street} {props.residence.display_area}</center></h4> 
+      </Link>
+
+
+    <div className="grid-x grid-padding-x">
+
+      <div className="cell medium-1">
+        {/* spacer */}
       </div>
-{/* 
-      <div className="grid-x grid-padding-x medium-offset-3 text-center">
-          <pre>
-            {props.data.note}
-          </pre>
-      </div> */}
+
+      <pre className="cell medium-10"> 
+        <center>
+          {props.residence.note}
+        </center>
+      </pre>
+
+    </div>
 
     </>
   )

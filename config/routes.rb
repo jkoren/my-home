@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     namespace :v1 do   
       resources :realtors, only: [:index, :show] 
       
-      resources :residences, only: [:index, :show, :create] do
+      resources :residences, only: [:index, :show, :create, :update] do
         resources :rooms, only: [:create]
       end
       
@@ -40,9 +40,7 @@ Rails.application.routes.draw do
       end
       
       resources :possessions, only: [:index, :show, :update, :destroy]
-
       resources :professionals, only: [:index]
-
       resources :activities, only: [:index]
     end
   end

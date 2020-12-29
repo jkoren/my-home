@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import RoomIndexTile from "./RoomIndexTile"
-import _ from "lodash" 
+import _ from "lodash"
+
+//expects props to be
+// a "residence" with ".rooms" to be an array of rooms
 
 const RoomsIndexContainer = (props) => {
   let roomTiles = null

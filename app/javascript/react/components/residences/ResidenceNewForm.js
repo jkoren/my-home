@@ -104,7 +104,6 @@ const ResidenceNewForm = (props) => {
 
   if (shouldRedirect.redirect) {
     return <Redirect to={`/residences`}/>
-
   }
 
   if (formFields.aws_image != "") {
@@ -128,11 +127,15 @@ const ResidenceNewForm = (props) => {
     
     <div className="cell grid-x grid-padding-x">
 
-      <div className="cell small-12 medium-2"> </div>
+      <div className="cell small-12 medium-2">
+        {/* spacer */}
+      </div>
+
       <div className="cell small-12 medium-8">
         
         <div className="field">
           <form onSubmit={handleSubmit}>
+
             <ErrorList errors={errors}
               error={error} />
 
@@ -206,7 +209,7 @@ const ResidenceNewForm = (props) => {
             </label>
 
             <label>
-              Note:
+              Note about this residence:
               <textarea
                 name="note"
                 rows="4"
