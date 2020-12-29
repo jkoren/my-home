@@ -94,6 +94,8 @@ const PossessionShowTile = (props) => {
       <div className="cell">
         <h4>{props.possession.name}</h4>
         <h5>{props.possession.manufacturer} {props.possession.model}</h5>
+        <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
+        <i className="far fa-trash-alt fa-2x" onClick={props.onDeleteClickHandler}></i>
       </div> 
 
         <div className="cell small-12 medium-3">
@@ -102,9 +104,7 @@ const PossessionShowTile = (props) => {
 
         <div className="cell small-12 medium-6 text-left">
           <pre>
-           {/* <h5> */}
              {props.possession.description}
-            {/* </h5> */}
           </pre>
           
           <div className="grid-x grid-margin-x">
@@ -182,41 +182,6 @@ const PossessionShowTile = (props) => {
           </div>
 
         </div>
-
-        <div className="grid-x align-bottom">
-          
-          <br></br>
-
-          <div className=" small-12 medium-2">
-          </div>
-
-          <div className="small-12 medium-2 text-center hover-zoom">
-            <br></br> <br></br> <br></br> <br></br>
-            <button
-              type="button"
-              className="button cell shrink"
-              id="edit-possession"
-              onClick={props.onEditClickHandler}
-            >
-              Edit
-            </button>
-          </div>
-
-          <div className=" small-12 medium-2">
-          </div>
-
-          <div className=" small-12 medium-2 text-center hover-zoom">
-            <button
-              type="button"
-              className="button cell shrink"
-              id="delete-possession"
-              onClick={props.onDeleteClickHandler}
-            >
-              Delete
-            </button>
-          </div>
-        </div>
-
 
       </div> 
 

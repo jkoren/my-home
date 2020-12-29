@@ -35,9 +35,38 @@ class Api::V1::ResidencesController < ApiController
     end
   end
 
+
+  def update  
+    residence = Residence.find(params[:id])
+    # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
+
+    if params["aws_image"] != "[object Object]" 
+      residence.update_attributes(residence_params_aws_image)
+    end
+
+    residence.update_attributes(residence_params_no_aws_image)
+    
+    Activity.create(action: "update", table: "residence", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
+    render json: residence
+  end
+
+  def destroy
+    # possession = Residence.find(params[:id])
+    # room = possession.room
+    # possession.destroy
+    # Activity.create(action: "destroy", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
+    # render json: {roomId: room.id}
+  end
+
   private
     def residence_params
-      params.permit([:id, :name, :street, :street2, :city, :state, :image, :aws_image, :zip_code, :note])
+      params.permit([:id, :name, :street, :street2, :city, :state, :zip_code, :display_area, :note, :aws_image])
+    end
+    def residence_params_no_aws_image
+      params.permit([:id, :name, :street, :street2, :city, :state, :zip_code, :display_area, :note])
+    end
+    def residence_params_aws_image
+      params.permit([:aws_image])
     end
 
     def authenticate_user

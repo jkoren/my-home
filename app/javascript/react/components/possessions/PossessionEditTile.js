@@ -17,8 +17,6 @@ const PossessionEditTile = (props) => {
     share_on_new_possession_list: props.possession.share_on_new_possession_list,
     URL: props.possession.URL,
   });
-  // console.log(formFields)
-  console.log(props.possession)
   let imageUploaded = null;
   let owners_manualUploaded = null;
   let warrantyUploaded = null;
