@@ -20,7 +20,7 @@ const ResidencePage = (props) => {
     display_area: "",
     note: "",
     aws_image: "",
-    can_edit: true,
+    demo: false,
     rooms: []
   })
   const [shouldRedirect,setShouldRedirect] = useState(false)
@@ -185,7 +185,7 @@ const ResidencePage = (props) => {
     } else {
       // don't give option to edit demo
       let editDeleteTile
-      if (residence.can_edit) {
+      if (!residence.demo) {
         console.log("not demo residence")
         editDeleteTile = (
           <i className="far fa-edit fa-2x" onClick={onEditClickHandler}></i>

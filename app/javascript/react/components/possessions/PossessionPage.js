@@ -23,7 +23,7 @@ const PossessionPage = (props) => {
     share_on_new_possession_list: true,
     URL: "",
     zip_code: "",
-    can_edit: true
+    demo: false
   })
   const [professionals, setProfessionals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)

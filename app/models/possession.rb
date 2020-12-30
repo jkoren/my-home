@@ -10,9 +10,9 @@ class Possession < ApplicationRecord
   delegate :residence, :to => :room, :allow_nil => true
   # https://stackoverflow.com/questions/4021322/belongs-to-through-associations
 
-  def can_edit
+  def demo
     # this should be based on login, but for now, can edit anything but the example
-    return (residence.name != "315 College Farm Rd #6")
+    return (residence.name == "315 College Farm Rd #6")
   end
 
   def URL_thumbnail

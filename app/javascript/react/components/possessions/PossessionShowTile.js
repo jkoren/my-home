@@ -90,7 +90,7 @@ const PossessionShowTile = (props) => {
 
   // don't give option to edit demo
   let editDeleteTile
-  // debugger // does can_edit? exist
+  // debugger // does demo? exist
   if (true) {
     console.log("not demo residence")
     editDeleteTile = (

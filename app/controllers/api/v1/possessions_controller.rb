@@ -4,10 +4,13 @@ class Api::V1::PossessionsController < ApiController
 
   def show
     possession = Possession.find(params[:id])
-    # binding.pry # why does can_edit not show up in possession? http://localhost:3000/api/v1/possessions/572 - only real variables show up - but virtual can be accessed by invoking the method - need to use serializer below
+    # binding.pry # why does demo not show up in possession? http://localhost:3000/api/v1/possessions/572 - only real variables show up - but virtual can be accessed by invoking the method - need to use serializer below
     professionals = Possession.get_professionals(possession.name, possession.residence.zip_code, 4)
     Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) 
-    if current_user && (current_user.role == "admin" || possession.room.residence == current_user.residence  || possession.room.residence.name == "315 College Farm Rd #6") #let users see demo residence
+    
+    if (possession.room.residence.demo)
+      render json: {possession: possession, serializer: PossessionShowSerializer, professionals: professionals}
+    elsif current_user && (current_user.role == "admin" || possession.room.residence == current_user.residence)
       render json: {possession: possession, serializer: PossessionShowSerializer, professionals: professionals}
     else
       puts "not authorized to see possession "+params[:id]
@@ -77,7 +80,7 @@ class Api::V1::PossessionsController < ApiController
 
   private
     def possession_params
-      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt, :share_on_new_possession_list,:can_edit])
+      params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt, :share_on_new_possession_list,:demo])
     end
 
     def possession_aws_image_params
