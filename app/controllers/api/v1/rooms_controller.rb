@@ -5,7 +5,9 @@ class Api::V1::RoomsController < ApiController
   def show
     room = Room.find(params[:id])
     # binding.pry
-    if current_user && (current_user.role == "admin" || room.residence == current_user.residence || room.residence.name = "315 College Farm Rd #6")
+    if room.residence.name = "315 College Farm Rd #6"
+      render json: room, serializer: RoomShowSerializer
+    elsif current_user && (current_user.role == "admin" || room.residence == current_user.residence)
       render json: room, serializer: RoomShowSerializer
     else
       puts "not authorized to see room "+params[:id]

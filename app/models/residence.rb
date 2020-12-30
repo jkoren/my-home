@@ -25,8 +25,8 @@ class Residence < ApplicationRecord
     end
   end
 
-  def can_edit
+  def demo
     # this should be based on login, but for now, can edit anything but the example
-    return (name != "315 College Farm Rd #6")
+    return (name == "315 College Farm Rd #6")
   end
 end

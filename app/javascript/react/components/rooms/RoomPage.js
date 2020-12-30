@@ -30,7 +30,6 @@ const RoomPage = (props) => {
         }
       })
       .then((responseBody) => {
-        // debugger
         setRoom(responseBody)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
@@ -43,6 +42,7 @@ const RoomPage = (props) => {
       data={room}
     />
   }
+
   return (
     <>
       <div className="text-center">
