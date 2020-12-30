@@ -82,20 +82,37 @@ const PossessionShowTile = (props) => {
   }
 
   let professionalsTiles = props.professionals.map((professionalObject) => {
-  return <ProfessionalIndexTile
-    key={professionalObject.id}
-    data={professionalObject}
-  />
-
+    return <ProfessionalIndexTile
+      key={professionalObject.id}
+      data={professionalObject}
+    />
   })
+
+  // don't give option to edit demo
+  let editDeleteTile
+  // debugger // does can_edit? exist
+  if (true) {
+    console.log("not demo residence")
+    editDeleteTile = (
+      <>
+        <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
+        <i className="far fa-trash-alt fa-2x" onClick={props.onDeleteClickHandler}></i>
+      </>
+    )
+  } else {
+    console.log("demo residence")
+    editDeleteTile = ""
+  }
+  
   return (
     <div className="grid-x grid-padding-x">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <div className="cell">
         <h4>{props.possession.name}</h4>
         <h5>{props.possession.manufacturer} {props.possession.model}</h5>
-        <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
-        <i className="far fa-trash-alt fa-2x" onClick={props.onDeleteClickHandler}></i>
+        {/* <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
+        <i className="far fa-trash-alt fa-2x" onClick={props.onDeleteClickHandler}></i> */}
+        {editDeleteTile}
       </div> 
 
         <div className="cell small-12 medium-3">

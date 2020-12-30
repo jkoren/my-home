@@ -47,7 +47,9 @@ class Api::V1::ResidencesController < ApiController
     residence.update_attributes(residence_params_no_aws_image)
     
     Activity.create(action: "update", table: "residence", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
-    render json: residence
+
+    # the problem was that without the serializer, the rooms were not being attached
+    render json: residence, serializer: ResidenceShowSerializer
   end
 
   def destroy

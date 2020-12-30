@@ -24,4 +24,9 @@ class Residence < ApplicationRecord
       cityState.blank? ? zip_code : cityState+" "+zip_code
     end
   end
+
+  def can_edit
+    # this should be based on login, but for now, can edit anything but the example
+    return (name != "315 College Farm Rd #6")
+  end
 end

@@ -22,7 +22,8 @@ const PossessionPage = (props) => {
     operating_video: "",
     share_on_new_possession_list: true,
     URL: "",
-    zip_code: ""
+    zip_code: "",
+    can_edit: true
   })
   const [professionals, setProfessionals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)

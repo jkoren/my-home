@@ -5,24 +5,27 @@ const ResidenceShowTile = (props) => {
   return (
     <>
       <Link to={`/residences`}>
-        <h4><center>{props.residence.street} {props.residence.display_area}</center></h4> 
+          <h3>
+            <center>{props.residence.name}</center>
+          </h3>
+        <h4>
+          <center>{props.residence.street} {props.residence.display_area}</center>
+        </h4> 
       </Link>
 
+      <div className="grid-x grid-padding-x">
 
-    <div className="grid-x grid-padding-x">
+        <div className="cell medium-1">
+          {/* spacer */}
+        </div>
 
-      <div className="cell medium-1">
-        {/* spacer */}
+        <pre className="cell medium-10"> 
+          <center>
+            {props.residence.note}
+          </center>
+        </pre>
+
       </div>
-
-      <pre className="cell medium-10"> 
-        <center>
-          {props.residence.note}
-        </center>
-      </pre>
-
-    </div>
-
     </>
   )
 }
