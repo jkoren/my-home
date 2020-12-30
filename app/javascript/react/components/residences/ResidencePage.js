@@ -20,6 +20,7 @@ const ResidencePage = (props) => {
     display_area: "",
     note: "",
     aws_image: "",
+    can_edit: true,
     rooms: []
   })
   const [shouldRedirect,setShouldRedirect] = useState(false)
@@ -41,8 +42,6 @@ const ResidencePage = (props) => {
         }
       })
       .then((residence) => {
-        // console.log("set in state:"+residence)
-        // debugger
         setResidence(residence)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
@@ -128,8 +127,8 @@ const ResidencePage = (props) => {
   } 
 
   if (shouldRedirect) {
-    return
-    // return <Redirect to={`/residences/${shouldRedirect.id}`} />
+    console.log("redirecting")
+    return <Redirect to={`/residences/`} />
   }
   
   const onEditClickHandler = (event) => {
@@ -184,20 +183,26 @@ const ResidencePage = (props) => {
         </div>
       )
     } else {
-      // are there rooms attached to the residence?  not after saving the new fields!!!
-      // console.log("residence.rooms:"+residence.rooms)
-      // debugger
+      // don't give option to edit demo
+      let editDeleteTile
+      if (residence.can_edit) {
+        console.log("not demo residence")
+        editDeleteTile = (
+          <i className="far fa-edit fa-2x" onClick={onEditClickHandler}></i>
+        )
+      } else {
+        console.log("demo residence")
+        editDeleteTile = ""
+      }
+
       displayResidenceTile = (
       <div>
-        
         <ResidenceShowTile
           residence={residence}
           onEditClickHandler={onEditClickHandler}
           onDeleteClickHandler={onDeleteClickHandler}
         />
-        <i className="far fa-edit fa-2x" onClick={onEditClickHandler}></i>
-        {/* <i className="far fa-trash-alt fa-2x" onClick={onDeleteClickHandler}></i> */}
-    
+        {editDeleteTile}
         <div>
           <RoomsIndexContainer
             residence={residence}

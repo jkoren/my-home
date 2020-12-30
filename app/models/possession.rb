@@ -1,5 +1,4 @@
 class Possession < ApplicationRecord
-  attr_reader :aws_purchase_receipt_url
   mount_uploader :aws_image, PossessionImageUploader
   mount_uploader :aws_owners_manual, PossessionOwnersManualUploader
   mount_uploader :aws_warranty, PossessionWarrantyUploader
@@ -10,6 +9,11 @@ class Possession < ApplicationRecord
 
   delegate :residence, :to => :room, :allow_nil => true
   # https://stackoverflow.com/questions/4021322/belongs-to-through-associations
+
+  def can_edit
+    # this should be based on login, but for now, can edit anything but the example
+    return (residence.name != "315 College Farm Rd #6")
+  end
 
   def URL_thumbnail
     if @URL
