@@ -4,8 +4,7 @@ import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
 
 const PossessionShowTile = (props) => {
 
-  // to handle cases where there is no aws file, and color font appropriately
-
+  // to handle cases where there is no aws file, to color font appropriately
   let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : nil)
   let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
   let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : nil)
@@ -100,11 +99,10 @@ const PossessionShowTile = (props) => {
     />
   })
 
-  // don't give option to edit demo
+  // don't give option to edit possessions in a demo residence
   let editDeleteTile
-  // debugger // does demo? exist
-  if (true) {
-    console.log("not demo residence")
+  if (!props.possession.demo) {
+    console.log("not in a demo residence")
     editDeleteTile = (
       <>
         <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
@@ -112,7 +110,7 @@ const PossessionShowTile = (props) => {
       </>
     )
   } else {
-    console.log("demo residence")
+    console.log("in a demo residence")
     editDeleteTile = ""
   }
   

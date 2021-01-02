@@ -58,7 +58,6 @@ const PossessionPage = (props) => {
   }, [])
 
   const editPossession = (message) => {
-    // debugger
     let possessionId = message.id;
     // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
     let updatedPossession = new FormData()
