@@ -44,7 +44,7 @@ class Api::V1::PossessionsController < ApiController
 
   def update  
     possession = Possession.find(params[:id])
-
+ 
     # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
 
     if params["aws_image"] != "[object Object]" 
@@ -107,7 +107,7 @@ class Api::V1::PossessionsController < ApiController
     end
 
     def possession_params_no_aws
-      params.permit([:id, :name, :manufacturer, :model, :description, :purchase_receipt, :URL, :operating_video, :room_id, :share_on_new_possession_list])
+      params.permit([:id, :name, :manufacturer, :model, :description, :URL, :operating_video, :room_id, :share_on_new_possession_list])
     end
 
     def authenticate_user

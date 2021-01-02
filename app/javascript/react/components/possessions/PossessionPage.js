@@ -76,7 +76,7 @@ const PossessionPage = (props) => {
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("share_on_new_possession_list", message.possession.share_on_new_possession_list)
     updatedPossession.append("URL", message.possession.URL)
-    updatedPossession.append("tag", message.possession.tag)
+    updatedPossession.append("aws_tag", message.possession.aws_tag)
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,
