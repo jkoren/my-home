@@ -4,8 +4,7 @@ class Api::V1::RoomsController < ApiController
   
   def show
     room = Room.find(params[:id])
-    # binding.pry
-    if room.residence.name = "315 College Farm Rd #6"
+    if room.residence.demo
       render json: room, serializer: RoomShowSerializer
     elsif current_user && (current_user.role == "admin" || room.residence == current_user.residence)
       render json: room, serializer: RoomShowSerializer

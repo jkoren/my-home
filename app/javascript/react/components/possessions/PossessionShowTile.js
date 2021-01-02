@@ -10,6 +10,7 @@ const PossessionShowTile = (props) => {
   let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
   let aws_purchase_receipt_url = (props.possession.aws_purchase_receipt ? props.possession.aws_purchase_receipt.url : nil)
   let aws_warranty_url = (props.possession.aws_warranty ? props.possession.aws_warranty.url : nil)
+  let aws_tag_url = (props.possession.aws_tag ? props.possession.aws_tag.url : nil)
 
   let aws_owners_manual_icon = (props.possession.aws_owners_manual.url ? 
     "fa fa-book fa-1x does_exist" : 
@@ -24,6 +25,10 @@ const PossessionShowTile = (props) => {
     "fa fa-file-alt fa-1x doesnt_exist")
 
   let URL_icon = (props.possession.URL ? 
+    "fa fa-desktop fa-1x does_exist":
+    "fa fa-desktop fa-1x doesnt_exist")
+
+  let aws_tag_icon = (props.possession.tag ? 
     "fa fa-desktop fa-1x does_exist":
     "fa fa-desktop fa-1x doesnt_exist")
 
@@ -65,6 +70,13 @@ const PossessionShowTile = (props) => {
     aws_warranty_html = (<div> <embed src={aws_warranty_url} width="150"/> </div>)
   } else {
     aws_warranty_html = (<img src={aws_warranty_url} width="250" />)
+  }
+
+  let aws_tag_html
+  if (props.possession.aws_tag != null &&  props.possession.aws_tag.url != null && props.possession.aws_tag.url.toLowerCase().endsWith("pdf")) {
+    aws_tag_html = (<div> <embed src={aws_tag_url} width="150"/> </div>)
+  } else {
+    aws_tag_html = (<img src={aws_tag_url} width="250" />)
   }
 
   let operating_video
@@ -190,11 +202,11 @@ const PossessionShowTile = (props) => {
 
           <div className="small-12 medium-6 text-center callout">
             <div>
-              <h5>
-                <a>
-                  {/* placeholder */}
-                </a>
-              </h5>
+              <a href={aws_tag_url} target="_blank">
+                <h5>Model Tag</h5>
+                <i className={aws_tag_icon}></i>
+                {aws_tag_html}
+              </a>
             </div>
           </div>
 
