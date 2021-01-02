@@ -18,11 +18,14 @@ const PossessionNewForm = (props) => {
     operating_video: "",
     share_on_new_possession_list: true,
     URL: "",
+    aws_tag: "",
   })
   let imageUploaded = null;
   let owners_manualUploaded = null;
   let warrantyUploaded = null;
   let purchaseReceiptUploaded = null;
+  let tagUploaded = null;
+
   const [errors, setErrors] = useState({})
   const [error, setError] = useState(null)
 
@@ -58,10 +61,17 @@ const PossessionNewForm = (props) => {
     })
   }
 
-  const handleAWS_purchase_receipt = (acceptedFiles) => {
+  const handleAWS_purchase_receipt_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_purchase_receipt: acceptedFiles[0]
+    })
+  }
+
+  const handleAWS_tag_upload = (acceptedFiles) => {
+    setFormFields({
+      ...formFields,
+      aws_tag: acceptedFiles[0]
     })
   }
 
@@ -95,6 +105,7 @@ const PossessionNewForm = (props) => {
       newPossession.append("operating_video", formFields.operating_video)
       newPossession.append("share_on_new_possession_list", formFields.share_on_new_possession_list)
       newPossession.append("URL", formFields.URL)
+      newPossession.append("aws_tag", formFields.aws_tag)
       fetch(`/api/v1/rooms/${props.match.params.id}/possessions`, {
         credentials: "same-origin",
         method: "POST",
@@ -171,6 +182,16 @@ const PossessionNewForm = (props) => {
     );
   }
 
+  if (!_.isEmpty(formFields.aws_tag)) {
+    tagUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Purchase Receipt Uploaded:
+       {formFields.aws_tag.path}
+        </h5>
+      </div>
+    );
+  }
+
   return (
     <div className="cell grid-x grid-padding-x">
 
@@ -239,17 +260,6 @@ const PossessionNewForm = (props) => {
 
             <div> You can fill these in later, if you want. </div>
 
-            {/* <label>
-              Description of this possession:
-             <input
-                name="description"
-                id="description"
-                type="text"
-                onChange={handleChange}
-                value={formFields.description}
-              />
-            </label> */}
-
             <label>
               Description of this possession:
              <textarea
@@ -302,7 +312,7 @@ const PossessionNewForm = (props) => {
             </div>
 
             <div className="callout">
-              <Dropzone onDrop={handleAWS_purchase_receipt}>
+              <Dropzone onDrop={handleAWS_purchase_receipt_upload}>
                 {({ getRootProps, getInputProps }) => (
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
@@ -310,7 +320,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell grid-x">
                       <div className="cell callout">
                         <div>
-                          Purchase Receipt (jpg/png): Drag here or click to upload
+                          Purchase Receipt: Drag here or click to upload
                       </div>
                       </div>
                     </div>
@@ -329,7 +339,7 @@ const PossessionNewForm = (props) => {
                     <div className="cell grid-x">
                       <div className="cell callout">
                         <div>
-                          Warranty (jpg/png): Drag here or click to upload
+                          Warranty: Drag here or click to upload
                       </div>
                       </div>
                     </div>
@@ -337,6 +347,25 @@ const PossessionNewForm = (props) => {
                 )}
               </Dropzone>
               {warrantyUploaded}
+            </div>
+            
+            <div className="callout">
+              <Dropzone onDrop={handleAWS_tag_upload}>
+                {({ getRootProps, getInputProps }) => (
+                  <div {...getRootProps()}>
+                    <input {...getInputProps()} />
+
+                    <div className="cell grid-x">
+                      <div className="cell callout">
+                        <div>
+                          Model Tag: Drag here or click to upload
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </Dropzone>
+              {tagUploaded}
             </div>
 
             Share on New Possessions List:

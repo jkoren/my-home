@@ -3,6 +3,7 @@ class Possession < ApplicationRecord
   mount_uploader :aws_owners_manual, PossessionOwnersManualUploader
   mount_uploader :aws_warranty, PossessionWarrantyUploader
   mount_uploader :aws_purchase_receipt, PossessionPurchaseReceiptUploader
+  mount_uploader :aws_tag, PossessionTagUploader
 
   belongs_to :room
   has_many :professionals
@@ -11,7 +12,6 @@ class Possession < ApplicationRecord
   # https://stackoverflow.com/questions/4021322/belongs-to-through-associations
 
   def demo
-    # this should be based on login, but for now, can edit anything but the example
     return (residence.name == "315 College Farm Rd #6")
   end
 

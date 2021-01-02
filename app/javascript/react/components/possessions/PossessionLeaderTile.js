@@ -7,7 +7,6 @@ const PossessionLeaderTile = (props) => {
       <tr>
         <td>{props.data[0]}</td>
         <td>{props.data[1]}</td>
-        {/* <td>0</td> */}
       </tr>
   )
 }

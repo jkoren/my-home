@@ -16,11 +16,13 @@ const PossessionEditTile = (props) => {
     operating_video: props.possession.operating_video,
     share_on_new_possession_list: props.possession.share_on_new_possession_list,
     URL: props.possession.URL,
+    aws_tag: props.possession.aws_tag
   });
   let imageUploaded = null;
   let owners_manualUploaded = null;
   let warrantyUploaded = null;
   let purchaseReceiptUploaded = null;
+  let tagUploaded = null;
 
   const handleChange = (event) => {
     let value
@@ -57,10 +59,16 @@ const PossessionEditTile = (props) => {
     })
   }
 
-  const handleAWS_purchase_receipt = (acceptedFiles) => {
+  const handleAWS_purchase_receipt_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_purchase_receipt: acceptedFiles[0]
+    })
+  }
+  const handleAWS_tag_upload = (acceptedFiles) => {
+    setFormFields({
+      ...formFields,
+      aws_tag: acceptedFiles[0]
     })
   }
 
@@ -109,14 +117,16 @@ const PossessionEditTile = (props) => {
       </div>
     );
   }
-
-  // if (formFields.share_on_new_possession_list == "on") { 
-  //   formFields.share_on_new_possession_list = true 
-  // } else if (formFields.share_on_new_possession_list == "off") { 
-  //   formFields.share_on_new_possession_list = false 
-  // }
-  
-// debugger
+  if (formFields.aws_tag != props.possession.aws_tag) {
+    tagUploaded = (
+      <div className="grid-x align-center text-center">
+        <h5 className="cell shrink">Tag Uploaded:
+       {formFields.aws_tag.path}
+        </h5>
+      </div>
+    );
+  }
+  console.log(formFields)
   return (
     <div className="cell grid-x grid-padding-x"> {/* enclosing container */}
 
@@ -233,7 +243,7 @@ const PossessionEditTile = (props) => {
           </div>
 
           <div className="callout">
-            <Dropzone onDrop={handleAWS_purchase_receipt}>
+            <Dropzone onDrop={handleAWS_purchase_receipt_upload}>
               {({ getRootProps, getInputProps }) => (
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
@@ -268,6 +278,25 @@ const PossessionEditTile = (props) => {
               )}
             </Dropzone>
             {warrantyUploaded}
+          </div>
+
+          <div className="callout">
+            <Dropzone onDrop={handleAWS_tag_upload}>
+              {({ getRootProps, getInputProps }) => (
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+
+                  <div className="cell grid-x">
+                    <div className="cell callout">
+                      <div>
+                        Model Tag: Drag here or click to upload
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </Dropzone>
+            {tagUploaded}
           </div>
 
 

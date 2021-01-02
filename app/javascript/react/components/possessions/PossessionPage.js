@@ -23,7 +23,8 @@ const PossessionPage = (props) => {
     share_on_new_possession_list: true,
     URL: "",
     zip_code: "",
-    demo: false
+    demo: false,
+    aws_tag: {}
   })
   const [professionals, setProfessionals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)
@@ -75,6 +76,7 @@ const PossessionPage = (props) => {
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("share_on_new_possession_list", message.possession.share_on_new_possession_list)
     updatedPossession.append("URL", message.possession.URL)
+    updatedPossession.append("tag", message.possession.tag)
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,

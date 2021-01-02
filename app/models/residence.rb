@@ -26,7 +26,6 @@ class Residence < ApplicationRecord
   end
 
   def demo
-    # this should be based on login, but for now, can edit anything but the example
     return (name == "315 College Farm Rd #6")
   end
 end
