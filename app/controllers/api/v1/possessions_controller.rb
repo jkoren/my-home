@@ -4,14 +4,20 @@ class Api::V1::PossessionsController < ApiController
 
   def show
     possession = Possession.find(params[:id])
-    # binding.pry # why does demo not show up in possession? http://localhost:3000/api/v1/possessions/572 - only real variables show up - but virtual can be accessed by invoking the method - need to use serializer below
     professionals = Possession.get_professionals(possession.name, possession.residence.zip_code, 4)
-    Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name) 
+    Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     
     if (possession.room.residence.demo)
-      render json: {possession: possession, serializer: PossessionShowSerializer, professionals: professionals}
+      render json: {
+        # only real variables show up - but virtual variables are shown by using serializer below
+        possession: PossessionShowSerializer.new(possession),
+        professionals: professionals
+      }
     elsif current_user && (current_user.role == "admin" || possession.room.residence == current_user.residence)
-      render json: {possession: possession, serializer: PossessionShowSerializer, professionals: professionals}
+        render json: {
+        possession: PossessionShowSerializer.new(possession),
+        professionals: professionals
+      }
     else
       puts "not authorized to see possession "+params[:id]
     end
