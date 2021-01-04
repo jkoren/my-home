@@ -1,31 +1,26 @@
 class Manual
-  # do I have to install nokogiri?
-
-  def initialize(manufacturer, model,pdfURLs,pdfURL)
-    @manufacturer = manufacturer
-    @model = model
-    @pdfURLs = Manual.get_manual_pdfs
-    @pdfURL = Manual.get_manual_pdfs.first
-  end
+  # def initialize(manufacturer, model,pdfURLs,pdfURL)
+  #   @manufacturer = manufacturer
+  #   @model = model
+  #   @pdfURLs = Manual.get_manual_pdfs
+  #   @pdfURL = Manual.get_manual_pdfs.first
+  # end
 
   def self.get_manual_pdf(manufacturer, model)
     pdfs = Manual.get_manual_pdfs(manufacturer, model)
     return pdfs.first
   end
 
-  def self.get_manual_pdfs(manufacturer, model)
-    # if manufacturer == "" || model == ""
-    #   puts "need manufacturer and model"
-    #   return
-    # end
-
+  def self.get_manual_pdfs(manufacturer, model) #add max_number_of_manuals parameter
     converted_model = Manual.convert_model(manufacturer, model)
     
     manuals_search_url = "http://www.manualsonline.com/search.html?q=#{manufacturer}%20#{converted_model}"
     
     doc = Nokogiri::HTML(open(manuals_search_url))
     manual_urls = []
-    doc.xpath('//h5/a').each do |node|
+  
+    max_number_of_manuals = 5
+    doc.xpath('//h5/a').take(max_number_of_manuals).each do |node|
       theURL = node.attributes["href"].value
       if theURL.start_with?("http") #exclude support inquiries
         manual_urls << theURL 
@@ -38,7 +33,7 @@ class Manual
     manual_urls.each do |manual_URL|
       manual_pdfs << Manual.get_pdf(manual_URL)
     end
-    return manual_pdfs[0..4]
+    return manual_pdfs
   end
   
   def self.get_pdf(manual_URL)
