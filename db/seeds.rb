@@ -1,7 +1,5 @@
 # seeds.rb 
 
-# delete and recreate Arlo and all his residences, and the users for his residences - leave everything else alone
-
 arlo = Realtor.find_by(name: 'Arlo Nugent')
 arlo.destroy if arlo
 
@@ -102,19 +100,19 @@ living_room = Room.create(
   residence: CollegeFarmRoad
 )
 
-garage = Room.create(
+Room.create(
   name: "Garage",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315garage.jpeg')),
   residence: CollegeFarmRoad
 )
 
-basement = Room.create(
+Room.create(
   name: "Basement",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315basement.jpg')),
   residence: CollegeFarmRoad
 )
 
-no_room = Room.create(
+Room.create(
   name: "No Room",
   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/315/315noroom.jpg')),
   description: "Items that move from Room to Room",
@@ -249,148 +247,11 @@ Possession.create(
 # r58 v2 
 # Dual boiler with E61 group head and rotary pump
 
-# --- run one time
+no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
 
-# no_realtor_image = File.open(File.join( Rails.root,'/app/assets/images/seed_images/realtors/person-icon-person-icon-17.jpg'))
-
-# dave = Realtor.create(
-#   name: "Dave Digregorio",
-#   company: "Coldwell Banker Residential Brokerage",
-#   phone_number: "617-909-7888",
-#   email: "dave@davedrealestate.com",
-#   URL: "https://www.davedrealestate.com/"
-# )
-
-# no_realtor = Realtor.create(
-#   name: "My-Home",
-#   aws_image: no_realtor_image,
-#   URL: "https://my-home-222.herokuapp.com/providethis"
-# )
-
-# GroveRoad = Residence.create(
-#   name: "18 Grove Road",
-#   street: "18 Grove Road",
-#   city: "Waltham",
-#   state: "MA",
-#   zip_code: "02451",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/residences/18Grove.jpg')),
-#   realtor: dave
-# )
-
-# jeff = User.create(email: "jeff@gmail.com", password: "testtest", residence: GroveRoad)
-
-# Room.create(
-#     name: "Master Bedroom",
-#     # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#     aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#     description: "",
-#     residence: GroveRoad
-#   )
-
-# Room.create(
-#   name: "Nicole & Olivia\'s Bedroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Noah & Sophie\'s Bedroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Master Bathroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Kid\'s Bathroom",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-
-# Room.create(
-#   name: "Kitchen",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Basement",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Jeff\'s Office",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Den",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "Living Room",
-#   # image: "https://images.unsplash.com/photo-1559311648-d46f5d8593d6",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/no_photo.jpeg')),
-#   description: "",
-#   residence: GroveRoad
-# )
-
-# Room.create(
-#   name: "No Room",
-#   # image: "https://b-i.forbesimg.com/jaysondemers/files/2013/11/mobile-devices-300x196.jpg",
-#   aws_image: File.open(File.join( Rails.root,'/app/assets/images/seed_images/rooms/18/18noroom.jpg')),
-#   description: "Items that move from Room to Room",
-#   residence: GroveRoad
-# )
-
-# testing
-# laundry_room = Room.find(602)
-# poss = Possession.new(name: "cat", manufacturer: "cat's mom", room: laundry_room)
-# poss.save
-# cat_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/washing-machine.jpg'))
-# cat_pdf = washingMachine_image = File.open(File.join( Rails.root, '/app/assets/documents/seed_pdfs/laundry-room/dryer.pdf'))
-# poss.aws_image = cat_image
-# poss.aws_owners_manual = cat_pdf
-# poss.save
-
-hans = Realtor.create(
-  name: "Hans Brings",
-  company: "Coldwell Banker Residential Brokerage",
-  phone_number: "(617)968-0022",
-  email: "hans@hansbrings.com",
-  URL: "https://www.hansbrings.com/"
+Realtor.create(
+  name: "My-Home",
+  aws_image: no_realtor_image,
+  URL: "https://my-home-222.herokuapp.com/providethis"
 )
 
-circle = Residence.create(
-  name: "82 Circle Dr",
-  street: "82 Circle Dr",
-  city: "Waltham",
-  zip_code: "02451",
-  state: "MA",
-  realtor: hans
-)
