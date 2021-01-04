@@ -4,7 +4,8 @@ class Api::V1::PossessionsController < ApiController
 
   def show
     possession = Possession.find(params[:id])
-    professionals = Possession.get_professionals(possession.name, possession.residence.zip_code, 4)
+    professionals = Professional.get_professionals(possession.name, possession.residence.zip_code, 4)
+    manuals = Manual.get_manual_pdfs(possession.manufacturer, possession.model) #will need to shorten model number for kenmore at least
     Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     
     if (possession.room.residence.demo)
@@ -16,7 +17,8 @@ class Api::V1::PossessionsController < ApiController
     elsif current_user && (current_user.role == "admin" || possession.room.residence == current_user.residence)
         render json: {
         possession: PossessionShowSerializer.new(possession),
-        professionals: professionals
+        professionals: professionals,
+        manuals: manuals
       }
     else
       puts "not authorized to see possession "+params[:id]
