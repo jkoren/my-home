@@ -118,9 +118,9 @@ Room.create(
   description: "Items that move from Room to Room",
   residence: CollegeFarmRoad
 )
-invoice_jpg = File.open(File.join( Rails.root, '/app/assets/documents/purchase_receipts/dehumidier invoice.jpg'))
+invoice_jpg = File.open(File.join( Rails.root, '/app/assets/documents/purchase_receipts/Purchase-Invoice-Sample.jpg'))
 
-warranty_jpg = File.open(File.join( Rails.root, '/app/assets/documents/warranties/dishwasher-page-001.jpg'))
+warranty_jpg = File.open(File.join( Rails.root, '/app/assets/documents/warranties/Warranty-Sample.jpg'))
 
 dishwasher_image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/dishwasher.jpeg'))
 dishwasher_owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Dishwasher.pdf'))
@@ -157,7 +157,7 @@ Possession.create(
 )
 
 image = File.open(File.join( Rails.root, '/app/assets/images/seed_images/possessions/microwave.jpg'))
-owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Cuisinart.pdf'))
+owners_manual_pdf = File.open(File.join( Rails.root, '/app/assets/documents/owners_manuals/Microwave.pdf'))
 Possession.create(
   name:"Microwave", 
   manufacturer: "KitchenAid", 
@@ -254,4 +254,3 @@ Realtor.create(
   aws_image: no_realtor_image,
   URL: "https://my-home-222.herokuapp.com/providethis"
 )
-
