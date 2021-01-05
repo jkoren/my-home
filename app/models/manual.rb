@@ -35,6 +35,7 @@ class Manual
       manual_doc = Nokogiri::HTML(open(manual_URL))
 
       manual_pdf = Manual.get_pdf(manual_doc)
+      # manual_thumbnail = Manual.get_pdf_thumbnail(manual_pdf)
       manual_title = Manual.get_title(manual_doc)
       new_manual_object = Manual.new(manufacturer, model, manual_title,manual_pdf)
       manual_objects << new_manual_object
@@ -48,6 +49,14 @@ class Manual
     else
       return
     end
+  end
+
+  def self.get_pdf_thumbnail(manual_pdf)
+    # https://discourse.shrinerb.com/t/create-a-thumbnail-from-pdf-file/69 
+    # pdf = Magick::ImageList.new(manual_pdf)
+    # thumb = pdf.scale(300, 300)
+    # binding.pry # do I get this far?
+    # thumb.write "doc.png"
   end
 
   def self.get_title(manual_doc)
