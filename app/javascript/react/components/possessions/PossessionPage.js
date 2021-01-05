@@ -27,11 +27,12 @@ const PossessionPage = (props) => {
     aws_tag: {}
   })
   const [professionals, setProfessionals] = useState([])
+  const [manuals, setManuals] = useState([])
   const [shouldRedirect,setShouldRedirect] = useState(false)
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
-  const fetchPossessionAndProfessionals = () => {
+  const fetchPossessionAndProfessionalsAndManuals = () => {
     // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
     fetch(`/api/v1/possessions/${id}`, {
       credentials: "same-origin"
@@ -48,13 +49,14 @@ const PossessionPage = (props) => {
       .then((responseBody) => {
         setFormFields(responseBody.possession)
         setProfessionals(responseBody.professionals)
+        setManuals(responseBody.manuals)
       })
       .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
   }
 
   const id = props.match.params.id 
   useEffect(() => {
-    fetchPossessionAndProfessionals()
+    fetchPossessionAndProfessionalsAndManuals()
   }, [])
 
   const editPossession = (message) => {
@@ -190,6 +192,7 @@ const PossessionPage = (props) => {
         <PossessionShowTile
           possession={formFields}
           professionals={professionals}
+          manuals={manuals}
           onEditClickHandler={onEditClickHandler}
           onDeleteClickHandler={onDeleteClickHandler}
         />
