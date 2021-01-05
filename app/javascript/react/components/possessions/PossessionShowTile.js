@@ -1,9 +1,9 @@
 //PossessionShowTile.js
 import React from "react"
 import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
+import ManualIndexTile from "../manuals/ManuaIndexTile"
 
 const PossessionShowTile = (props) => {
-
   // to handle cases where there is no aws file, to color font appropriately
   let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : nil)
   let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
@@ -43,12 +43,13 @@ const PossessionShowTile = (props) => {
     "https://my-home-production.s3.amazonaws.com/uploads/thumbnails/website_thumbnail.png" :
     "")
 
-  let aws_image_html // not used yet
+  // adjusting to show pdfs differently from jpg/png files
+  let aws_image_html
   if (props.possession.aws_image != null && props.possession.aws_image.url != null && props.possession.aws_image.url.toLowerCase().endsWith("pdf")) {
     aws_image_html = (<div> <embed src={aws_image_url} width="200" /> </div>)
-    } else {
-      aws_image_html = (<img src={aws_image_url} width="450" />)
-    }
+  } else {
+    aws_image_html = (<img src={aws_image_url} width="450" />)
+  }
 
   let aws_owners_manual_html
   if (props.possession.aws_owners_manual != null && props.possession.aws_owners_manual.url != null && props.possession.aws_owners_manual.url.toLowerCase().endsWith("pdf")) {
@@ -78,24 +79,31 @@ const PossessionShowTile = (props) => {
     aws_tag_html = (<img src={aws_tag_url} width="250" />)
   }
 
+  // handling case of no links provided for video or manufacturer web site
   let operating_video
   if (props.possession.operating_video != "") { operating_video = props.possession.operating_video } else 
   {
-    // adjust to what makes sense, a page to suggest saving the URL of a video
-    operating_video = "http://www.google.com"
+    operating_video = "http://www.google.com" // adjust to what makes sense, a page to suggest saving the URL of a video
   }
 
   let URL
   if (props.possession.URL != "") { URL = props.possession.URL  } else 
   {
-    // adjust to what makes sense, a page to suggest saving the URL of the product/company website
-    URL = "http://www.google.com"
+    URL = "http://www.google.com" // adjust to what makes sense, a page to suggest saving the URL of the product/company website
   }
 
   let professionalsTiles = props.professionals.map((professionalObject) => {
     return <ProfessionalIndexTile
       key={professionalObject.id}
       data={professionalObject}
+    />
+  })
+
+  let manualsTiles = props.manuals.map(
+    (mapobject) => {
+      return <ManualIndexTile
+      key={mapobject}
+      data={mapobject}
     />
   })
 
@@ -120,13 +128,14 @@ const PossessionShowTile = (props) => {
       <div className="cell">
         <h4>{props.possession.name}</h4>
         <h5>{props.possession.manufacturer} {props.possession.model}</h5>
-        {/* <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
-        <i className="far fa-trash-alt fa-2x" onClick={props.onDeleteClickHandler}></i> */}
         {editDeleteTile}
       </div> 
 
         <div className="cell small-12 medium-3">
           {aws_image_html}
+          <i className="fas fa-tools fa-3x"></i>
+          Service professionals near you:
+          {professionalsTiles} 
          </div>
 
         <div className="cell small-12 medium-6 text-left">
@@ -178,7 +187,9 @@ const PossessionShowTile = (props) => {
               <div> 
                 <a href={aws_purchase_receipt_url} target="_blank">
                   <h5>Purchase Receipt</h5>
-                  <i className={aws_purchase_receipt_icon}></i>
+                  <div>
+                    <i className={aws_purchase_receipt_icon}></i>
+                  </div>
                   {aws_purchase_receipt_html}
                 </a>
               </div>
@@ -192,7 +203,9 @@ const PossessionShowTile = (props) => {
             <div>
               <a href={aws_warranty_url} target="_blank">
                 <h5>Warranty</h5>
-                <i className={aws_warranty_icon}></i>
+                <div>
+                  <i className={aws_warranty_icon}></i>
+                </div>
                 {aws_warranty_html}
               </a>
             </div>
@@ -202,7 +215,9 @@ const PossessionShowTile = (props) => {
             <div>
               <a href={aws_tag_url} target="_blank">
                 <h5>Model Tag</h5>
-                <i className={aws_tag_icon}></i>
+                <div>
+                  <i className={aws_tag_icon}></i>
+                </div>
                 {aws_tag_html}
               </a>
             </div>
@@ -213,9 +228,11 @@ const PossessionShowTile = (props) => {
       </div> 
 
       <div className="cell small-12 medium-3">
-        <i className="fas fa-tools fa-3x"></i>
-        Service professionals near you:
-        {professionalsTiles} 
+
+        <i className="fas fa-book-reader fa-3x"></i>
+        Possible Manuals:
+        {manualsTiles}
+
       </div>
     </div>
 

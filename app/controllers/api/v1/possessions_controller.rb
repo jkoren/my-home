@@ -5,17 +5,21 @@ class Api::V1::PossessionsController < ApiController
   def show
     possession = Possession.find(params[:id])
     professionals = Professional.get_professionals(possession.name, possession.residence.zip_code, 4)
-    manuals = Manual.get_manual_pdfs(possession.manufacturer, possession.model) #will need to shorten model number for kenmore at least
+    manuals = Manual.get_manual_objects(possession.manufacturer, possession.model) #will need to shorten model number for kenmore at least
+    # binding.pry # did I get this far?
     Activity.create(action: "show", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     
     if (possession.room.residence.demo)
+      # binding.pry # did I get this far 1?
       render json: {
         # only real variables show up - but virtual variables are shown by using serializer below
         possession: PossessionShowSerializer.new(possession),
-        professionals: professionals
+        professionals: professionals,
+        manuals: manuals
       }
     elsif current_user && (current_user.role == "admin" || possession.room.residence == current_user.residence)
-        render json: {
+      # binding.pry # did I get this far 2?
+      render json: {
         possession: PossessionShowSerializer.new(possession),
         professionals: professionals,
         manuals: manuals
