@@ -43,37 +43,43 @@ const PossessionEditTile = (props) => {
       ...formFields,
       aws_image: acceptedFiles[0]
     })
+    props.setAwsImageUploaded(true)
   }
-
+  
   const handleAWS_owners_manual_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_owners_manual: acceptedFiles[0]
     })
+    props.setAwsOwnersManualUploaded(true)
   }
-
+  
   const handleAWS_warranty_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_warranty: acceptedFiles[0]
     })
+    props.setAwsWarrantyUploaded(true)
   }
-
+  
   const handleAWS_purchase_receipt_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_purchase_receipt: acceptedFiles[0]
     })
+    props.setAwsPurchaseReceiptUploaded(true)
   }
   const handleAWS_tag_upload = (acceptedFiles) => {
     setFormFields({
       ...formFields,
       aws_tag: acceptedFiles[0]
     })
+    props.setAwsTagUploaded(true)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // let messageUp = { id: props.possession.id, possession: formFields };
     let messageUp = { id: props.possession.id, possession: formFields };
     props.editPossession(messageUp);
   };

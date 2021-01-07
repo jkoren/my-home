@@ -60,7 +60,6 @@ const Layout = (props) => {
               <Route exact path="/rooms/:id/possessions/new" component={PossessionNewForm} />
 
               <Route exact path="/possessions/:id" component={PossessionPage} /> 
-              {/* <Route exact path="/possessions/newest" component={PossessionsNewsContainer} />  */}
             </Switch>
           </div>
         </div>

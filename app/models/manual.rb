@@ -1,15 +1,11 @@
 class Manual
-  def initialize(manufacturer, model, manual_title, pdfURL)
+  def initialize(manufacturer, model, manual_title, pdf_url, thumbnail_url)
     @manufacturer = manufacturer
     @model = model
     @manual_title = manual_title
-    @pdfURL = pdfURL
+    @pdf_url = pdf_url 
+    @thumbnail_url = thumbnail_url
   end
-
-  # def self.get_manual_pdf(manufacturer, model)
-  #   pdfs = Manual.get_manual_objects(manufacturer, model)
-  #   return pdfs.first
-  # end
 
   def self.get_manual_objects(manufacturer, model) #add max_number_of_manuals parameter
     converted_model = Manual.convert_model(manufacturer, model)
@@ -34,10 +30,10 @@ class Manual
     manual_web_pages.each do |manual_URL|
       manual_doc = Nokogiri::HTML(open(manual_URL))
 
-      manual_pdf = Manual.get_pdf(manual_doc)
-      # manual_thumbnail = Manual.get_pdf_thumbnail(manual_pdf)
+      pdf_url = Manual.get_pdf(manual_doc)
+      thumbnail_url = Manual.get_pdf_thumbnail(pdf_url)
       manual_title = Manual.get_title(manual_doc)
-      new_manual_object = Manual.new(manufacturer, model, manual_title,manual_pdf)
+      new_manual_object = Manual.new(manufacturer, model, manual_title, pdf_url, thumbnail_url)
       manual_objects << new_manual_object
     end
     return manual_objects
@@ -51,12 +47,9 @@ class Manual
     end
   end
 
-  def self.get_pdf_thumbnail(manual_pdf)
+  def self.get_pdf_thumbnail(pdf_url)
     # https://discourse.shrinerb.com/t/create-a-thumbnail-from-pdf-file/69 
-    # pdf = Magick::ImageList.new(manual_pdf)
-    # thumb = pdf.scale(300, 300)
-    # binding.pry # do I get this far?
-    # thumb.write "doc.png"
+    return pdf_url #needs to be converted to thumbnail
   end
 
   def self.get_title(manual_doc)
