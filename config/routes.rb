@@ -41,7 +41,7 @@ Rails.application.routes.draw do
       
       resources :possessions, only: [:index, :show, :update, :destroy]
       #new
-      patch "/possessions/change_manual/:id", to: "/api/v1/possessions#change_manual"
+      # patch "/possessions/change_manual/:id", to: "/api/v1/possessions#change_manual"
       resources :professionals, only: [:index]
       resources :activities, only: [:index]
     end

@@ -33,6 +33,10 @@ const PossessionPage = (props) => {
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
   const [awsImageUploaded, setAwsImageUploaded] = useState(false)
+  const [awsOwnersManualUploaded, setAwsOwnersManualUploaded] = useState(false)
+  const [awsPurchaseReceiptUploaded, setAwsPurchaseReceiptUploaded] = useState(false)
+  const [awsWarrantyUploaded, setAwsWarrantyUploaded] = useState(false)
+  const [awsTagUploaded, setAwsTagUploaded] = useState(false)
 
   const fetchPossessionAndProfessionalsAndManuals = () => {
     // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
@@ -69,18 +73,25 @@ const PossessionPage = (props) => {
     updatedPossession.append("name", message.possession.name)
     updatedPossession.append("manufacturer", message.possession.manufacturer)
     updatedPossession.append("model", message.possession.model)
-    updatedPossession.append("owners_manual", message.possession.owners_manual)
     updatedPossession.append("description", message.possession.description)
-    if (awsImageUploaded) {
-      updatedPossession.append("aws_image", message.possession.aws_image)
-    }
-    updatedPossession.append("aws_owners_manual", message.possession.aws_owners_manual)
-    updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
-    updatedPossession.append("aws_warranty", message.possession.aws_warranty)
     updatedPossession.append("operating_video", message.possession.operating_video)
     updatedPossession.append("share_on_new_possession_list", message.possession.share_on_new_possession_list)
     updatedPossession.append("URL", message.possession.URL)
-    updatedPossession.append("aws_tag", message.possession.aws_tag)
+    if (awsImageUploaded) {
+      updatedPossession.append("aws_image", message.possession.aws_image)
+    }
+    if (awsOwnersManualUploaded) {
+      updatedPossession.append("aws_owners_manual", message.possession.aws_owners_manual)
+    }
+    if (awsPurchaseReceiptUploaded) {
+      updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
+    }
+    if (awsWarrantyUploaded) {
+      updatedPossession.append("aws_warranty", message.possession.aws_warranty)
+    }
+    if (awsTagUploaded) {
+      updatedPossession.append("aws_tag", message.possession.aws_tag)
+    }
 
     // fetch POST #1
     fetch(`/api/v1/possessions/${possessionId}`, {
@@ -106,6 +117,10 @@ const PossessionPage = (props) => {
       .then (updatedPossession => {
         setPossession(updatedPossession)
         setAwsImageUploaded(false)
+        setAwsOwnersManualUploaded(false)
+        setAwsPurchaseReceiptUploaded(false)
+        setAwsWarrantyUploaded(false)
+        setAwsTagUploaded(false)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
@@ -257,7 +272,12 @@ const PossessionPage = (props) => {
           possession={possession}
           editPossession={onSaveClickHandler}
           onDiscardClickHandler={onDiscardClickHandler}
-          setAwsImageUploaded={setAwsImageUploaded}
+          setAwsImageUploaded ={setAwsImageUploaded}
+          setAwsOwnersManualUploaded =
+          {setAwsOwnersManualUploaded}
+          setAwsPurchaseReceiptUploaded ={setAwsPurchaseReceiptUploaded}
+          setAwsWarrantyUploaded={setAwsWarrantyUploaded}
+          setAwsTagUploaded={setAwsTagUploaded}
         />
       );
     } else if (showDeleteTile && !showEditTile) {
