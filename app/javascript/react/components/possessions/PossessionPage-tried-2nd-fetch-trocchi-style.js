@@ -32,8 +32,6 @@ const PossessionPage = (props) => {
   const [showEditTile, setShowEditTile] = useState(false)
   const [showDeleteTile, setShowDeleteTile] = useState(false)
 
-  const [awsImageUploaded, setAwsImageUploaded] = useState(false)
-
   const fetchPossessionAndProfessionalsAndManuals = () => {
     // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
     fetch(`/api/v1/possessions/${id}`, {
@@ -62,7 +60,7 @@ const PossessionPage = (props) => {
   }, [])
 
   const editPossession = (message) => {
-     let possessionId = message.id;
+    let possessionId = message.id;
     // THIS IS SENDING THE DATA TO RAILS FROM THE FORM
     let updatedPossession = new FormData()
     // MESSAGE.POSSESSION IS NEW DATA
@@ -71,9 +69,7 @@ const PossessionPage = (props) => {
     updatedPossession.append("model", message.possession.model)
     updatedPossession.append("owners_manual", message.possession.owners_manual)
     updatedPossession.append("description", message.possession.description)
-    if (awsImageUploaded) {
-      updatedPossession.append("aws_image", message.possession.aws_image)
-    }
+    updatedPossession.append("aws_image", message.possession.aws_image)
     updatedPossession.append("aws_owners_manual", message.possession.aws_owners_manual)
     updatedPossession.append("aws_purchase_receipt", message.possession.aws_purchase_receipt)
     updatedPossession.append("aws_warranty", message.possession.aws_warranty)
@@ -83,6 +79,7 @@ const PossessionPage = (props) => {
     updatedPossession.append("aws_tag", message.possession.aws_tag)
 
     // fetch POST #1
+    // debugger // what does updatedPossession look like?
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,
@@ -105,58 +102,37 @@ const PossessionPage = (props) => {
       .then((response) => response.json())
       .then (updatedPossession => {
         setPossession(updatedPossession)
-        setAwsImageUploaded(false)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`));
   };
 
   const changeManual = (manualURL) => {
-    // state is empty
-    // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE changeManual LOADS
+    // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
+    fetch(`/api/v1/possessions/${id}`, {
+      credentials: "same-origin"
+    })
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        let errorMessage = `${response.status} (${response.statusText})`,
+        error = new Error(errorMessage);
+        throw (error);
+      }
+    })
+    .then((responseBody) => {
+      setPossession(responseBody.possession)
+    })
+    .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
     
-    // fetch(`/api/v1/possessions/${id}`, {
-    //   credentials: "same-origin"
-    // })
-    // .then((response) => {
-    //   if (response.ok) {
-    //     return response.json();
-    //   } else {
-    //     let errorMessage = `${response.status} (${response.statusText})`,
-    //       error = new Error(errorMessage);
-    //     throw (error);
-    //   }
-    // })
-    // .then((responseBody) => {
-    //   setPossession(responseBody.possession)
-    // })
-    // .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
-
-    // possession is now in state
-
-    let updatedPossession = new FormData()
-
-    // creating updatedPossession record from state
-    // updatedPossession.append("name", possession.name)
-    // updatedPossession.append("manufacturer", possession.manufacturer)
-    // updatedPossession.append("model", possession.model)
-    // updatedPossession.append("owners_manual", possession.owners_manual)
-    // updatedPossession.append("description", possession.description)
-    // updatedPossession.append("aws_image", possession.aws_image)
-    updatedPossession.append("aws_owners_manual", manualURL)
-    // updatedPossession.append("aws_purchase_receipt", possession.aws_purchase_receipt)
-    // updatedPossession.append("aws_warranty", possession.aws_warranty)
-    // updatedPossession.append("operating_video", possession.operating_video)
-    // updatedPossession.append("share_on_new_possession_list", possession.share_on_new_possession_list)
-    // updatedPossession.append("URL", possession.URL)
-    // updatedPossession.append("aws_tag", possession.aws_tag)
+    console.log("changing manual to: "+manualURL)
+    // this will store a link to manualsonline.com but not save it to AWS - I want to save it to AWS - how does dropzone do that?
+    possession.aws_owners_manual = { url: manualURL } 
     
-    // console.log("changing manual to: "+manualURL)
-
-    // debugger // need this to be a carrierwave object?  or create in controller action when saving?
-    // possession.aws_owners_manual = { url: manualURL } 
-    fetch(`/api/v1/possessions/${possession.id}`, {
+    debugger // what does possession look like?
+    fetch(`/api/v1/possessions/${id}`, {
       method: "PATCH",
-      body: updatedPossession,
+      body: possession,
       credentials: "same-origin",
       headers: {
         "Accept": "application/json",
@@ -165,6 +141,7 @@ const PossessionPage = (props) => {
         },
       })
       .then((response) => {
+        debugger
         if (response.ok) {
           return response;
         } else {
@@ -257,7 +234,6 @@ const PossessionPage = (props) => {
           possession={possession}
           editPossession={onSaveClickHandler}
           onDiscardClickHandler={onDiscardClickHandler}
-          setAwsImageUploaded={setAwsImageUploaded}
         />
       );
     } else if (showDeleteTile && !showEditTile) {

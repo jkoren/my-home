@@ -5,14 +5,14 @@
   <div class="top-bar-left align-middle">
     <%- if current_user -%>
       <%= link_to residences_path do %>
-        <%= image_tag( root_url + "favicon-32x32.png", size: "70x70", :alt => "My Home") %>
+        <%= image_tag( root_url + "favicon-70x70.png", size: "70x70", :alt => "My Home") %>
       <% end %>
       <%= link_to residences_path do %>
         <div class="black-lettering"> My-Home </div> 
       <% end %>
     <% else -%>
       <%= link_to pleasesignin_path do %>
-        <%= image_tag( root_url + "favicon-32x32.png", size: "70x70", :alt => "My Home") %>
+        <%= image_tag( root_url + "favicon-70x70.png", size: "70x70", :alt => "My Home") %>
       <% end %>
       <%= link_to pleasesignin_path do %>
         <div class="black-lettering"> My-Home </div> 

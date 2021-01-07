@@ -98,19 +98,19 @@ const PossessionShowTile = (props) => {
       data={professionalObject}
     />
   })
-
   let manualsTiles = props.manuals.map(
     (mapobject) => {
       return <ManualIndexTile
-      key={mapobject}
+      key={mapobject.pdfURL}
       data={mapobject}
+      onManualSaveClick={props.onManualSaveClick}
     />
   })
 
   // don't give option to edit possessions in a demo residence
   let editDeleteTile
   if (!props.possession.demo) {
-    console.log("not in a demo residence")
+    // not in a demo residence
     editDeleteTile = (
       <>
         <i className="far fa-edit fa-2x" onClick={props.onEditClickHandler}></i>
@@ -118,7 +118,7 @@ const PossessionShowTile = (props) => {
       </>
     )
   } else {
-    console.log("in a demo residence")
+    // in a demo residence
     editDeleteTile = ""
   }
   

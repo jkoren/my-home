@@ -43,6 +43,7 @@ const PossessionEditTile = (props) => {
       ...formFields,
       aws_image: acceptedFiles[0]
     })
+    props.setAwsImageUploaded(true)
   }
 
   const handleAWS_owners_manual_upload = (acceptedFiles) => {
@@ -74,6 +75,7 @@ const PossessionEditTile = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // let messageUp = { id: props.possession.id, possession: formFields };
     let messageUp = { id: props.possession.id, possession: formFields };
     props.editPossession(messageUp);
   };
