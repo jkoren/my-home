@@ -126,47 +126,9 @@ const PossessionPage = (props) => {
   };
 
   const changeManual = (manualURL) => {
-    // state is empty
-    // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE changeManual LOADS
-    
-    // fetch(`/api/v1/possessions/${id}`, {
-    //   credentials: "same-origin"
-    // })
-    // .then((response) => {
-    //   if (response.ok) {
-    //     return response.json();
-    //   } else {
-    //     let errorMessage = `${response.status} (${response.statusText})`,
-    //       error = new Error(errorMessage);
-    //     throw (error);
-    //   }
-    // })
-    // .then((responseBody) => {
-    //   setPossession(responseBody.possession)
-    // })
-    // .catch((error) => console.error(`Error in fetch (GET):${error.message}`))
-
-    // possession is now in state
-
     let updatedPossession = new FormData()
-
-    // creating updatedPossession record from state
-    // updatedPossession.append("name", possession.name)
-    // updatedPossession.append("manufacturer", possession.manufacturer)
-    // updatedPossession.append("model", possession.model)
-    // updatedPossession.append("owners_manual", possession.owners_manual)
-    // updatedPossession.append("description", possession.description)
-    // updatedPossession.append("aws_image", possession.aws_image)
     updatedPossession.append("aws_owners_manual", manualURL)
-    // updatedPossession.append("aws_purchase_receipt", possession.aws_purchase_receipt)
-    // updatedPossession.append("aws_warranty", possession.aws_warranty)
-    // updatedPossession.append("operating_video", possession.operating_video)
-    // updatedPossession.append("share_on_new_possession_list", possession.share_on_new_possession_list)
-    // updatedPossession.append("URL", possession.URL)
-    // updatedPossession.append("aws_tag", possession.aws_tag)
     
-    // console.log("changing manual to: "+manualURL)
-
     // debugger // need this to be a carrierwave object?  or create in controller action when saving?
     // possession.aws_owners_manual = { url: manualURL } 
     fetch(`/api/v1/possessions/${possession.id}`, {

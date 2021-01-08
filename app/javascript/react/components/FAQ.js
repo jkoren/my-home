@@ -1,5 +1,5 @@
 import React from "react";
-import PossessionsNewsContainer from "./possessions/PossessionsNewsContainer"
+import PossessionsNewestContainer from "./possessions/PossessionsNewestContainer"
 import { Link } from 'react-router-dom'
 
 const FAQ = (props) => {

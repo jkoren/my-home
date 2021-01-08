@@ -2,14 +2,6 @@
 class Api::V1::PossessionsController < ApiController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
-  # def change_manual
-  #   # find the possession
-  #   possession = Possession.find(params[:id])
-  #   # change the manual
-  #   possession.update_attributes(possession_params)
-  #   binding.pry # did not update manual
-  # end
-
   def show
     possession = Possession.find(params[:id])
     professionals = Professional.get_professionals(possession.name, possession.residence.zip_code, 4)
@@ -62,33 +54,8 @@ class Api::V1::PossessionsController < ApiController
 
   def update  
     possession = Possession.find(params[:id])
-    
-    # # if the attachment does not come through correctly, it means that there is no new attachment, so do NOT update the aws_image field
-    
-    # if params["aws_image"] != "[object Object]" 
-    #   possession.update_attributes(possession_aws_image_params)
-    # end
-    
-    # if params["aws_owners_manual"] != "[object Object]" 
-    #   possession.update_attributes(possession_aws_owners_manual_params)
-    # end
-    
-    # if params["aws_warranty"] != "[object Object]" 
-    #   possession.update_attributes(possession_aws_warranty_params)
-    # end
-    
-    # if params["aws_purchase_receipt"] != "[object Object]" 
-    #   possession.update_attributes(possession_aws_purchase_receipt_params)
-    # end
-    
-    # if params["aws_tag"] != "[object Object]" 
-    #   possession.update_attributes(possession_aws_tag_params)
-    # end
-    
     possession.update_attributes(possession_params)
-    
     Activity.create(action: "update", table: "possession", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
-
     render json: possession
   end
 
@@ -105,30 +72,6 @@ class Api::V1::PossessionsController < ApiController
     def possession_params
       params.permit([:id, :name, :manufacturer, :model,  :description, :URL, :operating_video, :warranty, :aws_image, :aws_owners_manual, :aws_warranty, :aws_purchase_receipt, :share_on_new_possession_list, :demo, :aws_tag])
     end
-
-    # def possession_aws_image_params
-    #   params.permit([:aws_image])
-    # end
-
-    # def possession_aws_owners_manual_params
-    #   params.permit([:aws_owners_manual])
-    # end
-
-    # def possession_aws_warranty_params
-    #   params.permit([:aws_warranty])
-    # end
-
-    # def possession_aws_purchase_receipt_params
-    #   params.permit([:aws_purchase_receipt])
-    # end
-    
-    # def possession_aws_tag_params
-    #   params.permit([:aws_tag])
-    # end
-
-    # def possession_params_no_aws
-    #   params.permit([:id, :name, :manufacturer, :model, :description, :URL, :operating_video, :room_id, :share_on_new_possession_list])
-    # end
 
     def authenticate_user
       if !user_signed_in?

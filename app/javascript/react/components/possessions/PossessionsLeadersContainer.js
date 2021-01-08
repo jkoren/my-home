@@ -1,11 +1,8 @@
-// PossessionsNewsContainer.js
+// PossessionsLeadersContainer.js
 import React, { useEffect, useState } from "react"
-import PossessionNewsTile from "./PossessionNewsTile"
 import PossessionLeaderTile from "./PossessionLeaderTile"
-// import PossessionLeaderBoard from "./PossessionLeaderBoard"
 
-const PossessionsNewsContainer = (props) => {
-  const [possessions, setPossessions] = useState([])
+const PossessionsLeadersContainer = (props) => {
   const [leaders, setLeaders] = useState([])
 
   useEffect(() => {
@@ -23,18 +20,10 @@ const PossessionsNewsContainer = (props) => {
       })
       .then(response => response.json())
       .then((body) => {
-        setPossessions(body.possessions)
         setLeaders(body.leaders)
       })
       .catch((error) => console.error(`Error in fetch: ${error.message}`))
   }, [])
-
-  let possessionTiles = possessions.map((possessionObject) => {
-      return <PossessionNewsTile 
-        key={possessionObject.id} 
-        data={possessionObject} 
-      />
-  })
 
   let leaderTiles = leaders.map((possessionArray) => {
       return <PossessionLeaderTile 
@@ -51,7 +40,6 @@ const PossessionsNewsContainer = (props) => {
             <tr>
               <th width="100">Screen Name</th>
               <th width="100">Possessions</th>
-              {/* <th width="100">Points</th> */}
             </tr>
           </thead>
           <tbody>
@@ -59,24 +47,8 @@ const PossessionsNewsContainer = (props) => {
           </tbody>
         </table>
       </section>
-
-      <section>
-        <h3>Newest Items Added</h3>
-        <table>
-          <thead>
-            <tr>
-              <th width="100">Possession</th>
-              <th width="100">Location</th>
-            </tr>
-          </thead>
-          <tbody>
-            {possessionTiles}
-          </tbody>
-        </table>
-      </section>
-
     </div>
   )
 }
 
-export default PossessionsNewsContainer
+export default PossessionsLeadersContainer
