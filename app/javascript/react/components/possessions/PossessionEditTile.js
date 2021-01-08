@@ -132,7 +132,6 @@ const PossessionEditTile = (props) => {
       </div>
     );
   }
-  console.log(formFields)
   return (
     <div className="cell grid-x grid-padding-x"> {/* enclosing container */}
 

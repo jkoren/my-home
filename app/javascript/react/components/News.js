@@ -1,6 +1,6 @@
 import React from "react";
-import PossessionsNewsContainer from "./possessions/PossessionsNewsContainer"
-import { Link } from 'react-router-dom'
+import PossessionsNewestContainer from "./possessions/PossessionsNewestContainer"
+import PossessionsLeadersContainer from "./possessions/PossessionsLeadersContainer"
 
 const News = (props) => {
   
@@ -9,21 +9,23 @@ const News = (props) => {
       <>
         <br></br>{/* spacer */}
       </>
-
-      <div className="cell medium-offset-1 ">
+      <div className="cell medium-offset-1">
         <div className="grid-x">
-
-          <div className="callout cell box-shadow text-center">
+          <div className="callout cell box-shadow text-center medium-10">
             <h5 className="cell"> News </h5>
           </div>
-
-          <PossessionsNewsContainer/>
-
+          <PossessionsNewestContainer/>
         </div>
       </div>
 
-
-
+      <div className="cell medium-offset-1 ">
+        <div className="grid-x">
+          {/* <div className="callout cell box-shadow text-center">
+            <h5 className="cell"> Leaders </h5>
+          </div> */}
+          <PossessionsLeadersContainer/>
+        </div>
+      </div>
     </div>
   )
 }
