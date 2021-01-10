@@ -93,7 +93,7 @@ const PossessionPage = (props) => {
       updatedPossession.append("aws_tag", message.possession.aws_tag)
     }
 
-    // fetch POST #1
+    // fetch PATCH #1
     fetch(`/api/v1/possessions/${possessionId}`, {
       method: "PATCH",
       body: updatedPossession,
@@ -127,18 +127,18 @@ const PossessionPage = (props) => {
 
   const changeManual = (manualURL) => {
     let updatedPossession = new FormData()
+    // pass the id, name and new manual_URL 
+    updatedPossession.append("id", possession.id)
+    updatedPossession.append("name", possession.name)
     updatedPossession.append("aws_owners_manual", manualURL)
-    
-    // debugger // need this to be a carrierwave object?  or create in controller action when saving?
-    // possession.aws_owners_manual = { url: manualURL } 
-    fetch(`/api/v1/possessions/${possession.id}`, {
+    fetch(`/api/v1/possessions/change_manual`, {
       method: "PATCH",
       body: updatedPossession,
       credentials: "same-origin",
       headers: {
         "Accept": "application/json",
-        "Accept": "image/jpeg",
-        "Accept": "multipart/form-data",
+        // "Accept": "image/jpeg",
+        // "Accept": "multipart/form-data",
         },
       })
       .then((response) => {
