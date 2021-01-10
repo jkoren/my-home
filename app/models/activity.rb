@@ -13,19 +13,16 @@ class Activity < ApplicationRecord
         if user.residence != nil && user.residence.rooms != nil
           user.residence.rooms.each do | room |
             if room.possessions != nil
-              # puts(user.email+":"+room.name+" has "+ room.possessions.count.to_s+" possession(s).")
               possession_count += room.possessions.count
             end
           end
         end
       end
       if possession_count > 0
-        # binding.pry
         possession_summary.push([user.user_name, possession_count])
       end
     end
     possession_summary.sort_by!{ |user, possession_count| possession_count }.reverse!
-
 
     return possession_summary
   end

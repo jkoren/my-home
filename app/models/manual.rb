@@ -70,6 +70,10 @@ class Manual
     end
     return model
   end
+
+  # def self.convert_manual(manual_URL)
+  #   return open(manual_URL)
+  # end
 end
 
 # for manualsonline

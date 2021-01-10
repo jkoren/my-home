@@ -3,17 +3,14 @@
 <div class="top-bar menu align-middle">
 
   <div class="top-bar-left align-middle">
+    <%= link_to splash_path do %>
+      <%= image_tag( root_url + "favicon-70x70.png", size: "70x70", :alt => "My Home") %>
+    <% end %>
     <%- if current_user -%>
-      <%= link_to splash_path do %>
-        <%= image_tag( root_url + "favicon-70x70.png", size: "70x70", :alt => "My Home") %>
-      <% end %>
       <%= link_to residences_path do %>
         <div class="black-lettering"> My-Home </div> 
       <% end %>
     <% else -%>
-      <%= link_to pleasesignin_path do %>
-        <%= image_tag( root_url + "favicon-70x70.png", size: "70x70", :alt => "My Home") %>
-      <% end %>
       <%= link_to pleasesignin_path do %>
         <div class="black-lettering"> My-Home </div> 
       <% end %>

@@ -13,7 +13,7 @@ class Api::V1::ResidencesController < ApiController
   
   def index
     if current_user.admin?
-      residences = Residence.all
+      residences = Residence.all.sort_by{ |a| a[:updated_at] }.reverse
     else
       residences = []
       if current_user.residence != nil
@@ -45,10 +45,7 @@ class Api::V1::ResidencesController < ApiController
     end
 
     residence.update_attributes(residence_params_no_aws_image)
-    
     Activity.create(action: "update", table: "residence", user: current_user, id_of_item: params[:id], name: params[:name]) # log the action
-
-    # the problem was that without the serializer, the rooms were not being attached
     render json: residence, serializer: ResidenceShowSerializer
   end
 

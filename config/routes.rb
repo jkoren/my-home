@@ -21,12 +21,11 @@ Rails.application.routes.draw do
   get '/activities', to: 'homes#index'
   get '/faq', to: 'homes#index'
   get '/notfound', to: 'homes#index'
-
-
-  # save information
+  
   get "/residences/:id/rooms/new", to: "homes#index" 
   get "/rooms/:id/possessions/new", to: "homes#index" 
-
+  
+  
   namespace :api do
     namespace :v1 do   
       resources :realtors, only: [:index, :show] 
@@ -39,14 +38,14 @@ Rails.application.routes.draw do
         resources :possessions, only: [:create]
       end
       
-      resources :possessions, only: [:index, :show, :update, :destroy]
       #new
-      # patch "/possessions/change_manual/:id", to: "/api/v1/possessions#change_manual"
+      patch "/possessions/change_manual", to: "/api/v1/possessions#change_manual"
+      resources :possessions, only: [:index, :show, :update, :destroy]
       resources :professionals, only: [:index]
       resources :activities, only: [:index]
     end
   end
-
+  
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 

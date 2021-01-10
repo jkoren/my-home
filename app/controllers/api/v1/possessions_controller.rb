@@ -2,6 +2,28 @@
 class Api::V1::PossessionsController < ApiController
   skip_before_action :verify_authenticity_token, only: [:create, :update]
 
+  def change_manual 
+    # possession_params includes: possession ID, name and new manual URL
+    possession = Possession.find(possession_params[:id]) 
+    url = possession_params[:aws_owners_manual]
+    
+    open(url) do |image|
+      File.open("./tmp_manual.pdf", "wb") do |file|
+        file.write(image.read)
+      end
+    end
+    tmp_manual = File.open(File.join( Rails.root,'/tmp_manual.pdf'))
+    possession.aws_owners_manual = tmp_manual
+
+    if possession.save
+      theAction = Activity.new(action: "update the owners manual", table: "possession", user: current_user, id_of_item: possession_params[:id], name: possession_params[:name])
+      theAction.save
+      render json: possession     
+    else
+      render json: { errors: possession.errors }
+    end
+  end
+
   def show
     possession = Possession.find(params[:id])
     professionals = Professional.get_professionals(possession.name, possession.residence.zip_code, 4)
@@ -42,10 +64,8 @@ class Api::V1::PossessionsController < ApiController
     room = Room.find(params[:room_id])
     new_possession.room = room
     if new_possession.save
-      
       theAction = Activity.new(action: "create", table: "possession", user: current_user, id_of_item: new_possession.id, name: new_possession.name)
       theAction.save
-      
       render json: new_possession     
     else
       render json: { errors: new_possession.errors }
@@ -66,7 +86,6 @@ class Api::V1::PossessionsController < ApiController
     Activity.create(action: "destroy", table: "possession", user: current_user, id_of_item: possession.id, name: possession.name)
     render json: {roomId: room.id}
   end
-
 
   private
     def possession_params

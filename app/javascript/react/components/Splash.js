@@ -1,6 +1,7 @@
 import React from "react";
 import PossessionsNewestContainer from "./possessions/PossessionsNewestContainer"
 import PossessionsLeadersContainer from "./possessions/PossessionsLeadersContainer"
+import { Link } from 'react-router-dom'
 
 const Splash = (props) => {
   let newPossessions = PossessionsNewestContainer()
@@ -40,7 +41,9 @@ const Splash = (props) => {
           {newPossessions}
         </div>
         <div className="cell small-12 medium-4">
-          <h3 className="callout">Sign In</h3>
+          <h5 className="callout">
+            <a href='/users/sign_in'>Sign In</a>
+          </h5>
           <h5>To get the most value from My-Home, create a log in and store your possessions and important facts about them. </h5>
           <h5>A small investment in time will give a huge payoff when you are using your favorite things.
           </h5>
