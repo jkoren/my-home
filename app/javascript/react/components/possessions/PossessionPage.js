@@ -37,6 +37,7 @@ const PossessionPage = (props) => {
   const [awsPurchaseReceiptUploaded, setAwsPurchaseReceiptUploaded] = useState(false)
   const [awsWarrantyUploaded, setAwsWarrantyUploaded] = useState(false)
   const [awsTagUploaded, setAwsTagUploaded] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
   const fetchPossessionAndProfessionalsAndManuals = () => {
     // THIS IS GETTING THE INITIAL DATA FROM RAILS WHEN THE PAGE LOADS
@@ -222,7 +223,10 @@ const PossessionPage = (props) => {
   }
 
   const onManualSaveClick = (manualURL) => {
+    //debugger // need to fix this so spinning wheel shows
+    // setLoading(true)
     changeManual(manualURL)
+    // setLoading(false)
   }
   
   let displayPossessionTile = null

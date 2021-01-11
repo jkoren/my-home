@@ -1,9 +1,13 @@
 //PossessionShowTile.js
-import React from "react"
+import React, { useState, useEffect } from "react"
 import ProfessionalIndexTile from "../professionals/ProfessionalIndexTile"
 import ManualIndexTile from "../manuals/ManuaIndexTile"
 
 const PossessionShowTile = (props) => {
+  const [loading, setLoading] = useState(false)
+
+  let loadingGif = loading ? "https://media.tenor.com/images/28357c1fb629177a569732561bfd939c/tenor.gif" : ""
+
   // to handle cases where there is no aws file, to color font appropriately
   let aws_image_url = (props.possession.aws_image ? props.possession.aws_image.url : nil)
   let aws_owners_manual_url = (props.possession.aws_owners_manual ? props.possession.aws_owners_manual.url : nil)
@@ -129,6 +133,7 @@ const PossessionShowTile = (props) => {
         <h4>{props.possession.name}</h4>
         <h5>{props.possession.manufacturer} {props.possession.model}</h5>
         {editDeleteTile}
+        <img src={loadingGif} width="50"></img>
       </div> 
 
         <div className="cell small-12 medium-3">

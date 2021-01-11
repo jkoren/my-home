@@ -6,15 +6,8 @@ class Api::V1::PossessionsController < ApiController
     # possession_params includes: possession ID, name and new manual URL
     possession = Possession.find(possession_params[:id]) 
     url = possession_params[:aws_owners_manual]
-    
-    open(url) do |image|
-      File.open("./tmp_manual.pdf", "wb") do |file|
-        file.write(image.read)
-      end
-    end
-    tmp_manual = File.open(File.join( Rails.root,'/tmp_manual.pdf'))
+    tmp_manual = Down.download(url)  # https://www.twilio.com/blog/download-image-files-ruby  
     possession.aws_owners_manual = tmp_manual
-
     if possession.save
       theAction = Activity.new(action: "update the owners manual", table: "possession", user: current_user, id_of_item: possession_params[:id], name: possession_params[:name])
       theAction.save
