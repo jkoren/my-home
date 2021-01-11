@@ -1,3 +1,4 @@
+#\app\models\profession.rb
 class Professional
   def initialize(id, name, address1, address2, city, state, zip_code, display_address, display_phone, rating)
     @id = id
