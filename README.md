@@ -7,7 +7,7 @@ My-Home is built with JavaScript and React for the front-end, and Rails, Ruby an
 
 [See the deployed application on Heroku](https://my-home-222.herokuapp.com/)
 
-# ![my-home](app/assets/images/promotional/my-home-promo.jpg)
+# ![my-home](https://jkorenstein-production.s3.amazonaws.com/my-home/promo/My-home-promo.jpg)
 
 ## Developer
 - Jeff Korenstein
